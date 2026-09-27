@@ -1,0 +1,58 @@
+{
+  "operations": [
+    {
+      "kind": "addColumn",
+      "table": "users",
+      "column": {
+        "name": "bio",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      "source": {
+        "file": "002_update_users.php",
+        "line": 8,
+        "column": 12
+      }
+    },
+    {
+      "kind": "addColumn",
+      "table": "users",
+      "column": {
+        "name": "score",
+        "type": "integer",
+        "nullable": false,
+        "unsigned": true,
+        "default": 0
+      },
+      "source": {
+        "file": "002_update_users.php",
+        "line": 9,
+        "column": 12
+      }
+    },
+    {
+      "kind": "renameColumn",
+      "table": "users",
+      "from": "name",
+      "to": "display_name",
+      "source": {
+        "file": "002_update_users.php",
+        "line": 10,
+        "column": 12
+      }
+    },
+    {
+      "kind": "dropColumn",
+      "table": "users",
+      "column": "email",
+      "source": {
+        "file": "002_update_users.php",
+        "line": 11,
+        "column": 12
+      }
+    }
+  ],
+  "diagnostics": [],
+  "complete": true
+}

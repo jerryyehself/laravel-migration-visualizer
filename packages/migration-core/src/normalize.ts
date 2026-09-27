@@ -1,0 +1,166 @@
+import { parseMigration } from './parser.js';
+import type { AnalysisResult, AtomicOperation, Column, Literal, SourceLocation } from './types.js';
+// php-parser's heterogeneous AST stays private to this adapter, never in the public model.
+type Node = { kind: string; [key: string]: any };
+const facade = 'Illuminate\\Support\\Facades\\Schema';
+const migration = 'Illuminate\\Database\\Migrations\\Migration';
+const clean = (name: string) => name.replace(/^\\/, '');
+function literal(node: Node): Literal {
+  if (node?.kind === 'string' || node?.kind === 'boolean') return node.value;
+  if (node?.kind === 'nullkeyword') return null;
+  if (node?.kind === 'number') {
+    const raw = node.value.replace(/_/g, '');
+    // PHP legacy octal (010) differs from JavaScript Number('010'). Do not guess.
+    if (!/^(?:0|[1-9][0-9]*)(?:\.[0-9]*)?(?:[eE][+-]?[0-9]+)?$/.test(raw) && !/^\.[0-9]+(?:[eE][+-]?[0-9]+)?$/.test(raw)) throw new Error('Only decimal numeric literals are supported.');
+    const value = Number(raw);
+    if (Number.isFinite(value) && Math.abs(value) <= Number.MAX_SAFE_INTEGER) return value;
+  }
+  if (node?.kind === 'unary' && ['-', '+'].includes(node.type)) {
+    const value = literal(node.what);
+    if (typeof value === 'number') return node.type === '-' ? -value : value;
+  }
+  throw new Error('Expected a static scalar literal; expressions are not evaluated.');
+}
+function text(value: Literal | undefined): string {
+  if (typeof value !== 'string' || !value.length) throw new Error('Expected a non-empty string.');
+  return value;
+}
+function integer(value: Literal | undefined, fallback: number, minimum = 0): number {
+  if (value === undefined) return fallback;
+  if (typeof value !== 'number' || !Number.isInteger(value) || value < minimum) throw new Error('Expected a valid integer argument.');
+  return value;
+}
+function arity(args: unknown[], min: number, max = min) {
+  if (args.length < min || args.length > max) throw new Error(`Expected ${min}–${max} arguments, received ${args.length}.`);
+}
+interface Call { name: string; args: Literal[] }
+function chain(node: Node, receiver: string): Call[] {
+  if (node?.kind === 'variable' && node.name === receiver) return [];
+  if (node?.kind !== 'call' || node.what.kind !== 'propertylookup' || node.what.offset.kind !== 'identifier') throw new Error('Expected a direct Blueprint method chain.');
+  return [...chain(node.what.what, receiver), { name: node.what.offset.name, args: node.arguments.map(literal) }];
+}
+const simpleTypes = new Set(['text', 'longText', 'mediumText', 'boolean', 'date', 'json', 'jsonb', 'uuid']);
+const integerTypes = new Set(['integer', 'bigInteger', 'smallInteger', 'tinyInteger', 'mediumInteger', 'unsignedInteger', 'unsignedBigInteger', 'unsignedSmallInteger', 'unsignedTinyInteger', 'unsignedMediumInteger']);
+function columns(call: Call): Column[] {
+  const { name: method, args } = call;
+  if (method === 'timestamps') {
+    arity(args, 0, 1);
+    return ['created_at', 'updated_at'].map(name => ({ name, type: 'timestamp', nullable: true, precision: integer(args[0], 0) }));
+  }
+  if (method === 'id' || method === 'increments' || method === 'bigIncrements') {
+    arity(args, method === 'id' ? 0 : 1, 1);
+    return [{ name: text(args[0] === undefined ? 'id' : args[0]), type: method === 'increments' ? 'integer' : 'bigInteger', nullable: false, unsigned: true, autoIncrement: true, primary: true }];
+  }
+  const name = text(args[0]);
+  if (method === 'string' || method === 'char') {
+    arity(args, 1, 2);
+    return [{ name, type: method, nullable: false, length: integer(args[1], 255, 1) }];
+  }
+  if (method === 'decimal') {
+    arity(args, 1, 3);
+    const precision = integer(args[1], 8, 1), scale = integer(args[2], 2);
+    if (scale > precision) throw new Error('Decimal scale exceeds precision.');
+    return [{ name, type: method, nullable: false, precision, scale }];
+  }
+  if (['timestamp', 'dateTime', 'time'].includes(method)) {
+    arity(args, 1, 2);
+    return [{ name, type: method, nullable: false, precision: integer(args[1], 0) }];
+  }
+  if (simpleTypes.has(method) || integerTypes.has(method)) {
+    // Optional integer flags are deliberately excluded from this milestone.
+    arity(args, 1);
+    const unsigned = method.startsWith('unsigned');
+    const type = unsigned ? method[8].toLowerCase() + method.slice(9) : method;
+    return [{ name, type, nullable: false, ...(unsigned ? { unsigned: true } : {}) }];
+  }
+  throw new Error(`Unsupported Blueprint API: ${method}`);
+}
+function modify(column: Column, modifier: Call) {
+  const { name, args } = modifier;
+  if (name === 'nullable' || name === 'unsigned') {
+    arity(args, 0, 1);
+    const value = args[0] === undefined ? true : args[0];
+    if (typeof value !== 'boolean') throw new Error(`${name} expects a boolean.`);
+    column[name] = value;
+  } else if (name === 'default') {
+    arity(args, 1); column.default = args[0];
+  } else if (name === 'comment') {
+    arity(args, 1); column.comment = text(args[0]);
+  } else throw new Error(`Unsupported column modifier: ${name}`);
+}
+/** Analyze only a migration's up() method. Unsupported statements yield diagnostics. */
+export function analyzeMigration(source: string, file = 'migration.php'): AnalysisResult {
+  const result: AnalysisResult = { operations: [], diagnostics: [], complete: true };
+  const location = (node?: Node): SourceLocation => ({ file, line: node?.loc?.start.line ?? 1, column: node?.loc?.start.column ?? 0 });
+  const report = (code: string, message: string, node?: Node) => {
+    result.complete = false; result.diagnostics.push({ code, message, source: location(node) });
+  };
+  let ast: Node;
+  try { ast = parseMigration(source, file) as Node; }
+  catch (error) { report('PARSE_ERROR', error instanceof Error ? error.message : String(error)); return result; }
+  let found = 0;
+  function scope(nodes: Node[]) {
+    const aliases = new Map<string, string>([['Schema', facade], ['Migration', migration]]);
+    for (const node of nodes) if (node.kind === 'usegroup') {
+      for (const item of node.items) {
+        const full = clean([node.name, item.name].filter(Boolean).join('\\'));
+        aliases.set(item.alias?.name ?? full.split('\\').at(-1)!, full);
+      }
+    }
+    const resolves = (name: string | undefined, target: string) => !!name && (clean(name) === target || aliases.get(name) === target);
+    for (const node of nodes) {
+      if (node.kind === 'namespace') { scope(node.children); continue; }
+      const cls = node.kind === 'class' ? node : node.kind === 'return' && node.expr?.kind === 'new' ? node.expr.what : undefined;
+      if (cls?.kind !== 'class' || !resolves(cls.extends?.name, migration)) continue;
+      const up = cls.body.find((member: Node) => member.kind === 'method' && member.name.name.toLowerCase() === 'up');
+      if (!up?.body) continue;
+      found++;
+      for (const statement of up.body.children) {
+        const call = statement.expression;
+        const lookup = call?.what;
+        if (statement.kind !== 'expressionstatement' || call?.kind !== 'call' || lookup?.kind !== 'staticlookup' || lookup.offset?.kind !== 'identifier' || !resolves(lookup.what?.name, facade)) {
+          report('UNSUPPORTED_STATEMENT', 'Only direct Schema calls in up() are supported; control flow and helper calls are not evaluated.', statement); continue;
+        }
+        try {
+          const method = lookup.offset.name;
+          if (!['create', 'table'].includes(method)) throw new Error(`Unsupported Schema API: ${method}`);
+          arity(call.arguments, 2);
+          const table = text(literal(call.arguments[0]));
+          const closure = call.arguments[1];
+          if (closure.kind !== 'closure' || closure.arguments.length !== 1 || closure.body?.kind !== 'block') throw new Error('Expected a closure with one Blueprint parameter.');
+          const receiver = closure.arguments[0].name.name;
+          if (method === 'create') result.operations.push({ kind: 'createTable', table, source: location(statement) });
+          for (const body of closure.body.children) {
+            try {
+              if (body.kind !== 'expressionstatement') throw new Error('Blueprint control flow is unsupported.');
+              const calls = chain(body.expression, receiver);
+              if (!calls.length) throw new Error('Expected a Blueprint call.');
+              const [first, ...modifiers] = calls;
+              const operations: AtomicOperation[] = [];
+              if (first.name === 'dropColumn') {
+                arity(first.args, 1);
+                if (modifiers.length) throw new Error('dropColumn cannot have modifiers.');
+                operations.push({ kind: 'dropColumn', table, column: text(first.args[0]), source: location(body) });
+              } else if (first.name === 'renameColumn') {
+                arity(first.args, 2);
+                if (modifiers.length) throw new Error('renameColumn cannot have modifiers.');
+                operations.push({ kind: 'renameColumn', table, from: text(first.args[0]), to: text(first.args[1]), source: location(body) });
+              } else {
+                const definitions = columns(first);
+                if (first.name === 'timestamps' && modifiers.length) throw new Error('timestamps does not support chained modifiers.');
+                for (const column of definitions) {
+                  for (const modifier of modifiers) modify(column, modifier);
+                  operations.push({ kind: 'addColumn', table, column, source: location(body) });
+                }
+              }
+              result.operations.push(...operations);
+            } catch (error) { report('UNSUPPORTED_BLUEPRINT', (error as Error).message, body); }
+          }
+        } catch (error) { report('UNSUPPORTED_SCHEMA', (error as Error).message, statement); }
+      }
+    }
+  }
+  scope(ast.children);
+  if (found !== 1) report('MIGRATION_COUNT', `Expected one migration with up(); found ${found}.`);
+  return result;
+}
