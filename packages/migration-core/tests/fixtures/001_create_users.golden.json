@@ -1,0 +1,124 @@
+{
+  "operations": [
+    {
+      "kind": "createTable",
+      "table": "users",
+      "source": {
+        "file": "001_create_users.php",
+        "line": 7,
+        "column": 8
+      }
+    },
+    {
+      "kind": "addColumn",
+      "table": "users",
+      "column": {
+        "name": "id",
+        "type": "bigInteger",
+        "nullable": false,
+        "unsigned": true,
+        "autoIncrement": true,
+        "primary": true
+      },
+      "source": {
+        "file": "001_create_users.php",
+        "line": 8,
+        "column": 12
+      }
+    },
+    {
+      "kind": "addColumn",
+      "table": "users",
+      "column": {
+        "name": "name",
+        "type": "string",
+        "nullable": false,
+        "length": 120
+      },
+      "source": {
+        "file": "001_create_users.php",
+        "line": 9,
+        "column": 12
+      }
+    },
+    {
+      "kind": "addColumn",
+      "table": "users",
+      "column": {
+        "name": "email",
+        "type": "string",
+        "nullable": true,
+        "length": 255
+      },
+      "source": {
+        "file": "001_create_users.php",
+        "line": 10,
+        "column": 12
+      }
+    },
+    {
+      "kind": "addColumn",
+      "table": "users",
+      "column": {
+        "name": "active",
+        "type": "boolean",
+        "nullable": false,
+        "default": true
+      },
+      "source": {
+        "file": "001_create_users.php",
+        "line": 11,
+        "column": 12
+      }
+    },
+    {
+      "kind": "addColumn",
+      "table": "users",
+      "column": {
+        "name": "balance",
+        "type": "decimal",
+        "nullable": false,
+        "precision": 10,
+        "scale": 2,
+        "default": 0
+      },
+      "source": {
+        "file": "001_create_users.php",
+        "line": 12,
+        "column": 12
+      }
+    },
+    {
+      "kind": "addColumn",
+      "table": "users",
+      "column": {
+        "name": "created_at",
+        "type": "timestamp",
+        "nullable": true,
+        "precision": 0
+      },
+      "source": {
+        "file": "001_create_users.php",
+        "line": 13,
+        "column": 12
+      }
+    },
+    {
+      "kind": "addColumn",
+      "table": "users",
+      "column": {
+        "name": "updated_at",
+        "type": "timestamp",
+        "nullable": true,
+        "precision": 0
+      },
+      "source": {
+        "file": "001_create_users.php",
+        "line": 13,
+        "column": 12
+      }
+    }
+  ],
+  "diagnostics": [],
+  "complete": true
+}
