@@ -1,0 +1,298 @@
+{
+  "complete": false,
+  "migrations": [
+    {
+      "filename": "2026_01_01_000000_create_users.php",
+      "migrationName": "2026_01_01_000000_create_users",
+      "status": "applied",
+      "analysis": {
+        "operations": [
+          {
+            "kind": "createTable",
+            "table": "users",
+            "source": {
+              "file": "2026_01_01_000000_create_users.php",
+              "line": 4,
+              "column": 8
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "users",
+            "column": {
+              "name": "id",
+              "type": "bigInteger",
+              "nullable": false,
+              "unsigned": true,
+              "autoIncrement": true,
+              "primary": true
+            },
+            "source": {
+              "file": "2026_01_01_000000_create_users.php",
+              "line": 5,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "users",
+            "column": {
+              "name": "name",
+              "type": "string",
+              "nullable": false,
+              "length": 120
+            },
+            "source": {
+              "file": "2026_01_01_000000_create_users.php",
+              "line": 6,
+              "column": 12
+            }
+          }
+        ],
+        "diagnostics": [],
+        "complete": true
+      },
+      "schemaBefore": {
+        "tables": {}
+      },
+      "schemaAfter": {
+        "tables": {
+          "users": {
+            "name": "users",
+            "columns": {
+              "id": {
+                "name": "id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": true,
+                "primary": true
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "nullable": false,
+                "length": 120
+              }
+            }
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "tableAdded",
+            "table": "users",
+            "after": {
+              "name": "users",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                },
+                "name": {
+                  "name": "name",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 120
+                }
+              }
+            }
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "filename": "2026_01_02_000000_unsupported.php",
+      "migrationName": "2026_01_02_000000_unsupported",
+      "status": "failed",
+      "analysis": {
+        "operations": [
+          {
+            "kind": "addColumn",
+            "table": "users",
+            "column": {
+              "name": "bio",
+              "type": "text",
+              "nullable": false
+            },
+            "source": {
+              "file": "2026_01_02_000000_unsupported.php",
+              "line": 5,
+              "column": 12
+            }
+          }
+        ],
+        "diagnostics": [
+          {
+            "code": "UNSUPPORTED_BLUEPRINT",
+            "message": "Unsupported column modifier: unique",
+            "source": {
+              "file": "2026_01_02_000000_unsupported.php",
+              "line": 6,
+              "column": 12
+            }
+          }
+        ],
+        "complete": false
+      },
+      "schemaBefore": {
+        "tables": {
+          "users": {
+            "name": "users",
+            "columns": {
+              "id": {
+                "name": "id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": true,
+                "primary": true
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "nullable": false,
+                "length": 120
+              }
+            }
+          }
+        }
+      },
+      "schemaAfter": null,
+      "diff": null,
+      "diagnostics": [
+        {
+          "code": "UNSUPPORTED_BLUEPRINT",
+          "message": "Unsupported column modifier: unique",
+          "source": {
+            "file": "2026_01_02_000000_unsupported.php",
+            "line": 6,
+            "column": 12
+          },
+          "phase": "analysis",
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "filename": "2026_01_03_000000_revise_users.php",
+      "migrationName": "2026_01_03_000000_revise_users",
+      "status": "blocked",
+      "analysis": {
+        "operations": [
+          {
+            "kind": "dropColumn",
+            "table": "users",
+            "column": "nickname",
+            "source": {
+              "file": "2026_01_03_000000_revise_users.php",
+              "line": 5,
+              "column": 12
+            }
+          },
+          {
+            "kind": "dropColumn",
+            "table": "users",
+            "column": "display_name",
+            "source": {
+              "file": "2026_01_03_000000_revise_users.php",
+              "line": 6,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "users",
+            "column": {
+              "name": "display_name",
+              "type": "string",
+              "nullable": true,
+              "length": 200
+            },
+            "source": {
+              "file": "2026_01_03_000000_revise_users.php",
+              "line": 7,
+              "column": 12
+            }
+          }
+        ],
+        "diagnostics": [],
+        "complete": true
+      },
+      "schemaBefore": null,
+      "schemaAfter": null,
+      "diff": null,
+      "diagnostics": [
+        {
+          "phase": "dependency",
+          "severity": "error",
+          "code": "SCHEMA_BLOCKED",
+          "message": "Schema is unknown after failed migration: 2026_01_02_000000_unsupported.php",
+          "source": {
+            "file": "2026_01_03_000000_revise_users.php",
+            "line": 1,
+            "column": 0
+          }
+        }
+      ]
+    }
+  ],
+  "diagnostics": [
+    {
+      "code": "UNSUPPORTED_BLUEPRINT",
+      "message": "Unsupported column modifier: unique",
+      "source": {
+        "file": "2026_01_02_000000_unsupported.php",
+        "line": 6,
+        "column": 12
+      },
+      "phase": "analysis",
+      "severity": "error"
+    },
+    {
+      "phase": "dependency",
+      "severity": "error",
+      "code": "SCHEMA_BLOCKED",
+      "message": "Schema is unknown after failed migration: 2026_01_02_000000_unsupported.php",
+      "source": {
+        "file": "2026_01_03_000000_revise_users.php",
+        "line": 1,
+        "column": 0
+      }
+    }
+  ],
+  "initialSchema": {
+    "tables": {}
+  },
+  "finalSchema": null,
+  "lastValidSchema": {
+    "tables": {
+      "users": {
+        "name": "users",
+        "columns": {
+          "id": {
+            "name": "id",
+            "type": "bigInteger",
+            "nullable": false,
+            "unsigned": true,
+            "autoIncrement": true,
+            "primary": true
+          },
+          "name": {
+            "name": "name",
+            "type": "string",
+            "nullable": false,
+            "length": 120
+          }
+        }
+      }
+    }
+  },
+  "appliedCount": 1
+}

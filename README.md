@@ -1,4 +1,4 @@
-# Laravel Migration Visualizer — Milestone 1
+# Laravel Migration Visualizer — Milestone 2
 
 React + TypeScript + Vite，npm workspaces monorepo。只做靜態 migration 分析，不執行 PHP 或連接資料庫。
 
@@ -50,7 +50,43 @@ if (!analysis.complete) {
 }
 ```
 
-多份 migration：呼叫端依檔名排序，再逐份分析並將 operations 套用到上一份 SchemaState。先檢查 `complete`；不要把有 diagnostics 的部分輸出當作完整 schema。core 不自行排序，也不讀檔、不使用 React、不呼叫 hooks。
+多份 migration 使用 `analyzeProject(files)`，由 core 排序與逐份套用；讀檔留在呼叫端。core 不使用 React、不呼叫 hooks。單檔 API 仍維持 Milestone 1 契約。
+
+## Milestone 2：Project analysis
+
+```ts
+import { analyzeProject } from '@lmv/migration-core';
+
+const project = analyzeProject([
+  { filename: '2026_01_02_000000_update_users.php', source: updatePhp },
+  { filename: '2026_01_01_000000_create_users.php', source: createPhp },
+]);
+
+// migrations 已按 migration basename 排序，與輸入順序無關。
+for (const step of project.migrations) {
+  console.log(step.filename, step.status, step.schemaBefore, step.schemaAfter, step.diff);
+}
+console.log(project.diagnostics);
+if (project.complete) console.log(project.finalSchema);
+else console.log(project.lastValidSchema); // 只代表成功前綴，不能當成最終狀態
+```
+
+- `orderMigrations(files)`：標準 ASCII `YYYY_MM_DD_HHMMSS_description.php` 排序，保留原路徑；重複名稱／不合格式會阻止整個專案 replay。這是本工具的輸入契約，比 Laravel 檔案探索限制更嚴格。檢查格式，不驗證日曆日期。
+- `analyzeProject(files, { initialSchema? })`：預設由空 schema 開始；每檔提供獨立 snapshots，狀態為 applied / failed / blocked。
+- `diffSchemas(before, after)`：結構比較，輸出 tableAdded / tableRemoved / columnAdded / columnRemoved / columnChanged。新建或移除表時包含整表，不重複列欄位；排序固定為 table、column 字典順序。
+- 第一份失敗後，後續仍分析 PHP，但所有後續 snapshots / diff 為 null。失敗檔只保留可信的 schemaBefore；整個失敗檔不套用部分操作。
+- `ProjectDiagnostic.phase` 區分 ordering / analysis / replay / dependency。Replay 錯誤保留出錯操作的來源位置及從 0 起算的 operationIndex。
+- `complete` 只表示本工具支援範圍內的靜態分析與 replay 成功，不保證實際資料庫可執行或涵蓋整個專案的 PHP 語意。
+
+執行亂序三檔範例並輸出完整 project JSON：
+
+```sh
+npm run demo:project
+```
+
+本 milestone 的新增功能在 core API 與 Node 範例；React 工作台仍為單檔，尚未加入多檔匯入畫面。Node 範例的讀檔放在 examples/，不滲入 migration-core。
+
+詳見 [Milestone 2 中文設計教學](docs/milestone-2.zh-TW.md)。
 
 ## 支援範圍
 
