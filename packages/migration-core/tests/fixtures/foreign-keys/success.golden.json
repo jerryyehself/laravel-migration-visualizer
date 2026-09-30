@@ -1,0 +1,247 @@
+{
+  "complete": true,
+  "appliedCount": 4,
+  "diagnostics": [],
+  "migrations": [
+    {
+      "filename": "2026_03_01_000000_create_users.php",
+      "status": "applied",
+      "before": {},
+      "after": {
+        "users": {
+          "columns": [
+            "id"
+          ],
+          "foreignKeys": {}
+        }
+      },
+      "foreignKeyChanges": []
+    },
+    {
+      "filename": "2026_03_02_000000_create_posts.php",
+      "status": "applied",
+      "before": {
+        "users": {
+          "columns": [
+            "id"
+          ],
+          "foreignKeys": {}
+        }
+      },
+      "after": {
+        "users": {
+          "columns": [
+            "id"
+          ],
+          "foreignKeys": {}
+        },
+        "posts": {
+          "columns": [
+            "id",
+            "user_id"
+          ],
+          "foreignKeys": {
+            "posts_user_id_foreign": {
+              "name": "posts_user_id_foreign",
+              "columns": [
+                "user_id"
+              ],
+              "referencedTable": "users",
+              "referencedColumns": [
+                "id"
+              ],
+              "onDelete": "set null",
+              "onUpdate": "cascade"
+            }
+          }
+        }
+      },
+      "foreignKeyChanges": []
+    },
+    {
+      "filename": "2026_03_03_000000_revise_keys.php",
+      "status": "applied",
+      "before": {
+        "users": {
+          "columns": [
+            "id"
+          ],
+          "foreignKeys": {}
+        },
+        "posts": {
+          "columns": [
+            "id",
+            "user_id"
+          ],
+          "foreignKeys": {
+            "posts_user_id_foreign": {
+              "name": "posts_user_id_foreign",
+              "columns": [
+                "user_id"
+              ],
+              "referencedTable": "users",
+              "referencedColumns": [
+                "id"
+              ],
+              "onDelete": "set null",
+              "onUpdate": "cascade"
+            }
+          }
+        }
+      },
+      "after": {
+        "users": {
+          "columns": [
+            "user_key"
+          ],
+          "foreignKeys": {}
+        },
+        "posts": {
+          "columns": [
+            "author_id",
+            "id"
+          ],
+          "foreignKeys": {
+            "posts_author_fk": {
+              "name": "posts_author_fk",
+              "columns": [
+                "author_id"
+              ],
+              "referencedTable": "users",
+              "referencedColumns": [
+                "user_key"
+              ],
+              "onDelete": "cascade"
+            }
+          }
+        }
+      },
+      "foreignKeyChanges": [
+        {
+          "kind": "foreignKeyAdded",
+          "table": "posts",
+          "foreignKey": "posts_author_fk",
+          "after": {
+            "name": "posts_author_fk",
+            "columns": [
+              "author_id"
+            ],
+            "referencedTable": "users",
+            "referencedColumns": [
+              "user_key"
+            ],
+            "onDelete": "cascade"
+          }
+        },
+        {
+          "kind": "foreignKeyRemoved",
+          "table": "posts",
+          "foreignKey": "posts_user_id_foreign",
+          "before": {
+            "name": "posts_user_id_foreign",
+            "columns": [
+              "user_id"
+            ],
+            "referencedTable": "users",
+            "referencedColumns": [
+              "id"
+            ],
+            "onDelete": "set null",
+            "onUpdate": "cascade"
+          }
+        }
+      ]
+    },
+    {
+      "filename": "2026_03_04_000000_remove_key.php",
+      "status": "applied",
+      "before": {
+        "users": {
+          "columns": [
+            "user_key"
+          ],
+          "foreignKeys": {}
+        },
+        "posts": {
+          "columns": [
+            "author_id",
+            "id"
+          ],
+          "foreignKeys": {
+            "posts_author_fk": {
+              "name": "posts_author_fk",
+              "columns": [
+                "author_id"
+              ],
+              "referencedTable": "users",
+              "referencedColumns": [
+                "user_key"
+              ],
+              "onDelete": "cascade"
+            }
+          }
+        }
+      },
+      "after": {
+        "users": {
+          "columns": [
+            "user_key"
+          ],
+          "foreignKeys": {}
+        },
+        "posts": {
+          "columns": [
+            "id"
+          ],
+          "foreignKeys": {}
+        }
+      },
+      "foreignKeyChanges": [
+        {
+          "kind": "foreignKeyRemoved",
+          "table": "posts",
+          "foreignKey": "posts_author_fk",
+          "before": {
+            "name": "posts_author_fk",
+            "columns": [
+              "author_id"
+            ],
+            "referencedTable": "users",
+            "referencedColumns": [
+              "user_key"
+            ],
+            "onDelete": "cascade"
+          }
+        }
+      ]
+    }
+  ],
+  "final": {
+    "users": {
+      "columns": [
+        "user_key"
+      ],
+      "foreignKeys": {}
+    },
+    "posts": {
+      "columns": [
+        "id"
+      ],
+      "foreignKeys": {}
+    }
+  },
+  "lastValid": {
+    "users": {
+      "columns": [
+        "user_key"
+      ],
+      "foreignKeys": {}
+    },
+    "posts": {
+      "columns": [
+        "id"
+      ],
+      "foreignKeys": {}
+    }
+  }
+}

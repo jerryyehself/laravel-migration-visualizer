@@ -35,6 +35,18 @@ export function diffSchemas(before: SchemaState, after: SchemaState): SchemaDiff
           }
         }
       }
+      const oldKeys = before.tables[table].foreignKeys, newKeys = after.tables[table].foreignKeys;
+      for (const foreignKey of [...new Set([...Object.keys(oldKeys), ...Object.keys(newKeys)])].sort(compareNames)) {
+        if (!owns(oldKeys, foreignKey)) changes.push({ kind:'foreignKeyAdded', table, foreignKey, after:structuredClone(newKeys[foreignKey]) });
+        else if (!owns(newKeys, foreignKey)) changes.push({ kind:'foreignKeyRemoved', table, foreignKey, before:structuredClone(oldKeys[foreignKey]) });
+        else {
+          const a = oldKeys[foreignKey], b = newKeys[foreignKey];
+          const same = (left: string[], right: string[]) => left.length === right.length && left.every((name, i) => name === right[i]);
+          if (a.name !== b.name || a.referencedTable !== b.referencedTable || !same(a.columns,b.columns) || !same(a.referencedColumns,b.referencedColumns) || a.onDelete !== b.onDelete || a.onUpdate !== b.onUpdate) {
+            changes.push({ kind:'foreignKeyChanged', table, foreignKey, before:structuredClone(a), after:structuredClone(b) });
+          }
+        }
+      }
     }
   }
   return { changes };

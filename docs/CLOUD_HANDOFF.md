@@ -4,7 +4,7 @@
 - Milestone 1 baseline commit：6959b46（42 tests）。
 - Milestone 2：檔名排序、batch analyzer、schemaBefore/schemaAfter、SchemaDiff、project diagnostics、跨 migration golden tests（71 tests）。
 - Milestone 3：React 多檔匯入工作台、逐檔快照／diff／診斷與輸入副本編輯；core 契約不變。新增 5 個匯入測試，合計 76 tests。
-- Milestone 3 已以 7fba001 推送 main。Milestone 4 在 feat/milestone-4-index-analysis，合併前驗證該分支；不要假設 main 已有索引支援。
+- Milestone 3 已以 7fba001 推送 main。Milestone 4 已合併 PR #7，merge commit c778163（121 tests）。Milestone 5 在 feat/milestone-5-foreign-keys，合併前驗證該分支。
 - 本機對話不會自動成為 Cloud 對話；以本文件、AGENTS.md、Git history 與教學文件延續。
 
 ## Cloud 環境設定
@@ -16,7 +16,7 @@
 6. 若 Cloud 使用環境快取，可將 maintenance script 同樣設為 bash scripts/cloud-setup.sh，以確保依照目前 lockfile 安裝。
 
 ## 第一個雲端任務：驗證交接
-請讀取 AGENTS.md、README.md、docs/milestone-2.zh-TW.md 及本文件。先確認 Git 狀態與目前 commit，再執行 npm test、npm run typecheck、npm run build、npm run demo:project。包含 Milestone 4 時預期 121 tests 通過；僅 Milestone 3 為 76 tests（Milestone 2 交接 commit 75087de 為 71 tests），三份範例依序成功，最終 users 欄位為 id、display_name。以繁體中文回報雲端驗證結果與任何環境差異；若失敗先修復環境或相容性問題。雲端驗證任務只驗證交接，不擴大功能；Milestone 3 已在本機另行實作。
+請讀取 AGENTS.md、README.md、docs/milestone-2.zh-TW.md 及本文件。先確認 Git 狀態與目前 commit，再執行 npm test、npm run typecheck、npm run build、npm run demo:project。包含 Milestone 5 時預期 186 tests 通過；Milestone 4 為 121 tests；僅 Milestone 3 為 76 tests（Milestone 2 交接 commit 75087de 為 71 tests），三份範例依序成功，最終 users 欄位為 id、display_name。以繁體中文回報雲端驗證結果與任何環境差異；若失敗先修復環境或相容性問題。雲端驗證任務只驗證交接，不擴大功能；Milestone 3 已在本機另行實作。
 
 ## 必須保留的契約
 - core 與 React UI 分離，core 不做 IO。
@@ -27,7 +27,7 @@
 - 自訂 base class、完整 Laravel API、DB 方言與 PHP runtime 語意仍不涵蓋；完整限制見 README。
 
 ## 後續範圍
-使用者已要求繼續專案，本機接續實作 Milestone 3 多檔工作台。後續可優先擴充真實專案 fixtures 與驗證大型輸入效能；timeline、ERD、down()、AI、semantic refactoring detection 仍不在目前範圍。
+使用者已授權 Milestone 5 外鍵分析與 UI 顯示，規格見 docs/milestone-5.zh-TW.md；timeline、ERD、down()、AI、semantic refactoring detection 仍不在目前範圍。
 
 ## 原始碼閱讀順序
 src/types.ts → src/project-types.ts → src/ordering.ts → src/project.ts → src/diff.ts → tests/project.test.ts（皆位於 packages/migration-core）。教學請看 docs/tutorial.zh-TW.md 與 docs/milestone-2.zh-TW.md。
@@ -36,5 +36,10 @@ src/types.ts → src/project-types.ts → src/ordering.ts → src/project.ts →
 
 ## Milestone 4 交接
 - 索引 schema / operations / diff、隱含主鍵、React 索引顯示與 golden tests；讀 docs/milestone-4.zh-TW.md。
-- 每張表要有 indexes；外部 initialSchema 需同步更新。
+- M4 每張表要有 indexes；M5 另需 foreignKeys。外部 initialSchema 需同步更新。
 - GitHub 工作紀錄見 docs/github-milestones.md；M4 使用 PR，不直接推 main。
+
+## Milestone 5 交接
+- 外鍵模型／operations／diff、引用驗證、rename/drop 保護、React 外鍵表格與四檔 goldens；讀 docs/milestone-5.zh-TW.md。
+- Core 0.3.0，foreignKeys 是必要欄位；table inference 是明確列出的八種慣例，其他請指定 table。
+- 不推測 DB 隱含索引、型別相容性或完整 Blueprint scheduling；無 PHP/runtime 執行。
