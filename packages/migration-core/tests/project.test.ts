@@ -9,7 +9,7 @@ const reviseName = '2026_01_03_000000_revise_users.php';
 const unsupportedName = '2026_01_02_000000_unsupported.php';
 const wrap = (body: string) => `<?php return new class extends Migration { function up() { ${body} } };`;
 const file = (name: string, body = ''): MigrationFile => ({ filename: `2026_01_01_000000_${name}.php`, source: wrap(body) });
-const state = (nullable = false): SchemaState => ({ tables: { users: { name: 'users', columns: { name: { name: 'name', type: 'string', nullable, length: 120 } } } } });
+const state = (nullable = false): SchemaState => ({ tables: { users: { name: 'users', indexes: {}, columns: { name: { name: 'name', type: 'string', nullable, length: 120 } } } } });
 
 describe('filename ordering', () => {
   it('orders by basename, not folder or input position', () => {
@@ -166,7 +166,7 @@ describe('structural schema diff', () => {
     expect(result.migrations[0].diff).toEqual({changes:[]});
   });
   it('handles prototype-like identifiers', () => {
-    const unusual = JSON.parse('{"tables":{"__proto__":{"name":"__proto__","columns":{"constructor":{"name":"constructor","type":"text","nullable":false}}}}}') as SchemaState;
+    const unusual = JSON.parse('{"tables":{"__proto__":{"name":"__proto__","indexes":{},"columns":{"constructor":{"name":"constructor","type":"text","nullable":false}}}}}') as SchemaState;
     expect(diffSchemas(emptySchema(), unusual).changes[0]).toMatchObject({kind:'tableAdded',table:'__proto__'});
     expect(diffSchemas(unusual, structuredClone(unusual)).changes).toEqual([]);
   });

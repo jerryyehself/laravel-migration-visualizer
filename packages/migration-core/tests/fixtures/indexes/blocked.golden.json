@@ -1,0 +1,134 @@
+{
+  "complete": false,
+  "appliedCount": 1,
+  "diagnostics": [
+    {
+      "phase": "replay",
+      "code": "SCHEMA_REPLAY_ERROR",
+      "file": "2026_02_02_000000_invalid_index.php",
+      "line": 6,
+      "operationIndex": 1
+    },
+    {
+      "phase": "dependency",
+      "code": "SCHEMA_BLOCKED",
+      "file": "2026_02_03_000000_primary_accounts.php",
+      "line": 1
+    }
+  ],
+  "migrations": [
+    {
+      "filename": "2026_02_01_000000_create_accounts.php",
+      "status": "applied",
+      "before": {},
+      "after": {
+        "accounts": {
+          "indexes": {
+            "accounts_id_primary": {
+              "name": "accounts_id_primary",
+              "type": "primary",
+              "columns": [
+                "id"
+              ]
+            },
+            "tenant_lookup": {
+              "name": "tenant_lookup",
+              "type": "index",
+              "columns": [
+                "tenant_id",
+                "email"
+              ]
+            },
+            "accounts_email_unique": {
+              "name": "accounts_email_unique",
+              "type": "unique",
+              "columns": [
+                "email"
+              ]
+            }
+          },
+          "primaryColumns": [
+            "id"
+          ]
+        }
+      },
+      "indexChanges": []
+    },
+    {
+      "filename": "2026_02_02_000000_invalid_index.php",
+      "status": "failed",
+      "before": {
+        "accounts": {
+          "indexes": {
+            "accounts_id_primary": {
+              "name": "accounts_id_primary",
+              "type": "primary",
+              "columns": [
+                "id"
+              ]
+            },
+            "tenant_lookup": {
+              "name": "tenant_lookup",
+              "type": "index",
+              "columns": [
+                "tenant_id",
+                "email"
+              ]
+            },
+            "accounts_email_unique": {
+              "name": "accounts_email_unique",
+              "type": "unique",
+              "columns": [
+                "email"
+              ]
+            }
+          },
+          "primaryColumns": [
+            "id"
+          ]
+        }
+      },
+      "after": null,
+      "indexChanges": null
+    },
+    {
+      "filename": "2026_02_03_000000_primary_accounts.php",
+      "status": "blocked",
+      "before": null,
+      "after": null,
+      "indexChanges": null
+    }
+  ],
+  "final": null,
+  "lastValid": {
+    "accounts": {
+      "indexes": {
+        "accounts_id_primary": {
+          "name": "accounts_id_primary",
+          "type": "primary",
+          "columns": [
+            "id"
+          ]
+        },
+        "tenant_lookup": {
+          "name": "tenant_lookup",
+          "type": "index",
+          "columns": [
+            "tenant_id",
+            "email"
+          ]
+        },
+        "accounts_email_unique": {
+          "name": "accounts_email_unique",
+          "type": "unique",
+          "columns": [
+            "email"
+          ]
+        }
+      },
+      "primaryColumns": [
+        "id"
+      ]
+    }
+  }
+}

@@ -4,7 +4,7 @@
 - Milestone 1 baseline commit：6959b46（42 tests）。
 - Milestone 2：檔名排序、batch analyzer、schemaBefore/schemaAfter、SchemaDiff、project diagnostics、跨 migration golden tests（71 tests）。
 - Milestone 3：React 多檔匯入工作台、逐檔快照／diff／診斷與輸入副本編輯；core 契約不變。新增 5 個匯入測試，合計 76 tests。
-- Milestone 3 若尚未 commit / push，Cloud 不會自動取得本機修改；以 Git 狀態確認，不假設遠端已更新。
+- Milestone 3 已以 7fba001 推送 main。Milestone 4 在 feat/milestone-4-index-analysis，合併前驗證該分支；不要假設 main 已有索引支援。
 - 本機對話不會自動成為 Cloud 對話；以本文件、AGENTS.md、Git history 與教學文件延續。
 
 ## Cloud 環境設定
@@ -16,7 +16,7 @@
 6. 若 Cloud 使用環境快取，可將 maintenance script 同樣設為 bash scripts/cloud-setup.sh，以確保依照目前 lockfile 安裝。
 
 ## 第一個雲端任務：驗證交接
-請讀取 AGENTS.md、README.md、docs/milestone-2.zh-TW.md 及本文件。先確認 Git 狀態與目前 commit，再執行 npm test、npm run typecheck、npm run build、npm run demo:project。包含 Milestone 3 時預期 76 tests 通過（Milestone 2 交接 commit 75087de 為 71 tests），三份範例依序成功，最終 users 欄位為 id、display_name。以繁體中文回報雲端驗證結果與任何環境差異；若失敗先修復環境或相容性問題。雲端驗證任務只驗證交接，不擴大功能；Milestone 3 已在本機另行實作。
+請讀取 AGENTS.md、README.md、docs/milestone-2.zh-TW.md 及本文件。先確認 Git 狀態與目前 commit，再執行 npm test、npm run typecheck、npm run build、npm run demo:project。包含 Milestone 4 時預期 121 tests 通過；僅 Milestone 3 為 76 tests（Milestone 2 交接 commit 75087de 為 71 tests），三份範例依序成功，最終 users 欄位為 id、display_name。以繁體中文回報雲端驗證結果與任何環境差異；若失敗先修復環境或相容性問題。雲端驗證任務只驗證交接，不擴大功能；Milestone 3 已在本機另行實作。
 
 ## 必須保留的契約
 - core 與 React UI 分離，core 不做 IO。
@@ -33,3 +33,8 @@
 src/types.ts → src/project-types.ts → src/ordering.ts → src/project.ts → src/diff.ts → tests/project.test.ts（皆位於 packages/migration-core）。教學請看 docs/tutorial.zh-TW.md 與 docs/milestone-2.zh-TW.md。
 
 官方環境文件：https://learn.chatgpt.com/docs/environments/cloud-environment
+
+## Milestone 4 交接
+- 索引 schema / operations / diff、隱含主鍵、React 索引顯示與 golden tests；讀 docs/milestone-4.zh-TW.md。
+- 每張表要有 indexes；外部 initialSchema 需同步更新。
+- GitHub 工作紀錄見 docs/github-milestones.md；M4 使用 PR，不直接推 main。
