@@ -74,6 +74,15 @@
                 "nullable": false,
                 "length": 120
               }
+            },
+            "indexes": {
+              "users_id_primary": {
+                "name": "users_id_primary",
+                "type": "primary",
+                "columns": [
+                  "id"
+                ]
+              }
             }
           }
         }
@@ -99,6 +108,15 @@
                   "type": "string",
                   "nullable": false,
                   "length": 120
+                }
+              },
+              "indexes": {
+                "users_id_primary": {
+                  "name": "users_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
                 }
               }
             }
@@ -131,7 +149,7 @@
         "diagnostics": [
           {
             "code": "UNSUPPORTED_BLUEPRINT",
-            "message": "Unsupported column modifier: unique",
+            "message": "Unsupported column modifier: fullText",
             "source": {
               "file": "2026_01_02_000000_unsupported.php",
               "line": 6,
@@ -160,6 +178,15 @@
                 "nullable": false,
                 "length": 120
               }
+            },
+            "indexes": {
+              "users_id_primary": {
+                "name": "users_id_primary",
+                "type": "primary",
+                "columns": [
+                  "id"
+                ]
+              }
             }
           }
         }
@@ -169,7 +196,7 @@
       "diagnostics": [
         {
           "code": "UNSUPPORTED_BLUEPRINT",
-          "message": "Unsupported column modifier: unique",
+          "message": "Unsupported column modifier: fullText",
           "source": {
             "file": "2026_01_02_000000_unsupported.php",
             "line": 6,
@@ -246,7 +273,7 @@
   "diagnostics": [
     {
       "code": "UNSUPPORTED_BLUEPRINT",
-      "message": "Unsupported column modifier: unique",
+      "message": "Unsupported column modifier: fullText",
       "source": {
         "file": "2026_01_02_000000_unsupported.php",
         "line": 6,
@@ -289,6 +316,15 @@
             "type": "string",
             "nullable": false,
             "length": 120
+          }
+        },
+        "indexes": {
+          "users_id_primary": {
+            "name": "users_id_primary",
+            "type": "primary",
+            "columns": [
+              "id"
+            ]
           }
         }
       }

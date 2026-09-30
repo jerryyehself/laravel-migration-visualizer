@@ -23,6 +23,13 @@ function SchemaView({ title, schema, unavailable }: { title: string; schema: Sch
           <td>{columnName}</td><td>{column.type}</td>
           <td><code>{JSON.stringify(Object.fromEntries(Object.entries(column).filter(([key]) => key !== 'type' && key !== 'name')))}</code></td>
         </tr>)}</tbody></table>
+      <table className="index-table"><caption>{name} 的索引</caption>
+        <thead><tr><th>名稱</th><th>種類</th><th>欄位（依順序）</th></tr></thead>
+        <tbody>{Object.values(table.indexes).map(index => <tr key={index.name}>
+          <td>{index.name}</td><td>{index.type}</td><td>{index.columns.join(' → ')}</td>
+        </tr>)}</tbody>
+      </table>
+      {Object.keys(table.indexes).length === 0 && <p className="muted">沒有索引。</p>}
     </div>)}
     <details><summary>SchemaState JSON</summary><pre>{JSON.stringify(schema, null, 2)}</pre></details>
   </>}</article>;
@@ -62,7 +69,7 @@ export function ProjectResults({ result, selected, onSelect }: {
           {step.diff === null ? <p className="unavailable">無法比較未知的快照。</p> : <>
             <p>{step.diff.changes.length} 個結構變化；rename 顯示為欄位移除與新增。</p>
             {step.diff.changes.length === 0 ? <p className="muted">沒有結構變化。</p> : <ul className="change-list">
-              {step.diff.changes.map((change, index) => <li key={index}><code>{change.kind}</code> · {change.table}{'column' in change ? `.${change.column}` : ''}</li>)}
+              {step.diff.changes.map((change, index) => <li key={index}><code>{change.kind}</code> · {change.table}{'column' in change ? `.${change.column}` : 'index' in change ? ` / ${change.index}` : ''}</li>)}
             </ul>}
             <details><summary>SchemaDiff JSON</summary><pre>{JSON.stringify(step.diff, null, 2)}</pre></details>
           </>}
