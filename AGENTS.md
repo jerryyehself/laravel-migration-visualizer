@@ -12,7 +12,7 @@
 
 ## 開發與驗證
 - Node.js 22.12+，npm。安裝使用 npm ci，保留 package-lock.json。
-- npm test：目前 116 tests（111 core + 5 browser import）；原 Milestone 1 為 42 tests。
+- npm test：目前 121 tests（116 core + 5 browser import）；原 Milestone 1 為 42 tests。
 - npm run typecheck
 - npm run build
 - npm run demo:project
@@ -23,3 +23,8 @@
 - 新功能建立功能分支、對應 milestone/issues 與 PR，不直接推 main。
 - M1～M3 是已完成補登紀錄；M4 issues 隨 PR 合併關閉。
 - 每張表的 indexes 是必要欄位，primary metadata 從權威索引同步。外部 initialSchema 必須符合目前契約。
+
+## 專案 skills
+- 修改／審查核心或 UI 的分析契約時，讀取 [.agents/skills/migration-core-review/SKILL.md](.agents/skills/migration-core-review/SKILL.md)。
+- milestone 驗收、GitHub 補登與 PR 交付時，讀取 [.agents/skills/milestone-delivery/SKILL.md](.agents/skills/milestone-delivery/SKILL.md)。
+- repo 內的 skill 是版本化來源，可隨 clone 一起帶到雲端；全域安裝副本不是新的專案規格，更新後需同步。

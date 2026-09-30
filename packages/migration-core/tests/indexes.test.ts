@@ -48,6 +48,29 @@ describe('index normalization', () => {
     expect(result.operations.map(op => op.kind)).toEqual(['createTable', 'addColumn', 'addColumn', 'addIndex']);
     expect(result.operations[3].source).toEqual(result.operations[1].source);
   });
+  it.each(['index', 'unique', 'primary'])('does not create a fluent %s for an explicit null', type => {
+    const result = analyze(`$t->string('a')->${type}(null)->nullable();`);
+    expect(result.complete).toBe(true);
+    expect(result.operations.map(op => op.kind)).toEqual(['createTable', 'addColumn']);
+    const state = applyOperations(emptySchema(), result.operations);
+    expect(state.tables.users.indexes).toEqual({});
+    expect(state.tables.users.columns.a).toEqual({ name:'a', type:'string', length:255, nullable:true });
+  });
+  it('keeps the implicit id primary when a fluent primary is explicitly null', () => {
+    const state = replay('$t->id()->primary(null);');
+    expect(state.tables.users.indexes).toEqual({ users_id_primary: { name:'users_id_primary', type:'primary', columns:['id'] } });
+  });
+  it('keeps project snapshots and diff free of a fluent null index', () => {
+    const result = analyzeProject([
+      { filename:'2026_03_01_000000_create_users.php', source:wrap("$t->string('a');") },
+      { filename:'2026_03_02_000000_add_email.php', source:wrap("$t->string('email')->unique(null);").replace("Schema::create", "Schema::table") },
+    ]);
+    expect(result.complete).toBe(true);
+    expect(result.migrations[1].schemaBefore?.tables.users.indexes).toEqual({});
+    expect(result.migrations[1].schemaAfter?.tables.users.indexes).toEqual({});
+    expect(result.migrations[1].diff?.changes.map(change => change.kind)).toEqual(['columnAdded']);
+    expect(result.finalSchema?.tables.users.indexes).toEqual({});
+  });
   it('uses Laravel default name normalization without a connection prefix', () => {
     const result = analyzeMigration(wrap("$t->string('Email'); $t->index('Email');").replace("'users'", "'Org.Users-Archive'"));
     expect(result.operations.at(-1)).toMatchObject({ index: { name: 'org_users_archive_email_index' } });
