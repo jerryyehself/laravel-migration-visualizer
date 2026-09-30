@@ -20,11 +20,11 @@ export function applyOperations(initial: SchemaState, operations: readonly Atomi
     const fail = (message: string): never => { throw new SchemaReplayError(message, operationIndex, op); };
     if (op.kind === 'createTable') {
       if (owns(state.tables, op.table)) fail(`Table already exists: ${op.table}`);
-      set(state.tables, op.table, { name: op.table, columns: {}, indexes: {} });
+      set(state.tables, op.table, { name: op.table, columns: {}, indexes: {}, foreignKeys: {} });
       continue;
     }
     if (!owns(state.tables, op.table)) fail(`Unknown table: ${op.table}`);
-    const { columns, indexes } = state.tables[op.table];
+    const { columns, indexes, foreignKeys } = state.tables[op.table];
     const syncPrimary = () => {
       const primaryColumns = new Set(Object.values(indexes).filter(index => index.type === 'primary').flatMap(index => index.columns));
       for (const column of Object.values(columns)) {
@@ -54,8 +54,24 @@ export function applyOperations(initial: SchemaState, operations: readonly Atomi
       if (target.type !== op.indexType) fail(`Index type mismatch: ${name}`);
       delete indexes[name!];
       syncPrimary();
+    } else if (op.kind === 'addForeignKey') {
+      const key = op.foreignKey;
+      if (!key.name || !key.columns.length || key.columns.length !== key.referencedColumns.length ||
+          new Set(key.columns).size !== key.columns.length || new Set(key.referencedColumns).size !== key.referencedColumns.length) fail('Invalid foreign key definition.');
+      if (owns(foreignKeys, key.name)) fail(`Foreign key already exists: ${key.name}`);
+      for (const name of key.columns) if (!owns(columns, name)) fail(`Unknown foreign key column: ${name}`);
+      if (!owns(state.tables, key.referencedTable)) fail(`Unknown referenced table: ${key.referencedTable}`);
+      const target = state.tables[key.referencedTable];
+      for (const name of key.referencedColumns) if (!owns(target.columns, name)) fail(`Unknown referenced column: ${key.referencedTable}.${name}`);
+      if ((key.onDelete === 'set null' || key.onUpdate === 'set null') && key.columns.some(name => !columns[name].nullable)) fail('SET NULL requires nullable foreign key columns.');
+      set(foreignKeys, key.name, structuredClone(key));
+    } else if (op.kind === 'dropForeignKey') {
+      if (!owns(foreignKeys, op.name)) fail(`Unknown foreign key: ${op.name}`);
+      delete foreignKeys[op.name];
     } else if (op.kind === 'dropColumn') {
       if (!owns(columns, op.column)) fail(`Unknown column: ${op.column}`);
+      if (Object.values(foreignKeys).some(key => key.columns.includes(op.column)) || Object.values(state.tables).some(table =>
+        Object.values(table.foreignKeys).some(key => key.referencedTable === op.table && key.referencedColumns.includes(op.column)))) fail(`Drop foreign keys before dropping referenced column: ${op.table}.${op.column}`);
       if (Object.values(indexes).some(index => index.columns.includes(op.column))) fail(`Drop indexes before dropping referenced column: ${op.column}`);
       delete columns[op.column];
     } else if (op.kind === 'renameColumn') {
@@ -64,6 +80,10 @@ export function applyOperations(initial: SchemaState, operations: readonly Atomi
       set(columns, op.to, { ...columns[op.from], name: op.to });
       delete columns[op.from];
       for (const index of Object.values(indexes)) index.columns = index.columns.map(name => name === op.from ? op.to : name);
+      for (const key of Object.values(foreignKeys)) key.columns = key.columns.map(name => name === op.from ? op.to : name);
+      for (const table of Object.values(state.tables)) for (const key of Object.values(table.foreignKeys)) {
+        if (key.referencedTable === op.table) key.referencedColumns = key.referencedColumns.map(name => name === op.from ? op.to : name);
+      }
       syncPrimary();
     }
   }

@@ -1,4 +1,4 @@
-# Laravel Migration Visualizer — Milestone 4
+# Laravel Migration Visualizer — Milestone 5
 
 React + TypeScript + Vite，npm workspaces monorepo。只做靜態 migration 分析，不執行 PHP 或連接資料庫。
 
@@ -52,7 +52,7 @@ if (!analysis.complete) {
 }
 ```
 
-多份 migration 使用 `analyzeProject(files)`，由 core 排序與逐份套用；讀檔留在呼叫端。core 不使用 React、不呼叫 hooks。單檔 API 仍維持 Milestone 1 契約。
+多份 migration 使用 `analyzeProject(files)`，由 core 排序與逐份套用；讀檔留在呼叫端。core 不使用 React、不呼叫 hooks。原有單檔函式仍可使用，schema JSON 需符合目前版本契約。
 
 ## Milestone 2：Project analysis
 
@@ -75,7 +75,7 @@ else console.log(project.lastValidSchema); // 只代表成功前綴，不能當�
 
 - `orderMigrations(files)`：標準 ASCII `YYYY_MM_DD_HHMMSS_description.php` 排序，保留原路徑；重複名稱／不合格式會阻止整個專案 replay。這是本工具的輸入契約，比 Laravel 檔案探索限制更嚴格。檢查格式，不驗證日曆日期。
 - `analyzeProject(files, { initialSchema? })`：預設由空 schema 開始；每檔提供獨立 snapshots，狀態為 applied / failed / blocked。
-- `diffSchemas(before, after)`：結構比較，輸出 tableAdded / tableRemoved / columnAdded / columnRemoved / columnChanged。新建或移除表時包含整表，不重複列欄位；排序固定為 table、column 字典順序。
+- `diffSchemas(before, after)`：結構比較，輸出 tableAdded / tableRemoved / columnAdded / columnRemoved / columnChanged；M4/M5 另加索引與外鍵變化。新建或移除表時包含整表，不重複列欄位；排序固定為 table、column 字典順序。
 - 第一份失敗後，後續仍分析 PHP，但所有後續 snapshots / diff 為 null。失敗檔只保留可信的 schemaBefore；整個失敗檔不套用部分操作。
 - `ProjectDiagnostic.phase` 區分 ordering / analysis / replay / dependency。Replay 錯誤保留出錯操作的來源位置及從 0 起算的 operationIndex。
 - `complete` 只表示本工具支援範圍內的靜態分析與 replay 成功，不保證實際資料庫可執行或涵蓋整個專案的 PHP 語意。
@@ -108,7 +108,15 @@ Milestone 2 的新增功能在 core API 與 Node 範例。Milestone 3 將它們�
 
 在 UI 按「載入索引範例」可檢視三份 migration 的索引生命週期。詳見 [Milestone 4 中文教學與限制](docs/milestone-4.zh-TW.md)；GitHub milestones / issues 見 [交付紀錄](docs/github-milestones.md)。
 
-Core 0.2.0：手動建立 initialSchema 的呼叫端需為每張表提供 indexes（沒有索引時為 {}）。仍要求有效且一致的 SchemaState，不自動升級外部 JSON。
+M4 的 Core 0.2.0：手動建立 initialSchema 的呼叫端需為每張表提供 indexes（沒有索引時為 {}）。仍要求有效且一致的 SchemaState，不自動升級外部 JSON。
+
+## Milestone 5：外鍵分析
+
+支援 foreign/references/on、foreignId/constrained、dropForeign 與 delete/update actions。逐檔快照記錄 foreignKeys；diff 新增 foreignKeyAdded/Removed/Changed。rename 更新跨表引用，dropColumn 要求先移除 inbound/outbound 外鍵；失敗仍整檔回滾。
+
+在 UI 按「載入外鍵範例」或「載入外鍵失敗範例」可檢查四份 migration。詳見 [Milestone 5 中文教學與完整限制](docs/milestone-5.zh-TW.md)。省略 constrained table 僅支援列出的八種慣例，其他名稱需明確 table；不驗證真實 DB 的型別、唯一索引或完整 command scheduling。
+
+Core 0.3.0：每張表現在需提供 indexes 與 foreignKeys（沒有時各為 {}）。外部 initialSchema 不會自動升級或進行 JSON runtime validation。
 
 ## 支援範圍
 
@@ -124,7 +132,7 @@ Core 0.2.0：手動建立 initialSchema 的呼叫端需為每張表提供 indexe
 - modifiers：`nullable(bool)`、`unsigned(bool)`、`default(scalar)`、`comment(string)`。
 - `dropColumn('name')`（單一字串）、`renameColumn('from', 'to')`。
 
-AtomicOperation 為 `createTable` / `addColumn` / `dropColumn` / `renameColumn` / `addIndex` / `dropIndex` discriminated union，含來源位置（行號從 1 起、column 從 0 起）。所有輸出可序列化成 JSON。`id` 的 primary 屬性是欄位 metadata，replay 會將其轉成隱含 primary 索引；尚未提供 foreign key model。
+AtomicOperation 為 `createTable` / `addColumn` / `dropColumn` / `renameColumn` / `addIndex` / `dropIndex` / `addForeignKey` / `dropForeignKey` discriminated union，含來源位置（行號從 1 起、column 從 0 起）。所有輸出可序列化成 JSON。`id` 的 primary 屬性是欄位 metadata，replay 會將其轉成隱含 primary 索引；外鍵以獨立 ForeignKey model 記錄。
 
 - 索引 API 接受靜態欄位字串／非空且不重複的字串陣列、可選自訂名稱；drop 接受索引名稱或預設名稱的欄位陣列。dropPrimary 可省略參數。
 - 每欄最多一個 fluent index modifier，延後到 closure 尾端；standalone index 要求引用的欄位已存在。名稱不加 connection prefix，不模擬 DB 方言。
@@ -133,7 +141,7 @@ AtomicOperation 為 `createTable` / `addColumn` / `dropColumn` / `renameColumn` 
 
 ## 限制與錯誤契約
 
-這是明確界定的 Laravel API 子集，不是 PHP interpreter，也不保證實際資料庫 DDL 可成功。動態名稱、變數計算、分支、迴圈、helper call、巨集、SQL、connection、`change()`、foreign keys、fullText、spatial/vector indexes、index algorithm 等回報 diagnostics。未支援的整條 Blueprint chain 不產生部分欄位操作；其他已支援的 statement 仍可保留，`complete` 會是 false。
+這是明確界定的 Laravel API 子集，不是 PHP interpreter，也不保證實際資料庫 DDL 可成功。動態名稱、變數計算、分支、迴圈、helper call、巨集、SQL、connection、`change()`、未支援的外鍵 API、fullText、spatial/vector indexes、index algorithm 等回報 diagnostics。未支援的整條 Blueprint chain 不產生部分欄位操作；其他已支援的 statement 仍可保留，`complete` 會是 false。
 
 `complete` 代表已識別的 up() 靜態語句都在支援範圍內，不代表 schema replay 一定有效。重複 table / column、不存在的 table / column 、rename 衝突與無效索引引用會在 `applyOperations` 拋錯。Replay 會複製輸入，不會修改原 state；失敗不會回傳半成品。
 

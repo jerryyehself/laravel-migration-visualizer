@@ -7,6 +7,11 @@ import unsupportedSource from '../../../../packages/migration-core/tests/fixture
 import indexedCreate from '../../../../packages/migration-core/tests/fixtures/indexes/2026_02_01_000000_create_accounts.php?raw';
 import indexedUpdate from '../../../../packages/migration-core/tests/fixtures/indexes/2026_02_02_000000_update_accounts.php?raw';
 import indexedPrimary from '../../../../packages/migration-core/tests/fixtures/indexes/2026_02_03_000000_primary_accounts.php?raw';
+import foreignUsers from '../../../../packages/migration-core/tests/fixtures/foreign-keys/2026_03_01_000000_create_users.php?raw';
+import foreignPosts from '../../../../packages/migration-core/tests/fixtures/foreign-keys/2026_03_02_000000_create_posts.php?raw';
+import foreignRevise from '../../../../packages/migration-core/tests/fixtures/foreign-keys/2026_03_03_000000_revise_keys.php?raw';
+import foreignRemove from '../../../../packages/migration-core/tests/fixtures/foreign-keys/2026_03_04_000000_remove_key.php?raw';
+import foreignInvalid from '../../../../packages/migration-core/tests/fixtures/foreign-keys/2026_03_03_000000_invalid_drop.php?raw';
 import { readMigrationFiles } from '../import-files';
 import { ProjectResults } from './ProjectResults';
 
@@ -18,6 +23,16 @@ function sampleFiles(failing = false): MigrationFile[] {
     failing
       ? { filename: '2026_01_02_000000_unsupported.php', source: unsupportedSource }
       : { filename: '2026_01_02_000000_update_users.php', source: updateSource },
+  ];
+}
+
+function foreignFiles(failing = false): MigrationFile[] {
+  return [
+    { filename:'2026_03_04_000000_remove_key.php', source:foreignRemove },
+    { filename:'2026_03_01_000000_create_users.php', source:foreignUsers },
+    failing ? { filename:'2026_03_03_000000_invalid_drop.php', source:foreignInvalid }
+      : { filename:'2026_03_03_000000_revise_keys.php', source:foreignRevise },
+    { filename:'2026_03_02_000000_create_posts.php', source:foreignPosts },
   ];
 }
 
@@ -67,6 +82,8 @@ export function ProjectWorkbench() {
           { filename: '2026_02_01_000000_create_accounts.php', source: indexedCreate },
           { filename: '2026_02_02_000000_update_accounts.php', source: indexedUpdate },
         ])}>載入索引範例</button>
+        <button type="button" className="secondary" onClick={() => replaceFiles(foreignFiles())}>載入外鍵範例</button>
+        <button type="button" className="secondary" onClick={() => replaceFiles(foreignFiles(true))}>載入外鍵失敗範例</button>
       </div>
       <p className="muted">檔名格式：YYYY_MM_DD_HHMMSS_description.php。匯入順序不影響分析順序；重複名稱由 core 診斷。</p>
       <div className="project-layout">
