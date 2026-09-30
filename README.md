@@ -1,4 +1,4 @@
-# Laravel Migration Visualizer — Milestone 2
+# Laravel Migration Visualizer — Milestone 3
 
 React + TypeScript + Vite，npm workspaces monorepo。只做靜態 migration 分析，不執行 PHP 或連接資料庫。
 
@@ -11,7 +11,7 @@ npm ci
 npm run dev
 ```
 
-使用終端顯示的網址。網頁預載 fixture，按「分析 Migration」即可看 AtomicOperation 與 SchemaState。
+使用終端顯示的網址。預設為多檔專案工作台，預載三份亂序 fixture；按「分析專案」即可看排序、逐檔快照、diff 與診斷。也可匯入多份 UTF-8 PHP 或切換到單檔練習。
 
 ```sh
 npm test
@@ -31,7 +31,9 @@ packages/migration-core/
   src/schema.ts       純函式、不可變的 schema replay
   tests/fixtures/     PHP fixture 與人工定義的 golden JSON
 apps/web/
-  src/main.tsx        輸入與結果元件；沒有 parser/schema 規則
+  src/main.tsx        工作台模式切換
+  src/components/     單檔／多檔輸入、結果與 schema 表格
+  src/import-files.ts 瀏覽器 UTF-8 讀檔邊界；沒有排序／parser 規則
   vite.config.ts     core 開發別名與 parser 瀏覽器相容設定
 docs/tutorial.zh-TW.md
 ```
@@ -84,9 +86,21 @@ else console.log(project.lastValidSchema); // 只代表成功前綴，不能當�
 npm run demo:project
 ```
 
-本 milestone 的新增功能在 core API 與 Node 範例；React 工作台仍為單檔，尚未加入多檔匯入畫面。Node 範例的讀檔放在 examples/，不滲入 migration-core。
+Milestone 2 的新增功能在 core API 與 Node 範例。Milestone 3 將它們接入 React 多檔工作台；Node 範例的讀檔放在 examples/，瀏覽器讀檔放在 apps/web，都不滲入 migration-core。
 
 詳見 [Milestone 2 中文設計教學](docs/milestone-2.zh-TW.md)。
+
+## Milestone 3：多檔工作台
+
+- 一次選取多份 UTF-8 `.php`，取代目前清單；也可載入成功／中途失敗範例。
+- 編輯檔名與 PHP、移除檔案；只改工作台副本，不修改原檔。修改輸入會清除舊結果。
+- 結果顯示 core 排序、applied / failed / blocked、逐檔前後 schema、SchemaDiff、operations 與完整 project JSON。
+- 失敗後明確區分未知快照與空白 schema；lastValidSchema 標示為成功前綴，不當成最終結果。
+- 檔案在瀏覽器中讀取，沒有上傳服務；讀取／編碼失敗時整批不匯入。
+- 原本單檔練習保留。重新整理或切換模式會重置輸入，沒有草稿持久化。
+- 目前分析同步執行，大型專案效能尚未驗證，未使用 Web Worker。
+
+詳見 [Milestone 3 中文教學](docs/milestone-3.zh-TW.md)。
 
 ## 支援範圍
 
