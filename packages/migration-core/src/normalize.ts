@@ -189,8 +189,11 @@ export function analyzeMigration(source: string, file = 'migration.php'): Analys
                   for (const modifier of modifiers.filter(modifier => !indexTypes.has(modifier.name))) modify(column, modifier);
                   for (const modifier of indexes) {
                     arity(modifier.args, 0, 1);
-                    if (column.autoIncrement && modifier.name === 'primary') throw new Error('Auto-increment columns already have an implicit primary key.');
                     const value = modifier.args[0];
+                    // Fluent stores explicit null; Blueprint's isset check skips it.
+                    // Omitting the argument instead stores true and creates an index.
+                    if (value === null) continue;
+                    if (column.autoIncrement && modifier.name === 'primary') throw new Error('Auto-increment columns already have an implicit primary key.');
                     const name = value === true ? undefined : explicitName(value);
                     const type = modifier.name as IndexType;
                     pending.push({ kind: 'addIndex', table, index: { name: name ?? indexName(table, [column.name], type), type, columns: [column.name] }, source: location(body) });

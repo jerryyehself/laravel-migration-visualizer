@@ -128,6 +128,7 @@ AtomicOperation 為 `createTable` / `addColumn` / `dropColumn` / `renameColumn` 
 
 - 索引 API 接受靜態欄位字串／非空且不重複的字串陣列、可選自訂名稱；drop 接受索引名稱或預設名稱的欄位陣列。dropPrimary 可省略參數。
 - 每欄最多一個 fluent index modifier，延後到 closure 尾端；standalone index 要求引用的欄位已存在。名稱不加 connection prefix，不模擬 DB 方言。
+- Fluent `->unique()`／`->index(true)` 會建立預設索引；`->unique(null)`／`->index(null)`／`->primary(null)` 不建立該 fluent 索引。Standalone 第二個參數的 null 則代表預設名稱。
 - 索引名稱與欄位引用必須存在且一致，每張表最多一個主鍵。rename 更新索引欄位但保留索引名稱；dropColumn 要求先移除引用的索引。
 
 ## 限制與錯誤契約

@@ -31,7 +31,9 @@ $table->dropUnique(['tenant_id', 'email']);
 $table->dropPrimary();
 ```
 
-Standalone index/unique/primary 接受靜態字串或非空、未指定 key 的字串陣列；第二個參數可省略或用 null 代表預設名稱。Fluent modifier 接受無參數、true、null 或明確非空名稱。每個欄位最多一個 fluent index modifier，多個 modifier 不猜 Laravel 的選擇優先順序，而是診斷；auto-increment 欄位再次 chained primary 也會診斷。
+Standalone index/unique/primary 接受靜態字串或非空、未指定 key 的字串陣列；第二個參數可省略或用 null 代表預設名稱。Fluent modifier 的無參數／true 代表建立預設索引，非空字串指定名稱，明確 null 則不建立該 fluent 索引。每個欄位最多一個 fluent index modifier，多個 modifier 不猜 Laravel 的選擇優先順序，而是診斷；auto-increment 欄位再次 chained primary（非 null）也會診斷。
+
+例如 `$table->string('email')->unique()` 會建立索引；`->unique(null)` 只新增欄位。這不是 React 顯示選項，而是 core 的 PHP 語意：Laravel [Fluent::__call](https://github.com/laravel/framework/blob/12.x/src/Illuminate/Support/Fluent.php) 區分省略參數與明確 null，[Blueprint::addFluentIndexes](https://github.com/laravel/framework/blob/12.x/src/Illuminate/Database/Schema/Blueprint.php) 的 isset 檢查略過 null。`id()->primary(null)` 也只略過 fluent 命令，保留 id 原有的隱含主鍵。
 
 預設名稱是 table、欄位順序、種類，以底線串接，ASCII 大寫轉小寫，`-` 和 `.` 換成底線。依據 [Laravel 12.x Blueprint 原始碼](https://github.com/laravel/framework/blob/12.x/src/Illuminate/Database/Schema/Blueprint.php)；沒有 connection 資訊，因此不加 prefix_indexes，也不套資料庫的大小寫／名稱長度規則。
 
@@ -71,7 +73,7 @@ Schema Before、After 和最終 schema 都顯示索引名稱、種類、欄位�
 
 ## 測試與限制
 
-目前 116 tests 通過（原 76 + 新增 40）。新增測試涵蓋字串／複合／fluent index、預設名稱、移除 API、動態與無效陣列、整條 chain 拒絕、隱含主鍵、主鍵替換、名稱／欄位／種類衝突、索引引用 rename、回滾、prototype-like 名稱、diff 與兩組三檔 golden。
+目前 121 tests 通過（原 76 + 新增 45）。新增測試涵蓋字串／複合／fluent index、預設名稱、移除 API、動態與無效陣列、整條 chain 拒絕、隱含主鍵、主鍵替換、名稱／欄位／種類衝突、索引引用 rename、回滾、prototype-like 名稱、diff 與兩組三檔 golden。PR 審查另加五個先失敗再修正的回歸案例，驗證 fluent null 不建立索引、id 隱含主鍵保留，以及跨檔快照／diff 沒有虛構的 unique。
 
 新增 index golden 以獨立預期資料檢查索引快照、主鍵標記、diff 和失敗邊界；既有 project golden 繼續比對完整 operations／來源與所有 schema。不要從 analyzer 輸出盲目重錄預期。
 
