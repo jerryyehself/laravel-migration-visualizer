@@ -4,6 +4,9 @@ import createSource from '../../../../packages/migration-core/tests/fixtures/pro
 import updateSource from '../../../../packages/migration-core/tests/fixtures/project/2026_01_02_000000_update_users.php?raw';
 import reviseSource from '../../../../packages/migration-core/tests/fixtures/project/2026_01_03_000000_revise_users.php?raw';
 import unsupportedSource from '../../../../packages/migration-core/tests/fixtures/project/2026_01_02_000000_unsupported.php?raw';
+import indexedCreate from '../../../../packages/migration-core/tests/fixtures/indexes/2026_02_01_000000_create_accounts.php?raw';
+import indexedUpdate from '../../../../packages/migration-core/tests/fixtures/indexes/2026_02_02_000000_update_accounts.php?raw';
+import indexedPrimary from '../../../../packages/migration-core/tests/fixtures/indexes/2026_02_03_000000_primary_accounts.php?raw';
 import { readMigrationFiles } from '../import-files';
 import { ProjectResults } from './ProjectResults';
 
@@ -59,6 +62,11 @@ export function ProjectWorkbench() {
           }} /></div>
         <button type="button" className="secondary" onClick={() => replaceFiles(sampleFiles())}>載入成功範例</button>
         <button type="button" className="secondary" onClick={() => replaceFiles(sampleFiles(true))}>載入失敗範例</button>
+        <button type="button" className="secondary" onClick={() => replaceFiles([
+          { filename: '2026_02_03_000000_primary_accounts.php', source: indexedPrimary },
+          { filename: '2026_02_01_000000_create_accounts.php', source: indexedCreate },
+          { filename: '2026_02_02_000000_update_accounts.php', source: indexedUpdate },
+        ])}>載入索引範例</button>
       </div>
       <p className="muted">檔名格式：YYYY_MM_DD_HHMMSS_description.php。匯入順序不影響分析順序；重複名稱由 core 診斷。</p>
       <div className="project-layout">

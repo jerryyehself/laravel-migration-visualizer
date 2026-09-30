@@ -13,10 +13,14 @@ export interface Column {
   default?: Literal;
   comment?: string;
 }
+export type IndexType = 'index' | 'unique' | 'primary';
+export interface SchemaIndex { name: string; type: IndexType; columns: string[] }
 export type AtomicOperation = ({ kind: 'createTable'; table: string }
   | { kind: 'addColumn'; table: string; column: Column }
   | { kind: 'dropColumn'; table: string; column: string }
-  | { kind: 'renameColumn'; table: string; from: string; to: string }) & { source: SourceLocation };
+  | { kind: 'renameColumn'; table: string; from: string; to: string }
+  | { kind: 'addIndex'; table: string; index: SchemaIndex }
+  | { kind: 'dropIndex'; table: string; name: string | null; indexType: IndexType }) & { source: SourceLocation };
 export interface Diagnostic { code: string; message: string; source: SourceLocation }
 export interface AnalysisResult { operations: AtomicOperation[]; diagnostics: Diagnostic[]; complete: boolean }
-export interface SchemaState { tables: Record<string, { name: string; columns: Record<string, Column> }> }
+export interface SchemaState { tables: Record<string, { name: string; columns: Record<string, Column>; indexes: Record<string, SchemaIndex> }> }

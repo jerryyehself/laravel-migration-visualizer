@@ -1,5 +1,6 @@
+import { indexName } from './index-name.js';
 import { parseMigration } from './parser.js';
-import type { AnalysisResult, AtomicOperation, Column, Literal, SourceLocation } from './types.js';
+import type { AnalysisResult, AtomicOperation, Column, Literal, SourceLocation, IndexType } from './types.js';
 // php-parser's heterogeneous AST stays private to this adapter, never in the public model.
 type Node = { kind: string; [key: string]: any };
 const facade = 'Illuminate\\Support\\Facades\\Schema';
@@ -21,11 +22,19 @@ function literal(node: Node): Literal {
   }
   throw new Error('Expected a static scalar literal; expressions are not evaluated.');
 }
-function text(value: Literal | undefined): string {
+type Argument = Literal | string[];
+function argument(node: Node): Argument {
+  if (node?.kind !== 'array') return literal(node);
+  return node.items.map((item: Node) => {
+    if (!item || item.key !== null || item.unpack || item.byRef) throw new Error('Expected an unkeyed static string array.');
+    return text(literal(item.value));
+  });
+}
+function text(value: Argument | undefined): string {
   if (typeof value !== 'string' || !value.length) throw new Error('Expected a non-empty string.');
   return value;
 }
-function integer(value: Literal | undefined, fallback: number, minimum = 0): number {
+function integer(value: Argument | undefined, fallback: number, minimum = 0): number {
   if (value === undefined) return fallback;
   if (typeof value !== 'number' || !Number.isInteger(value) || value < minimum) throw new Error('Expected a valid integer argument.');
   return value;
@@ -33,11 +42,11 @@ function integer(value: Literal | undefined, fallback: number, minimum = 0): num
 function arity(args: unknown[], min: number, max = min) {
   if (args.length < min || args.length > max) throw new Error(`Expected ${min}–${max} arguments, received ${args.length}.`);
 }
-interface Call { name: string; args: Literal[] }
+interface Call { name: string; args: Argument[] }
 function chain(node: Node, receiver: string): Call[] {
   if (node?.kind === 'variable' && node.name === receiver) return [];
   if (node?.kind !== 'call' || node.what.kind !== 'propertylookup' || node.what.offset.kind !== 'identifier') throw new Error('Expected a direct Blueprint method chain.');
-  return [...chain(node.what.what, receiver), { name: node.what.offset.name, args: node.arguments.map(literal) }];
+  return [...chain(node.what.what, receiver), { name: node.what.offset.name, args: node.arguments.map(argument) }];
 }
 const simpleTypes = new Set(['text', 'longText', 'mediumText', 'boolean', 'date', 'json', 'jsonb', 'uuid']);
 const integerTypes = new Set(['integer', 'bigInteger', 'smallInteger', 'tinyInteger', 'mediumInteger', 'unsignedInteger', 'unsignedBigInteger', 'unsignedSmallInteger', 'unsignedTinyInteger', 'unsignedMediumInteger']);
@@ -83,10 +92,20 @@ function modify(column: Column, modifier: Call) {
     if (typeof value !== 'boolean') throw new Error(`${name} expects a boolean.`);
     column[name] = value;
   } else if (name === 'default') {
-    arity(args, 1); column.default = args[0];
+    arity(args, 1); if (Array.isArray(args[0])) throw new Error('default expects a scalar.'); column.default = args[0];
   } else if (name === 'comment') {
     arity(args, 1); column.comment = text(args[0]);
   } else throw new Error(`Unsupported column modifier: ${name}`);
+}
+const indexTypes = new Set<string>(['index', 'unique', 'primary']);
+const dropTypes: Record<string, IndexType> = { dropIndex: 'index', dropUnique: 'unique', dropPrimary: 'primary' };
+function indexColumns(value: Argument | undefined): string[] {
+  const names = Array.isArray(value) ? value.map(text) : [text(value)];
+  if (!names.length || new Set(names).size !== names.length) throw new Error('Index columns must be non-empty and distinct.');
+  return names;
+}
+function explicitName(value: Argument | undefined): string | undefined {
+  return value === undefined || value === null ? undefined : text(value);
 }
 /** Analyze only a migration's up() method. Unsupported statements yield diagnostics. */
 export function analyzeMigration(source: string, file = 'migration.php'): AnalysisResult {
@@ -129,6 +148,7 @@ export function analyzeMigration(source: string, file = 'migration.php'): Analys
           const closure = call.arguments[1];
           if (closure.kind !== 'closure' || closure.arguments.length !== 1 || closure.body?.kind !== 'block') throw new Error('Expected a closure with one Blueprint parameter.');
           const receiver = closure.arguments[0].name.name;
+          const fluentIndexes: AtomicOperation[] = [];
           if (method === 'create') result.operations.push({ kind: 'createTable', table, source: location(statement) });
           for (const body of closure.body.children) {
             try {
@@ -137,7 +157,21 @@ export function analyzeMigration(source: string, file = 'migration.php'): Analys
               if (!calls.length) throw new Error('Expected a Blueprint call.');
               const [first, ...modifiers] = calls;
               const operations: AtomicOperation[] = [];
-              if (first.name === 'dropColumn') {
+              if (indexTypes.has(first.name)) {
+                arity(first.args, 1, 2);
+                if (modifiers.length) throw new Error('Index commands cannot have modifiers.');
+                const names = indexColumns(first.args[0]);
+                const type = first.name as IndexType;
+                operations.push({ kind: 'addIndex', table, index: { name: explicitName(first.args[1]) ?? indexName(table, names, type), type, columns: names }, source: location(body) });
+              } else if (Object.hasOwn(dropTypes, first.name)) {
+                const type = dropTypes[first.name];
+                arity(first.args, type === 'primary' ? 0 : 1, 1);
+                if (modifiers.length) throw new Error('Drop index commands cannot have modifiers.');
+                const value = first.args[0];
+                const name = Array.isArray(value) ? indexName(table, indexColumns(value), type)
+                  : type === 'primary' && (value === undefined || value === null) ? null : text(value);
+                operations.push({ kind: 'dropIndex', table, name, indexType: type, source: location(body) });
+              } else if (first.name === 'dropColumn') {
                 arity(first.args, 1);
                 if (modifiers.length) throw new Error('dropColumn cannot have modifiers.');
                 operations.push({ kind: 'dropColumn', table, column: text(first.args[0]), source: location(body) });
@@ -148,14 +182,30 @@ export function analyzeMigration(source: string, file = 'migration.php'): Analys
               } else {
                 const definitions = columns(first);
                 if (first.name === 'timestamps' && modifiers.length) throw new Error('timestamps does not support chained modifiers.');
+                const pending: AtomicOperation[] = [];
                 for (const column of definitions) {
-                  for (const modifier of modifiers) modify(column, modifier);
+                  const indexes = modifiers.filter(modifier => indexTypes.has(modifier.name));
+                  if (indexes.length > 1) throw new Error('Multiple fluent index modifiers on one column are unsupported.');
+                  for (const modifier of modifiers.filter(modifier => !indexTypes.has(modifier.name))) modify(column, modifier);
+                  for (const modifier of indexes) {
+                    arity(modifier.args, 0, 1);
+                    const value = modifier.args[0];
+                    // Fluent stores explicit null; Blueprint's isset check skips it.
+                    // Omitting the argument instead stores true and creates an index.
+                    if (value === null) continue;
+                    if (column.autoIncrement && modifier.name === 'primary') throw new Error('Auto-increment columns already have an implicit primary key.');
+                    const name = value === true ? undefined : explicitName(value);
+                    const type = modifier.name as IndexType;
+                    pending.push({ kind: 'addIndex', table, index: { name: name ?? indexName(table, [column.name], type), type, columns: [column.name] }, source: location(body) });
+                  }
                   operations.push({ kind: 'addColumn', table, column, source: location(body) });
                 }
+                fluentIndexes.push(...pending);
               }
               result.operations.push(...operations);
             } catch (error) { report('UNSUPPORTED_BLUEPRINT', (error as Error).message, body); }
           }
+          result.operations.push(...fluentIndexes);
         } catch (error) { report('UNSUPPORTED_SCHEMA', (error as Error).message, statement); }
       }
     }

@@ -23,6 +23,18 @@ export function diffSchemas(before: SchemaState, after: SchemaState): SchemaDiff
         else if (!owns(newColumns, column)) changes.push({ kind: 'columnRemoved', table, column, before: structuredClone(oldColumns[column]) });
         else if (!equalColumns(oldColumns[column], newColumns[column])) changes.push({ kind: 'columnChanged', table, column, before: structuredClone(oldColumns[column]), after: structuredClone(newColumns[column]) });
       }
+      const oldIndexes = before.tables[table].indexes, newIndexes = after.tables[table].indexes;
+      const indexes = [...new Set([...Object.keys(oldIndexes), ...Object.keys(newIndexes)])].sort(compareNames);
+      for (const index of indexes) {
+        if (!owns(oldIndexes, index)) changes.push({ kind: 'indexAdded', table, index, after: structuredClone(newIndexes[index]) });
+        else if (!owns(newIndexes, index)) changes.push({ kind: 'indexRemoved', table, index, before: structuredClone(oldIndexes[index]) });
+        else {
+          const a = oldIndexes[index], b = newIndexes[index];
+          if (a.name !== b.name || a.type !== b.type || a.columns.length !== b.columns.length || a.columns.some((name, i) => name !== b.columns[i])) {
+            changes.push({ kind: 'indexChanged', table, index, before: structuredClone(a), after: structuredClone(b) });
+          }
+        }
+      }
     }
   }
   return { changes };

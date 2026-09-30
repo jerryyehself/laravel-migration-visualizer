@@ -44,6 +44,7 @@ pre { overflow: auto; background: #e9eef2; border-radius: 8px; padding: 18px; fo
 .unavailable { color: #735036; background: #f6ede5; padding: 12px; border-radius: 6px; }
 .table-wrap { overflow-x: auto; margin-bottom: 14px; }
 table { width: 100%; border-collapse: collapse; background: white; font-size: .9rem; }
+.index-table { margin-top: 12px; }
 caption { text-align: left; font-weight: 700; padding: 10px; background: #e9eef2; }
 th, td { border: 1px solid #d6dfe7; padding: 9px; text-align: left; vertical-align: top; overflow-wrap: anywhere; }
 td code { font-size: .8rem; }

@@ -1,0 +1,324 @@
+{
+  "complete": true,
+  "appliedCount": 3,
+  "diagnostics": [],
+  "migrations": [
+    {
+      "filename": "2026_02_01_000000_create_accounts.php",
+      "status": "applied",
+      "before": {},
+      "after": {
+        "accounts": {
+          "indexes": {
+            "accounts_id_primary": {
+              "name": "accounts_id_primary",
+              "type": "primary",
+              "columns": [
+                "id"
+              ]
+            },
+            "tenant_lookup": {
+              "name": "tenant_lookup",
+              "type": "index",
+              "columns": [
+                "tenant_id",
+                "email"
+              ]
+            },
+            "accounts_email_unique": {
+              "name": "accounts_email_unique",
+              "type": "unique",
+              "columns": [
+                "email"
+              ]
+            }
+          },
+          "primaryColumns": [
+            "id"
+          ]
+        }
+      },
+      "indexChanges": []
+    },
+    {
+      "filename": "2026_02_02_000000_update_accounts.php",
+      "status": "applied",
+      "before": {
+        "accounts": {
+          "indexes": {
+            "accounts_id_primary": {
+              "name": "accounts_id_primary",
+              "type": "primary",
+              "columns": [
+                "id"
+              ]
+            },
+            "tenant_lookup": {
+              "name": "tenant_lookup",
+              "type": "index",
+              "columns": [
+                "tenant_id",
+                "email"
+              ]
+            },
+            "accounts_email_unique": {
+              "name": "accounts_email_unique",
+              "type": "unique",
+              "columns": [
+                "email"
+              ]
+            }
+          },
+          "primaryColumns": [
+            "id"
+          ]
+        }
+      },
+      "after": {
+        "accounts": {
+          "indexes": {
+            "accounts_id_primary": {
+              "name": "accounts_id_primary",
+              "type": "primary",
+              "columns": [
+                "id"
+              ]
+            },
+            "tenant_lookup": {
+              "name": "tenant_lookup",
+              "type": "index",
+              "columns": [
+                "tenant_id",
+                "contact"
+              ]
+            },
+            "accounts_tenant_id_contact_unique": {
+              "name": "accounts_tenant_id_contact_unique",
+              "type": "unique",
+              "columns": [
+                "tenant_id",
+                "contact"
+              ]
+            }
+          },
+          "primaryColumns": [
+            "id"
+          ]
+        }
+      },
+      "indexChanges": [
+        {
+          "kind": "indexRemoved",
+          "table": "accounts",
+          "index": "accounts_email_unique",
+          "before": {
+            "name": "accounts_email_unique",
+            "type": "unique",
+            "columns": [
+              "email"
+            ]
+          }
+        },
+        {
+          "kind": "indexAdded",
+          "table": "accounts",
+          "index": "accounts_tenant_id_contact_unique",
+          "after": {
+            "name": "accounts_tenant_id_contact_unique",
+            "type": "unique",
+            "columns": [
+              "tenant_id",
+              "contact"
+            ]
+          }
+        },
+        {
+          "kind": "indexChanged",
+          "table": "accounts",
+          "index": "tenant_lookup",
+          "before": {
+            "name": "tenant_lookup",
+            "type": "index",
+            "columns": [
+              "tenant_id",
+              "email"
+            ]
+          },
+          "after": {
+            "name": "tenant_lookup",
+            "type": "index",
+            "columns": [
+              "tenant_id",
+              "contact"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "filename": "2026_02_03_000000_primary_accounts.php",
+      "status": "applied",
+      "before": {
+        "accounts": {
+          "indexes": {
+            "accounts_id_primary": {
+              "name": "accounts_id_primary",
+              "type": "primary",
+              "columns": [
+                "id"
+              ]
+            },
+            "tenant_lookup": {
+              "name": "tenant_lookup",
+              "type": "index",
+              "columns": [
+                "tenant_id",
+                "contact"
+              ]
+            },
+            "accounts_tenant_id_contact_unique": {
+              "name": "accounts_tenant_id_contact_unique",
+              "type": "unique",
+              "columns": [
+                "tenant_id",
+                "contact"
+              ]
+            }
+          },
+          "primaryColumns": [
+            "id"
+          ]
+        }
+      },
+      "after": {
+        "accounts": {
+          "indexes": {
+            "tenant_lookup": {
+              "name": "tenant_lookup",
+              "type": "index",
+              "columns": [
+                "tenant_id",
+                "contact"
+              ]
+            },
+            "accounts_tenant_id_contact_unique": {
+              "name": "accounts_tenant_id_contact_unique",
+              "type": "unique",
+              "columns": [
+                "tenant_id",
+                "contact"
+              ]
+            },
+            "accounts_key": {
+              "name": "accounts_key",
+              "type": "primary",
+              "columns": [
+                "tenant_id",
+                "contact"
+              ]
+            }
+          },
+          "primaryColumns": [
+            "contact",
+            "tenant_id"
+          ]
+        }
+      },
+      "indexChanges": [
+        {
+          "kind": "indexRemoved",
+          "table": "accounts",
+          "index": "accounts_id_primary",
+          "before": {
+            "name": "accounts_id_primary",
+            "type": "primary",
+            "columns": [
+              "id"
+            ]
+          }
+        },
+        {
+          "kind": "indexAdded",
+          "table": "accounts",
+          "index": "accounts_key",
+          "after": {
+            "name": "accounts_key",
+            "type": "primary",
+            "columns": [
+              "tenant_id",
+              "contact"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "final": {
+    "accounts": {
+      "indexes": {
+        "tenant_lookup": {
+          "name": "tenant_lookup",
+          "type": "index",
+          "columns": [
+            "tenant_id",
+            "contact"
+          ]
+        },
+        "accounts_tenant_id_contact_unique": {
+          "name": "accounts_tenant_id_contact_unique",
+          "type": "unique",
+          "columns": [
+            "tenant_id",
+            "contact"
+          ]
+        },
+        "accounts_key": {
+          "name": "accounts_key",
+          "type": "primary",
+          "columns": [
+            "tenant_id",
+            "contact"
+          ]
+        }
+      },
+      "primaryColumns": [
+        "contact",
+        "tenant_id"
+      ]
+    }
+  },
+  "lastValid": {
+    "accounts": {
+      "indexes": {
+        "tenant_lookup": {
+          "name": "tenant_lookup",
+          "type": "index",
+          "columns": [
+            "tenant_id",
+            "contact"
+          ]
+        },
+        "accounts_tenant_id_contact_unique": {
+          "name": "accounts_tenant_id_contact_unique",
+          "type": "unique",
+          "columns": [
+            "tenant_id",
+            "contact"
+          ]
+        },
+        "accounts_key": {
+          "name": "accounts_key",
+          "type": "primary",
+          "columns": [
+            "tenant_id",
+            "contact"
+          ]
+        }
+      },
+      "primaryColumns": [
+        "contact",
+        "tenant_id"
+      ]
+    }
+  }
+}
