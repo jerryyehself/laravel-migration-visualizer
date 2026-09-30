@@ -1,0 +1,12 @@
+# GitHub 里程碑與交付紀錄
+
+Milestone 1～3 的 GitHub 紀錄為事後補登，實作日期與驗證以各 commit / 文件為準。前三階段直接提交 main，沒有歷史 PR；完成 issues 連結原 commit，不重新合併既有變更。
+
+| 階段 | GitHub Milestone | 工作項目 | 交付 |
+|---|---|---|---|
+| 1：單檔核心 | [M1](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/1) | [完成紀錄 #1](https://github.com/jerryyehself/laravel-migration-visualizer/issues/1) | 6959b46；42 tests |
+| 2：專案分析 | [M2](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/2) | [完成紀錄 #2](https://github.com/jerryyehself/laravel-migration-visualizer/issues/2) | 78c17f3；71 tests |
+| 3：多檔 UI | [M3](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/3) | [完成紀錄 #3](https://github.com/jerryyehself/laravel-migration-visualizer/issues/3) | 7fba001；76 tests |
+| 4：索引分析 | [M4](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/4) | [core #4](https://github.com/jerryyehself/laravel-migration-visualizer/issues/4)、[replay/tests #5](https://github.com/jerryyehself/laravel-migration-visualizer/issues/5)、[UI/docs #6](https://github.com/jerryyehself/laravel-migration-visualizer/issues/6) | feat/milestone-4-index-analysis → PR → main |
+
+後續新工作使用功能分支與 PR；實作完成與「已合併」分開記錄。M4 的 issues 在 PR 合併前保持開啟，里程碑在全部驗收／合併後關閉。

@@ -51,7 +51,7 @@ AtomicOperation 說明「做了什麼」；SchemaDiff 說明「最後差在哪�
 
 同名欄位的型別、nullable、length、default 等 metadata 變化會產生 columnChanged，附 before / after。欄位先刪再用不同定義重建，也能由結構比较得到 changed；不需要支援 `change()` 才能測試這個能力。沒有 semantic refactoring detection，也不能由 diff 推斷資料是否流失。
 
-新表與刪除的表以整表 payload 表示，不再重複列每個欄位。比較結果按表名、欄位名排序，不會因物件 key 的插入順序不同而製造差異。完整的 index、foreign key 模型仍未實作。
+新表與刪除的表以整表 payload 表示，不再重複列每個欄位。比較結果按表名、欄位名排序，不會因物件 key 的插入順序不同而製造差異。本階段尚未實作 index、foreign key 模型；index 在 Milestone 4 加入。
 
 ## 五、失敗之後不能假裝知道後面的 schema
 
@@ -84,7 +84,7 @@ AtomicOperation 說明「做了什麼」；SchemaDiff 說明「最後差在哪�
 先執行 `npm test`，再看 `tests/fixtures/project/`：
 
 - success.golden.json：三份故意以亂序傳入的 migration，核對排序、全部 operations、每份快照、diff 和 finalSchema。
-- blocked.golden.json：中間遇到不支援的 unique，核對成功前綴、部分 operations 未套用、後續 null 快照與診斷。
+- blocked.golden.json：中間遇到不支援的 API（原為 unique，Milestone 4 起改成 fullText），核對成功前綴、部分 operations 未套用、後續 null 快照與診斷。
 - project.test.ts：另外涵蓋排序、不變性、初始 schema、重複名稱、replay 回滾、後續語法錯誤，以及純結構比較。
 
 Golden 檔案按 fixture 的預期行為獨立建立；不要用 analyzer 的輸出自動覆寫來掩蓋回歸。執行 `npm run demo:project` 可透過建置後的 package export 跑同一套三檔分析，輸出可讀的完整 JSON。

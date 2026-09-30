@@ -1,4 +1,4 @@
-# Laravel Migration Visualizer — Milestone 3
+# Laravel Migration Visualizer — Milestone 4
 
 React + TypeScript + Vite，npm workspaces monorepo。只做靜態 migration 分析，不執行 PHP 或連接資料庫。
 
@@ -102,6 +102,14 @@ Milestone 2 的新增功能在 core API 與 Node 範例。Milestone 3 將它們�
 
 詳見 [Milestone 3 中文教學](docs/milestone-3.zh-TW.md)。
 
+## Milestone 4：索引分析
+
+支援 index / unique / primary（單欄、複合、column chain）及 dropIndex / dropUnique / dropPrimary。SchemaState 每張表新增必要的 indexes，SchemaDiff 新增 indexAdded / indexRemoved / indexChanged。id()/increments() 的隱含主鍵納入相同模型，column.primary 由主鍵索引同步。
+
+在 UI 按「載入索引範例」可檢視三份 migration 的索引生命週期。詳見 [Milestone 4 中文教學與限制](docs/milestone-4.zh-TW.md)；GitHub milestones / issues 見 [交付紀錄](docs/github-milestones.md)。
+
+Core 0.2.0：手動建立 initialSchema 的呼叫端需為每張表提供 indexes（沒有索引時為 {}）。仍要求有效且一致的 SchemaState，不自動升級外部 JSON。
+
 ## 支援範圍
 
 只分析一個繼承 Migration 的匿名／具名類別的 `up()`。支援 namespace、一般／群組 use alias，以及完整 facade 名稱；無 import 的短名 Schema / Migration 視為 Laravel 慣例。`down()` 與 helper methods 不分析。
@@ -116,13 +124,17 @@ Milestone 2 的新增功能在 core API 與 Node 範例。Milestone 3 將它們�
 - modifiers：`nullable(bool)`、`unsigned(bool)`、`default(scalar)`、`comment(string)`。
 - `dropColumn('name')`（單一字串）、`renameColumn('from', 'to')`。
 
-AtomicOperation 為 `createTable` / `addColumn` / `dropColumn` / `renameColumn` discriminated union，含來源位置（行號從 1 起、column 從 0 起）。所有輸出可序列化成 JSON。`id` 的 primary 屬性是欄位 metadata，目前沒有完整 index / constraint model。
+AtomicOperation 為 `createTable` / `addColumn` / `dropColumn` / `renameColumn` / `addIndex` / `dropIndex` discriminated union，含來源位置（行號從 1 起、column 從 0 起）。所有輸出可序列化成 JSON。`id` 的 primary 屬性是欄位 metadata，replay 會將其轉成隱含 primary 索引；尚未提供 foreign key model。
+
+- 索引 API 接受靜態欄位字串／非空且不重複的字串陣列、可選自訂名稱；drop 接受索引名稱或預設名稱的欄位陣列。dropPrimary 可省略參數。
+- 每欄最多一個 fluent index modifier，延後到 closure 尾端；standalone index 要求引用的欄位已存在。名稱不加 connection prefix，不模擬 DB 方言。
+- 索引名稱與欄位引用必須存在且一致，每張表最多一個主鍵。rename 更新索引欄位但保留索引名稱；dropColumn 要求先移除引用的索引。
 
 ## 限制與錯誤契約
 
-這是明確界定的 Laravel API 子集，不是 PHP interpreter，也不保證實際資料庫 DDL 可成功。動態名稱、變數計算、分支、迴圈、helper call、巨集、SQL、connection、`change()`、foreign keys、index / unique / primary 鏈式操作等回報 diagnostics。未支援的整條 Blueprint chain 不產生部分欄位操作；其他已支援的 statement 仍可保留，`complete` 會是 false。
+這是明確界定的 Laravel API 子集，不是 PHP interpreter，也不保證實際資料庫 DDL 可成功。動態名稱、變數計算、分支、迴圈、helper call、巨集、SQL、connection、`change()`、foreign keys、fullText、spatial/vector indexes、index algorithm 等回報 diagnostics。未支援的整條 Blueprint chain 不產生部分欄位操作；其他已支援的 statement 仍可保留，`complete` 會是 false。
 
-`complete` 代表已識別的 up() 靜態語句都在支援範圍內，不代表 schema replay 一定有效。重複 table / column、不存在的 table / column 與 rename 衝突會在 `applyOperations` 拋錯。Replay 會複製輸入，不會修改原 state；失敗不會回傳半成品。
+`complete` 代表已識別的 up() 靜態語句都在支援範圍內，不代表 schema replay 一定有效。重複 table / column、不存在的 table / column 、rename 衝突與無效索引引用會在 `applyOperations` 拋錯。Replay 會複製輸入，不會修改原 state；失敗不會回傳半成品。
 
 單檔 UI 從空白 schema 開始，所以單獨貼上 `Schema::table` 時可能顯示「Unknown table」，核心仍支援傳入先前狀態。沒有 timeline、ERD、AI、runtime migration execution、SQL parser。
 

@@ -74,6 +74,15 @@
                 "nullable": false,
                 "length": 120
               }
+            },
+            "indexes": {
+              "users_id_primary": {
+                "name": "users_id_primary",
+                "type": "primary",
+                "columns": [
+                  "id"
+                ]
+              }
             }
           }
         }
@@ -99,6 +108,15 @@
                   "type": "string",
                   "nullable": false,
                   "length": 120
+                }
+              },
+              "indexes": {
+                "users_id_primary": {
+                  "name": "users_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
                 }
               }
             }
@@ -162,6 +180,15 @@
                 "nullable": false,
                 "length": 120
               }
+            },
+            "indexes": {
+              "users_id_primary": {
+                "name": "users_id_primary",
+                "type": "primary",
+                "columns": [
+                  "id"
+                ]
+              }
             }
           }
         }
@@ -190,6 +217,15 @@
                 "type": "string",
                 "nullable": false,
                 "length": 120
+              }
+            },
+            "indexes": {
+              "users_id_primary": {
+                "name": "users_id_primary",
+                "type": "primary",
+                "columns": [
+                  "id"
+                ]
               }
             }
           }
@@ -304,6 +340,15 @@
                 "nullable": false,
                 "length": 120
               }
+            },
+            "indexes": {
+              "users_id_primary": {
+                "name": "users_id_primary",
+                "type": "primary",
+                "columns": [
+                  "id"
+                ]
+              }
             }
           }
         }
@@ -326,6 +371,15 @@
                 "type": "string",
                 "nullable": true,
                 "length": 200
+              }
+            },
+            "indexes": {
+              "users_id_primary": {
+                "name": "users_id_primary",
+                "type": "primary",
+                "columns": [
+                  "id"
+                ]
               }
             }
           }
@@ -389,6 +443,15 @@
             "nullable": true,
             "length": 200
           }
+        },
+        "indexes": {
+          "users_id_primary": {
+            "name": "users_id_primary",
+            "type": "primary",
+            "columns": [
+              "id"
+            ]
+          }
         }
       }
     }
@@ -411,6 +474,15 @@
             "type": "string",
             "nullable": true,
             "length": 200
+          }
+        },
+        "indexes": {
+          "users_id_primary": {
+            "name": "users_id_primary",
+            "type": "primary",
+            "columns": [
+              "id"
+            ]
           }
         }
       }

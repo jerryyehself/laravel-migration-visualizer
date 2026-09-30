@@ -42,7 +42,7 @@ describe('normalization', () => {
     expect(result.operations[1]).toMatchObject({ column: { name: 'key' } });
   });
   it.each([
-    "$t->string('email')->unique();", "$t->foreignId('user_id')->constrained();",
+    "$t->string('email')->fullText();", "$t->foreignId('user_id')->constrained();",
     "$t->string($column);", "$t->string('name')->default(env('NAME'));",
     "if (true) { $t->id(); }", "$other->id();", "$t->string('x')->change();",
     "$t->id(null);", "$t->integer('x')->default(010);", "$t->integer('x')->default(9007199254740993);", "$t->decimal('x', 2, 8);", "$t->integer('x', true);", "$t->id()->nullable(null);",
