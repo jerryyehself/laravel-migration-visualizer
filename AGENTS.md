@@ -6,13 +6,13 @@
 - npm workspaces：packages/migration-core 為純 TypeScript domain；apps/web 為 React + TypeScript + Vite。
 - parser、排序、schema replay、diff 與 project diagnostics 都放 core，不放 React hooks。
 - core 接收檔名與 PHP 字串，不讀檔、不執行 PHP、不連資料庫。
-- Milestone 1 和 2 已完成。先讀 docs/CLOUD_HANDOFF.md、README.md 與 docs/milestone-2.zh-TW.md。
+- Milestone 1 和 2 已完成；Milestone 3 已加入多檔 React 工作台。先讀 docs/CLOUD_HANDOFF.md、README.md 與 docs/milestone-3.zh-TW.md。
 - 未經新需求，不擴增 timeline、ERD、down()、AI、SQL parser、runtime migration execution 或 semantic refactoring detection。
 - SchemaDiff 是結構比較，不猜 rename。失敗後 schemaAfter/finalSchema 為 null；lastValidSchema 僅代表成功前綴。
 
 ## 開發與驗證
 - Node.js 22.12+，npm。安裝使用 npm ci，保留 package-lock.json。
-- npm test：交接基準 71 tests；原 Milestone 1 為 42 tests。
+- npm test：目前 76 tests（71 core + 5 browser import）；原 Milestone 1 為 42 tests。
 - npm run typecheck
 - npm run build
 - npm run demo:project
