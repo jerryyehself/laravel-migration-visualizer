@@ -1,4 +1,4 @@
-# Laravel Migration Visualizer — Milestone 8
+# Laravel Migration Visualizer — Milestone 9
 
 React + TypeScript + Vite，npm workspaces monorepo。只做靜態 migration 分析，不執行 PHP 或連接資料庫。
 
@@ -135,6 +135,12 @@ UI 提供欄位 helper 成功／失敗範例；`npm run demo:helpers` 驗證建�
 多檔工作台提供「下載完整分析 JSON」與「下載最終 Schema JSON」。完整分析保留逐檔操作、快照、diff 與診斷，成功或失敗均可匯出；最終 schema 只在全部成功時開放。直接輸出公開 ProjectAnalysis／SchemaState，不包含 PHP 原始碼。修改輸入會清除舊結果與下載入口，core 仍為 0.5.0。
 
 詳見 [M8 中文教學與驗證紀錄](docs/milestone-8.zh-TW.md)。JSON 契約與按鈕狀態已驗證；使用者於 2026-10-02 實測確認下載成功。內建預覽的自動化落盤驗證仍未涵蓋。
+
+## Milestone 9：結果搜尋與篩選
+
+多檔結果可按檔名／路徑搜尋，並選全部／已套用／失敗／已阻擋。保留 core 原本的順序與編號，顯示匹配數量及無結果提示；清除篩選可恢復完整清單。篩選只影響逐檔檢視，不修改全域診斷、可信快照或完整 JSON 匯出，也不重新分析。
+
+詳見 [M9 中文教學與選取規則](docs/milestone-9.zh-TW.md)。Core 仍為 0.5.0；搜尋不涵蓋 PHP／operation 內容，沒有分頁或虛擬清單。
 
 ## 支援範圍
 
