@@ -13,4 +13,8 @@ Milestone 1～3 的 GitHub 紀錄為事後補登，實作日期與驗證以各 c
 | 7：欄位 helpers | [M7](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/7) | [core #16](https://github.com/jerryyehself/laravel-migration-visualizer/issues/16)、[tests #17](https://github.com/jerryyehself/laravel-migration-visualizer/issues/17)、[UI/docs #18](https://github.com/jerryyehself/laravel-migration-visualizer/issues/18) | [PR #19](https://github.com/jerryyehself/laravel-migration-visualizer/pull/19) 已合併；cf8f222；268 tests |
 | 8：分析結果匯出 | [M8](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/8) | [下載 #20](https://github.com/jerryyehself/laravel-migration-visualizer/issues/20)、[tests/docs #21](https://github.com/jerryyehself/laravel-migration-visualizer/issues/21) | [PR #22](https://github.com/jerryyehself/laravel-migration-visualizer/pull/22) 已合併；fa3862e；274 tests；使用者實測下載成功 |
 
+| 9：結果搜尋／篩選 | [M9](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/9) | [UI #24](https://github.com/jerryyehself/laravel-migration-visualizer/issues/24)、[tests/docs #25](https://github.com/jerryyehself/laravel-migration-visualizer/issues/25) | [PR #26](https://github.com/jerryyehself/laravel-migration-visualizer/pull/26) 待審查；283 tests；core 0.5.0 不變 |
+
 後續新工作使用功能分支與 PR；實作完成與「已合併」分開記錄。M4～M8 已合併並關閉對應 issues／milestones。M5～M8 開發時使用堆疊分支，合併時依序改以 main 為 base、確認差異與最新 head CI；合併後 main 包含完整功能。
+
+M9 已實作並推送，合併前 issues／milestone 保持開啟。
