@@ -39,4 +39,4 @@ filter-results.ts 只投影已有快照，沒有解析 PHP、排序或 replay。
 
 瀏覽器確認狀態與檔名搜尋、原編號／對應詳情、清除篩選、無匹配提示、blocked 未知快照，以及修改輸入會移除舊篩選。顯示 1/3 時，完整 JSON 仍有三份、兩筆診斷與 null finalSchema；console 無 warn/error。
 
-GitHub 交付見 [紀錄](github-milestones.md)。
+PR #26 已合併 main（2931a2f），對應 issues／milestone 已關閉。GitHub 交付見 [紀錄](github-milestones.md)。
