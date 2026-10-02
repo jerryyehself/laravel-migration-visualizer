@@ -4,7 +4,15 @@ import { compareNames } from './ordering.js';
 const owns = (object: object, key: string) => Object.prototype.hasOwnProperty.call(object, key);
 function equalColumns(a: Column, b: Column): boolean {
   const keys = new Set([...Object.keys(a), ...Object.keys(b)] as (keyof Column)[]);
-  return [...keys].every(key => owns(a, key) === owns(b, key) && a[key] === b[key]);
+  return [...keys].every(key => {
+    if (owns(a,key) !== owns(b,key)) return false;
+    if (key === 'allowedValues') {
+      const left=a.allowedValues, right=b.allowedValues;
+      return left === undefined || right === undefined ? left === right
+        : left.length === right.length && left.every((value,i)=>value === right[i]);
+    }
+    return a[key] === b[key];
+  });
 }
 /** Structural diff only: renames are removed + added, never inferred. */
 export function diffSchemas(before: SchemaState, after: SchemaState): SchemaDiff {

@@ -12,7 +12,8 @@
     "test": "vitest run",
     "typecheck": "tsc --noEmit -p packages/migration-core/tsconfig.json && tsc --noEmit -p apps/web/tsconfig.json",
     "demo:project": "npm run build -w @lmv/migration-core && node examples/project-analysis.mjs",
-    "demo:tables": "npm run build -w @lmv/migration-core && node examples/table-lifecycle.mjs"
+    "demo:tables": "npm run build -w @lmv/migration-core && node examples/table-lifecycle.mjs",
+    "demo:helpers": "npm run build -w @lmv/migration-core && node examples/column-helpers.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

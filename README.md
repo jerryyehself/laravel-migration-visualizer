@@ -1,4 +1,4 @@
-# Laravel Migration Visualizer — Milestone 6
+# Laravel Migration Visualizer — Milestone 7
 
 React + TypeScript + Vite，npm workspaces monorepo。只做靜態 migration 分析，不執行 PHP 或連接資料庫。
 
@@ -123,6 +123,12 @@ Core 0.3.0：每張表現在需提供 indexes 與 foreignKeys（沒有時各為 
 支援 Schema::rename、drop、dropIfExists。改名更新 table metadata 與所有外鍵目標，保留索引／外鍵名稱；刪表會移除本表完整狀態，但其他表仍引用時診斷。dropIfExists 只忽略缺表。Core 0.4.0 新增 renameTable/dropTable 操作，schema JSON 與 M5 相同。
 
 UI 提供生命週期／刪表失敗範例。`npm run demo:tables` 驗證建置後公開套件，已納入 CI。詳見 [M6 中文教學](docs/milestone-6.zh-TW.md)。
+
+## Milestone 7：欄位 helpers
+
+Core 0.5.0 支援 enum（有序 allowedValues）、rememberToken、softDeletes/Tz、timestampTz/dateTimeTz/timeTz、timestampsTz，以及 dropRememberToken/dropSoftDeletes/Tz/dropTimestamps/Tz。Helpers 展開成既有 addColumn/dropColumn，保留整檔回滾與引用保護；enum diff 按陣列內容比較。
+
+UI 提供欄位 helper 成功／失敗範例；`npm run demo:helpers` 驗證建置後公開套件並納入 CI。詳見 [M7 中文教學與 API 參數](docs/milestone-7.zh-TW.md)。Column 新增可選 allowedValues，現有 schema 仍有效；enum 僅接受非空且不重複的靜態字串陣列（值可為空字串），不支援 PHP enum case。時間 precision 省略為 0，明確 null 不支援；不模擬 runtime 預設或 DB 方言。timestamps/Tz 不接受 chained modifiers，移除 helpers 不接受 modifiers。
 
 ## 支援範圍
 
