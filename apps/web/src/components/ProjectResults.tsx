@@ -30,6 +30,15 @@ function SchemaView({ title, schema, unavailable }: { title: string; schema: Sch
         </tr>)}</tbody>
       </table>
       {Object.keys(table.indexes).length === 0 && <p className="muted">沒有索引。</p>}
+      <table className="index-table"><caption>{name} 的外鍵</caption>
+        <thead><tr><th>名稱</th><th>本表欄位</th><th>引用目標</th><th>ON DELETE</th><th>ON UPDATE</th></tr></thead>
+        <tbody>{Object.values(table.foreignKeys).map(key => <tr key={key.name}>
+          <td>{key.name}</td><td>{key.columns.join(' → ')}</td>
+          <td>{key.referencedTable}（{key.referencedColumns.join(' → ')}）</td>
+          <td>{key.onDelete ?? '未指定'}</td><td>{key.onUpdate ?? '未指定'}</td>
+        </tr>)}</tbody>
+      </table>
+      {Object.keys(table.foreignKeys).length === 0 && <p className="muted">沒有外鍵。</p>}
     </div>)}
     <details><summary>SchemaState JSON</summary><pre>{JSON.stringify(schema, null, 2)}</pre></details>
   </>}</article>;
@@ -69,7 +78,7 @@ export function ProjectResults({ result, selected, onSelect }: {
           {step.diff === null ? <p className="unavailable">無法比較未知的快照。</p> : <>
             <p>{step.diff.changes.length} 個結構變化；rename 顯示為欄位移除與新增。</p>
             {step.diff.changes.length === 0 ? <p className="muted">沒有結構變化。</p> : <ul className="change-list">
-              {step.diff.changes.map((change, index) => <li key={index}><code>{change.kind}</code> · {change.table}{'column' in change ? `.${change.column}` : 'index' in change ? ` / ${change.index}` : ''}</li>)}
+              {step.diff.changes.map((change, index) => <li key={index}><code>{change.kind}</code> · {change.table}{'column' in change ? `.${change.column}` : 'index' in change ? ` / ${change.index}` : 'foreignKey' in change ? ` / ${change.foreignKey}` : ''}</li>)}
             </ul>}
             <details><summary>SchemaDiff JSON</summary><pre>{JSON.stringify(step.diff, null, 2)}</pre></details>
           </>}
