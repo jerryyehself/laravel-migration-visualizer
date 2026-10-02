@@ -30,12 +30,12 @@ JSON 字串在瀏覽器轉成 Blob，建立暫時 object URL、觸發 download l
 - 可以捕捉同步建立／觸發下載錯誤，但不能確認使用者是否接受儲存、瀏覽器是否封鎖或檔案最終是否落盤。因此 UI 不宣稱「已儲存成功」。
 - 大型結果會同步序列化並建立 Blob，尚未做效能／記憶體壓力測試。
 
-## 驗證與尚未驗證部分
+## 驗證
 
 274／274 tests 通過（263 core、5 browser import、6 export contract）。新增測試覆蓋完整成功報告與最終 schema、失敗／blocked 快照、排序失敗、已知空 schema、中文與 enum 值／順序、prototype-like 名稱，以及序列化不修改原結果。npm run typecheck、npm run build 通過。
 
 瀏覽器已確認：成功時兩個入口可用；載入新的輸入而尚未分析時沒有入口；失敗時完整分析可用、最終 schema 停用，保留未知狀態說明；console 無 warn/error。
 
-**實際下載落盤未完成驗證**：內建預覽未回傳 download 完成事件；替代 Chrome 控制未獲允許。此限制不能等同於下載已成功，也不能單憑事件逾時推斷程式錯誤。仍需在支援下載的瀏覽器中確認兩個 JSON 檔案落盤與內容。
+**使用者實測驗收（2026-10-02）**：使用者回報「我自己測下載有成功」，補上實際下載成功的人工驗證。JSON 內容契約另由上述序列化測試驗證。內建預覽未回傳 download 事件，因此本次實際下載成功的證據來自使用者回報；自動化落盤驗證仍未涵蓋。PR #22 已轉為可審查，尚未合併。
 
 未擴增 timeline、ERD、down()、AI、SQL／runtime execution 或 semantic refactoring detection。GitHub 交付見 [紀錄](github-milestones.md)。

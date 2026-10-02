@@ -134,7 +134,7 @@ UI 提供欄位 helper 成功／失敗範例；`npm run demo:helpers` 驗證建�
 
 多檔工作台提供「下載完整分析 JSON」與「下載最終 Schema JSON」。完整分析保留逐檔操作、快照、diff 與診斷，成功或失敗均可匯出；最終 schema 只在全部成功時開放。直接輸出公開 ProjectAnalysis／SchemaState，不包含 PHP 原始碼。修改輸入會清除舊結果與下載入口，core 仍為 0.5.0。
 
-詳見 [M8 中文教學與下載驗證限制](docs/milestone-8.zh-TW.md)。目前已驗證 JSON 契約與按鈕狀態；本次內建瀏覽器未提供下載完成事件，實際落盤仍待支援下載的瀏覽器驗證。
+詳見 [M8 中文教學與驗證紀錄](docs/milestone-8.zh-TW.md)。JSON 契約與按鈕狀態已驗證；使用者於 2026-10-02 實測確認下載成功。內建預覽的自動化落盤驗證仍未涵蓋。
 
 ## 支援範圍
 
