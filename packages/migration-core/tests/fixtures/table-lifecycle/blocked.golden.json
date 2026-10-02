@@ -1,0 +1,240 @@
+{
+  "complete": false,
+  "appliedCount": 2,
+  "diagnostics": [
+    {
+      "code": "SCHEMA_REPLAY_ERROR",
+      "phase": "replay",
+      "file": "2026_04_03_000000_invalid_drop.php",
+      "operationIndex": 1
+    },
+    {
+      "code": "SCHEMA_BLOCKED",
+      "phase": "dependency",
+      "file": "2026_04_04_000000_drop_members.php"
+    }
+  ],
+  "migrations": [
+    {
+      "filename": "2026_04_01_000000_create_tables.php",
+      "status": "applied",
+      "before": {},
+      "after": {
+        "users": {
+          "name": "users",
+          "columns": [
+            "id"
+          ],
+          "indexes": [
+            "users_id_primary"
+          ],
+          "foreignKeys": {}
+        },
+        "posts": {
+          "name": "posts",
+          "columns": [
+            "id",
+            "user_id"
+          ],
+          "indexes": [
+            "posts_id_primary"
+          ],
+          "foreignKeys": {
+            "posts_user_id_foreign": {
+              "name": "posts_user_id_foreign",
+              "columns": [
+                "user_id"
+              ],
+              "referencedTable": "users",
+              "referencedColumns": [
+                "id"
+              ]
+            }
+          }
+        }
+      },
+      "changes": [
+        {
+          "kind": "tableAdded",
+          "table": "posts"
+        },
+        {
+          "kind": "tableAdded",
+          "table": "users"
+        }
+      ]
+    },
+    {
+      "filename": "2026_04_02_000000_rename_tables.php",
+      "status": "applied",
+      "before": {
+        "users": {
+          "name": "users",
+          "columns": [
+            "id"
+          ],
+          "indexes": [
+            "users_id_primary"
+          ],
+          "foreignKeys": {}
+        },
+        "posts": {
+          "name": "posts",
+          "columns": [
+            "id",
+            "user_id"
+          ],
+          "indexes": [
+            "posts_id_primary"
+          ],
+          "foreignKeys": {
+            "posts_user_id_foreign": {
+              "name": "posts_user_id_foreign",
+              "columns": [
+                "user_id"
+              ],
+              "referencedTable": "users",
+              "referencedColumns": [
+                "id"
+              ]
+            }
+          }
+        }
+      },
+      "after": {
+        "members": {
+          "name": "members",
+          "columns": [
+            "id"
+          ],
+          "indexes": [
+            "users_id_primary"
+          ],
+          "foreignKeys": {}
+        },
+        "articles": {
+          "name": "articles",
+          "columns": [
+            "id",
+            "user_id"
+          ],
+          "indexes": [
+            "posts_id_primary"
+          ],
+          "foreignKeys": {
+            "posts_user_id_foreign": {
+              "name": "posts_user_id_foreign",
+              "columns": [
+                "user_id"
+              ],
+              "referencedTable": "members",
+              "referencedColumns": [
+                "id"
+              ]
+            }
+          }
+        }
+      },
+      "changes": [
+        {
+          "kind": "tableAdded",
+          "table": "articles"
+        },
+        {
+          "kind": "tableAdded",
+          "table": "members"
+        },
+        {
+          "kind": "tableRemoved",
+          "table": "posts"
+        },
+        {
+          "kind": "tableRemoved",
+          "table": "users"
+        }
+      ]
+    },
+    {
+      "filename": "2026_04_03_000000_invalid_drop.php",
+      "status": "failed",
+      "before": {
+        "members": {
+          "name": "members",
+          "columns": [
+            "id"
+          ],
+          "indexes": [
+            "users_id_primary"
+          ],
+          "foreignKeys": {}
+        },
+        "articles": {
+          "name": "articles",
+          "columns": [
+            "id",
+            "user_id"
+          ],
+          "indexes": [
+            "posts_id_primary"
+          ],
+          "foreignKeys": {
+            "posts_user_id_foreign": {
+              "name": "posts_user_id_foreign",
+              "columns": [
+                "user_id"
+              ],
+              "referencedTable": "members",
+              "referencedColumns": [
+                "id"
+              ]
+            }
+          }
+        }
+      },
+      "after": null,
+      "changes": null
+    },
+    {
+      "filename": "2026_04_04_000000_drop_members.php",
+      "status": "blocked",
+      "before": null,
+      "after": null,
+      "changes": null
+    }
+  ],
+  "final": null,
+  "lastValid": {
+    "members": {
+      "name": "members",
+      "columns": [
+        "id"
+      ],
+      "indexes": [
+        "users_id_primary"
+      ],
+      "foreignKeys": {}
+    },
+    "articles": {
+      "name": "articles",
+      "columns": [
+        "id",
+        "user_id"
+      ],
+      "indexes": [
+        "posts_id_primary"
+      ],
+      "foreignKeys": {
+        "posts_user_id_foreign": {
+          "name": "posts_user_id_foreign",
+          "columns": [
+            "user_id"
+          ],
+          "referencedTable": "members",
+          "referencedColumns": [
+            "id"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -25,6 +25,8 @@ export interface ForeignKey {
   onUpdate?: ReferentialAction;
 }
 export type AtomicOperation = ({ kind: 'createTable'; table: string }
+  | { kind: 'renameTable'; table: string; to: string }
+  | { kind: 'dropTable'; table: string; ifExists: boolean }
   | { kind: 'addColumn'; table: string; column: Column }
   | { kind: 'dropColumn'; table: string; column: string }
   | { kind: 'renameColumn'; table: string; from: string; to: string }
