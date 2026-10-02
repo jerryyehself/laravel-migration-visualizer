@@ -76,7 +76,7 @@ export function ProjectResults({ result, selected, onSelect }: {
         </div>
         <article><h3>SchemaDiff</h3>
           {step.diff === null ? <p className="unavailable">無法比較未知的快照。</p> : <>
-            <p>{step.diff.changes.length} 個結構變化；rename 顯示為欄位移除與新增。</p>
+            <p>{step.diff.changes.length} 個結構變化；表／欄位 rename 顯示為移除與新增。</p>
             {step.diff.changes.length === 0 ? <p className="muted">沒有結構變化。</p> : <ul className="change-list">
               {step.diff.changes.map((change, index) => <li key={index}><code>{change.kind}</code> · {change.table}{'column' in change ? `.${change.column}` : 'index' in change ? ` / ${change.index}` : 'foreignKey' in change ? ` / ${change.foreignKey}` : ''}</li>)}
             </ul>}
