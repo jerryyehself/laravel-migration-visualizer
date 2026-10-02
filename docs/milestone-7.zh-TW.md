@@ -57,4 +57,4 @@ Column 新增可選 allowedValues: string[]；沒有 enum 的舊 schema 仍有�
 
 npm run typecheck、npm run build、npm run demo:project、npm run demo:tables、npm run demo:helpers 全部通過。demo:helpers 使用建置後公開套件並納入 CI。瀏覽器確認成功 3/3、失敗 1/3、後序未知快照，以及 enum/時區欄位顯示；console 無 warn/error。
 
-M7 分支接在 M6 上，實作與驗證完成不代表已合併。GitHub 狀態見 [交付紀錄](github-milestones.md)。
+M7 開發時接在 M6 上；PR #19 已合併 main（cf8f222），issues／milestone 已關閉。GitHub 狀態見 [交付紀錄](github-milestones.md)。

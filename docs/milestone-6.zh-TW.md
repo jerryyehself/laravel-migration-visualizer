@@ -52,4 +52,4 @@ Component 是畫面單位；ProjectResults 接收 result props，畫前後快照
 
 驗收：npm test、npm run typecheck、npm run build、npm run demo:project。另補 `npm run demo:tables`：IO 在 examples，使用建置後公開套件，assert 成功空 schema 與失敗可信前綴，輸出完整 JSON；已納入 CI。
 
-M6 PR 以 M5 功能分支為 base，只顯示本階段變更。M5 合併後可把 base 改成 main，重新確認該版本 CI；實作／CI 通過與已合併分開記錄。
+M6 開發時以 M5 功能分支為 base；M5 合併後改以 main 為 base，核對差異與該 head CI。PR #15 已合併 main（40bb301），issues／milestone 已關閉。
