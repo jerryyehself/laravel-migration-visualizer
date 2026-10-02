@@ -36,6 +36,6 @@ JSON 字串在瀏覽器轉成 Blob，建立暫時 object URL、觸發 download l
 
 瀏覽器已確認：成功時兩個入口可用；載入新的輸入而尚未分析時沒有入口；失敗時完整分析可用、最終 schema 停用，保留未知狀態說明；console 無 warn/error。
 
-**使用者實測驗收（2026-10-02）**：使用者回報「我自己測下載有成功」，補上實際下載成功的人工驗證。JSON 內容契約另由上述序列化測試驗證。內建預覽未回傳 download 事件，因此本次實際下載成功的證據來自使用者回報；自動化落盤驗證仍未涵蓋。PR #22 已轉為可審查，尚未合併。
+**使用者實測驗收（2026-10-02）**：使用者回報「我自己測下載有成功」，補上實際下載成功的人工驗證。JSON 內容契約另由上述序列化測試驗證。內建預覽未回傳 download 事件，因此本次實際下載成功的證據來自使用者回報；自動化落盤驗證仍未涵蓋。PR #22 已合併 main（fa3862e），issues／milestone 已關閉。
 
 未擴增 timeline、ERD、down()、AI、SQL／runtime execution 或 semantic refactoring detection。GitHub 交付見 [紀錄](github-milestones.md)。

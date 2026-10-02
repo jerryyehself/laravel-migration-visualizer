@@ -4,7 +4,7 @@
 - Milestone 1 baseline commit：6959b46（42 tests）。
 - Milestone 2：檔名排序、batch analyzer、schemaBefore/schemaAfter、SchemaDiff、project diagnostics、跨 migration golden tests（71 tests）。
 - Milestone 3：React 多檔匯入工作台、逐檔快照／diff／診斷與輸入副本編輯；core 契約不變。新增 5 個匯入測試，合計 76 tests。
-- Milestone 3 已以 7fba001 推送 main。Milestone 4 已合併 PR #7，merge commit c778163（121 tests）。Milestone 5 在 feat/milestone-5-foreign-keys，合併前驗證該分支。
+- Milestone 3 已以 7fba001 推送 main。Milestone 4 已合併 PR #7，merge commit c778163（121 tests）。Milestone 5～8 已合併 PR #11/#15/#19/#22，最新功能合併 commit fa3862e；main 已包含全部功能（274 tests）。
 - 本機對話不會自動成為 Cloud 對話；以本文件、AGENTS.md、Git history 與教學文件延續。
 
 ## Cloud 環境設定
@@ -27,7 +27,7 @@
 - 自訂 base class、完整 Laravel API、DB 方言與 PHP runtime 語意仍不涵蓋；完整限制見 README。
 
 ## 後續範圍
-使用者已授權 Milestone 5 外鍵分析與 UI 顯示，規格見 docs/milestone-5.zh-TW.md；timeline、ERD、down()、AI、semantic refactoring detection 仍不在目前範圍。
+M1～M8 已交付；後續維持 core/UI 分層、測試、中文教學與 PR 流程。timeline、ERD、down()、AI、semantic refactoring detection 仍不在目前範圍。
 
 ## 原始碼閱讀順序
 src/types.ts → src/project-types.ts → src/ordering.ts → src/project.ts → src/diff.ts → tests/project.test.ts（皆位於 packages/migration-core）。教學請看 docs/tutorial.zh-TW.md 與 docs/milestone-2.zh-TW.md。
@@ -45,17 +45,17 @@ src/types.ts → src/project-types.ts → src/ordering.ts → src/project.ts →
 - 不推測 DB 隱含索引、型別相容性或完整 Blueprint scheduling；無 PHP/runtime 執行。
 
 ## Milestone 6 交接
-- feat/milestone-6-table-lifecycle 接在 M5 分支上；未合併時不假設 main 已有 M5/M6。
+- M6 開發時接在 M5 分支上；現已經 PR #15 合併 main（40bb301）。
 - Core 0.4.0：rename/drop/dropIfExists、引用更新與刪表保護；schema 與 M5 相同，讀 docs/milestone-6.zh-TW.md。
 - 額外執行 npm run demo:tables 驗證建置後公開套件四檔成功／失敗流程。
 
 ## Milestone 7 交接
-- feat/milestone-7-column-helpers 接在 M6 分支上；M5/M6/M7 尚未合併時 main 不包含這些能力。
+- M7 開發時接在 M6 分支上；現已經 PR #19 合併 main（cf8f222）。
 - Core 0.5.0：enum 有序 allowedValues、rememberToken、softDeletes/Tz、時區時間欄位與移除 helpers；讀 docs/milestone-7.zh-TW.md。
 - Column.allowedValues 為可選欄位；diff 按內容／順序比較。Helpers 沿用整檔回滾、索引／外鍵保護。
 - 另執行 npm run demo:helpers；268 tests，包含 44 個 M7 測試。所有讀檔仍在 caller，核心不做 IO。
 
 ## Milestone 8 交接
-- feat/milestone-8-analysis-export 接在 M7 上；只改 web caller，core 仍為 0.5.0。
+- M8 開發時接在 M7 上；現已經 PR #22 合併 main（fa3862e）。只改 web caller，core 仍為 0.5.0。
 - 下載完整 ProjectAnalysis／成功的 finalSchema，未知快照不填入猜測資料；274 tests。
-- 讀 docs/milestone-8.zh-TW.md；瀏覽器入口狀態與 JSON 契約已驗證；使用者於 2026-10-02 實測確認下載成功。PR #22 已轉為可審查，尚未合併；自動化落盤驗證仍未涵蓋。
+- 讀 docs/milestone-8.zh-TW.md；瀏覽器入口狀態與 JSON 契約已驗證；使用者於 2026-10-02 實測確認下載成功。PR #22 已合併；自動化落盤驗證仍未涵蓋。
