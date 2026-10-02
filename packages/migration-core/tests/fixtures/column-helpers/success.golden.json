@@ -1,0 +1,266 @@
+{
+  "complete": true,
+  "appliedCount": 3,
+  "diagnostics": [],
+  "migrations": [
+    {
+      "filename": "2026_05_01_000000_create_profiles.php",
+      "status": "applied",
+      "before": {
+        "tables": {}
+      },
+      "after": {
+        "tables": {
+          "profiles": {
+            "name": "profiles",
+            "columns": {
+              "status": {
+                "name": "status",
+                "type": "enum",
+                "nullable": false,
+                "allowedValues": [
+                  "",
+                  "active",
+                  "paused"
+                ],
+                "default": ""
+              },
+              "remember_token": {
+                "name": "remember_token",
+                "type": "string",
+                "length": 100,
+                "nullable": true
+              },
+              "archived_at": {
+                "name": "archived_at",
+                "type": "timestampTz",
+                "nullable": true,
+                "precision": 3
+              },
+              "created_at": {
+                "name": "created_at",
+                "type": "timestampTz",
+                "nullable": true,
+                "precision": 6
+              },
+              "updated_at": {
+                "name": "updated_at",
+                "type": "timestampTz",
+                "nullable": true,
+                "precision": 6
+              }
+            },
+            "indexes": {},
+            "foreignKeys": {}
+          }
+        }
+      },
+      "changes": [
+        "tableAdded:profiles"
+      ]
+    },
+    {
+      "filename": "2026_05_02_000000_remove_helpers.php",
+      "status": "applied",
+      "before": {
+        "tables": {
+          "profiles": {
+            "name": "profiles",
+            "columns": {
+              "status": {
+                "name": "status",
+                "type": "enum",
+                "nullable": false,
+                "allowedValues": [
+                  "",
+                  "active",
+                  "paused"
+                ],
+                "default": ""
+              },
+              "remember_token": {
+                "name": "remember_token",
+                "type": "string",
+                "length": 100,
+                "nullable": true
+              },
+              "archived_at": {
+                "name": "archived_at",
+                "type": "timestampTz",
+                "nullable": true,
+                "precision": 3
+              },
+              "created_at": {
+                "name": "created_at",
+                "type": "timestampTz",
+                "nullable": true,
+                "precision": 6
+              },
+              "updated_at": {
+                "name": "updated_at",
+                "type": "timestampTz",
+                "nullable": true,
+                "precision": 6
+              }
+            },
+            "indexes": {},
+            "foreignKeys": {}
+          }
+        }
+      },
+      "after": {
+        "tables": {
+          "profiles": {
+            "name": "profiles",
+            "columns": {
+              "status": {
+                "name": "status",
+                "type": "enum",
+                "nullable": false,
+                "allowedValues": [
+                  "",
+                  "active",
+                  "paused"
+                ],
+                "default": ""
+              },
+              "archived_at": {
+                "name": "archived_at",
+                "type": "timestampTz",
+                "nullable": true,
+                "precision": 3
+              }
+            },
+            "indexes": {},
+            "foreignKeys": {}
+          }
+        }
+      },
+      "changes": [
+        "columnRemoved:created_at",
+        "columnRemoved:remember_token",
+        "columnRemoved:updated_at"
+      ]
+    },
+    {
+      "filename": "2026_05_03_000000_rename_status.php",
+      "status": "applied",
+      "before": {
+        "tables": {
+          "profiles": {
+            "name": "profiles",
+            "columns": {
+              "status": {
+                "name": "status",
+                "type": "enum",
+                "nullable": false,
+                "allowedValues": [
+                  "",
+                  "active",
+                  "paused"
+                ],
+                "default": ""
+              },
+              "archived_at": {
+                "name": "archived_at",
+                "type": "timestampTz",
+                "nullable": true,
+                "precision": 3
+              }
+            },
+            "indexes": {},
+            "foreignKeys": {}
+          }
+        }
+      },
+      "after": {
+        "tables": {
+          "profiles": {
+            "name": "profiles",
+            "columns": {
+              "archived_at": {
+                "name": "archived_at",
+                "type": "timestampTz",
+                "nullable": true,
+                "precision": 3
+              },
+              "state": {
+                "name": "state",
+                "type": "enum",
+                "nullable": false,
+                "allowedValues": [
+                  "",
+                  "active",
+                  "paused"
+                ],
+                "default": ""
+              }
+            },
+            "indexes": {},
+            "foreignKeys": {}
+          }
+        }
+      },
+      "changes": [
+        "columnAdded:state",
+        "columnRemoved:status"
+      ]
+    }
+  ],
+  "final": {
+    "tables": {
+      "profiles": {
+        "name": "profiles",
+        "columns": {
+          "archived_at": {
+            "name": "archived_at",
+            "type": "timestampTz",
+            "nullable": true,
+            "precision": 3
+          },
+          "state": {
+            "name": "state",
+            "type": "enum",
+            "nullable": false,
+            "allowedValues": [
+              "",
+              "active",
+              "paused"
+            ],
+            "default": ""
+          }
+        },
+        "indexes": {},
+        "foreignKeys": {}
+      }
+    }
+  },
+  "lastValid": {
+    "tables": {
+      "profiles": {
+        "name": "profiles",
+        "columns": {
+          "archived_at": {
+            "name": "archived_at",
+            "type": "timestampTz",
+            "nullable": true,
+            "precision": 3
+          },
+          "state": {
+            "name": "state",
+            "type": "enum",
+            "nullable": false,
+            "allowedValues": [
+              "",
+              "active",
+              "paused"
+            ],
+            "default": ""
+          }
+        },
+        "indexes": {},
+        "foreignKeys": {}
+      }
+    }
+  }
+}

@@ -28,7 +28,9 @@ function argument(node: Node): Argument {
   if (node?.kind !== 'array') return literal(node);
   return node.items.map((item: Node) => {
     if (!item || item.key !== null || item.unpack || item.byRef) throw new Error('Expected an unkeyed static string array.');
-    return text(literal(item.value));
+    const value = literal(item.value);
+    if (typeof value !== 'string') throw new Error('Expected a static string array.');
+    return value;
   });
 }
 function text(value: Argument | undefined): string {
@@ -53,15 +55,29 @@ const simpleTypes = new Set(['text', 'longText', 'mediumText', 'boolean', 'date'
 const integerTypes = new Set(['integer', 'bigInteger', 'smallInteger', 'tinyInteger', 'mediumInteger', 'unsignedInteger', 'unsignedBigInteger', 'unsignedSmallInteger', 'unsignedTinyInteger', 'unsignedMediumInteger']);
 function columns(call: Call): Column[] {
   const { name: method, args } = call;
-  if (method === 'timestamps') {
+  if (method === 'timestamps' || method === 'timestampsTz') {
     arity(args, 0, 1);
-    return ['created_at', 'updated_at'].map(name => ({ name, type: 'timestamp', nullable: true, precision: integer(args[0], 0) }));
+    return ['created_at', 'updated_at'].map(name => ({ name, type: method === 'timestampsTz' ? 'timestampTz' : 'timestamp', nullable: true, precision: integer(args[0], 0) }));
   }
   if (method === 'id' || method === 'increments' || method === 'bigIncrements') {
     arity(args, method === 'id' ? 0 : 1, 1);
     return [{ name: text(args[0] === undefined ? 'id' : args[0]), type: method === 'increments' ? 'integer' : 'bigInteger', nullable: false, unsigned: true, autoIncrement: true, primary: true }];
   }
+  if (method === 'rememberToken') {
+    arity(args, 0);
+    return [{ name:'remember_token', type:'string', length:100, nullable:true }];
+  }
+  if (method === 'softDeletes' || method === 'softDeletesTz') {
+    arity(args, 0, 2);
+    return [{ name:text(args[0] === undefined ? 'deleted_at' : args[0]), type:method === 'softDeletesTz' ? 'timestampTz' : 'timestamp', nullable:true, precision:integer(args[1],0) }];
+  }
   const name = text(args[0]);
+  if (method === 'enum') {
+    arity(args, 2);
+    const allowedValues = args[1];
+    if (!Array.isArray(allowedValues) || !allowedValues.length || new Set(allowedValues).size !== allowedValues.length) throw new Error('enum requires a non-empty array of distinct static strings.');
+    return [{ name, type:'enum', nullable:false, allowedValues:[...allowedValues] }];
+  }
   if (method === 'foreignId') {
     arity(args, 1);
     return [{ name, type:'bigInteger', nullable:false, unsigned:true, autoIncrement:false }];
@@ -76,7 +92,7 @@ function columns(call: Call): Column[] {
     if (scale > precision) throw new Error('Decimal scale exceeds precision.');
     return [{ name, type: method, nullable: false, precision, scale }];
   }
-  if (['timestamp', 'dateTime', 'time'].includes(method)) {
+  if (['timestamp', 'dateTime', 'time', 'timestampTz', 'dateTimeTz', 'timeTz'].includes(method)) {
     arity(args, 1, 2);
     return [{ name, type: method, nullable: false, precision: integer(args[1], 0) }];
   }
@@ -217,6 +233,13 @@ export function analyzeMigration(source: string, file = 'migration.php'): Analys
                 const name = Array.isArray(value) ? indexName(table, indexColumns(value), type)
                   : type === 'primary' && (value === undefined || value === null) ? null : text(value);
                 operations.push({ kind: 'dropIndex', table, name, indexType: type, source: location(body) });
+              } else if (['dropTimestamps','dropTimestampsTz','dropRememberToken','dropSoftDeletes','dropSoftDeletesTz'].includes(first.name)) {
+                const soft = first.name === 'dropSoftDeletes' || first.name === 'dropSoftDeletesTz';
+                arity(first.args, 0, soft ? 1 : 0);
+                if (modifiers.length) throw new Error('Drop helpers cannot have modifiers.');
+                const names = soft ? [text(first.args[0] === undefined ? 'deleted_at' : first.args[0])]
+                  : first.name === 'dropRememberToken' ? ['remember_token'] : ['created_at','updated_at'];
+                for (const column of names) operations.push({ kind:'dropColumn', table, column, source:location(body) });
               } else if (first.name === 'dropColumn') {
                 arity(first.args, 1);
                 if (modifiers.length) throw new Error('dropColumn cannot have modifiers.');
@@ -227,7 +250,7 @@ export function analyzeMigration(source: string, file = 'migration.php'): Analys
                 operations.push({ kind: 'renameColumn', table, from: text(first.args[0]), to: text(first.args[1]), source: location(body) });
               } else {
                 const definitions = columns(first);
-                if (first.name === 'timestamps' && modifiers.length) throw new Error('timestamps does not support chained modifiers.');
+                if (['timestamps','timestampsTz'].includes(first.name) && modifiers.length) throw new Error('Timestamp pair helpers do not support chained modifiers.');
                 const pending: AtomicOperation[] = [];
                 for (const column of definitions) {
                   const indexes = modifiers.filter(modifier => indexTypes.has(modifier.name));

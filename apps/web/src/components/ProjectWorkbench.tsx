@@ -1,3 +1,7 @@
+import helperCreate from '../../../../packages/migration-core/tests/fixtures/column-helpers/2026_05_01_000000_create_profiles.php?raw';
+import helperRemove from '../../../../packages/migration-core/tests/fixtures/column-helpers/2026_05_02_000000_remove_helpers.php?raw';
+import helperInvalid from '../../../../packages/migration-core/tests/fixtures/column-helpers/2026_05_02_000000_invalid_drop.php?raw';
+import helperRename from '../../../../packages/migration-core/tests/fixtures/column-helpers/2026_05_03_000000_rename_status.php?raw';
 import { useState } from 'react';
 import { analyzeProject, type MigrationFile, type ProjectAnalysis } from '@lmv/migration-core';
 import createSource from '../../../../packages/migration-core/tests/fixtures/project/2026_01_01_000000_create_users.php?raw';
@@ -51,6 +55,15 @@ function lifecycleFiles(failing = false): MigrationFile[] {
   ];
 }
 
+function helperFiles(failing = false): MigrationFile[] {
+  return [
+    { filename:'2026_05_03_000000_rename_status.php', source:helperRename },
+    { filename:'2026_05_01_000000_create_profiles.php', source:helperCreate },
+    failing ? { filename:'2026_05_02_000000_invalid_drop.php', source:helperInvalid }
+      : { filename:'2026_05_02_000000_remove_helpers.php', source:helperRemove },
+  ];
+}
+
 export function ProjectWorkbench() {
   const [files, setFiles] = useState<MigrationFile[]>(sampleFiles);
   const [selectedInput, setSelectedInput] = useState(0);
@@ -101,6 +114,8 @@ export function ProjectWorkbench() {
         <button type="button" className="secondary" onClick={() => replaceFiles(foreignFiles(true))}>載入外鍵失敗範例</button>
         <button type="button" className="secondary" onClick={() => replaceFiles(lifecycleFiles())}>載入資料表生命週期範例</button>
         <button type="button" className="secondary" onClick={() => replaceFiles(lifecycleFiles(true))}>載入刪表失敗範例</button>
+        <button type="button" className="secondary" onClick={() => replaceFiles(helperFiles())}>載入欄位 helper 範例</button>
+        <button type="button" className="secondary" onClick={() => replaceFiles(helperFiles(true))}>載入 helper 失敗範例</button>
       </div>
       <p className="muted">檔名格式：YYYY_MM_DD_HHMMSS_description.php。匯入順序不影響分析順序；重複名稱由 core 診斷。</p>
       <div className="project-layout">
