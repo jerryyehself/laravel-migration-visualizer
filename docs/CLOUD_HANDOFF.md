@@ -58,4 +58,4 @@ src/types.ts → src/project-types.ts → src/ordering.ts → src/project.ts →
 ## Milestone 8 交接
 - feat/milestone-8-analysis-export 接在 M7 上；只改 web caller，core 仍為 0.5.0。
 - 下載完整 ProjectAnalysis／成功的 finalSchema，未知快照不填入猜測資料；274 tests。
-- 讀 docs/milestone-8.zh-TW.md；瀏覽器入口狀態與 JSON 契約已驗證，實際下載落盤仍待支援下載的瀏覽器驗證。
+- 讀 docs/milestone-8.zh-TW.md；瀏覽器入口狀態與 JSON 契約已驗證；使用者於 2026-10-02 實測確認下載成功。PR #22 已轉為可審查，尚未合併；自動化落盤驗證仍未涵蓋。
