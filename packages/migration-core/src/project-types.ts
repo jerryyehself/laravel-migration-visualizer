@@ -1,4 +1,4 @@
-import type { AnalysisResult, Column, SchemaIndex, SchemaState, SourceLocation } from './types.js';
+import type { AnalysisResult, Column, ForeignKey, SchemaIndex, SchemaState, SourceLocation } from './types.js';
 
 export interface MigrationFile { filename: string; source: string }
 export type TableState = SchemaState['tables'][string];
@@ -10,7 +10,10 @@ export type SchemaChange =
   | { kind: 'columnChanged'; table: string; column: string; before: Column; after: Column }
   | { kind: 'indexAdded'; table: string; index: string; after: SchemaIndex }
   | { kind: 'indexRemoved'; table: string; index: string; before: SchemaIndex }
-  | { kind: 'indexChanged'; table: string; index: string; before: SchemaIndex; after: SchemaIndex };
+  | { kind: 'indexChanged'; table: string; index: string; before: SchemaIndex; after: SchemaIndex }
+  | { kind: 'foreignKeyAdded'; table: string; foreignKey: string; after: ForeignKey }
+  | { kind: 'foreignKeyRemoved'; table: string; foreignKey: string; before: ForeignKey }
+  | { kind: 'foreignKeyChanged'; table: string; foreignKey: string; before: ForeignKey; after: ForeignKey };
 export interface SchemaDiff { changes: SchemaChange[] }
 export interface ProjectDiagnostic {
   phase: 'ordering' | 'analysis' | 'replay' | 'dependency';

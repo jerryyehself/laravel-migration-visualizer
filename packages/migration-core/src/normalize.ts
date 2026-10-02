@@ -1,6 +1,7 @@
 import { indexName } from './index-name.js';
+import { foreignActions, inferReferencedTable } from './foreign-key.js';
 import { parseMigration } from './parser.js';
-import type { AnalysisResult, AtomicOperation, Column, Literal, SourceLocation, IndexType } from './types.js';
+import type { AnalysisResult, AtomicOperation, Column, ForeignKey, Literal, SourceLocation, IndexType } from './types.js';
 // php-parser's heterogeneous AST stays private to this adapter, never in the public model.
 type Node = { kind: string; [key: string]: any };
 const facade = 'Illuminate\\Support\\Facades\\Schema';
@@ -61,6 +62,10 @@ function columns(call: Call): Column[] {
     return [{ name: text(args[0] === undefined ? 'id' : args[0]), type: method === 'increments' ? 'integer' : 'bigInteger', nullable: false, unsigned: true, autoIncrement: true, primary: true }];
   }
   const name = text(args[0]);
+  if (method === 'foreignId') {
+    arity(args, 1);
+    return [{ name, type:'bigInteger', nullable:false, unsigned:true, autoIncrement:false }];
+  }
   if (method === 'string' || method === 'char') {
     arity(args, 1, 2);
     return [{ name, type: method, nullable: false, length: integer(args[1], 255, 1) }];
@@ -157,7 +162,36 @@ export function analyzeMigration(source: string, file = 'migration.php'): Analys
               if (!calls.length) throw new Error('Expected a Blueprint call.');
               const [first, ...modifiers] = calls;
               const operations: AtomicOperation[] = [];
-              if (indexTypes.has(first.name)) {
+              if (first.name === 'foreign') {
+                arity(first.args, 1, 2);
+                const names = indexColumns(first.args[0]);
+                const references = modifiers.filter(call => call.name === 'references');
+                const targets = modifiers.filter(call => call.name === 'on');
+                if (references.length !== 1 || targets.length !== 1) throw new Error('foreign requires exactly one references() and on().');
+                arity(references[0].args, 1); arity(targets[0].args, 1);
+                const key: ForeignKey = { name:explicitName(first.args[1]) ?? indexName(table,names,'foreign'), columns:names,
+                  referencedTable:text(targets[0].args[0]), referencedColumns:indexColumns(references[0].args[0]) };
+                if (key.columns.length !== key.referencedColumns.length) throw new Error('Foreign key column counts must match.');
+                foreignActions(key, modifiers.filter(call => call.name !== 'references' && call.name !== 'on'));
+                operations.push({ kind:'addForeignKey', table, foreignKey:key, source:location(body) });
+              } else if (first.name === 'dropForeign') {
+                arity(first.args, 1);
+                if (modifiers.length) throw new Error('dropForeign cannot have modifiers.');
+                const value = first.args[0];
+                operations.push({ kind:'dropForeignKey', table, name:Array.isArray(value) ? indexName(table,indexColumns(value),'foreign') : text(value), source:location(body) });
+              } else if (first.name === 'foreignId' && modifiers.some(call => call.name === 'constrained')) {
+                const column = columns(first)[0];
+                const position = modifiers.findIndex(call => call.name === 'constrained');
+                for (const call of modifiers.slice(0,position)) modify(column,call);
+                const constrained = modifiers[position];
+                arity(constrained.args, 0, 3);
+                const reference = explicitName(constrained.args[1]) ?? 'id';
+                const target = explicitName(constrained.args[0]) ?? inferReferencedTable(column.name,reference);
+                const key: ForeignKey = { name:explicitName(constrained.args[2]) ?? indexName(table,[column.name],'foreign'),
+                  columns:[column.name], referencedTable:target, referencedColumns:[reference] };
+                foreignActions(key, modifiers.slice(position+1));
+                operations.push({ kind:'addColumn', table, column, source:location(body) }, { kind:'addForeignKey', table, foreignKey:key, source:location(body) });
+              } else if (indexTypes.has(first.name)) {
                 arity(first.args, 1, 2);
                 if (modifiers.length) throw new Error('Index commands cannot have modifiers.');
                 const names = indexColumns(first.args[0]);
