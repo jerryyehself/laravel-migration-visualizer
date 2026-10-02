@@ -10,6 +10,7 @@ export interface Column {
   length?: number;
   precision?: number;
   scale?: number;
+  allowedValues?: string[];
   default?: Literal;
   comment?: string;
 }
