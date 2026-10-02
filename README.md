@@ -1,4 +1,4 @@
-# Laravel Migration Visualizer — Milestone 5
+# Laravel Migration Visualizer — Milestone 6
 
 React + TypeScript + Vite，npm workspaces monorepo。只做靜態 migration 分析，不執行 PHP 或連接資料庫。
 
@@ -118,11 +118,17 @@ M4 的 Core 0.2.0：手動建立 initialSchema 的呼叫端需為每張表提供
 
 Core 0.3.0：每張表現在需提供 indexes 與 foreignKeys（沒有時各為 {}）。外部 initialSchema 不會自動升級或進行 JSON runtime validation。
 
+## Milestone 6：資料表生命週期
+
+支援 Schema::rename、drop、dropIfExists。改名更新 table metadata 與所有外鍵目標，保留索引／外鍵名稱；刪表會移除本表完整狀態，但其他表仍引用時診斷。dropIfExists 只忽略缺表。Core 0.4.0 新增 renameTable/dropTable 操作，schema JSON 與 M5 相同。
+
+UI 提供生命週期／刪表失敗範例。`npm run demo:tables` 驗證建置後公開套件，已納入 CI。詳見 [M6 中文教學](docs/milestone-6.zh-TW.md)。
+
 ## 支援範圍
 
 只分析一個繼承 Migration 的匿名／具名類別的 `up()`。支援 namespace、一般／群組 use alias，以及完整 facade 名稱；無 import 的短名 Schema / Migration 視為 Laravel 慣例。`down()` 與 helper methods 不分析。
 
-- `Schema::create('table', closure)`、`Schema::table('table', closure)`。
+- `Schema::create('table', closure)`、`Schema::table('table', closure)`，以及 `Schema::rename('from', 'to')`、`Schema::drop('table')`、`Schema::dropIfExists('table')`。
 - `id`、`increments`、`bigIncrements`。
 - `string` / `char`（可選 length）、`text` / `mediumText` / `longText`。
 - `integer` / `bigInteger` / `mediumInteger` / `smallInteger` / `tinyInteger` 與各自 unsigned 版本；此 milestone 僅接受欄位名稱參數。
@@ -132,7 +138,7 @@ Core 0.3.0：每張表現在需提供 indexes 與 foreignKeys（沒有時各為 
 - modifiers：`nullable(bool)`、`unsigned(bool)`、`default(scalar)`、`comment(string)`。
 - `dropColumn('name')`（單一字串）、`renameColumn('from', 'to')`。
 
-AtomicOperation 為 `createTable` / `addColumn` / `dropColumn` / `renameColumn` / `addIndex` / `dropIndex` / `addForeignKey` / `dropForeignKey` discriminated union，含來源位置（行號從 1 起、column 從 0 起）。所有輸出可序列化成 JSON。`id` 的 primary 屬性是欄位 metadata，replay 會將其轉成隱含 primary 索引；外鍵以獨立 ForeignKey model 記錄。
+AtomicOperation 為 `createTable` / `renameTable` / `dropTable` / `addColumn` / `dropColumn` / `renameColumn` / `addIndex` / `dropIndex` / `addForeignKey` / `dropForeignKey` discriminated union，含來源位置（行號從 1 起、column 從 0 起）。所有輸出可序列化成 JSON。`id` 的 primary 屬性是欄位 metadata，replay 會將其轉成隱含 primary 索引；外鍵以獨立 ForeignKey model 記錄。
 
 - 索引 API 接受靜態欄位字串／非空且不重複的字串陣列、可選自訂名稱；drop 接受索引名稱或預設名稱的欄位陣列。dropPrimary 可省略參數。
 - 每欄最多一個 fluent index modifier，延後到 closure 尾端；standalone index 要求引用的欄位已存在。名稱不加 connection prefix，不模擬 DB 方言。

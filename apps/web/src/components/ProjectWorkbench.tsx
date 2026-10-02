@@ -12,6 +12,11 @@ import foreignPosts from '../../../../packages/migration-core/tests/fixtures/for
 import foreignRevise from '../../../../packages/migration-core/tests/fixtures/foreign-keys/2026_03_03_000000_revise_keys.php?raw';
 import foreignRemove from '../../../../packages/migration-core/tests/fixtures/foreign-keys/2026_03_04_000000_remove_key.php?raw';
 import foreignInvalid from '../../../../packages/migration-core/tests/fixtures/foreign-keys/2026_03_03_000000_invalid_drop.php?raw';
+import lifecycleCreate from '../../../../packages/migration-core/tests/fixtures/table-lifecycle/2026_04_01_000000_create_tables.php?raw';
+import lifecycleRename from '../../../../packages/migration-core/tests/fixtures/table-lifecycle/2026_04_02_000000_rename_tables.php?raw';
+import lifecycleDrop from '../../../../packages/migration-core/tests/fixtures/table-lifecycle/2026_04_03_000000_drop_articles.php?raw';
+import lifecycleFinish from '../../../../packages/migration-core/tests/fixtures/table-lifecycle/2026_04_04_000000_drop_members.php?raw';
+import lifecycleInvalid from '../../../../packages/migration-core/tests/fixtures/table-lifecycle/2026_04_03_000000_invalid_drop.php?raw';
 import { readMigrationFiles } from '../import-files';
 import { ProjectResults } from './ProjectResults';
 
@@ -33,6 +38,16 @@ function foreignFiles(failing = false): MigrationFile[] {
     failing ? { filename:'2026_03_03_000000_invalid_drop.php', source:foreignInvalid }
       : { filename:'2026_03_03_000000_revise_keys.php', source:foreignRevise },
     { filename:'2026_03_02_000000_create_posts.php', source:foreignPosts },
+  ];
+}
+
+function lifecycleFiles(failing = false): MigrationFile[] {
+  return [
+    { filename:'2026_04_04_000000_drop_members.php', source:lifecycleFinish },
+    { filename:'2026_04_01_000000_create_tables.php', source:lifecycleCreate },
+    failing ? { filename:'2026_04_03_000000_invalid_drop.php', source:lifecycleInvalid }
+      : { filename:'2026_04_03_000000_drop_articles.php', source:lifecycleDrop },
+    { filename:'2026_04_02_000000_rename_tables.php', source:lifecycleRename },
   ];
 }
 
@@ -84,6 +99,8 @@ export function ProjectWorkbench() {
         ])}>載入索引範例</button>
         <button type="button" className="secondary" onClick={() => replaceFiles(foreignFiles())}>載入外鍵範例</button>
         <button type="button" className="secondary" onClick={() => replaceFiles(foreignFiles(true))}>載入外鍵失敗範例</button>
+        <button type="button" className="secondary" onClick={() => replaceFiles(lifecycleFiles())}>載入資料表生命週期範例</button>
+        <button type="button" className="secondary" onClick={() => replaceFiles(lifecycleFiles(true))}>載入刪表失敗範例</button>
       </div>
       <p className="muted">檔名格式：YYYY_MM_DD_HHMMSS_description.php。匯入順序不影響分析順序；重複名稱由 core 診斷。</p>
       <div className="project-layout">
