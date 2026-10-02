@@ -16,7 +16,7 @@
 6. 若 Cloud 使用環境快取，可將 maintenance script 同樣設為 bash scripts/cloud-setup.sh，以確保依照目前 lockfile 安裝。
 
 ## 第一個雲端任務：驗證交接
-請讀取 AGENTS.md、README.md、docs/milestone-2.zh-TW.md 及本文件。先確認 Git 狀態與目前 commit，再執行 npm test、npm run typecheck、npm run build、npm run demo:project。包含 Milestone 7 時預期 268 tests 通過；Milestone 6 為 224 tests；Milestone 5 為 186 tests；Milestone 4 為 121 tests；僅 Milestone 3 為 76 tests（Milestone 2 交接 commit 75087de 為 71 tests），三份範例依序成功，最終 users 欄位為 id、display_name。以繁體中文回報雲端驗證結果與任何環境差異；若失敗先修復環境或相容性問題。雲端驗證任務只驗證交接，不擴大功能；Milestone 3 已在本機另行實作。
+請讀取 AGENTS.md、README.md、docs/milestone-2.zh-TW.md 及本文件。先確認 Git 狀態與目前 commit，再執行 npm test、npm run typecheck、npm run build、npm run demo:project。包含 Milestone 8 時預期 274 tests 通過；Milestone 7 為 268 tests；Milestone 6 為 224 tests；Milestone 5 為 186 tests；Milestone 4 為 121 tests；僅 Milestone 3 為 76 tests（Milestone 2 交接 commit 75087de 為 71 tests），三份範例依序成功，最終 users 欄位為 id、display_name。以繁體中文回報雲端驗證結果與任何環境差異；若失敗先修復環境或相容性問題。雲端驗證任務只驗證交接，不擴大功能；Milestone 3 已在本機另行實作。
 
 ## 必須保留的契約
 - core 與 React UI 分離，core 不做 IO。
@@ -54,3 +54,8 @@ src/types.ts → src/project-types.ts → src/ordering.ts → src/project.ts →
 - Core 0.5.0：enum 有序 allowedValues、rememberToken、softDeletes/Tz、時區時間欄位與移除 helpers；讀 docs/milestone-7.zh-TW.md。
 - Column.allowedValues 為可選欄位；diff 按內容／順序比較。Helpers 沿用整檔回滾、索引／外鍵保護。
 - 另執行 npm run demo:helpers；268 tests，包含 44 個 M7 測試。所有讀檔仍在 caller，核心不做 IO。
+
+## Milestone 8 交接
+- feat/milestone-8-analysis-export 接在 M7 上；只改 web caller，core 仍為 0.5.0。
+- 下載完整 ProjectAnalysis／成功的 finalSchema，未知快照不填入猜測資料；274 tests。
+- 讀 docs/milestone-8.zh-TW.md；瀏覽器入口狀態與 JSON 契約已驗證，實際下載落盤仍待支援下載的瀏覽器驗證。

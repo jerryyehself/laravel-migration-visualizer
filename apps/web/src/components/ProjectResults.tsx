@@ -1,3 +1,4 @@
+import { ProjectExports } from './ProjectExports';
 import type { ProjectAnalysis, ProjectDiagnostic, SchemaState } from '@lmv/migration-core';
 
 const phaseLabels: Record<ProjectDiagnostic['phase'], string> = {
@@ -55,6 +56,7 @@ export function ProjectResults({ result, selected, onSelect }: {
       <p>{result.appliedCount} / {result.migrations.length} 份已套用 · {result.diagnostics.length} 筆診斷</p>
       <p>{result.complete ? '以下為支援範圍內的靜態分析結果，不代表實際資料庫執行結果。' : '最終 schema 未知。最後可信 schema 只包含成功前綴，不能當成專案最終狀態。'}</p>
     </div>
+    <ProjectExports result={result} />
     <h3>專案診斷</h3><Diagnostics items={result.diagnostics} />
     <div className="project-layout">
       <nav className="migration-list" aria-label="依 core 排序的分析結果">

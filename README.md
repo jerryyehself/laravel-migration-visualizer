@@ -1,4 +1,4 @@
-# Laravel Migration Visualizer — Milestone 7
+# Laravel Migration Visualizer — Milestone 8
 
 React + TypeScript + Vite，npm workspaces monorepo。只做靜態 migration 分析，不執行 PHP 或連接資料庫。
 
@@ -129,6 +129,12 @@ UI 提供生命週期／刪表失敗範例。`npm run demo:tables` 驗證建置�
 Core 0.5.0 支援 enum（有序 allowedValues）、rememberToken、softDeletes/Tz、timestampTz/dateTimeTz/timeTz、timestampsTz，以及 dropRememberToken/dropSoftDeletes/Tz/dropTimestamps/Tz。Helpers 展開成既有 addColumn/dropColumn，保留整檔回滾與引用保護；enum diff 按陣列內容比較。
 
 UI 提供欄位 helper 成功／失敗範例；`npm run demo:helpers` 驗證建置後公開套件並納入 CI。詳見 [M7 中文教學與 API 參數](docs/milestone-7.zh-TW.md)。Column 新增可選 allowedValues，現有 schema 仍有效；enum 僅接受非空且不重複的靜態字串陣列（值可為空字串），不支援 PHP enum case。時間 precision 省略為 0，明確 null 不支援；不模擬 runtime 預設或 DB 方言。timestamps/Tz 不接受 chained modifiers，移除 helpers 不接受 modifiers。
+
+## Milestone 8：JSON 匯出
+
+多檔工作台提供「下載完整分析 JSON」與「下載最終 Schema JSON」。完整分析保留逐檔操作、快照、diff 與診斷，成功或失敗均可匯出；最終 schema 只在全部成功時開放。直接輸出公開 ProjectAnalysis／SchemaState，不包含 PHP 原始碼。修改輸入會清除舊結果與下載入口，core 仍為 0.5.0。
+
+詳見 [M8 中文教學與下載驗證限制](docs/milestone-8.zh-TW.md)。目前已驗證 JSON 契約與按鈕狀態；本次內建瀏覽器未提供下載完成事件，實際落盤仍待支援下載的瀏覽器驗證。
 
 ## 支援範圍
 
