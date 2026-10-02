@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { filterMigrationResults, visibleSelection, type ResultStatusFilter } from '../filter-results';
 import { ProjectExports } from './ProjectExports';
 import type { ProjectAnalysis, ProjectDiagnostic, SchemaState } from '@lmv/migration-core';
 
@@ -49,7 +51,11 @@ function SchemaView({ title, schema, unavailable }: { title: string; schema: Sch
 export function ProjectResults({ result, selected, onSelect }: {
   result: ProjectAnalysis; selected: number; onSelect: (index: number) => void;
 }) {
-  const step = result.migrations[selected];
+  const [query, setQuery] = useState('');
+  const [status, setStatus] = useState<ResultStatusFilter>('all');
+  const visible = filterMigrationResults(result.migrations, query, status);
+  const activeIndex = visibleSelection(visible, selected);
+  const step = activeIndex === null ? undefined : result.migrations[activeIndex];
   return <section className="project-results">
     <div role="status" className={`summary-card ${result.complete ? 'success' : 'warning'}`}>
       <h2>{result.complete ? '專案分析完成' : '專案分析未完成'}</h2>
@@ -58,15 +64,33 @@ export function ProjectResults({ result, selected, onSelect }: {
     </div>
     <ProjectExports result={result} />
     <h3>專案診斷</h3><Diagnostics items={result.diagnostics} />
+    <fieldset className="result-filters">
+      <legend>篩選分析結果</legend>
+      <div className="toolbar">
+        <div><label htmlFor="result-query">搜尋 migration 檔名</label>
+          <input id="result-query" type="text" value={query} onChange={event => setQuery(event.target.value)} placeholder="例如 create_users 或資料夾路徑" />
+        </div>
+        <div><label htmlFor="result-status">Migration 狀態</label>
+          <select id="result-status" value={status} onChange={event => setStatus(event.target.value as ResultStatusFilter)}>
+            <option value="all">全部狀態</option><option value="applied">已套用</option>
+            <option value="failed">失敗</option><option value="blocked">已阻擋</option>
+          </select>
+        </div>
+        <button type="button" className="secondary" disabled={query === '' && status === 'all'} onClick={() => { setQuery(''); setStatus('all'); }}>清除篩選</button>
+      </div>
+      <p className="muted" role="status">顯示 {visible.length} / {result.migrations.length} 份；篩選只影響逐檔檢視，專案摘要、診斷與 JSON 匯出仍包含完整結果。</p>
+    </fieldset>
     <div className="project-layout">
       <nav className="migration-list" aria-label="依 core 排序的分析結果">
         <h3>分析順序</h3>
-        {result.migrations.map((migration, index) => <button type="button" className="migration-item" key={index}
-          aria-pressed={selected === index} onClick={() => onSelect(index)}>
+        {visible.map(({migration, index}) => <button type="button" className="migration-item" key={index}
+          aria-pressed={activeIndex === index} onClick={() => onSelect(index)}>
           <span>{index + 1}. {migration.filename}</span>
           <span className={`badge ${migration.status}`}>{statusLabels[migration.status]}</span>
         </button>)}
+        {visible.length === 0 && <p className="muted">沒有符合條件的 migration。</p>}
       </nav>
+      {!step && <p className="muted">請清除或調整篩選條件，以檢視逐檔結果。</p>}
       {step && <div className="step-detail">
         <h2>{step.filename}</h2>
         <p>{statusLabels[step.status]} · {step.analysis.operations.length} 個已識別操作</p>
