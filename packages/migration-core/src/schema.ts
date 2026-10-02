@@ -23,7 +23,27 @@ export function applyOperations(initial: SchemaState, operations: readonly Atomi
       set(state.tables, op.table, { name: op.table, columns: {}, indexes: {}, foreignKeys: {} });
       continue;
     }
-    if (!owns(state.tables, op.table)) fail(`Unknown table: ${op.table}`);
+    if (!owns(state.tables, op.table)) {
+      if (op.kind === 'dropTable' && op.ifExists) continue;
+      fail(`Unknown table: ${op.table}`);
+    }
+    if (op.kind === 'renameTable') {
+      if (owns(state.tables, op.to)) fail(`Table already exists: ${op.to}`);
+      const table = state.tables[op.table];
+      table.name = op.to;
+      set(state.tables, op.to, table);
+      delete state.tables[op.table];
+      for (const current of Object.values(state.tables)) for (const key of Object.values(current.foreignKeys)) {
+        if (key.referencedTable === op.table) key.referencedTable = op.to;
+      }
+      continue;
+    }
+    if (op.kind === 'dropTable') {
+      if (Object.entries(state.tables).some(([name, table]) => name !== op.table &&
+        Object.values(table.foreignKeys).some(key => key.referencedTable === op.table))) fail(`Drop incoming foreign keys before dropping table: ${op.table}`);
+      delete state.tables[op.table];
+      continue;
+    }
     const { columns, indexes, foreignKeys } = state.tables[op.table];
     const syncPrimary = () => {
       const primaryColumns = new Set(Object.values(indexes).filter(index => index.type === 'primary').flatMap(index => index.columns));

@@ -147,6 +147,18 @@ export function analyzeMigration(source: string, file = 'migration.php'): Analys
         }
         try {
           const method = lookup.offset.name;
+          if (method === 'rename') {
+            arity(call.arguments, 2);
+            const table = text(literal(call.arguments[0])), to = text(literal(call.arguments[1]));
+            result.operations.push({ kind:'renameTable', table, to, source:location(statement) });
+            continue;
+          }
+          if (method === 'drop' || method === 'dropIfExists') {
+            arity(call.arguments, 1);
+            const table = text(literal(call.arguments[0]));
+            result.operations.push({ kind:'dropTable', table, ifExists:method === 'dropIfExists', source:location(statement) });
+            continue;
+          }
           if (!['create', 'table'].includes(method)) throw new Error(`Unsupported Schema API: ${method}`);
           arity(call.arguments, 2);
           const table = text(literal(call.arguments[0]));
