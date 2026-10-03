@@ -15,7 +15,7 @@ Milestone 1～3 的 GitHub 紀錄為事後補登，實作日期與驗證以各 c
 | 9：結果搜尋／篩選 | [M9](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/9) | [UI #24](https://github.com/jerryyehself/laravel-migration-visualizer/issues/24)、[tests/docs #25](https://github.com/jerryyehself/laravel-migration-visualizer/issues/25) | [PR #26](https://github.com/jerryyehself/laravel-migration-visualizer/pull/26) 已合併；2931a2f；283 tests；core 0.5.0 不變 |
 | 10：資料夾匯入 | [M10](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/10) | [UI/IO #28](https://github.com/jerryyehself/laravel-migration-visualizer/issues/28)、[tests/docs #29](https://github.com/jerryyehself/laravel-migration-visualizer/issues/29) | [PR #30](https://github.com/jerryyehself/laravel-migration-visualizer/pull/30) 已合併；47d5b0f；293 tests；core 0.5.0 不變 |
 
-| 11：診斷定位 | [M11](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/11) | [UI #32](https://github.com/jerryyehself/laravel-migration-visualizer/issues/32)、[tests/docs #33](https://github.com/jerryyehself/laravel-migration-visualizer/issues/33) | 已實作；301 tests；等待 PR 合併；core 0.5.0 不變 |
+| 11：診斷定位 | [M11](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/11) | [UI #32](https://github.com/jerryyehself/laravel-migration-visualizer/issues/32)、[tests/docs #33](https://github.com/jerryyehself/laravel-migration-visualizer/issues/33) | [PR #34](https://github.com/jerryyehself/laravel-migration-visualizer/pull/34) 待合併；301 tests；core 0.5.0 不變 |
 
 後續新工作使用功能分支與 PR；實作完成與「已合併」分開記錄。M4～M10 已合併並關閉對應 issues／milestones。M5～M8 開發時使用堆疊分支，合併時依序改以 main 為 base、確認差異與最新 head CI；合併後 main 包含完整功能。
 
