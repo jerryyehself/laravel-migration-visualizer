@@ -158,7 +158,7 @@ UI 提供欄位 helper 成功／失敗範例；`npm run demo:helpers` 驗證建�
 - modifiers：`nullable(bool)`、`unsigned(bool)`、`default(scalar)`、`comment(string)`、timestamp／timestampTz／dateTime／dateTimeTz 的零參數 `useCurrent()` 與 `useCurrentOnUpdate()`。
 - `dropColumn('name')`（單一字串）、`renameColumn('from', 'to')`。
 
-AtomicOperation 為 `createTable` / `renameTable` / `dropTable` / `addColumn` / `dropColumn` / `renameColumn` / `changeColumn` / `addIndex` / `dropIndex` / `addForeignKey` / `dropForeignKey` discriminated union，含來源位置（行號從 1 起、column 從 0 起）。所有輸出可序列化成 JSON。`id` 的 primary 屬性是欄位 metadata，replay 會將其轉成隱含 primary 索引；外鍵以獨立 ForeignKey model 記錄。
+AtomicOperation 為 `createTable` / `renameTable` / `dropTable` / `addColumn` / `dropColumn` / `renameColumn` / `changeColumn` / `addIndex` / `dropIndex` / `renameIndex` / `addForeignKey` / `dropForeignKey` discriminated union，含來源位置（行號從 1 起、column 從 0 起）。所有輸出可序列化成 JSON。`id` 的 primary 屬性是欄位 metadata，replay 會將其轉成隱含 primary 索引；外鍵以獨立 ForeignKey model 記錄。
 
 - 索引 API 接受靜態欄位字串／非空且不重複的字串陣列、可選自訂名稱；drop 接受索引名稱或預設名稱的欄位陣列。dropPrimary 可省略參數。
 - 每欄最多一個 fluent index modifier，延後到 closure 尾端；standalone index 要求引用的欄位已存在。名稱不加 connection prefix，不模擬 DB 方言。
@@ -252,3 +252,9 @@ Core 0.8.0 新增可選 Column.useCurrentOnUpdate。timestamp／timestampTz／da
 單欄 softDeletes/Tz 沿用 timestamp 型別修飾；雙欄 timestamps/Tz 仍不接受 chained modifiers。一般欄位 change() 完整替換定義，重列才保留 update 旗標；M22 的 helpers／自增／外鍵／同鏈索引拒絕規則不變。它是核對固定 Laravel 12 MySQL grammar 後保存的意圖，不保證 DB runtime 或其他方言相容。
 
 執行 npm run demo:current-update 驗證建置後 package 的跨檔新增／移除旗標、diff 與失敗快照；完整型別／參數／組合矩陣、來源證據及中文教學見 [M23](docs/milestone-23.zh-TW.md)。
+
+## Milestone 24：索引更名
+
+Core 0.9.0 支援 Schema::table 中獨立的 renameIndex('old','new')，新增 renameIndex operation。一般 index／unique 保留型別與複合欄位順序；primary、同名、未知名稱、目標已存在、動態參數／方法鏈與 create 內更名仍不支援。SchemaState 不變，外部 exhaustive operation consumers 需更新。
+
+結構 diff 仍為 indexRemoved + indexAdded；整檔失敗不洩漏部分更名。npm run demo:index-rename 驗證 built package。設計／限制與本地接回紀錄見 [M24 中文教學](docs/milestone-24.zh-TW.md)。

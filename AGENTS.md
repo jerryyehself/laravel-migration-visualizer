@@ -16,7 +16,7 @@
 
 ## 開發與驗證
 - Node.js 22.12+，npm。安裝使用 npm ci，保留 package-lock.json。
-- npm test：目前 446 tests（357 core + 5 browser import + 6 export + 9 filters + 10 folder import + 8 diagnostic location + 6 source selection + 8 drafts + 9 graph + 5 snapshots + 8 graph diff + 5 comparison layout + 4 focus + 6 table inspector）；原 Milestone 1 為 42 tests。
+- npm test：目前 476 tests（387 core + 5 browser import + 6 export + 9 filters + 10 folder import + 8 diagnostic location + 6 source selection + 8 drafts + 9 graph + 5 snapshots + 8 graph diff + 5 comparison layout + 4 focus + 6 table inspector）；原 Milestone 1 為 42 tests。
 - npm run typecheck
 - npm run build
 - npm run demo:project
@@ -25,6 +25,7 @@
 - npm run demo:laravel
 - npm run demo:changes
 - npm run demo:current-update
+- npm run demo:index-rename
 - golden JSON 是預期規格，不可為通過測試而盲目覆寫。
 - 只新增與變更行為相關的測試。報告實際執行的驗證與限制。
 
@@ -63,3 +64,5 @@ M22 新增 changeColumn 公開 operation，core 0.7.0；SchemaState 不變。讀
 M22 已由 PR #79 合併（dbc9aa4），issue #78 與 milestone 已關閉；功能 head 601946b 的 CI 通過 tests、typecheck、build 與五個 demo。
 
 M23 新增 Column.useCurrentOnUpdate?: boolean：四種 timestamp/dateTime 型別的零參數更新時間意圖，可與 useCurrent 或 scalar default 組合，但 useCurrent/default 衝突仍拒絕。change 完整替換與 M22 所有拒絕規則不變。讀 docs/milestone-23.zh-TW.md；實際 GitHub 交付狀態見 docs/github-milestones.md，M23 已由 PR #82 合併（4563f01），issue #81／milestone 23 已關閉；最新 head 6fc61fa 的 CI 通過。
+
+M24 新增一般 index／unique renameIndex operation；core 0.9.0、SchemaState 不變。primary 更名保守拒絕；diff 仍是 removed+added。讀 docs/milestone-24.zh-TW.md 與交付紀錄。

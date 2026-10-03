@@ -80,3 +80,5 @@ M22 已由 PR #79 合併 main（dbc9aa4）；issue #78 與 milestone 已關閉�
 | 23：更新時的 current timestamp | [M23](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/23) | [core/tests/docs #81](https://github.com/jerryyehself/laravel-migration-visualizer/issues/81) | [PR #82](https://github.com/jerryyehself/laravel-migration-visualizer/pull/82) 已合併；4563f01；446 tests；core 0.8.0 |
 
 M23 已由 PR #82 合併 main（4563f01d44fd4ef202927338bf7ac56f74bcd111），issue #81 與 milestone 23 已關閉。PR 最新 head 6fc61fa94502913a749017f133b8eb281aab71fa 的 validate CI completed/success；涵蓋 npm ci、446 tests、typecheck、build 與六個 demo。GitHub CI 與前述雲端驗證為不同證據。
+
+| 24：索引更名 | [M24](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/24) | [core/tests/docs #84](https://github.com/jerryyehself/laravel-migration-visualizer/issues/84) | [PR #85](https://github.com/jerryyehself/laravel-migration-visualizer/pull/85) 已建立，待 CI／合併；476 tests；core 0.9.0 |

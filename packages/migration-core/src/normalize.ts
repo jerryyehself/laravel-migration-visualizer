@@ -243,6 +243,10 @@ export function analyzeMigration(source: string, file = 'migration.php'): Analys
                 const names = indexColumns(first.args[0]);
                 const type = first.name as IndexType;
                 operations.push({ kind: 'addIndex', table, index: { name: explicitName(first.args[1]) ?? indexName(table, names, type), type, columns: names }, source: location(body) });
+              } else if (first.name === 'renameIndex') {
+                arity(first.args, 2);
+                if (method !== 'table' || modifiers.length) throw new Error('renameIndex requires a standalone command in Schema::table.');
+                operations.push({ kind:'renameIndex', table, from:text(first.args[0]), to:text(first.args[1]), source:location(body) });
               } else if (Object.hasOwn(dropTypes, first.name)) {
                 const type = dropTypes[first.name];
                 arity(first.args, type === 'primary' ? 0 : 1, 1);

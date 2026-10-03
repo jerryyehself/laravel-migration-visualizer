@@ -43,3 +43,5 @@ M22：changeColumn 完整替換欄位定義，省略的修飾移除；保留獨�
 2026-10-03 雲端接手：乾淨 checkout 由 f7e2383 fast-forward 至 M22 文件 commit 27594f9；雲端實際驗證 408 tests、typecheck、build 與五個 demo 通過（Node 24.19.0、npm 11.9.0）。後續 M23 分支保存 useCurrentOnUpdate 的獨立 metadata，固定 Laravel 12 來源、default/change 組合與保守限制見 milestone-23.zh-TW.md。GitHub API 的代理網路限制與交付狀態以 github-milestones.md 為準；環境草稿保存不等於發布。
 
 M23 已由 PR #82 合併 main（4563f01）；最新 head 6fc61fa 的 CI 通過，issue #81／milestone 23 已關閉。useCurrentOnUpdate 已支援上述明列子集合，前文 M21／M22 的「尚不支援」是當時歷史狀態，不是目前限制。
+
+M24：明確 renameIndex operation 保留一般 index／unique 型別與欄位順序，primary 更名保守拒絕；SchemaDiff 不推測語意，仍為 removed+added。2026-10-04 已從雲端 WIP 045e041 接回本地，雲端停止開發。實際驗證與交付見 github-milestones.md。
