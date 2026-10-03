@@ -1,0 +1,140 @@
+{
+  "complete": false,
+  "appliedCount": 1,
+  "finalSchema": null,
+  "lastValidSchema": {
+    "tables": {
+      "events": {
+        "name": "events",
+        "columns": {
+          "at": {
+            "name": "at",
+            "type": "timestamp",
+            "nullable": true,
+            "precision": 6,
+            "default": null,
+            "comment": "seed"
+          }
+        },
+        "indexes": {
+          "events_at_index": {
+            "name": "events_at_index",
+            "type": "index",
+            "columns": [
+              "at"
+            ]
+          }
+        },
+        "foreignKeys": {}
+      }
+    }
+  },
+  "steps": [
+    {
+      "status": "applied",
+      "before": {
+        "tables": {}
+      },
+      "after": {
+        "tables": {
+          "events": {
+            "name": "events",
+            "columns": {
+              "at": {
+                "name": "at",
+                "type": "timestamp",
+                "nullable": true,
+                "precision": 6,
+                "default": null,
+                "comment": "seed"
+              }
+            },
+            "indexes": {
+              "events_at_index": {
+                "name": "events_at_index",
+                "type": "index",
+                "columns": [
+                  "at"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "tableAdded",
+            "table": "events",
+            "after": {
+              "name": "events",
+              "columns": {
+                "at": {
+                  "name": "at",
+                  "type": "timestamp",
+                  "nullable": true,
+                  "precision": 6,
+                  "default": null,
+                  "comment": "seed"
+                }
+              },
+              "indexes": {
+                "events_at_index": {
+                  "name": "events_at_index",
+                  "type": "index",
+                  "columns": [
+                    "at"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            }
+          }
+        ]
+      }
+    },
+    {
+      "status": "failed",
+      "before": {
+        "tables": {
+          "events": {
+            "name": "events",
+            "columns": {
+              "at": {
+                "name": "at",
+                "type": "timestamp",
+                "nullable": true,
+                "precision": 6,
+                "default": null,
+                "comment": "seed"
+              }
+            },
+            "indexes": {
+              "events_at_index": {
+                "name": "events_at_index",
+                "type": "index",
+                "columns": [
+                  "at"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "after": null,
+      "diff": null
+    },
+    {
+      "status": "blocked",
+      "before": null,
+      "after": null,
+      "diff": null
+    }
+  ],
+  "diagnosticCodes": [
+    "UNSUPPORTED_BLUEPRINT",
+    "SCHEMA_BLOCKED"
+  ]
+}

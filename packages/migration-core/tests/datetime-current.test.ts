@@ -18,7 +18,7 @@ describe('dateTime current default intent', () => {
     expect(result.finalSchema!.tables.events.columns.at).toEqual({ name: 'at', type, precision: 0, nullable: false });
   });
   it.each(['dateTime', 'dateTimeTz'])('rejects ambiguous %s modifiers and retains the trusted prefix', type => {
-    for (const chain of ['default(null)->useCurrent()', "useCurrent()->default('now')", 'useCurrent(false)', 'useCurrentOnUpdate()']) {
+    for (const chain of ['default(null)->useCurrent()', "useCurrent()->default('now')", 'useCurrent(false)', 'useCurrentOnUpdate(false)']) {
       const result = analyzeProject([file(1, "$t->string('name');"), file(2, `$t->${type}('at')->${chain};`, 'table'), file(3, "$t->string('later');", 'table')]);
       expect(result.migrations.map(m => m.status)).toEqual(['applied', 'failed', 'blocked']);
       expect(result.diagnostics.some(d => d.code === 'UNSUPPORTED_BLUEPRINT')).toBe(true);
