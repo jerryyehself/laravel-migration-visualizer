@@ -1,7 +1,7 @@
 # Codex Cloud 交接
 
 ## 現況（2026-10-04 核對）
-- M1～M24 已合併 main；M24 功能合併為 7580dca／PR #85。Core 0.9.0，本地 476／476 tests、typecheck、build 與七個 demo 通過，PR 最新 head 337890e 的 CI 通過。2026-10-04 已接回本地，雲端已保存未完成內容並停止開發。
+- M1～M25 已合併 main；M25 功能合併為 abab843／PR #88。Core 0.10.0，本地 501／501 tests、typecheck、build 與八個 demo 通過，PR 最新 head 48ff342 的 CI 通過。2026-10-04 已接回本地，雲端停止開發。
 - 已有多檔匯入、排序／分析／逐檔快照／結構 diff、索引／外鍵、診斷定位、JSON 匯出，以及 ERD 快照／比較／同步互動／聚焦／明細。
 - M1 baseline 為 6959b46（42 tests）；各階段實際 commits、PR、驗證與限制見 [GitHub 交付紀錄](github-milestones.md)，下方各節為歷史紀錄。
 - M21 已實作 dateTime／dateTimeTz 的零參數 useCurrent()，新增跨檔 golden、失敗／不可變回歸與中文教學；373／373 tests、typecheck、build 與四個 demo 通過。已由 PR #76 合併 main（f8925e1），issue #75 與 milestone 已關閉；最新功能 head 5c72f84 的 CI 通過。完整狀態見交付紀錄，接手先核對最新 main。
@@ -155,4 +155,4 @@ M24 已由 PR #85 合併（7580dca），issue #84 與 milestone 已關閉；接�
 
 ## M25 本地開發
 
-已實作靜態 dropColumn 陣列，core 0.10.0，501 tests 與八個 demo 通過。讀 milestone-25.zh-TW.md；是否已合併請核對 github-milestones.md／GitHub 最新 main。雲端維持停止開發，勿同時新增功能。
+已實作靜態 dropColumn 陣列，core 0.10.0，501 tests 與八個 demo 通過。讀 milestone-25.zh-TW.md；已由 PR #88 合併（abab843），issue #87／milestone 25 已關閉；完整證據見 github-milestones.md。雲端維持停止開發，勿同時新增功能。
