@@ -85,4 +85,4 @@ M23 已由 PR #82 合併 main（4563f01d44fd4ef202927338bf7ac56f74bcd111），is
 
 M24 已由 PR #85 合併 main（7580dca）；issue #84 與 milestone 已關閉。功能 head 337890e 的 CI 通過 tests、typecheck、build 與七個 demo；本地接回完成，雲端停止開發。
 
-| 25：多欄位刪除 | [M25](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/25) | [core/tests/docs #87](https://github.com/jerryyehself/laravel-migration-visualizer/issues/87) | 已實作，PR 待建立；501 tests；core 0.10.0 |
+| 25：多欄位刪除 | [M25](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/25) | [core/tests/docs #87](https://github.com/jerryyehself/laravel-migration-visualizer/issues/87) | [PR #88](https://github.com/jerryyehself/laravel-migration-visualizer/pull/88) 已實作，待 CI／合併；501 tests；core 0.10.0 |
