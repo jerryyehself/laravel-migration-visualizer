@@ -28,3 +28,5 @@ SchemaSnapshots component 負責選單與可信／未知顯示，props 是父 co
 本階段是單張圖的快照選單，沒有 timeline、雙圖並排、變更色彩、配置持久化或 PHP runtime。大量 migration 會產生長選單，尚未做效能壓力測試；M14 的連線重疊與簡單布局限制仍有效。下一階段建議 M16 將既有結構 diff 接入視覺化，且不推測語意 rename。
 
 交付狀態見 [GitHub 紀錄](github-milestones.md)。
+
+[PR #50](https://github.com/jerryyehself/laravel-migration-visualizer/pull/50) 已合併 main（cf8f0b8）；功能 head 1a3e16b 的 CI 通過 tests、typecheck、build 與三個 demo。Issues #48/#49 與 milestone 已關閉。
