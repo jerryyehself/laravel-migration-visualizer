@@ -60,3 +60,5 @@ M19 已合併 main（8c7d6ad），issues #64/#65 與 milestone 已關閉；功�
 | 20：Laravel 官方相容性基準 | [M20](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/20) | [core #68](https://github.com/jerryyehself/laravel-migration-visualizer/issues/68)、[tests/docs #69](https://github.com/jerryyehself/laravel-migration-visualizer/issues/69) | [PR #70](https://github.com/jerryyehself/laravel-migration-visualizer/pull/70) 已合併；5cea3b4；362 tests；core 0.6.0 |
 
 M20 已合併 main（5cea3b4），issues #68/#69 與 milestone 已關閉；功能 head 325238a 的 CI 通過 tests、typecheck、build 與四個 demo。
+
+| 21：dateTime current default | [M21](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/21) | [core/tests/docs #75](https://github.com/jerryyehself/laravel-migration-visualizer/issues/75) | 已實作，PR 待建立；373 tests；core 0.6.0 契約不變 |

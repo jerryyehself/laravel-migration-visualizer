@@ -1,0 +1,108 @@
+[
+  {
+    "before": {
+      "tables": {}
+    },
+    "after": {
+      "tables": {
+        "events": {
+          "name": "events",
+          "columns": {
+            "at": {
+              "name": "at",
+              "type": "dateTime",
+              "nullable": false,
+              "precision": 0,
+              "useCurrent": true
+            }
+          },
+          "indexes": {},
+          "foreignKeys": {}
+        }
+      }
+    },
+    "diff": {
+      "changes": [
+        {
+          "kind": "tableAdded",
+          "table": "events",
+          "after": {
+            "name": "events",
+            "columns": {
+              "at": {
+                "name": "at",
+                "type": "dateTime",
+                "nullable": false,
+                "precision": 0,
+                "useCurrent": true
+              }
+            },
+            "indexes": {},
+            "foreignKeys": {}
+          }
+        }
+      ]
+    }
+  },
+  {
+    "before": {
+      "tables": {
+        "events": {
+          "name": "events",
+          "columns": {
+            "at": {
+              "name": "at",
+              "type": "dateTime",
+              "nullable": false,
+              "precision": 0,
+              "useCurrent": true
+            }
+          },
+          "indexes": {},
+          "foreignKeys": {}
+        }
+      }
+    },
+    "after": {
+      "tables": {
+        "events": {
+          "name": "events",
+          "columns": {
+            "at": {
+              "name": "at",
+              "type": "dateTime",
+              "nullable": false,
+              "precision": 0,
+              "useCurrent": true
+            },
+            "zoned": {
+              "name": "zoned",
+              "type": "dateTimeTz",
+              "nullable": false,
+              "precision": 6,
+              "useCurrent": true
+            }
+          },
+          "indexes": {},
+          "foreignKeys": {}
+        }
+      }
+    },
+    "diff": {
+      "changes": [
+        {
+          "kind": "columnAdded",
+          "table": "events",
+          "column": "zoned",
+          "after": {
+            "name": "zoned",
+            "type": "dateTimeTz",
+            "nullable": false,
+            "precision": 6,
+            "useCurrent": true
+          }
+        }
+      ]
+    }
+  }
+]
