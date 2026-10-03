@@ -1,0 +1,168 @@
+{
+  "complete": false,
+  "appliedCount": 1,
+  "finalSchema": null,
+  "lastValidSchema": {
+    "tables": {
+      "users": {
+        "name": "users",
+        "columns": {
+          "name": {
+            "name": "name",
+            "type": "string",
+            "nullable": true,
+            "length": 25,
+            "default": "old",
+            "comment": "old"
+          },
+          "at": {
+            "name": "at",
+            "type": "dateTimeTz",
+            "nullable": false,
+            "precision": 6,
+            "useCurrent": true
+          }
+        },
+        "indexes": {
+          "users_name_unique": {
+            "name": "users_name_unique",
+            "type": "unique",
+            "columns": [
+              "name"
+            ]
+          }
+        },
+        "foreignKeys": {}
+      }
+    }
+  },
+  "diagnosticCodes": [
+    "SCHEMA_REPLAY_ERROR",
+    "SCHEMA_BLOCKED"
+  ],
+  "steps": [
+    {
+      "status": "applied",
+      "before": {
+        "tables": {}
+      },
+      "after": {
+        "tables": {
+          "users": {
+            "name": "users",
+            "columns": {
+              "name": {
+                "name": "name",
+                "type": "string",
+                "nullable": true,
+                "length": 25,
+                "default": "old",
+                "comment": "old"
+              },
+              "at": {
+                "name": "at",
+                "type": "dateTimeTz",
+                "nullable": false,
+                "precision": 6,
+                "useCurrent": true
+              }
+            },
+            "indexes": {
+              "users_name_unique": {
+                "name": "users_name_unique",
+                "type": "unique",
+                "columns": [
+                  "name"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "tableAdded",
+            "table": "users",
+            "after": {
+              "name": "users",
+              "columns": {
+                "name": {
+                  "name": "name",
+                  "type": "string",
+                  "nullable": true,
+                  "length": 25,
+                  "default": "old",
+                  "comment": "old"
+                },
+                "at": {
+                  "name": "at",
+                  "type": "dateTimeTz",
+                  "nullable": false,
+                  "precision": 6,
+                  "useCurrent": true
+                }
+              },
+              "indexes": {
+                "users_name_unique": {
+                  "name": "users_name_unique",
+                  "type": "unique",
+                  "columns": [
+                    "name"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            }
+          }
+        ]
+      }
+    },
+    {
+      "status": "failed",
+      "before": {
+        "tables": {
+          "users": {
+            "name": "users",
+            "columns": {
+              "name": {
+                "name": "name",
+                "type": "string",
+                "nullable": true,
+                "length": 25,
+                "default": "old",
+                "comment": "old"
+              },
+              "at": {
+                "name": "at",
+                "type": "dateTimeTz",
+                "nullable": false,
+                "precision": 6,
+                "useCurrent": true
+              }
+            },
+            "indexes": {
+              "users_name_unique": {
+                "name": "users_name_unique",
+                "type": "unique",
+                "columns": [
+                  "name"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "after": null,
+      "diff": null
+    },
+    {
+      "status": "blocked",
+      "before": null,
+      "after": null,
+      "diff": null
+    }
+  ]
+}

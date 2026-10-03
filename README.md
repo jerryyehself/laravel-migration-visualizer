@@ -158,7 +158,7 @@ UI 提供欄位 helper 成功／失敗範例；`npm run demo:helpers` 驗證建�
 - modifiers：`nullable(bool)`、`unsigned(bool)`、`default(scalar)`、`comment(string)`、timestamp／timestampTz／dateTime／dateTimeTz 的零參數 `useCurrent()`。
 - `dropColumn('name')`（單一字串）、`renameColumn('from', 'to')`。
 
-AtomicOperation 為 `createTable` / `renameTable` / `dropTable` / `addColumn` / `dropColumn` / `renameColumn` / `addIndex` / `dropIndex` / `addForeignKey` / `dropForeignKey` discriminated union，含來源位置（行號從 1 起、column 從 0 起）。所有輸出可序列化成 JSON。`id` 的 primary 屬性是欄位 metadata，replay 會將其轉成隱含 primary 索引；外鍵以獨立 ForeignKey model 記錄。
+AtomicOperation 為 `createTable` / `renameTable` / `dropTable` / `addColumn` / `dropColumn` / `renameColumn` / `changeColumn` / `addIndex` / `dropIndex` / `addForeignKey` / `dropForeignKey` discriminated union，含來源位置（行號從 1 起、column 從 0 起）。所有輸出可序列化成 JSON。`id` 的 primary 屬性是欄位 metadata，replay 會將其轉成隱含 primary 索引；外鍵以獨立 ForeignKey model 記錄。
 
 - 索引 API 接受靜態欄位字串／非空且不重複的字串陣列、可選自訂名稱；drop 接受索引名稱或預設名稱的欄位陣列。dropPrimary 可省略參數。
 - 每欄最多一個 fluent index modifier，延後到 closure 尾端；standalone index 要求引用的欄位已存在。名稱不加 connection prefix，不模擬 DB 方言。
@@ -167,7 +167,7 @@ AtomicOperation 為 `createTable` / `renameTable` / `dropTable` / `addColumn` / 
 
 ## 限制與錯誤契約
 
-這是明確界定的 Laravel API 子集，不是 PHP interpreter，也不保證實際資料庫 DDL 可成功。動態名稱、變數計算、分支、迴圈、helper call、巨集、SQL、connection、`change()`、未支援的外鍵 API、fullText、spatial/vector indexes、index algorithm 等回報 diagnostics。未支援的整條 Blueprint chain 不產生部分欄位操作；其他已支援的 statement 仍可保留，`complete` 會是 false。
+這是明確界定的 Laravel API 子集，不是 PHP interpreter，也不保證實際資料庫 DDL 可成功。動態名稱、變數計算、分支、迴圈、helper call、巨集、SQL、connection、未支援的 `change()` 組合、未支援的外鍵 API、fullText、spatial/vector indexes、index algorithm 等回報 diagnostics。未支援的整條 Blueprint chain 不產生部分欄位操作；其他已支援的 statement 仍可保留，`complete` 會是 false。
 
 `complete` 代表已識別的 up() 靜態語句都在支援範圍內，不代表 schema replay 一定有效。重複 table / column、不存在的 table / column 、rename 衝突與無效索引引用會在 `applyOperations` 拋錯。Replay 會複製輸入，不會修改原 state；失敗不會回傳半成品。
 
@@ -236,3 +236,11 @@ Core 0.6.0 在 Column 新增可選 `useCurrent?: boolean`；M21 擴充分析零�
 執行 `npm run demo:laravel` 驗證建置後套件；362 tests。這是三份官方樣本的相容性基準，並非完整 Laravel／資料庫方言支援。設計與限制見 [M20 中文教學](docs/milestone-20.zh-TW.md)。
 
 M21 設計與驗證見 [時間欄位 current default 教學](docs/milestone-21.zh-TW.md)。JSON 沿用 core 0.6.0 的可選 useCurrent 屬性，沒有新增欄位或破壞性變更。
+
+## Milestone 22：欄位 change
+
+Core 0.7.0 支援 Schema::table 中單一一般欄位的零參數 change()，正規化成 changeColumn（完整替換定義，省略的修飾移除）。保留獨立索引並從 primary 索引同步欄位 metadata；diff 顯示 columnChanged。
+
+Schema::create、helpers、自增定義、foreignId/constrained、同鏈索引修飾與多次／帶參數 change 仍不支援。Replay 拒絕修改既有自增或參與任一外鍵的欄位；先顯式 dropForeign 才能修改外鍵參與欄位。未知表／欄位使整檔回滾，後續快照保持未知。這是靜態子集合，不保證 DB 執行相容。
+
+AtomicOperation 新增 changeColumn variant，外部 exhaustive consumers 須更新；SchemaState JSON 不變。408 tests，執行 npm run demo:changes 驗證建置後公開套件，設計／限制見 [M22 中文教學](docs/milestone-22.zh-TW.md)。
