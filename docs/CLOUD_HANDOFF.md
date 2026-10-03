@@ -1,22 +1,27 @@
 # Codex Cloud 交接
 
-## 現況
-- Milestone 1 baseline commit：6959b46（42 tests）。
-- Milestone 2：檔名排序、batch analyzer、schemaBefore/schemaAfter、SchemaDiff、project diagnostics、跨 migration golden tests（71 tests）。
-- Milestone 3：React 多檔匯入工作台、逐檔快照／diff／診斷與輸入副本編輯；core 契約不變。新增 5 個匯入測試，合計 76 tests。
-- Milestone 3 已以 7fba001 推送 main。Milestone 4 已合併 PR #7，merge commit c778163（121 tests）。Milestone 5～13 已合併 PR #11/#15/#19/#22/#26/#30/#34/#38/#42，最新功能合併 commit 8d9d02f；main 已包含全部功能（315 tests）。
-- 本機對話不會自動成為 Cloud 對話；以本文件、AGENTS.md、Git history 與教學文件延續。
+## 現況（2026-10-03 核對）
+- M1～M20 已合併 main；本次核對起點為 f7e2383（M20 交付文件），功能合併為 5cea3b4／PR #70。Core 0.6.0，最近一次完整驗證為 362／362 tests、typecheck、build 與四個 demo 通過。
+- 已有多檔匯入、排序／分析／逐檔快照／結構 diff、索引／外鍵、診斷定位、JSON 匯出，以及 ERD 快照／比較／同步互動／聚焦／明細。
+- M1 baseline 為 6959b46（42 tests）；各階段實際 commits、PR、驗證與限制見 [GitHub 交付紀錄](github-milestones.md)，下方各節為歷史紀錄。
+- M21 尚未實作。先前只建立本機 feat/milestone-21-datetime-current 空分支並查閱時間欄位原始碼，沒有待帶走的程式修改，也未建立 M21 PR／milestone。
+- M21 建議目標：核對並支援 dateTime／dateTimeTz 的 useCurrent()，加入回歸、跨檔 golden tests 與中文教學。useCurrentOnUpdate() 仍是目前不支援項目；若後續納入須先核對語意並明列新契約，不能當作已完成。
+- 本機完整對話不會自動成為 Cloud 對話；先讀 [決策索引](DECISIONS.zh-TW.md)、AGENTS.md 與本文件，再以 repo／GitHub 紀錄延續。雲端任務尚未在此核對中啟動或驗證。
 
 ## Cloud 環境設定
 1. 連接此 GitHub repo，選 main。
 2. 選擇提供 Node.js 22.12+ 的環境，建議 Node 22；.nvmrc 是版本提示，不假設 Cloud 自動讀取。
-3. Setup script：bash scripts/cloud-setup.sh
+3. 環境安裝可使用 repo 的 bash scripts/cloud-setup.sh；實際欄位與操作依當前 Cloud UI。
 4. 不需要 API key、資料庫、PHP、Composer 或專案 secrets。
 5. 安裝階段需能存取 npm registry；安裝完成後目前測試／建置不需要網路。
-6. 若 Cloud 使用環境快取，可將 maintenance script 同樣設為 bash scripts/cloud-setup.sh，以確保依照目前 lockfile 安裝。
+6. 重用環境前確認 lockfile 對應的依賴已安裝；必要時重跑 bash scripts/cloud-setup.sh，不假設雲端會自動更新所有本機工具。
 
 ## 第一個雲端任務：驗證交接
-請讀取 AGENTS.md、README.md、docs/milestone-2.zh-TW.md 及本文件。先確認 Git 狀態與目前 commit，再執行 npm test、npm run typecheck、npm run build、npm run demo:project。包含 Milestone 20 時預期 362 tests 通過；Milestone 19 為 352 tests 通過；Milestone 18 為 346 tests；Milestone 17 為 342 tests；Milestone 16 為 337 tests；Milestone 15 為 329 tests；Milestone 14 為 324 tests；Milestone 13 為 315 tests；Milestone 12 為 307 tests；Milestone 11 為 301 tests；Milestone 10 為 293 tests；Milestone 9 為 283 tests；Milestone 8 為 274 tests；Milestone 7 為 268 tests；Milestone 6 為 224 tests；Milestone 5 為 186 tests；Milestone 4 為 121 tests；僅 Milestone 3 為 76 tests（Milestone 2 交接 commit 75087de 為 71 tests），三份範例依序成功，最終 users 欄位為 id、display_name。以繁體中文回報雲端驗證結果與任何環境差異；若失敗先修復環境或相容性問題。雲端驗證任務只驗證交接，不擴大功能；Milestone 3 已在本機另行實作。
+請讀 AGENTS.md、docs/DECISIONS.zh-TW.md、README.md、docs/milestone-20.zh-TW.md 及本文件。確認 Git 狀態與目前 commit，以 main 的最新已合併內容為基準；本機空的 M21 分支不必搬移。
+
+執行 npm test、npm run typecheck、npm run build，以及 npm run demo:project、npm run demo:tables、npm run demo:helpers、npm run demo:laravel。M20 基準為 362 tests；回報實際結果與環境差異，不把本機通過當成雲端通過。demo:project 最終 users 欄位為 id、display_name；demo:laravel 為三份已套用、8 表、0 外鍵。
+
+驗證成功後依持續工作授權接續 M21；先寫會失敗的回歸，再修改 core，保留 PR／最新 head CI 流程。若雲端無法推送或合併，交付可審查的結果並明確回報限制，不宣稱已合併。
 
 ## 必須保留的契約
 - core 與 React UI 分離，core 不做 IO。
@@ -32,7 +37,7 @@ M1～M20 已交付；後續維持 core/UI 分層、測試、中文教學與 PR �
 ## 原始碼閱讀順序
 src/types.ts → src/project-types.ts → src/ordering.ts → src/project.ts → src/diff.ts → tests/project.test.ts（皆位於 packages/migration-core）。教學請看 docs/tutorial.zh-TW.md 與 docs/milestone-2.zh-TW.md。
 
-官方環境文件：https://learn.chatgpt.com/docs/environments/cloud-environment
+官方環境文件：https://learn.chatgpt.com/docs/environments/cloud-environments
 
 ## Milestone 4 交接
 - 索引 schema / operations / diff、隱含主鍵、React 索引顯示與 golden tests；讀 docs/milestone-4.zh-TW.md。
