@@ -33,3 +33,4 @@ jobs:
       - run: npm run demo:index-rename
       - run: npm run demo:drop-columns
       - run: npm run demo:drop-constrained-id
+      - run: npm run demo:morphs

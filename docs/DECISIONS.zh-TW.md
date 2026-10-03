@@ -53,3 +53,7 @@ M24：明確 renameIndex operation 保留一般 index／unique 型別與欄位�
 ## M26：外鍵欄位移除 helper
 
 依固定 Laravel 12 Blueprint 原始碼，dropConstrainedForeignId 的非空靜態字串展開為慣例命名的 dropForeignKey，再 dropColumn，共用來源。沿用既有 replay，不搜尋自訂外鍵名稱、不忽略缺少約束，不移除其他索引／引用。失敗保留完整可信前綴；model helper／connection prefix／方法鏈仍不支援。Core 0.11.0 不新增 JSON variant，詳見 milestone-26.zh-TW.md。
+
+## M27～M29 多型 helper 功能線
+
+M27 明確 numericMorphs，M28 明確 UUID helpers，M29 dropMorphs；各自驗證並交付。不推測多型 target foreign key，依 runtime 設定的 morphs／nullableMorphs 不支援。保持 helper 展開既有 operations、整檔原子 replay、可信快照與 core/UI 分層。第三參數 after 與 connection prefix 不模擬。
