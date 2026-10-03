@@ -1,10 +1,10 @@
 # Codex Cloud 交接
 
 ## 現況（2026-10-03 核對）
-- M1～M20 已合併 main；本次核對起點為 f7e2383（M20 交付文件），功能合併為 5cea3b4／PR #70。Core 0.6.0，最近一次完整驗證為 362／362 tests、typecheck、build 與四個 demo 通過。
+- M1～M21 已合併 main；本次核對起點為 f7e2383（M20 交付文件），功能合併為 5cea3b4／PR #70。M21 功能合併為 f8925e1／PR #76。Core 0.6.0，最近一次完整驗證為 373／373 tests、typecheck、build 與四個 demo 通過。
 - 已有多檔匯入、排序／分析／逐檔快照／結構 diff、索引／外鍵、診斷定位、JSON 匯出，以及 ERD 快照／比較／同步互動／聚焦／明細。
 - M1 baseline 為 6959b46（42 tests）；各階段實際 commits、PR、驗證與限制見 [GitHub 交付紀錄](github-milestones.md)，下方各節為歷史紀錄。
-- M21 已實作 dateTime／dateTimeTz 的零參數 useCurrent()，新增跨檔 golden、失敗／不可變回歸與中文教學；373／373 tests、typecheck、build 與四個 demo 通過。GitHub PR／合併狀態見交付紀錄，接手先核對最新 main。
+- M21 已實作 dateTime／dateTimeTz 的零參數 useCurrent()，新增跨檔 golden、失敗／不可變回歸與中文教學；373／373 tests、typecheck、build 與四個 demo 通過。已由 PR #76 合併 main（f8925e1），issue #75 與 milestone 已關閉；最新功能 head 5c72f84 的 CI 通過。完整狀態見交付紀錄，接手先核對最新 main。
 - useCurrentOnUpdate() 仍不支援；沒有加入 change() 或 DB runtime。後續可優先用具體 migration 樣本調查 change()，先設計可支持的靜態子集合與拒絕規則，再實作。
 - 本機完整對話不會自動成為 Cloud 對話；先讀 [決策索引](DECISIONS.zh-TW.md)、AGENTS.md 與本文件，再以 repo／GitHub 紀錄延續。雲端任務尚未在此核對中啟動或驗證。
 
@@ -35,7 +35,7 @@
 - 自訂 base class、完整 Laravel API、DB 方言與 PHP runtime 語意仍不涵蓋；完整限制見 README。
 
 ## 後續範圍
-M1～M20 已交付；後續維持 core/UI 分層、測試、中文教學與 PR 流程。M14 已獲授權進入 ERD；timeline、down()、AI、semantic refactoring detection 仍不在目前範圍。
+M1～M21 已交付；後續維持 core/UI 分層、測試、中文教學與 PR 流程。M14 已獲授權進入 ERD；timeline、down()、AI、semantic refactoring detection 仍不在目前範圍。
 
 ## 原始碼閱讀順序
 src/types.ts → src/project-types.ts → src/ordering.ts → src/project.ts → src/diff.ts → tests/project.test.ts（皆位於 packages/migration-core）。教學請看 docs/tutorial.zh-TW.md 與 docs/milestone-2.zh-TW.md。
