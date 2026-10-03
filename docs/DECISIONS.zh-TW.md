@@ -57,3 +57,5 @@ M24：明確 renameIndex operation 保留一般 index／unique 型別與欄位�
 ## M27～M29 多型 helper 功能線
 
 M27 明確 numericMorphs，M28 明確 UUID helpers，M29 dropMorphs；各自驗證並交付。不推測多型 target foreign key，依 runtime 設定的 morphs／nullableMorphs 不支援。保持 helper 展開既有 operations、整檔原子 replay、可信快照與 core/UI 分層。第三參數 after 與 connection prefix 不模擬。
+
+M27～M29 已交付並合併，證據見 github-milestones.md。Morph indexName 字串 0 遵循 PHP ?:，空／false 保守拒絕。UUID 保留 domain uuid；dropMorphs 只移除指定一般 index 與 type/id，額外約束須顯式移除。
