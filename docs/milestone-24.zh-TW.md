@@ -25,3 +25,5 @@ SchemaDiff 維持結構比較，顯示 indexRemoved + indexAdded，沒有新增 
 自行撰寫的四份 PHP fixture 與獨立推導的 success／blocked golden 檢查完整前後快照、diff、最終 schema 與診斷 codes，不是官方樣本。執行 npm run demo:index-rename 可驗證建置後公開 package 的三檔成功與中途失敗流程，CI 加入同一命令。
 
 476／476 tests、typecheck、build 與七個 demo 全數通過。PR 狀態見 github-milestones.md。未加入 timeline、down()、AI、SQL parser、runtime execution 或 semantic refactoring detection。
+
+[PR #85](https://github.com/jerryyehself/laravel-migration-visualizer/pull/85) 已合併 main（7580dca），issue #84 與 milestone 已關閉。功能 head 337890e 的 CI 全數通過。
