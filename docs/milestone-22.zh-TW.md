@@ -1,6 +1,6 @@
 # Milestone 22：既有欄位 change()
 
-Core 0.7.0 新增 `changeColumn` AtomicOperation：`{kind:'changeColumn',table,column,source}`。SchemaState 格式不變；外部使用者若對 operation 做 exhaustive switch，需增加此分支。變更不是新增欄位，也不是猜測 rename。
+Core 0.7.0 新增 `changeColumn` AtomicOperation：`{kind:'changeColumn',table,column,source}`。直接提供 changeColumn 的 caller 也不能附 autoIncrement=true 或 primary=true；primary 由索引同步。SchemaState 格式不變；外部使用者若對 operation 做 exhaustive switch，需增加此分支。變更不是新增欄位，也不是猜測 rename。
 
 ## Laravel 規則與分析器範圍
 
@@ -31,3 +31,5 @@ React component 是呈現畫面的單元；state 是操作時會改變的畫面�
 執行 `npm run demo:changes`：從建置後公開 package 分析 create → change → reset 三檔，再檢查中途未知欄位導致 failed／blocked 的流程；CI 新增相同命令。未執行 PHP 或資料庫，也沒有瀏覽器驗收或修改 UI。
 
 沒有新增 timeline、down()、AI、SQL parser、runtime migration execution 或 semantic refactoring detection；useCurrentOnUpdate 仍未支援。
+
+[PR #79](https://github.com/jerryyehself/laravel-migration-visualizer/pull/79) 已合併 main（dbc9aa4）；issue #78 與 milestone 已關閉。功能 head 601946b 的 CI（408 tests、typecheck、build 與五個 demo）全數通過。
