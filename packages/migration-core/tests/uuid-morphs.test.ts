@@ -18,6 +18,10 @@ describe('explicit UUID morph helpers',()=>{
   it.each(["$t->uuidMorphs($name);","$t->uuidMorphs('x',null,'after');","$t->nullableUuidMorphs('x')->nullable();","$t->uuidMorphs('x')->change();"])('rejects unsupported syntax %s',body=>{
     const r=analyzeMigration(php(body));expect(r.complete).toBe(false);expect(r.operations).toEqual([]);
   });
+  it.each(['numericMorphs','uuidMorphs'])('uses the default index for PHP-falsy string zero in %s',method=>{
+    const r=analyzeProject([file(1,`$t->${method}('taggable','0');`,'create')]);expect(r.complete).toBe(true);
+    expect(Object.keys(r.finalSchema!.tables.tags.indexes)).toEqual(['tags_taggable_type_taggable_id_index']);
+  });
   it('allows numeric and UUID morphs together without foreign keys',()=>{
     const r=analyzeProject([file(1,"$t->numericMorphs('n'); $t->nullableUuidMorphs('u');",'create')]);expect(r.complete).toBe(true);
     expect(r.finalSchema!.tables.tags.columns.n_id).toMatchObject({type:'bigInteger',unsigned:true,nullable:false});

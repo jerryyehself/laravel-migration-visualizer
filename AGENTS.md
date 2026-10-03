@@ -16,7 +16,7 @@
 
 ## 開發與驗證
 - Node.js 22.12+，npm。安裝使用 npm ci，保留 package-lock.json。
-- npm test：目前 561 tests（472 core + 5 browser import + 6 export + 9 filters + 10 folder import + 8 diagnostic location + 6 source selection + 8 drafts + 9 graph + 5 snapshots + 8 graph diff + 5 comparison layout + 4 focus + 6 table inspector）；原 Milestone 1 為 42 tests。
+- npm test：目前 563 tests（474 core + 5 browser import + 6 export + 9 filters + 10 folder import + 8 diagnostic location + 6 source selection + 8 drafts + 9 graph + 5 snapshots + 8 graph diff + 5 comparison layout + 4 focus + 6 table inspector）；原 Milestone 1 為 42 tests。
 - npm run typecheck
 - npm run build
 - npm run demo:project
@@ -82,4 +82,4 @@ M26 已由 PR #91 合併（1f86cc3），issue #90／milestone 26 已關閉；功
 
 M27 已實作 numericMorphs／nullableNumericMorphs，core 0.12.0；548 tests／十個 demo。先讀 docs/milestone-27.zh-TW.md；多型 helpers 不推測 foreign key，通用 morphs 與 after 仍不支援。交付狀態見 github-milestones.md。
 
-M27 已由 PR #94 合併（1b8cd53），issue #93／milestone 27 已關閉；功能 head 4c2f682 的 CI 通過 tests、typecheck、build 與十個 demo。M28 已實作 UUID morph helpers，core 0.13.0、561 tests；讀 docs/milestone-28.zh-TW.md。
+M27 已由 PR #94 合併（1b8cd53），issue #93／milestone 27 已關閉；功能 head 4c2f682 的 CI 通過 tests、typecheck、build 與十個 demo。M28 已實作 UUID morph helpers，core 0.13.0、563 tests；讀 docs/milestone-28.zh-TW.md。

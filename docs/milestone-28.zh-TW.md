@@ -18,4 +18,6 @@ Component 負責畫面；props 提供分析結果與 callback；state 保存目�
 
 13 個新測試在實作前 9 failed／4 passed，實作後全部通過；覆蓋兩種 helper、命名、來源、拒絕、numeric／UUID 混用、第二欄碰撞、特殊名字、隔離與多檔 success／blocked golden。Golden 從獨立規格的 UUID 欄位建立，未錄製 analyzer output；fixtures 為本專案自行撰寫。
 
-本地 561 tests（472 core + 89 web）、typecheck、build 與十個 demo 通過；demo:morphs 同時驗證建置後 numeric 與 UUID 套件行為。無 UI 修改／新增瀏覽器驗收。主要變更為 normalize.ts、uuid-morphs.test.ts、fixtures/uuid-morphs、examples/morphs.mjs、版本與文件；GitHub 狀態見 [交付紀錄](github-milestones.md)。
+本地 563 tests（474 core + 89 web）、typecheck、build 與十個 demo 通過；demo:morphs 同時驗證建置後 numeric 與 UUID 套件行為。無 UI 修改／新增瀏覽器驗收。主要變更為 normalize.ts、uuid-morphs.test.ts、fixtures/uuid-morphs、examples/morphs.mjs、版本與文件；GitHub 狀態見 [交付紀錄](github-milestones.md)。
+
+命名核對追加兩個回歸：numeric／UUID 的 indexName 字串 0 依 PHP ?: 使用慣例名稱（固定來源 indexCommand L1733）。這兩個測試修正前失敗，修正後通過；空字串與 false 仍保守拒絕，不宣稱 Laravel 也拒絕。共有 15 個本階段新測試。
