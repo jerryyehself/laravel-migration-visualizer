@@ -1,0 +1,385 @@
+{
+  "complete": true,
+  "appliedCount": 3,
+  "steps": [
+    {
+      "status": "applied",
+      "before": {
+        "tables": {}
+      },
+      "after": {
+        "tables": {
+          "tags": {
+            "name": "tags",
+            "columns": {
+              "keep": {
+                "name": "keep",
+                "type": "string",
+                "length": 255,
+                "nullable": false
+              },
+              "n_type": {
+                "name": "n_type",
+                "type": "string",
+                "length": 255,
+                "nullable": false
+              },
+              "n_id": {
+                "name": "n_id",
+                "type": "bigInteger",
+                "unsigned": true,
+                "nullable": false
+              },
+              "u_type": {
+                "name": "u_type",
+                "type": "string",
+                "length": 255,
+                "nullable": true
+              },
+              "u_id": {
+                "name": "u_id",
+                "type": "uuid",
+                "nullable": true
+              }
+            },
+            "indexes": {
+              "tags_n_type_n_id_index": {
+                "name": "tags_n_type_n_id_index",
+                "type": "index",
+                "columns": [
+                  "n_type",
+                  "n_id"
+                ]
+              },
+              "custom": {
+                "name": "custom",
+                "type": "index",
+                "columns": [
+                  "u_type",
+                  "u_id"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "tableAdded",
+            "table": "tags",
+            "after": {
+              "name": "tags",
+              "columns": {
+                "keep": {
+                  "name": "keep",
+                  "type": "string",
+                  "length": 255,
+                  "nullable": false
+                },
+                "n_type": {
+                  "name": "n_type",
+                  "type": "string",
+                  "length": 255,
+                  "nullable": false
+                },
+                "n_id": {
+                  "name": "n_id",
+                  "type": "bigInteger",
+                  "unsigned": true,
+                  "nullable": false
+                },
+                "u_type": {
+                  "name": "u_type",
+                  "type": "string",
+                  "length": 255,
+                  "nullable": true
+                },
+                "u_id": {
+                  "name": "u_id",
+                  "type": "uuid",
+                  "nullable": true
+                }
+              },
+              "indexes": {
+                "tags_n_type_n_id_index": {
+                  "name": "tags_n_type_n_id_index",
+                  "type": "index",
+                  "columns": [
+                    "n_type",
+                    "n_id"
+                  ]
+                },
+                "custom": {
+                  "name": "custom",
+                  "type": "index",
+                  "columns": [
+                    "u_type",
+                    "u_id"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            }
+          }
+        ]
+      }
+    },
+    {
+      "status": "applied",
+      "before": {
+        "tables": {
+          "tags": {
+            "name": "tags",
+            "columns": {
+              "keep": {
+                "name": "keep",
+                "type": "string",
+                "length": 255,
+                "nullable": false
+              },
+              "n_type": {
+                "name": "n_type",
+                "type": "string",
+                "length": 255,
+                "nullable": false
+              },
+              "n_id": {
+                "name": "n_id",
+                "type": "bigInteger",
+                "unsigned": true,
+                "nullable": false
+              },
+              "u_type": {
+                "name": "u_type",
+                "type": "string",
+                "length": 255,
+                "nullable": true
+              },
+              "u_id": {
+                "name": "u_id",
+                "type": "uuid",
+                "nullable": true
+              }
+            },
+            "indexes": {
+              "tags_n_type_n_id_index": {
+                "name": "tags_n_type_n_id_index",
+                "type": "index",
+                "columns": [
+                  "n_type",
+                  "n_id"
+                ]
+              },
+              "custom": {
+                "name": "custom",
+                "type": "index",
+                "columns": [
+                  "u_type",
+                  "u_id"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "after": {
+        "tables": {
+          "tags": {
+            "name": "tags",
+            "columns": {
+              "keep": {
+                "name": "keep",
+                "type": "string",
+                "length": 255,
+                "nullable": false
+              }
+            },
+            "indexes": {},
+            "foreignKeys": {}
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "columnRemoved",
+            "table": "tags",
+            "column": "n_id",
+            "before": {
+              "name": "n_id",
+              "type": "bigInteger",
+              "unsigned": true,
+              "nullable": false
+            }
+          },
+          {
+            "kind": "columnRemoved",
+            "table": "tags",
+            "column": "n_type",
+            "before": {
+              "name": "n_type",
+              "type": "string",
+              "length": 255,
+              "nullable": false
+            }
+          },
+          {
+            "kind": "columnRemoved",
+            "table": "tags",
+            "column": "u_id",
+            "before": {
+              "name": "u_id",
+              "type": "uuid",
+              "nullable": true
+            }
+          },
+          {
+            "kind": "columnRemoved",
+            "table": "tags",
+            "column": "u_type",
+            "before": {
+              "name": "u_type",
+              "type": "string",
+              "length": 255,
+              "nullable": true
+            }
+          },
+          {
+            "kind": "indexRemoved",
+            "table": "tags",
+            "index": "custom",
+            "before": {
+              "name": "custom",
+              "type": "index",
+              "columns": [
+                "u_type",
+                "u_id"
+              ]
+            }
+          },
+          {
+            "kind": "indexRemoved",
+            "table": "tags",
+            "index": "tags_n_type_n_id_index",
+            "before": {
+              "name": "tags_n_type_n_id_index",
+              "type": "index",
+              "columns": [
+                "n_type",
+                "n_id"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "status": "applied",
+      "before": {
+        "tables": {
+          "tags": {
+            "name": "tags",
+            "columns": {
+              "keep": {
+                "name": "keep",
+                "type": "string",
+                "length": 255,
+                "nullable": false
+              }
+            },
+            "indexes": {},
+            "foreignKeys": {}
+          }
+        }
+      },
+      "after": {
+        "tables": {
+          "tags": {
+            "name": "tags",
+            "columns": {
+              "keep": {
+                "name": "keep",
+                "type": "string",
+                "length": 255,
+                "nullable": false
+              },
+              "later": {
+                "name": "later",
+                "type": "string",
+                "length": 255,
+                "nullable": false
+              }
+            },
+            "indexes": {},
+            "foreignKeys": {}
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "columnAdded",
+            "table": "tags",
+            "column": "later",
+            "after": {
+              "name": "later",
+              "type": "string",
+              "length": 255,
+              "nullable": false
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "finalSchema": {
+    "tables": {
+      "tags": {
+        "name": "tags",
+        "columns": {
+          "keep": {
+            "name": "keep",
+            "type": "string",
+            "length": 255,
+            "nullable": false
+          },
+          "later": {
+            "name": "later",
+            "type": "string",
+            "length": 255,
+            "nullable": false
+          }
+        },
+        "indexes": {},
+        "foreignKeys": {}
+      }
+    }
+  },
+  "lastValidSchema": {
+    "tables": {
+      "tags": {
+        "name": "tags",
+        "columns": {
+          "keep": {
+            "name": "keep",
+            "type": "string",
+            "length": 255,
+            "nullable": false
+          },
+          "later": {
+            "name": "later",
+            "type": "string",
+            "length": 255,
+            "nullable": false
+          }
+        },
+        "indexes": {},
+        "foreignKeys": {}
+      }
+    }
+  },
+  "diagnosticCodes": []
+}

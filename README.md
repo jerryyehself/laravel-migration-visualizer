@@ -157,6 +157,7 @@ UI 提供欄位 helper 成功／失敗範例；`npm run demo:helpers` 驗證建�
 - `timestamps` 展開為兩個 nullable timestamp 欄位。
 - modifiers：`nullable(bool)`、`unsigned(bool)`、`default(scalar)`、`comment(string)`、timestamp／timestampTz／dateTime／dateTimeTz 的零參數 `useCurrent()` 與 `useCurrentOnUpdate()`。
 - `dropColumn('name')` 或 `dropColumn(['a', 'b'])`（非空、不重複的靜態字串列表）、`renameColumn('from', 'to')`。
+- `numericMorphs`／`nullableNumericMorphs`、`uuidMorphs`／`nullableUuidMorphs` 與 `dropMorphs`：靜態名稱與可選索引名稱，不推測多型 foreign key。
 - `dropConstrainedForeignId('column')`：先刪慣例名稱的外鍵，再刪欄位；不搜尋自訂外鍵名稱，不自動移除其他索引／外鍵。
 
 AtomicOperation 為 `createTable` / `renameTable` / `dropTable` / `addColumn` / `dropColumn` / `renameColumn` / `changeColumn` / `addIndex` / `dropIndex` / `renameIndex` / `addForeignKey` / `dropForeignKey` discriminated union，含來源位置（行號從 1 起、column 從 0 起）。所有輸出可序列化成 JSON。`id` 的 primary 屬性是欄位 metadata，replay 會將其轉成隱含 primary 索引；外鍵以獨立 ForeignKey model 記錄。
@@ -281,3 +282,7 @@ Core 0.12.0 支援 numericMorphs／nullableNumericMorphs：type string + unsigne
 Core 0.13.0 支援 uuidMorphs／nullableUuidMorphs：type string + uuid id + 有序 type/id index。沿用 M27 的省略／null／自訂名稱與拒絕規則，不新增 foreign key 或 JSON variant。ULID 與 runtime-dependent morphs 仍未支援。教學見 [M28](docs/milestone-28.zh-TW.md)；demo:morphs 同時驗證 numeric 與 UUID。
 
 Morph helpers 的 indexName 字串 `0` 遵循 PHP falsey 規則，使用慣例名稱；空字串與 false 仍保守拒絕。
+
+## Milestone 29：dropMorphs 與多型欄位生命週期
+
+Core 0.14.0 支援 dropMorphs(name, indexName?)：先移除一般 index，再依 type/id 順序刪兩欄，共用來源。慣例／自訂名稱及字串 0 行為與新增 helpers 一致；不搜尋索引，不自動移除其他約束。任何一步失敗都保留整檔可信前綴，diff 仍是結構比較。教學見 [M29](docs/milestone-29.zh-TW.md)；demo:morphs 驗證 numeric／UUID 新增及混合移除。

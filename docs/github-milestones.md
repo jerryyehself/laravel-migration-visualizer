@@ -97,4 +97,8 @@ M26 已由 PR #91 合併 main（1f86cc34b7ba5cea806c19f979fcb9231ee8d87e），is
 
 M27 功能 head 4c2f682ab4c176898d73a7d7b7350944b9592fee 的 validate CI success（run 37162109886），PR #94 合併為 1b8cd5314f6ec1ac9ec2eee3bbc3a6db0e8443d3；issue #93／milestone 27 已關閉。
 
-| 28：UUID morph helpers | [M28](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/28) | [#95](https://github.com/jerryyehself/laravel-migration-visualizer/issues/95) | 已實作；563 tests；core 0.13.0；PR／CI 待確認 |
+| 28：UUID morph helpers | [M28](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/28) | [#95](https://github.com/jerryyehself/laravel-migration-visualizer/issues/95) | [PR #96](https://github.com/jerryyehself/laravel-migration-visualizer/pull/96) 已合併；39160f2；563 tests；core 0.13.0 |
+
+M28 最新功能 head 07cd086cb6561646ce4fa49bf353d9c9d7fe7ab2 的 validate CI success（run 37162408175），PR #96 合併為 39160f213f30e3dc556b6be03f07c8bd69ee1abd；issue #95／milestone 28 已關閉。
+
+| 29：dropMorphs lifecycle | [M29](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/29) | [#97](https://github.com/jerryyehself/laravel-migration-visualizer/issues/97) | 已實作；591 tests；core 0.14.0；PR／CI 待確認 |
