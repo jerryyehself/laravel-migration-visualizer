@@ -48,3 +48,5 @@ M16 已合併 main（25dc11c），issues #52/#53 與 milestone 已關閉；功�
 | 17：比較圖同步 | [M17](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/17) | [UI #56](https://github.com/jerryyehself/laravel-migration-visualizer/issues/56)、[tests/docs #57](https://github.com/jerryyehself/laravel-migration-visualizer/issues/57) | [PR #58](https://github.com/jerryyehself/laravel-migration-visualizer/pull/58) 已合併；5054727；342 tests |
 
 M17 已合併 main（5054727），issues #56/#57 與 milestone 已關閉；功能 head c04f3ff 的 CI 通過。
+
+| 18：資料表搜尋與聚焦 | [M18](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/18) | [UI #60](https://github.com/jerryyehself/laravel-migration-visualizer/issues/60)、[tests/docs #61](https://github.com/jerryyehself/laravel-migration-visualizer/issues/61) | 已實作，待 PR／CI／合併；346 tests |
