@@ -134,6 +134,11 @@ function indexColumns(value: Argument | undefined): string[] {
 function explicitName(value: Argument | undefined): string | undefined {
   return value === undefined || value === null ? undefined : text(value);
 }
+function morphIndexName(table: string, columns: string[], value: Argument | undefined): string {
+  const name = explicitName(value);
+  // Blueprint uses PHP ?:; the otherwise valid string '0' selects the convention.
+  return name === undefined || name === '0' ? indexName(table,columns,'index') : name;
+}
 /** Analyze only a migration's up() method. Unsupported statements yield diagnostics. */
 export function analyzeMigration(source: string, file = 'migration.php'): AnalysisResult {
   const result: AnalysisResult = { operations: [], diagnostics: [], complete: true };
@@ -255,14 +260,17 @@ export function analyzeMigration(source: string, file = 'migration.php'): Analys
                 const name = Array.isArray(value) ? indexName(table, indexColumns(value), type)
                   : type === 'primary' && (value === undefined || value === null) ? null : text(value);
                 operations.push({ kind: 'dropIndex', table, name, indexType: type, source: location(body) });
-              } else if (['numericMorphs','nullableNumericMorphs'].includes(first.name)) {
+              } else if (['numericMorphs','nullableNumericMorphs','uuidMorphs','nullableUuidMorphs'].includes(first.name)) {
                 arity(first.args, 1, 2);
                 if (modifiers.length) throw new Error('Morph helpers cannot have modifiers.');
                 const name = text(first.args[0]), nullable = first.name.startsWith('nullable');
                 const names = [`${name}_type`, `${name}_id`];
-                const index = explicitName(first.args[1]) ?? indexName(table,names,'index');
+                const index = morphIndexName(table,names,first.args[1]);
                 operations.push({ kind:'addColumn', table, column:{ name:names[0], type:'string', length:255, nullable }, source:location(body) });
-                operations.push({ kind:'addColumn', table, column:{ name:names[1], type:'bigInteger', unsigned:true, nullable }, source:location(body) });
+                const id: Column = first.name.toLowerCase().includes('uuid')
+                  ? { name:names[1], type:'uuid', nullable }
+                  : { name:names[1], type:'bigInteger', unsigned:true, nullable };
+                operations.push({ kind:'addColumn', table, column:id, source:location(body) });
                 operations.push({ kind:'addIndex', table, index:{ name:index, type:'index', columns:names }, source:location(body) });
               } else if (first.name === 'dropConstrainedForeignId') {
                 arity(first.args, 1);
