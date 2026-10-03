@@ -25,3 +25,9 @@ For a bug, add a behavioral regression that fails before the fix. For a new API,
 Run checks appropriate to the change; the full delivery commands are in AGENTS.md. Review the actual diff and report actionable findings with a trigger, wrong result and source location. Distinguish a correctness bug from an explicitly documented limitation. Do not post a GitHub review or approve/merge a PR merely because a local review passed.
 
 Explain decisions in Traditional Chinese for a backend developer new to React. Connect the domain rule to the result; explain component (rendering unit), state (UI data that changes), and props (parent-provided data/callbacks) when those concepts first matter. Avoid expanding into deferred product features without a new requirement.
+
+## Source-pinned compatibility samples
+
+When introducing upstream Laravel samples, keep the original PHP bytes and record repository, pinned commit, source URLs, hashes and license provenance next to the fixtures. Verify the hashes offline; build the expected inventory or golden contract independently from the PHP rather than recording analyzer output. Separate official samples from locally authored scenarios.
+
+Compare supported behavior with the relevant pinned framework source, and document the sample's coverage. Passing a small corpus does not establish full Laravel or database compatibility. Current-time modifiers are intent metadata, not evaluated timestamps or scalar SQL strings; unsupported combinations need explicit diagnostics. Verify new metadata through immutable replay, snapshots and structural diff, including a meaningful failure case and a built-package example when the public contract changes.
