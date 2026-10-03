@@ -3,7 +3,7 @@ import { diagnosticTarget } from '../diagnostic-location';
 import { DiagnosticSource } from './DiagnosticSource';
 import { filterMigrationResults, visibleSelection, type ResultStatusFilter } from '../filter-results';
 import { ProjectExports } from './ProjectExports';
-import { SchemaGraph } from './SchemaGraph';
+import { SchemaSnapshots } from './SchemaSnapshots';
 import type { MigrationFile, ProjectAnalysis, ProjectDiagnostic, SchemaState } from '@lmv/migration-core';
 
 const phaseLabels: Record<ProjectDiagnostic['phase'], string> = {
@@ -77,7 +77,7 @@ export function ProjectResults({ result, files, selected, onSelect, onEdit }: {
       <p>{result.complete ? '以下為支援範圍內的靜態分析結果，不代表實際資料庫執行結果。' : '最終 schema 未知。最後可信 schema 只包含成功前綴，不能當成專案最終狀態。'}</p>
     </div>
     <ProjectExports result={result} />
-    {result.complete && result.finalSchema !== null ? <SchemaGraph schema={result.finalSchema} /> : <section aria-label="最終 Schema ERD"><h2>最終 Schema ERD</h2><p className="unavailable">分析未完成，最終 schema 未知；不繪製推測的 ERD。最後可信 schema 可於下方檢視。</p></section>}
+    <SchemaSnapshots result={result} />
     <h3>專案診斷</h3><Diagnostics items={result.diagnostics} onLocate={locate} canLocate={canLocate} />
     {located && target && <DiagnosticSource file={target.file} diagnostic={located} onEdit={onEdit} />}
     <fieldset className="result-filters">
