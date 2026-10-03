@@ -34,6 +34,8 @@
 ## 專案 skills
 - 修改／審查核心或 UI 的分析契約時，讀取 [.agents/skills/migration-core-review/SKILL.md](.agents/skills/migration-core-review/SKILL.md)。
 - milestone 驗收、GitHub 補登與 PR 交付時，讀取 [.agents/skills/milestone-delivery/SKILL.md](.agents/skills/milestone-delivery/SKILL.md)。
+- React／ERD 互動、快照呈現與瀏覽器驗收時，讀取 [.agents/skills/migration-ui-review/SKILL.md](.agents/skills/migration-ui-review/SKILL.md)。
+- 本機／雲端交接、決策核對或接手驗證時，讀取 [.agents/skills/migration-handoff/SKILL.md](.agents/skills/migration-handoff/SKILL.md)。
 - repo 內的 skill 是版本化來源，可隨 clone 一起帶到雲端；全域安裝副本不是新的專案規格，更新後需同步。
 
 M15 快照選單已由 PR #50 合併（cf8f0b8）；交付狀態見 docs/github-milestones.md。未知快照不可補成成功前綴；切換會重設圖形。
