@@ -25,4 +25,4 @@ ProjectWorkbench 保存 files 與 selectedInput state；DiagnosticSource 透過 
 
 瀏覽器確認：點選 unsupported 第 6 行後跳回正確檔名，textarea 取得焦點，選取 fullText 所在整行。將 fullText 改成 nullable 後舊定位消失；重新分析第 2 份已套用，診斷更新為第 3 份缺少 nickname 的 replay 錯誤。這證明只修正第一個問題不代表整個專案成功，沒有以成功前綴代替 finalSchema。
 
-GitHub 交付狀態見 [紀錄](github-milestones.md)。
+[PR #38](https://github.com/jerryyehself/laravel-migration-visualizer/pull/38) 已合併 main（8777354），對應 issues／milestone 已關閉。GitHub 交付狀態見 [紀錄](github-milestones.md)。
