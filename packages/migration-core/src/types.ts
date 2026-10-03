@@ -37,6 +37,7 @@ export type AtomicOperation = ({ kind: 'createTable'; table: string }
   | { kind: 'dropColumn'; table: string; column: string }
   | { kind: 'renameColumn'; table: string; from: string; to: string }
   | { kind: 'addIndex'; table: string; index: SchemaIndex }
+  | { kind: 'renameIndex'; table: string; from: string; to: string }
   | { kind: 'dropIndex'; table: string; name: string | null; indexType: IndexType }
   | { kind: 'addForeignKey'; table: string; foreignKey: ForeignKey }
   | { kind: 'dropForeignKey'; table: string; name: string }) & { source: SourceLocation };
