@@ -1,0 +1,346 @@
+{
+  "complete": true,
+  "appliedCount": 3,
+  "finalSchema": {
+    "tables": {
+      "users": {
+        "name": "users",
+        "columns": {
+          "name": {
+            "name": "name",
+            "type": "string",
+            "nullable": false,
+            "length": 50
+          },
+          "at": {
+            "name": "at",
+            "type": "dateTimeTz",
+            "nullable": false,
+            "precision": 3
+          }
+        },
+        "indexes": {
+          "users_name_unique": {
+            "name": "users_name_unique",
+            "type": "unique",
+            "columns": [
+              "name"
+            ]
+          }
+        },
+        "foreignKeys": {}
+      }
+    }
+  },
+  "lastValidSchema": {
+    "tables": {
+      "users": {
+        "name": "users",
+        "columns": {
+          "name": {
+            "name": "name",
+            "type": "string",
+            "nullable": false,
+            "length": 50
+          },
+          "at": {
+            "name": "at",
+            "type": "dateTimeTz",
+            "nullable": false,
+            "precision": 3
+          }
+        },
+        "indexes": {
+          "users_name_unique": {
+            "name": "users_name_unique",
+            "type": "unique",
+            "columns": [
+              "name"
+            ]
+          }
+        },
+        "foreignKeys": {}
+      }
+    }
+  },
+  "diagnosticCodes": [],
+  "steps": [
+    {
+      "status": "applied",
+      "before": {
+        "tables": {}
+      },
+      "after": {
+        "tables": {
+          "users": {
+            "name": "users",
+            "columns": {
+              "name": {
+                "name": "name",
+                "type": "string",
+                "nullable": true,
+                "length": 25,
+                "default": "old",
+                "comment": "old"
+              },
+              "at": {
+                "name": "at",
+                "type": "dateTimeTz",
+                "nullable": false,
+                "precision": 6,
+                "useCurrent": true
+              }
+            },
+            "indexes": {
+              "users_name_unique": {
+                "name": "users_name_unique",
+                "type": "unique",
+                "columns": [
+                  "name"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "tableAdded",
+            "table": "users",
+            "after": {
+              "name": "users",
+              "columns": {
+                "name": {
+                  "name": "name",
+                  "type": "string",
+                  "nullable": true,
+                  "length": 25,
+                  "default": "old",
+                  "comment": "old"
+                },
+                "at": {
+                  "name": "at",
+                  "type": "dateTimeTz",
+                  "nullable": false,
+                  "precision": 6,
+                  "useCurrent": true
+                }
+              },
+              "indexes": {
+                "users_name_unique": {
+                  "name": "users_name_unique",
+                  "type": "unique",
+                  "columns": [
+                    "name"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            }
+          }
+        ]
+      }
+    },
+    {
+      "status": "applied",
+      "before": {
+        "tables": {
+          "users": {
+            "name": "users",
+            "columns": {
+              "name": {
+                "name": "name",
+                "type": "string",
+                "nullable": true,
+                "length": 25,
+                "default": "old",
+                "comment": "old"
+              },
+              "at": {
+                "name": "at",
+                "type": "dateTimeTz",
+                "nullable": false,
+                "precision": 6,
+                "useCurrent": true
+              }
+            },
+            "indexes": {
+              "users_name_unique": {
+                "name": "users_name_unique",
+                "type": "unique",
+                "columns": [
+                  "name"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "after": {
+        "tables": {
+          "users": {
+            "name": "users",
+            "columns": {
+              "name": {
+                "name": "name",
+                "type": "string",
+                "nullable": false,
+                "length": 50
+              },
+              "at": {
+                "name": "at",
+                "type": "dateTimeTz",
+                "nullable": true,
+                "precision": 3,
+                "useCurrent": true
+              }
+            },
+            "indexes": {
+              "users_name_unique": {
+                "name": "users_name_unique",
+                "type": "unique",
+                "columns": [
+                  "name"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "columnChanged",
+            "table": "users",
+            "column": "at",
+            "before": {
+              "name": "at",
+              "type": "dateTimeTz",
+              "nullable": false,
+              "precision": 6,
+              "useCurrent": true
+            },
+            "after": {
+              "name": "at",
+              "type": "dateTimeTz",
+              "nullable": true,
+              "precision": 3,
+              "useCurrent": true
+            }
+          },
+          {
+            "kind": "columnChanged",
+            "table": "users",
+            "column": "name",
+            "before": {
+              "name": "name",
+              "type": "string",
+              "nullable": true,
+              "length": 25,
+              "default": "old",
+              "comment": "old"
+            },
+            "after": {
+              "name": "name",
+              "type": "string",
+              "nullable": false,
+              "length": 50
+            }
+          }
+        ]
+      }
+    },
+    {
+      "status": "applied",
+      "before": {
+        "tables": {
+          "users": {
+            "name": "users",
+            "columns": {
+              "name": {
+                "name": "name",
+                "type": "string",
+                "nullable": false,
+                "length": 50
+              },
+              "at": {
+                "name": "at",
+                "type": "dateTimeTz",
+                "nullable": true,
+                "precision": 3,
+                "useCurrent": true
+              }
+            },
+            "indexes": {
+              "users_name_unique": {
+                "name": "users_name_unique",
+                "type": "unique",
+                "columns": [
+                  "name"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "after": {
+        "tables": {
+          "users": {
+            "name": "users",
+            "columns": {
+              "name": {
+                "name": "name",
+                "type": "string",
+                "nullable": false,
+                "length": 50
+              },
+              "at": {
+                "name": "at",
+                "type": "dateTimeTz",
+                "nullable": false,
+                "precision": 3
+              }
+            },
+            "indexes": {
+              "users_name_unique": {
+                "name": "users_name_unique",
+                "type": "unique",
+                "columns": [
+                  "name"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "columnChanged",
+            "table": "users",
+            "column": "at",
+            "before": {
+              "name": "at",
+              "type": "dateTimeTz",
+              "nullable": true,
+              "precision": 3,
+              "useCurrent": true
+            },
+            "after": {
+              "name": "at",
+              "type": "dateTimeTz",
+              "nullable": false,
+              "precision": 3
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
