@@ -2,8 +2,9 @@ import helperCreate from '../../../../packages/migration-core/tests/fixtures/col
 import helperRemove from '../../../../packages/migration-core/tests/fixtures/column-helpers/2026_05_02_000000_remove_helpers.php?raw';
 import helperInvalid from '../../../../packages/migration-core/tests/fixtures/column-helpers/2026_05_02_000000_invalid_drop.php?raw';
 import helperRename from '../../../../packages/migration-core/tests/fixtures/column-helpers/2026_05_03_000000_rename_status.php?raw';
-import { useState } from 'react';
-import { analyzeProject, type MigrationFile, type ProjectAnalysis } from '@lmv/migration-core';
+import { useEffect, useRef, useState } from 'react';
+import { diagnosticExcerpt, diagnosticTarget, sourceLineSelection } from '../diagnostic-location';
+import { analyzeProject, type MigrationFile, type ProjectAnalysis, type ProjectDiagnostic } from '@lmv/migration-core';
 import createSource from '../../../../packages/migration-core/tests/fixtures/project/2026_01_01_000000_create_users.php?raw';
 import updateSource from '../../../../packages/migration-core/tests/fixtures/project/2026_01_02_000000_update_users.php?raw';
 import reviseSource from '../../../../packages/migration-core/tests/fixtures/project/2026_01_03_000000_revise_users.php?raw';
@@ -73,17 +74,37 @@ export function ProjectWorkbench() {
   const [error, setError] = useState<string | null>(null);
   const [folderImport, setFolderImport] = useState<{ importedCount: number; ignoredFiles: string[] } | null>(null);
   const [folderSupported] = useState(() => 'webkitdirectory' in document.createElement('input'));
+  const editor = useRef<HTMLTextAreaElement>(null);
+  const [editRequest, setEditRequest] = useState<{ file: MigrationFile; line: number | null } | null>(null);
+  const [editNotice, setEditNotice] = useState<string | null>(null);
   const activeFile = files[selectedInput];
+  useEffect(() => {
+    if (!editRequest || activeFile !== editRequest.file || !editor.current) return;
+    const range = sourceLineSelection(editor.current.value, editRequest.line);
+    editor.current.focus({ preventScroll: true });
+    editor.current.setSelectionRange(range.start, range.end);
+    editor.current.scrollIntoView({ block: 'center', behavior: 'auto' });
+    setEditRequest(null);
+  }, [editRequest, activeFile]);
+  function editDiagnostic(item: ProjectDiagnostic) {
+    if (!result) return;
+    const target = diagnosticTarget(files, result, item);
+    if (!target) return;
+    const line = diagnosticExcerpt(target.file.source, item).line;
+    setSelectedInput(files.indexOf(target.file));
+    setEditRequest({ file: target.file, line });
+    setEditNotice(line === null ? '已開啟對應輸入檔；此診斷沒有可定位的 PHP 行。' : `已選取第 ${line} 行；修改後請重新分析專案。`);
+  }
 
   function replaceFiles(next: MigrationFile[]) {
-    setFiles(next); setSelectedInput(0); setResult(null); setError(null); setFolderImport(null);
+    setFiles(next); setSelectedInput(0); setResult(null); setError(null); setFolderImport(null); setEditRequest(null); setEditNotice(null);
   }
   function updateFile(patch: Partial<MigrationFile>) {
     setFiles(current => current.map((file, index) => index === selectedInput ? { ...file, ...patch } : file));
-    setResult(null); setError(null); setFolderImport(null);
+    setResult(null); setError(null); setFolderImport(null); setEditRequest(null); setEditNotice(null);
   }
   async function importFiles(chosen: File[], folder = false) {
-    setReading(true); setError(null); setResult(null); setFolderImport(null);
+    setReading(true); setError(null); setResult(null); setFolderImport(null); setEditRequest(null); setEditNotice(null);
     try {
       if (folder) {
         const imported = await readMigrationFolder(chosen);
@@ -94,7 +115,7 @@ export function ProjectWorkbench() {
     finally { setReading(false); }
   }
   function analyze() {
-    setError(null); setResult(null); setSelectedResult(0);
+    setError(null); setResult(null); setSelectedResult(0); setEditRequest(null); setEditNotice(null);
     try { setResult(analyzeProject(files)); }
     catch (cause) { setError(`分析發生非預期錯誤：${cause instanceof Error ? cause.message : String(cause)}`); }
   }
@@ -144,14 +165,15 @@ export function ProjectWorkbench() {
         <nav className="migration-list" aria-label="待分析檔案（輸入順序）">
           <h3>輸入清單 · {files.length} 份</h3>
           {files.map((file, index) => <button className="migration-item" type="button" key={index}
-            aria-pressed={selectedInput === index} onClick={() => setSelectedInput(index)}>{file.filename || '（未命名）'}</button>)}
+            aria-pressed={selectedInput === index} onClick={() => { setSelectedInput(index); setEditNotice(null); }}>{file.filename || '（未命名）'}</button>)}
           {files.length === 0 && <p className="muted">請匯入檔案或載入範例。</p>}
         </nav>
         {activeFile && <div>
           <label htmlFor="migration-filename">檔名</label>
           <input id="migration-filename" type="text" spellCheck={false} value={activeFile.filename} onChange={event => updateFile({ filename: event.target.value })} />
           <label htmlFor="project-source">PHP 原始碼（僅修改此工作台副本）</label>
-          <textarea id="project-source" spellCheck={false} value={activeFile.source} onChange={event => updateFile({ source: event.target.value })} />
+          {editNotice && <p role="status">{editNotice}</p>}
+          <textarea ref={editor} id="project-source" spellCheck={false} value={activeFile.source} onChange={event => updateFile({ source: event.target.value })} />
           <button type="button" className="secondary" onClick={() => replaceFiles(files.filter((_, index) => index !== selectedInput))}>移除此檔</button>
         </div>}
       </div>
@@ -160,6 +182,6 @@ export function ProjectWorkbench() {
     {reading && <p role="status">讀取檔案中…</p>}
     {error && <p role="alert" className="diagnostic">{error} 原始檔案不會被修改。</p>}
     {!result && !reading && <p className="muted">目前尚無分析結果。修改檔名或內容後，請重新分析專案。</p>}
-    {result && <ProjectResults result={result} files={files} selected={selectedResult} onSelect={setSelectedResult} />}
+    {result && <ProjectResults result={result} files={files} selected={selectedResult} onSelect={setSelectedResult} onEdit={editDiagnostic} />}
   </>;
 }
