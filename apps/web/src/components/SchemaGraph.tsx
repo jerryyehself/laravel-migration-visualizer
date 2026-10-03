@@ -3,7 +3,7 @@ import type { PointerEvent } from 'react';
 import type { SchemaState } from '@lmv/migration-core';
 import { schemaGraph, NODE_WIDTH, clampZoom, graphFit, edgePath, type Point } from '../schema-graph';
 
-export function SchemaGraph({ schema }: { schema: SchemaState }) {
+export function SchemaGraph({ schema, title = '最終 Schema ERD' }: { schema: SchemaState; title?: string }) {
   const graph = useMemo(() => schemaGraph(schema), [schema]);
   const marker = useId().replace(/:/g, '');
   const svg = useRef<SVGSVGElement>(null);
@@ -33,8 +33,8 @@ export function SchemaGraph({ schema }: { schema: SchemaState }) {
     else setPositions(current => new Map(current).set(active.name!, value));
   }
   function reset() { drag.current = null; setPositions(new Map()); setPan({ x: 20, y: 20 }); setZoom(graphFit(graph.width, graph.height)); }
-  return <section className="schema-graph" aria-label="最終 Schema ERD">
-    <h2>最終 Schema ERD</h2>
+  return <section className="schema-graph" aria-label={title}>
+    <h2>{title}</h2>
     <p>{graph.nodes.length} 張資料表 · {graph.edges.length} 個外鍵關係。箭頭從本表指向引用表；不推測關聯基數。</p>
     <p className="muted">拖移資料表可調整位置，拖移空白可平移。聚焦資料表後可用方向鍵移動；PK 為主鍵，FK 為外鍵欄位，? 表示 nullable。</p>
     <div className="toolbar">
