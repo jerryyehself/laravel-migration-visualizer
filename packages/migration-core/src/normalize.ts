@@ -114,7 +114,7 @@ function modify(column: Column, modifier: Call) {
     column[name] = value;
   } else if (name === 'useCurrent') {
     arity(args, 0);
-    if (!['timestamp', 'timestampTz'].includes(column.type)) throw new Error('useCurrent is supported only for timestamp and timestampTz.');
+    if (!['timestamp', 'timestampTz', 'dateTime', 'dateTimeTz'].includes(column.type)) throw new Error('useCurrent is supported only for timestamp, timestampTz, dateTime and dateTimeTz.');
     if (Object.hasOwn(column, 'default')) throw new Error('Combining useCurrent and default is unsupported.');
     column.useCurrent = true;
   } else if (name === 'default') {
