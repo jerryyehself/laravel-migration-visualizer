@@ -1,0 +1,173 @@
+[
+  {
+    "id": "columns",
+    "family": "欄位／修飾",
+    "body": "$t->string('name',80)->nullable()->default('');",
+    "complete": true,
+    "operations": [
+      {
+        "kind": "addColumn",
+        "column": {
+          "name": "name",
+          "type": "string",
+          "length": 80,
+          "nullable": true,
+          "default": ""
+        }
+      }
+    ]
+  },
+  {
+    "id": "index",
+    "family": "複合索引",
+    "body": "$t->index(['b','a'],'ordered');",
+    "complete": true,
+    "operations": [
+      {
+        "kind": "addIndex",
+        "index": {
+          "name": "ordered",
+          "type": "index",
+          "columns": [
+            "b",
+            "a"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "foreign",
+    "family": "外鍵",
+    "body": "$t->foreign('owner')->references('id')->on('users')->cascadeOnDelete();",
+    "complete": true,
+    "operations": [
+      {
+        "kind": "addForeignKey",
+        "foreignKey": {
+          "name": "items_owner_foreign",
+          "columns": [
+            "owner"
+          ],
+          "referencedTable": "users",
+          "referencedColumns": [
+            "id"
+          ],
+          "onDelete": "cascade"
+        }
+      }
+    ]
+  },
+  {
+    "id": "change",
+    "family": "欄位替換",
+    "body": "$t->decimal('price',10,2)->nullable()->change();",
+    "complete": true,
+    "operations": [
+      {
+        "kind": "changeColumn",
+        "column": {
+          "name": "price",
+          "type": "decimal",
+          "precision": 10,
+          "scale": 2,
+          "nullable": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "uuid-morph",
+    "family": "明確多型",
+    "body": "$t->nullableUuidMorphs('owner');",
+    "complete": true,
+    "operations": [
+      {
+        "kind": "addColumn",
+        "column": {
+          "name": "owner_type",
+          "type": "string",
+          "length": 255,
+          "nullable": true
+        }
+      },
+      {
+        "kind": "addColumn",
+        "column": {
+          "name": "owner_id",
+          "type": "uuid",
+          "nullable": true
+        }
+      },
+      {
+        "kind": "addIndex",
+        "index": {
+          "name": "items_owner_type_owner_id_index",
+          "type": "index",
+          "columns": [
+            "owner_type",
+            "owner_id"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "drop-array",
+    "family": "多欄位刪除",
+    "body": "$t->dropColumn(['b','a']);",
+    "complete": true,
+    "operations": [
+      {
+        "kind": "dropColumn",
+        "column": "b"
+      },
+      {
+        "kind": "dropColumn",
+        "column": "a"
+      }
+    ]
+  },
+  {
+    "id": "runtime-morph",
+    "family": "runtime 設定",
+    "body": "$t->morphs('owner');",
+    "complete": false,
+    "operations": []
+  },
+  {
+    "id": "raw-sql",
+    "family": "SQL expression",
+    "body": "$t->string('name')->default(DB::raw('uuid()'));",
+    "complete": false,
+    "operations": []
+  },
+  {
+    "id": "dynamic",
+    "family": "動態參數",
+    "body": "$t->string($name);",
+    "complete": false,
+    "operations": []
+  },
+  {
+    "id": "after",
+    "family": "欄位位置",
+    "body": "$t->uuidMorphs('owner',null,'id');",
+    "complete": false,
+    "operations": []
+  },
+  {
+    "id": "fulltext",
+    "family": "未支援索引",
+    "body": "$t->fullText('body');",
+    "complete": false,
+    "operations": []
+  },
+  {
+    "id": "helper-chain",
+    "family": "helper 方法鏈",
+    "body": "$t->dropMorphs('owner')->nullable();",
+    "complete": false,
+    "operations": []
+  }
+]
