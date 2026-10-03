@@ -2,6 +2,7 @@ import { useId, useState } from 'react';
 import type { ProjectAnalysis } from '@lmv/migration-core';
 import { schemaSnapshotChoices } from '../schema-snapshots';
 import { SchemaGraph } from './SchemaGraph';
+import { SchemaComparison } from './SchemaComparison';
 
 export function SchemaSnapshots({ result }: { result: ProjectAnalysis }) {
   const id = useId();
@@ -16,6 +17,6 @@ export function SchemaSnapshots({ result }: { result: ProjectAnalysis }) {
     <p className="muted">快照依 core 分析順序列出，不受下方搜尋或狀態篩選影響。切換快照會重設圖形位置與縮放；不執行 migration。</p>
     {active.schema === null ? <section aria-label={`${active.label} ERD`}>
       <h2>{active.label} ERD</h2><p className="unavailable" role="status">{active.unavailable}不繪製推測的 ERD。</p>
-    </section> : <SchemaGraph key={active.id} schema={active.schema} title={`${active.label} ERD`} />}
+    </section> : active.comparison ? <SchemaComparison key={active.id} step={active.comparison} /> : <SchemaGraph key={active.id} schema={active.schema} title={`${active.label} ERD`} />}
   </section>;
 }
