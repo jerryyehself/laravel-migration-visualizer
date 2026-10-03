@@ -1,0 +1,100 @@
+{
+  "complete": false,
+  "appliedCount": 1,
+  "steps": [
+    {
+      "status": "applied",
+      "before": {
+        "tables": {}
+      },
+      "after": {
+        "tables": {
+          "tags": {
+            "name": "tags",
+            "columns": {
+              "keep": {
+                "name": "keep",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              }
+            },
+            "indexes": {},
+            "foreignKeys": {}
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "tableAdded",
+            "table": "tags",
+            "after": {
+              "name": "tags",
+              "columns": {
+                "keep": {
+                  "name": "keep",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {}
+            }
+          }
+        ]
+      }
+    },
+    {
+      "status": "failed",
+      "before": {
+        "tables": {
+          "tags": {
+            "name": "tags",
+            "columns": {
+              "keep": {
+                "name": "keep",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              }
+            },
+            "indexes": {},
+            "foreignKeys": {}
+          }
+        }
+      },
+      "after": null,
+      "diff": null
+    },
+    {
+      "status": "blocked",
+      "before": null,
+      "after": null,
+      "diff": null
+    }
+  ],
+  "finalSchema": null,
+  "lastValidSchema": {
+    "tables": {
+      "tags": {
+        "name": "tags",
+        "columns": {
+          "keep": {
+            "name": "keep",
+            "type": "string",
+            "nullable": false,
+            "length": 255
+          }
+        },
+        "indexes": {},
+        "foreignKeys": {}
+      }
+    }
+  },
+  "diagnosticCodes": [
+    "SCHEMA_REPLAY_ERROR",
+    "SCHEMA_BLOCKED"
+  ]
+}
