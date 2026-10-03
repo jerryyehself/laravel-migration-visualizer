@@ -1,3 +1,6 @@
+import laravelUsers from '../../../../packages/migration-core/tests/fixtures/laravel-12/0001_01_01_000000_create_users_table.php?raw';
+import laravelCache from '../../../../packages/migration-core/tests/fixtures/laravel-12/0001_01_01_000001_create_cache_table.php?raw';
+import laravelJobs from '../../../../packages/migration-core/tests/fixtures/laravel-12/0001_01_01_000002_create_jobs_table.php?raw';
 import helperCreate from '../../../../packages/migration-core/tests/fixtures/column-helpers/2026_05_01_000000_create_profiles.php?raw';
 import helperRemove from '../../../../packages/migration-core/tests/fixtures/column-helpers/2026_05_02_000000_remove_helpers.php?raw';
 import helperInvalid from '../../../../packages/migration-core/tests/fixtures/column-helpers/2026_05_02_000000_invalid_drop.php?raw';
@@ -151,6 +154,11 @@ export function ProjectWorkbench() {
           }} />
           {!folderSupported && <p className="muted">此瀏覽器不支援資料夾選取，請使用 PHP 多檔匯入。</p>}
         </div>
+        <button type="button" className="secondary" onClick={() => replaceFiles([
+          { filename: '0001_01_01_000002_create_jobs_table.php', source: laravelJobs },
+          { filename: '0001_01_01_000000_create_users_table.php', source: laravelUsers },
+          { filename: '0001_01_01_000001_create_cache_table.php', source: laravelCache },
+        ])}>載入 Laravel 12 官方範例</button>
         <button type="button" className="secondary" onClick={() => replaceFiles(sampleFiles())}>載入成功範例</button>
         <button type="button" className="secondary" onClick={() => replaceFiles(sampleFiles(true))}>載入失敗範例</button>
         <button type="button" className="secondary" onClick={() => replaceFiles([
