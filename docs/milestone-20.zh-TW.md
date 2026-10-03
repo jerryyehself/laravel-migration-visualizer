@@ -33,3 +33,5 @@ ProjectWorkbench 是 component：一個呈現輸入與結果的畫面單元。�
 下一階段可擴充有明確來源的多階段 migration corpus，優先檢查常見 change()／時間欄位修飾缺口；仍先加入失敗回歸，再依具體案例設計契約。
 
 瀏覽器確認官方樣本 3／3 已套用、0 診斷、ERD 8 表／0 外鍵；failed_jobs 明細顯示 failed_at 的 useCurrent=true，未補 default。Console 無 warn／error。
+
+[PR #70](https://github.com/jerryyehself/laravel-migration-visualizer/pull/70) 已合併 main（5cea3b4）；功能 head 325238a 的 CI 通過 tests、typecheck、build 與四個 demo。Issues #68/#69 與 milestone 已關閉。

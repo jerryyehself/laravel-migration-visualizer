@@ -27,7 +27,7 @@
 - 自訂 base class、完整 Laravel API、DB 方言與 PHP runtime 語意仍不涵蓋；完整限制見 README。
 
 ## 後續範圍
-M1～M19 已交付；後續維持 core/UI 分層、測試、中文教學與 PR 流程。M14 已獲授權進入 ERD；timeline、down()、AI、semantic refactoring detection 仍不在目前範圍。
+M1～M20 已交付；後續維持 core/UI 分層、測試、中文教學與 PR 流程。M14 已獲授權進入 ERD；timeline、down()、AI、semantic refactoring detection 仍不在目前範圍。
 
 ## 原始碼閱讀順序
 src/types.ts → src/project-types.ts → src/ordering.ts → src/project.ts → src/diff.ts → tests/project.test.ts（皆位於 packages/migration-core）。教學請看 docs/tutorial.zh-TW.md 與 docs/milestone-2.zh-TW.md。
@@ -123,3 +123,5 @@ M19 已合併 PR #66（8c7d6ad），issues #64/#65 與 milestone 已關閉；功
 
 ## Milestone 20 交接
 Core 0.6.0 的 Column.useCurrent 是可選 boolean，與 scalar default 不同。三份 Laravel 12 官方 PHP 保留原始 bytes／commit／SHA-256／授權來源；分析結果 3／3、8 表、0 外鍵。另跑 npm run demo:laravel（CI 已加入），362 tests；讀 docs/milestone-20.zh-TW.md。外部 schema 仍須符合完整既有契約；不執行 PHP 或 DB。
+
+M20 已合併 PR #70（5cea3b4），issues #68/#69 與 milestone 已關閉；功能 head 325238a 的 CI 通過 tests、typecheck、build 與四個 demo。
