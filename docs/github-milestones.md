@@ -93,4 +93,8 @@ M25 已由 PR #88 合併 main（abab84311fba171a2834feca0e9847d378fd02aa），is
 
 M26 已由 PR #91 合併 main（1f86cc34b7ba5cea806c19f979fcb9231ee8d87e），issue #90／milestone 26 已關閉。功能 head 7b35e25fe75c87b334def63f4eef3fe91543fa67 的 validate CI completed/success（run 37161605578），涵蓋 npm ci、526 tests、typecheck、build 與九個 demo。本地持續接手，雲端停止開發。
 
-| 27：numeric morph helpers | [M27](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/27) | [#93](https://github.com/jerryyehself/laravel-migration-visualizer/issues/93) | 已實作；548 tests；core 0.12.0；PR／CI 待確認 |
+| 27：numeric morph helpers | [M27](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/27) | [#93](https://github.com/jerryyehself/laravel-migration-visualizer/issues/93) | [PR #94](https://github.com/jerryyehself/laravel-migration-visualizer/pull/94) 已合併；1b8cd53；548 tests；core 0.12.0 |
+
+M27 功能 head 4c2f682ab4c176898d73a7d7b7350944b9592fee 的 validate CI success（run 37162109886），PR #94 合併為 1b8cd5314f6ec1ac9ec2eee3bbc3a6db0e8443d3；issue #93／milestone 27 已關閉。
+
+| 28：UUID morph helpers | [M28](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/28) | [#95](https://github.com/jerryyehself/laravel-migration-visualizer/issues/95) | 已實作；561 tests；core 0.13.0；PR／CI 待確認 |
