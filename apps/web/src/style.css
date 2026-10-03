@@ -56,3 +56,9 @@ summary { cursor: pointer; padding: 10px 0; color: #176d62; }
 .result-filters { min-width: 0; border: 1px solid #ccd5de; border-radius: 10px; padding: 16px; margin: 20px 0; }
 .result-filters .toolbar > div:first-child { flex: 1; min-width: 180px; }
 .result-filters select { padding: 12px; border: 1px solid #bcc9d4; border-radius: 8px; background: white; color: #203043; font: inherit; }
+
+.diagnostic-source { margin: 20px 0; padding: 16px; border: 2px solid #b87424; border-radius: 10px; overflow-wrap: anywhere; scroll-margin-top: 16px; }
+.diagnostic-source:focus { outline: 3px solid #d99425; outline-offset: 3px; }
+.source-line { display: block; white-space: pre; }
+.source-line.highlighted { background: #ffe3b0; color: #542d00; font-weight: 700; }
+.line-number { display: inline-block; width: 4ch; color: #495565; text-align: right; margin-right: 1ch; }

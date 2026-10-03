@@ -160,6 +160,6 @@ export function ProjectWorkbench() {
     {reading && <p role="status">讀取檔案中…</p>}
     {error && <p role="alert" className="diagnostic">{error} 原始檔案不會被修改。</p>}
     {!result && !reading && <p className="muted">目前尚無分析結果。修改檔名或內容後，請重新分析專案。</p>}
-    {result && <ProjectResults result={result} selected={selectedResult} onSelect={setSelectedResult} />}
+    {result && <ProjectResults result={result} files={files} selected={selectedResult} onSelect={setSelectedResult} />}
   </>;
 }
