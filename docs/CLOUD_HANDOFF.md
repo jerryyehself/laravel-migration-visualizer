@@ -145,4 +145,4 @@ repo 的 .agents/skills/ 包含 migration-core-review、milestone-delivery、mig
 
 M23 功能分支 feat/m23-current-on-update：core 0.8.0、新增 38 個回歸、跨檔 golden、built-package demo:current-update 與中文教學。接手分支時另執行 npm run demo:current-update；雲端已實測 446／446 tests、typecheck、build 與六個 demo 通過；新任務仍須以實際 runner 結果為準。檢查最新 Git 狀態與交付紀錄，不假設此分支已合併 main。
 
-環境 start_skill 已由 M20 更新為讀取當前 milestone、現行 AGENTS 的全部 demo。GitHub 原生 Git 讀取可用；API 受代理限制，已將 api.github.com 加入環境設定草稿。草稿保存不等於 runtime 套用、發布或 CI 通過；發布仍由使用者操作。沒有瀏覽器工具，本次不宣稱互動驗收。
+環境 start_skill 已由 M20 更新為讀取當前 milestone、現行 AGENTS 的全部 demo。GitHub 原生 Git 讀取與 M23 分支推送均可用（功能 commit 5cde61e 已以遠端 SHA 確認）；API 受代理限制，已將 api.github.com 加入環境設定草稿。草稿保存不等於 runtime 套用、發布或 CI 通過；發布仍由使用者操作。沒有瀏覽器工具，本次不宣稱互動驗收。
