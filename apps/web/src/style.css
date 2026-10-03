@@ -91,3 +91,10 @@ summary { cursor: pointer; padding: 10px 0; color: #176d62; }
 .table-focus-list { display: flex; flex-wrap: wrap; gap: 8px; max-height: 160px; overflow: auto; margin: 10px 0; }
 .erd-node[data-focused="true"] rect:first-child { stroke: #2159a8; stroke-width: 4; }
 .graph-search { margin-top: 16px; }
+
+.table-inspector { border-top: 1px solid #ccd5de; margin-top: 16px; overflow-wrap: anywhere; }
+.column-detail { border: 1px solid #ccd5de; padding: 12px; margin: 8px 0; }
+.column-detail h5 { font-size: 15px; margin: 0 0 10px; }
+.column-detail dl > div { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 6px; }
+.column-detail dt { min-width: 120px; font-weight: 700; }
+.column-detail dd { margin: 0; }
