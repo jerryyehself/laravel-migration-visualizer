@@ -265,7 +265,10 @@ export function analyzeMigration(source: string, file = 'migration.php'): Analys
               } else if (first.name === 'dropColumn') {
                 arity(first.args, 1);
                 if (modifiers.length) throw new Error('dropColumn cannot have modifiers.');
-                operations.push({ kind: 'dropColumn', table, column: text(first.args[0]), source: location(body) });
+                const value = first.args[0];
+                const names = Array.isArray(value) ? value.map(text) : [text(value)];
+                if (!names.length || new Set(names).size !== names.length) throw new Error('dropColumn names must be non-empty and distinct.');
+                for (const column of names) operations.push({ kind: 'dropColumn', table, column, source: location(body) });
               } else if (first.name === 'renameColumn') {
                 arity(first.args, 2);
                 if (modifiers.length) throw new Error('renameColumn cannot have modifiers.');

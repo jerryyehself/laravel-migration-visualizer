@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { analyzeProject } from '@lmv/migration-core';
+const root = new URL('../packages/migration-core/tests/fixtures/drop-columns/', import.meta.url);
+const run = middle => analyzeProject(['2026_10_03_000000_add_later.php',middle,'2026_10_01_000000_create_users.php'].map(filename => ({ filename, source: readFileSync(new URL(filename,root),'utf8') })));
+const success = run('2026_10_02_000000_drop_columns.php');
+assert.equal(success.complete,true);
+assert.deepEqual(Object.keys(success.finalSchema.tables.users.columns),['keep','later']);
+assert.deepEqual(success.migrations[1].analysis.operations.map(op => op.column),['b','a']);
+const blocked = run('2026_10_02_000000_bad_columns.php');
+assert.deepEqual(blocked.migrations.map(m => m.status),['applied','failed','blocked']);
+assert.equal(blocked.finalSchema,null);
+assert.deepEqual(Object.keys(blocked.lastValidSchema.tables.users.columns),['a','b','keep']);
+console.log(JSON.stringify({ success, blocked },null,2));

@@ -1,0 +1,254 @@
+{
+  "complete": true,
+  "appliedCount": 3,
+  "finalSchema": {
+    "tables": {
+      "users": {
+        "name": "users",
+        "columns": {
+          "keep": {
+            "name": "keep",
+            "type": "string",
+            "nullable": false,
+            "length": 255
+          },
+          "later": {
+            "name": "later",
+            "type": "string",
+            "nullable": false,
+            "length": 255
+          }
+        },
+        "indexes": {},
+        "foreignKeys": {}
+      }
+    }
+  },
+  "lastValidSchema": {
+    "tables": {
+      "users": {
+        "name": "users",
+        "columns": {
+          "keep": {
+            "name": "keep",
+            "type": "string",
+            "nullable": false,
+            "length": 255
+          },
+          "later": {
+            "name": "later",
+            "type": "string",
+            "nullable": false,
+            "length": 255
+          }
+        },
+        "indexes": {},
+        "foreignKeys": {}
+      }
+    }
+  },
+  "steps": [
+    {
+      "status": "applied",
+      "before": {
+        "tables": {}
+      },
+      "after": {
+        "tables": {
+          "users": {
+            "name": "users",
+            "columns": {
+              "a": {
+                "name": "a",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "b": {
+                "name": "b",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "keep": {
+                "name": "keep",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              }
+            },
+            "indexes": {},
+            "foreignKeys": {}
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "tableAdded",
+            "table": "users",
+            "after": {
+              "name": "users",
+              "columns": {
+                "a": {
+                  "name": "a",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                },
+                "b": {
+                  "name": "b",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                },
+                "keep": {
+                  "name": "keep",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {}
+            }
+          }
+        ]
+      }
+    },
+    {
+      "status": "applied",
+      "before": {
+        "tables": {
+          "users": {
+            "name": "users",
+            "columns": {
+              "a": {
+                "name": "a",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "b": {
+                "name": "b",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "keep": {
+                "name": "keep",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              }
+            },
+            "indexes": {},
+            "foreignKeys": {}
+          }
+        }
+      },
+      "after": {
+        "tables": {
+          "users": {
+            "name": "users",
+            "columns": {
+              "keep": {
+                "name": "keep",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              }
+            },
+            "indexes": {},
+            "foreignKeys": {}
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "columnRemoved",
+            "table": "users",
+            "column": "a",
+            "before": {
+              "name": "a",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            }
+          },
+          {
+            "kind": "columnRemoved",
+            "table": "users",
+            "column": "b",
+            "before": {
+              "name": "b",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            }
+          }
+        ]
+      }
+    },
+    {
+      "status": "applied",
+      "before": {
+        "tables": {
+          "users": {
+            "name": "users",
+            "columns": {
+              "keep": {
+                "name": "keep",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              }
+            },
+            "indexes": {},
+            "foreignKeys": {}
+          }
+        }
+      },
+      "after": {
+        "tables": {
+          "users": {
+            "name": "users",
+            "columns": {
+              "keep": {
+                "name": "keep",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "later": {
+                "name": "later",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              }
+            },
+            "indexes": {},
+            "foreignKeys": {}
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "columnAdded",
+            "table": "users",
+            "column": "later",
+            "after": {
+              "name": "later",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "diagnosticCodes": []
+}

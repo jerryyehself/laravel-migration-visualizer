@@ -17,7 +17,8 @@
     "demo:changes": "npm run build -w @lmv/migration-core && node examples/change-columns.mjs",
     "demo:laravel": "npm run build -w @lmv/migration-core && node examples/laravel-baseline.mjs",
     "demo:index-rename": "npm run build -w @lmv/migration-core && node examples/rename-index.mjs",
-    "demo:current-update": "npm run build -w @lmv/migration-core && node examples/current-on-update.mjs"
+    "demo:current-update": "npm run build -w @lmv/migration-core && node examples/current-on-update.mjs",
+    "demo:drop-columns": "npm run build -w @lmv/migration-core && node examples/drop-columns.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
