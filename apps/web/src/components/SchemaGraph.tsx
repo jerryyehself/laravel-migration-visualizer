@@ -1,6 +1,7 @@
 import { useId, useMemo, useRef, useState } from 'react';
 import type { PointerEvent, Dispatch, SetStateAction } from 'react';
 import type { SchemaState, SchemaDiff } from '@lmv/migration-core';
+import { matchingTables, focusGraphTable } from '../graph-focus';
 import { initialGraphView, type GraphLayout, type GraphView } from '../comparison-layout';
 import { graphDiffMarks, memberKey, markLabels } from '../graph-diff';
 import { schemaGraph, NODE_WIDTH, clampZoom, edgePath, type Point } from '../schema-graph';
@@ -10,15 +11,26 @@ export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 
   const marks = useMemo(() => graphDiffMarks(diff ?? { changes: [] }, side), [diff, side]);
   const marker = useId().replace(/:/g, '');
   const svg = useRef<SVGSVGElement>(null);
+  const nodeRefs = useRef(new Map<string, SVGGElement>());
+  const [query, setQuery] = useState('');
+  const searchId = useId();
+  const matches = matchingTables(graph.nodes.map(node => node.name), query);
   const bounds = layout ?? graph;
   const [localView, setLocalView] = useState(() => initialGraphView(bounds));
-  const { zoom, pan, positions } = view ?? localView;
+  const { zoom, pan, positions, focused } = view ?? localView;
   const setView = onViewChange ?? setLocalView;
   const setZoom = (update: (value: number) => number) => setView(current => ({ ...current, zoom: update(current.zoom) }));
   const setPan = (value: Point) => setView(current => ({ ...current, pan: value }));
   const setPositions = (update: (value: Map<string, Point>) => Map<string, Point>) => setView(current => ({ ...current, positions: update(current.positions) }));
   const drag = useRef<{ pointer: number; name: string | null; start: Point; origin: Point } | null>(null);
   const position = (node: { name: string } & Point) => positions.get(node.name) ?? layout?.positions.get(node.name) ?? node;
+  function focusTable(name: string) {
+    const node = graph.nodes.find(node => node.name === name);
+    if (!node) return;
+    setView(current => focusGraphTable(current, node, current.positions.get(name) ?? layout?.positions.get(name) ?? node));
+    svg.current?.scrollIntoView({ block: 'center' });
+    nodeRefs.current.get(name)?.focus({ preventScroll: true });
+  }
   function point(event: PointerEvent) {
     const matrix = svg.current?.getScreenCTM();
     if (!matrix) return { x: event.clientX, y: event.clientY };
@@ -50,6 +62,15 @@ export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 
       <button type="button" className="secondary" aria-label="放大 ERD" disabled={zoom >= 2.5} onClick={() => setZoom(current => clampZoom(current * 1.2))}>＋</button>
       <button type="button" className="secondary" onClick={reset}>重設 ERD 位置</button>
     </div>
+    <fieldset className="graph-search">
+      <legend>尋找資料表</legend>
+      <label htmlFor={searchId}>搜尋 ERD 資料表</label>
+      <input id={searchId} type="search" value={query} onChange={event => setQuery(event.target.value)} placeholder="例如 users" />
+      <p className="muted" role="status">找到 {matches.length} / {graph.nodes.length} 張表；只篩選聚焦清單，圖形與外鍵仍完整顯示。</p>
+      <div className="table-focus-list">{matches.map(name => <button type="button" className="secondary" key={name} aria-pressed={focused === name} onClick={() => focusTable(name)}>聚焦資料表 {name}</button>)}</div>
+      {matches.length === 0 && <p className="muted">沒有符合的資料表。</p>}
+      <button type="button" className="secondary" disabled={query === ''} onClick={() => setQuery('')}>清除資料表搜尋</button>
+    </fieldset>
     {graph.unresolved > 0 && <p className="unavailable">{graph.unresolved} 個外鍵缺少引用表，未繪製連線。</p>}
     {graph.nodes.length === 0 ? <p>已知的空白 schema：沒有資料表可繪製。</p> : <>
       <svg ref={svg} viewBox="0 0 1200 560" className="erd-canvas" role="group" aria-label="ERD 畫布"
@@ -66,7 +87,7 @@ export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 
           {graph.nodes.map(node => {
             const at = position(node);
             const mark = marks.tables.get(node.name);
-            return <g key={node.name} transform={`translate(${at.x} ${at.y})`} className={`erd-node ${mark ?? ''}`} role="button" tabIndex={0} aria-label={`移動資料表 ${node.name}`}
+            return <g key={node.name} ref={element => { if (element) nodeRefs.current.set(node.name, element); else nodeRefs.current.delete(node.name); }} data-focused={focused === node.name} transform={`translate(${at.x} ${at.y})`} className={`erd-node ${mark ?? ''}`} role="button" tabIndex={0} aria-label={`移動資料表 ${node.name}`}
               onPointerDown={event => start(event, node.name, at)} onKeyDown={event => {
                 const directions: Record<string, Point> = { ArrowLeft: { x: -20, y: 0 }, ArrowRight: { x: 20, y: 0 }, ArrowUp: { x: 0, y: -20 }, ArrowDown: { x: 0, y: 20 } };
                 const delta = directions[event.key]; if (!delta) return;

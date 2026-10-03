@@ -87,3 +87,7 @@ summary { cursor: pointer; padding: 10px 0; color: #176d62; }
 .erd-edge.changed { stroke: #986000; stroke-width: 3; }
 
 .erd-node:focus rect:first-child { stroke: #d99425; stroke-width: 4; }
+
+.table-focus-list { display: flex; flex-wrap: wrap; gap: 8px; max-height: 160px; overflow: auto; margin: 10px 0; }
+.erd-node[data-focused="true"] rect:first-child { stroke: #2159a8; stroke-width: 4; }
+.graph-search { margin-top: 16px; }

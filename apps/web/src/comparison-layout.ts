@@ -1,7 +1,7 @@
 import type { SchemaState } from '@lmv/migration-core';
 import { schemaGraph, graphFit, type Point } from './schema-graph';
 export interface GraphLayout { positions: Map<string, Point>; width: number; height: number }
-export interface GraphView { zoom: number; pan: Point; positions: Map<string, Point> }
+export interface GraphView { focused?: string; zoom: number; pan: Point; positions: Map<string, Point> }
 export function initialGraphView(layout: { width: number; height: number }): GraphView {
   return { zoom: graphFit(layout.width, layout.height), pan: { x: 20, y: 20 }, positions: new Map() };
 }
