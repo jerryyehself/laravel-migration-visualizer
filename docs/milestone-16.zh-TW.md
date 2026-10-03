@@ -31,3 +31,5 @@ SchemaComparison 是顯示單元（component），props 是父層傳入的 Migra
 下一階段建議改善比較閱讀：同步兩圖縮放／平移、穩定共同表的位置，並提供聚焦變更項目的控制；維持既有分析契約。
 
 交付狀態見 [GitHub 紀錄](github-milestones.md)。
+
+[PR #54](https://github.com/jerryyehself/laravel-migration-visualizer/pull/54) 已合併 main（25dc11c）。功能 head 1a9ec51 的 CI 通過 tests、typecheck、build 與三個 demo；issues #52/#53 與 milestone 已關閉。
