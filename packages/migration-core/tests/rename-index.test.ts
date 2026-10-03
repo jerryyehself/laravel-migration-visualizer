@@ -113,7 +113,7 @@ describe('explicit ordinary index rename', () => {
     const result = analyzeProject([file(2, "$t->renameIndex('old','new');")], { initialSchema: before });
     result.migrations[0].schemaAfter!.tables.users.indexes.new.columns[0] = 'snapshot';
     expect(result.finalSchema!.tables.users.indexes.new.columns).toEqual(['b','a']);
-    expect(result.migrations[0].diff!.changes).toMatchObject([{ after: { columns: ['b','a'] } }]);
+    expect(result.migrations[0].diff!.changes.find(change => change.kind === 'indexAdded')).toMatchObject({ after: { columns: ['b','a'] } });
     const diff = diffSchemas(before, result.finalSchema!);
     const added = diff.changes.find(c => c.kind === 'indexAdded');
     if (added?.kind === 'indexAdded') added.after.columns[0] = 'diff';

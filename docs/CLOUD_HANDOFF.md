@@ -146,3 +146,7 @@ repo 的 .agents/skills/ 包含 migration-core-review、milestone-delivery、mig
 M23 已合併（PR #82／4563f01），原功能分支 feat/m23-current-on-update：core 0.8.0、新增 38 個回歸、跨檔 golden、built-package demo:current-update 與中文教學。接手分支時另執行 npm run demo:current-update；雲端已實測 446／446 tests、typecheck、build 與六個 demo 通過；新任務仍須以實際 runner 結果為準。檢查最新 Git 狀態與交付紀錄，PR 最新 head 6fc61fa 的 CI 已通過，issue #81／milestone 23 已結案。
 
 環境 start_skill 已由 M20 更新為讀取當前 milestone、現行 AGENTS 的全部 demo。GitHub 原生 Git 讀取與 M23 分支推送均可用（功能 commit 5cde61e 已以遠端 SHA 確認）；API 先前受代理限制，api.github.com 已加入草稿；後續已在沙箱外成功建立 PR、查 CI 並合併。唯讀沙箱內的 socket 限制仍需工具核准，不再將先前 403 視為現行 API 阻擋。草稿保存不等於 runtime 套用、發布或 CI 通過；發布仍由使用者操作。沒有瀏覽器工具，本次不宣稱互動驗收。
+
+## 2026-10-04 接回本地
+
+M23 已同步本地 main=a8d7b5a，446 tests、typecheck、build 與六個 demo 已在本地重新通過。M24 雲端 WIP 045e041 保存了測試與 fixtures，已取回 feat/m24-rename-index，雲端已停止開發。原 M22 本地版本保留於 baseline/local-m22。M24 的實際 PR／合併與驗證基準見 github-milestones.md 與 milestone-24.zh-TW.md，不把 WIP 當成功交付。
