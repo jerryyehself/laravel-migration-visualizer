@@ -69,12 +69,14 @@ M21 已由 PR #76 合併 main（f8925e1）；issue #75 與 milestone 已關閉�
 
 M22 已由 PR #79 合併 main（dbc9aa4）；issue #78 與 milestone 已關閉。功能 head 601946b 的 CI 通過 tests、typecheck、build 與五個 demo。
 
-## M23 分支與雲端驗證（尚未合併）
+## M23 交付與雲端驗證
 
 `feat/m23-current-on-update` 以 M22 文件 commit `27594f9d5456429579222631cca5943f02c97d2a` 為基準。Core 0.8.0 新增選用 useCurrentOnUpdate metadata、38 個行為回歸、人工跨檔 success／blocked golden、built-package demo:current-update 與中文教學；M22 保守 change 限制不變。
 
 雲端實際驗證（Node 24.19.0／npm 11.9.0）：446／446 tests、typecheck、build、demo:project／tables／helpers／laravel／changes／current-update 全部通過。初始新回歸為 22 failed／16 passed；不把此本地驗證說成 GitHub CI 通過。沒有瀏覽器工具，未做互動驗收。
 
-GitHub API 請求被網路代理在 CONNECT 階段以 403 拒絕；已有 GH_TOKEN 綁定，但尚不能經 API 確認權限或讀取現行 milestone／issues／PR。因此未建立重複 tracking 記錄，也未建立／合併 PR。api.github.com 已加入環境設定草稿，等待設定套用後再檢查現有記錄、建立對應 milestone／issue／PR，驗證 PR 最新 head CI 後依授權合併。保存草稿不代表已套用或發布。
+先前 GitHub API 曾遭代理阻擋；2026-10-03 已在沙箱外成功查詢及完成交付，未新增 credential。環境草稿保存不代表已發布。
 
-M23 功能 commit [`5cde61e`](https://github.com/jerryyehself/laravel-migration-visualizer/commit/5cde61e16b835658d95a30d2204d486607d47527) 已推送至 [feat/m23-current-on-update](https://github.com/jerryyehself/laravel-migration-visualizer/tree/feat/m23-current-on-update)，並用 git ls-remote 確認遠端 SHA。Git write access 已證實可用，API／PR／CI／合併仍待網路設定套用；未直接推 main。
+| 23：更新時的 current timestamp | [M23](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/23) | [core/tests/docs #81](https://github.com/jerryyehself/laravel-migration-visualizer/issues/81) | [PR #82](https://github.com/jerryyehself/laravel-migration-visualizer/pull/82) 已合併；4563f01；446 tests；core 0.8.0 |
+
+M23 已由 PR #82 合併 main（4563f01d44fd4ef202927338bf7ac56f74bcd111），issue #81 與 milestone 23 已關閉。PR 最新 head 6fc61fa94502913a749017f133b8eb281aab71fa 的 validate CI completed/success；涵蓋 npm ci、446 tests、typecheck、build 與六個 demo。GitHub CI 與前述雲端驗證為不同證據。
