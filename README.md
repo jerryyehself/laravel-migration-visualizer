@@ -279,3 +279,5 @@ Core 0.12.0 支援 numericMorphs／nullableNumericMorphs：type string + unsigne
 ## Milestone 28：UUID morphs
 
 Core 0.13.0 支援 uuidMorphs／nullableUuidMorphs：type string + uuid id + 有序 type/id index。沿用 M27 的省略／null／自訂名稱與拒絕規則，不新增 foreign key 或 JSON variant。ULID 與 runtime-dependent morphs 仍未支援。教學見 [M28](docs/milestone-28.zh-TW.md)；demo:morphs 同時驗證 numeric 與 UUID。
+
+Morph helpers 的 indexName 字串 `0` 遵循 PHP falsey 規則，使用慣例名稱；空字串與 false 仍保守拒絕。
