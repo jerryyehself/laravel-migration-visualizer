@@ -4,8 +4,8 @@
 - M1～M20 已合併 main；本次核對起點為 f7e2383（M20 交付文件），功能合併為 5cea3b4／PR #70。Core 0.6.0，最近一次完整驗證為 362／362 tests、typecheck、build 與四個 demo 通過。
 - 已有多檔匯入、排序／分析／逐檔快照／結構 diff、索引／外鍵、診斷定位、JSON 匯出，以及 ERD 快照／比較／同步互動／聚焦／明細。
 - M1 baseline 為 6959b46（42 tests）；各階段實際 commits、PR、驗證與限制見 [GitHub 交付紀錄](github-milestones.md)，下方各節為歷史紀錄。
-- M21 尚未實作。先前只建立本機 feat/milestone-21-datetime-current 空分支並查閱時間欄位原始碼，沒有待帶走的程式修改，也未建立 M21 PR／milestone。
-- M21 建議目標：核對並支援 dateTime／dateTimeTz 的 useCurrent()，加入回歸、跨檔 golden tests 與中文教學。useCurrentOnUpdate() 仍是目前不支援項目；若後續納入須先核對語意並明列新契約，不能當作已完成。
+- M21 已實作 dateTime／dateTimeTz 的零參數 useCurrent()，新增跨檔 golden、失敗／不可變回歸與中文教學；373／373 tests、typecheck、build 與四個 demo 通過。GitHub PR／合併狀態見交付紀錄，接手先核對最新 main。
+- useCurrentOnUpdate() 仍不支援；沒有加入 change() 或 DB runtime。後續可優先用具體 migration 樣本調查 change()，先設計可支持的靜態子集合與拒絕規則，再實作。
 - 本機完整對話不會自動成為 Cloud 對話；先讀 [決策索引](DECISIONS.zh-TW.md)、AGENTS.md 與本文件，再以 repo／GitHub 紀錄延續。雲端任務尚未在此核對中啟動或驗證。
 
 ## Cloud 環境設定
@@ -19,9 +19,9 @@
 ## 第一個雲端任務：驗證交接
 請讀 AGENTS.md、docs/DECISIONS.zh-TW.md、README.md、docs/milestone-20.zh-TW.md 及本文件。確認 Git 狀態與目前 commit，以 main 的最新已合併內容為基準；本機空的 M21 分支不必搬移。
 
-執行 npm test、npm run typecheck、npm run build，以及 npm run demo:project、npm run demo:tables、npm run demo:helpers、npm run demo:laravel。M20 基準為 362 tests；回報實際結果與環境差異，不把本機通過當成雲端通過。demo:project 最終 users 欄位為 id、display_name；demo:laravel 為三份已套用、8 表、0 外鍵。
+執行 npm test、npm run typecheck、npm run build，以及 npm run demo:project、npm run demo:tables、npm run demo:helpers、npm run demo:laravel。M20 基準為 362 tests，M21 實作後為 373 tests；回報實際結果與環境差異，不把本機通過當成雲端通過。demo:project 最終 users 欄位為 id、display_name；demo:laravel 為三份已套用、8 表、0 外鍵。
 
-驗證成功後依持續工作授權接續 M21；先寫會失敗的回歸，再修改 core，保留 PR／最新 head CI 流程。若雲端無法推送或合併，交付可審查的結果並明確回報限制，不宣稱已合併。
+驗證成功後依持續工作授權規劃下一階段；先寫會失敗的回歸，再修改 core，保留 PR／最新 head CI 流程。若雲端無法推送或合併，交付可審查的結果並明確回報限制，不宣稱已合併。
 
 ## 歷史對話備份
 [對話備份索引](conversations/README.md) 可查原始措辭與背景。先讀決策索引，再按需查歷史；備份不是現行規格，原始 ChatGPT 內容僅部分可取得。

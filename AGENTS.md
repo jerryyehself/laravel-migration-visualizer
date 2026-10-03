@@ -16,7 +16,7 @@
 
 ## 開發與驗證
 - Node.js 22.12+，npm。安裝使用 npm ci，保留 package-lock.json。
-- npm test：目前 362 tests（273 core + 5 browser import + 6 export + 9 filters + 10 folder import + 8 diagnostic location + 6 source selection + 8 drafts + 9 graph + 5 snapshots + 8 graph diff + 5 comparison layout + 4 focus + 6 table inspector）；原 Milestone 1 為 42 tests。
+- npm test：目前 373 tests（284 core + 5 browser import + 6 export + 9 filters + 10 folder import + 8 diagnostic location + 6 source selection + 8 drafts + 9 graph + 5 snapshots + 8 graph diff + 5 comparison layout + 4 focus + 6 table inspector）；原 Milestone 1 為 42 tests。
 - npm run typecheck
 - npm run build
 - npm run demo:project
@@ -51,3 +51,5 @@ M19 聚焦表明細已由 PR #66 合併（8c7d6ad），狀態見交付紀錄；�
 M20 加入固定 commit 的 Laravel 12 官方樣本、useCurrent metadata 與相容性基準；讀 docs/milestone-20.zh-TW.md，交付狀態見 docs/github-milestones.md。
 
 M20 已由 PR #70 合併（5cea3b4），issues #68/#69 與 milestone 已關閉；功能 head 325238a 的 CI 通過，core 0.6.0、362 tests。
+
+M21 擴充 dateTime/dateTimeTz 的零參數 useCurrent metadata；讀 docs/milestone-21.zh-TW.md。373 tests，core JSON 契約沿用 0.6.0；交付狀態見 docs/github-milestones.md。
