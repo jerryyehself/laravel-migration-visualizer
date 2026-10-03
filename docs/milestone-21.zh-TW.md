@@ -21,3 +21,5 @@ React component 是畫面單元；state 保存會隨操作改變的畫面資料�
 跨檔 golden 是人工指定的完整 before／after schema 和結構 diff，沒有錄製分析器輸出。第一份 create dateTime，第二份 table 新增 dateTimeTz；輸入倒序驗證排序，修改第二份快照驗證第一份與 finalSchema 不受影響。失敗流程保留可信成功前綴，後續 snapshots/diff 為 null。examples/column-helpers.mjs 另透過建置後公開套件驗證兩檔結果。
 
 373／373 tests、typecheck、build 與 demo:project／demo:tables／demo:helpers／demo:laravel 全數通過。未修改 React UI，沒有 timeline、ERD 新能力、down()、AI、SQL parser、runtime execution 或 semantic refactoring detection。
+
+[PR #76](https://github.com/jerryyehself/laravel-migration-visualizer/pull/76) 已合併 main（f8925e1），issue #75 與 milestone 已關閉。功能 head 5c72f84 的 CI 全數通過。

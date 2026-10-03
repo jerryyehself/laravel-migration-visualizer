@@ -10,7 +10,7 @@
 - npm workspaces：packages/migration-core 為純 TypeScript domain；apps/web 為 React + TypeScript + Vite。
 - parser、排序、schema replay、diff 與 project diagnostics 都放 core，不放 React hooks。
 - core 接收檔名與 PHP 字串，不讀檔、不執行 PHP、不連資料庫。
-- Milestone 1～20 已完成並在 main；M5～M8 分別由 PR #11、#15、#19、#22 合併。Core 0.6.0。M9 的 web 結果搜尋／狀態篩選已由 PR #26 合併，core 不變。M10 資料夾匯入已由 PR #30 合併（47d5b0f）；M11 診斷定位已由 PR #34 合併（d9e7a99），交付狀態見 docs/github-milestones.md；M12 診斷編輯跳轉已由 PR #38 合併（8777354），狀態見交付紀錄；M13 副本還原已由 PR #42 合併（8d9d02f），狀態見交付紀錄；使用者已同意進入視覺化，M14 最終 schema ERD 已由 PR #46 合併（652292b），狀態見交付紀錄；先讀 docs/DECISIONS.zh-TW.md、docs/CLOUD_HANDOFF.md、README.md 與 docs/milestone-20.zh-TW.md。
+- Milestone 1～21 已完成並在 main；M5～M8 分別由 PR #11、#15、#19、#22 合併。Core 0.6.0。M9 的 web 結果搜尋／狀態篩選已由 PR #26 合併，core 不變。M10 資料夾匯入已由 PR #30 合併（47d5b0f）；M11 診斷定位已由 PR #34 合併（d9e7a99），交付狀態見 docs/github-milestones.md；M12 診斷編輯跳轉已由 PR #38 合併（8777354），狀態見交付紀錄；M13 副本還原已由 PR #42 合併（8d9d02f），狀態見交付紀錄；使用者已同意進入視覺化，M14 最終 schema ERD 已由 PR #46 合併（652292b），狀態見交付紀錄；先讀 docs/DECISIONS.zh-TW.md、docs/CLOUD_HANDOFF.md、README.md 與 docs/milestone-20.zh-TW.md。
 - 未經新需求，不擴增 timeline、down()、AI、SQL parser、runtime migration execution 或 semantic refactoring detection。
 - SchemaDiff 是結構比較，不猜 rename。失敗後 schemaAfter/finalSchema 為 null；lastValidSchema 僅代表成功前綴。
 
@@ -53,3 +53,5 @@ M20 加入固定 commit 的 Laravel 12 官方樣本、useCurrent metadata 與相
 M20 已由 PR #70 合併（5cea3b4），issues #68/#69 與 milestone 已關閉；功能 head 325238a 的 CI 通過，core 0.6.0、362 tests。
 
 M21 擴充 dateTime/dateTimeTz 的零參數 useCurrent metadata；讀 docs/milestone-21.zh-TW.md。373 tests，core JSON 契約沿用 0.6.0；交付狀態見 docs/github-milestones.md。
+
+M21 已由 PR #76 合併（f8925e1），issue #75 與 milestone 已關閉；最新功能 head 5c72f84 的 CI 通過。
