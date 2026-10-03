@@ -21,7 +21,7 @@ Milestone 1～3 的 GitHub 紀錄為事後補登，實作日期與驗證以各 c
 
 | 13：副本修改與還原 | [M13](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/13) | [UI #40](https://github.com/jerryyehself/laravel-migration-visualizer/issues/40)、[tests/docs #41](https://github.com/jerryyehself/laravel-migration-visualizer/issues/41) | [PR #42](https://github.com/jerryyehself/laravel-migration-visualizer/pull/42) 已合併；8d9d02f；315 tests |
 
-後續新工作使用功能分支與 PR；實作完成與「已合併」分開記錄。M4～M15 已合併並關閉對應 issues／milestones。M5～M8 開發時使用堆疊分支，合併時依序改以 main 為 base、確認差異與最新 head CI；合併後 main 包含完整功能。
+後續新工作使用功能分支與 PR；實作完成與「已合併」分開記錄。M4～M16 已合併並關閉對應 issues／milestones。M5～M8 開發時使用堆疊分支，合併時依序改以 main 為 base、確認差異與最新 head CI；合併後 main 包含完整功能。
 
 M9 已合併 main，對應 issues／milestone 已關閉。
 
@@ -41,4 +41,6 @@ M14 已合併 main（652292b），issues #44/#45 與 milestone 已關閉；最�
 
 M15 已合併 main（cf8f0b8），issues #48/#49 與 milestone 已關閉；最新功能 head 1a3e16b 的 CI 通過。
 
-| 16：ERD 結構比較 | [M16](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/16) | [UI #52](https://github.com/jerryyehself/laravel-migration-visualizer/issues/52)、[tests/docs #53](https://github.com/jerryyehself/laravel-migration-visualizer/issues/53) | 已實作，待 PR／CI／合併；337 tests |
+| 16：ERD 結構比較 | [M16](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/16) | [UI #52](https://github.com/jerryyehself/laravel-migration-visualizer/issues/52)、[tests/docs #53](https://github.com/jerryyehself/laravel-migration-visualizer/issues/53) | [PR #54](https://github.com/jerryyehself/laravel-migration-visualizer/pull/54) 已合併；25dc11c；337 tests |
+
+M16 已合併 main（25dc11c），issues #52/#53 與 milestone 已關閉；功能 head 1a9ec51 的 CI 通過。
