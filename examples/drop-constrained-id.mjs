@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { analyzeProject } from '@lmv/migration-core';
+const root = new URL('../packages/migration-core/tests/fixtures/drop-constrained-id/',import.meta.url);
+const run = middle => analyzeProject(['2026_10_04_000000_add_later.php',middle,'2026_10_02_000000_create_posts.php','2026_10_01_000000_create_users.php'].map(filename => ({ filename,source:readFileSync(new URL(filename,root),'utf8') })));
+const success=run('2026_10_03_000000_drop_owner.php');
+assert.equal(success.complete,true);
+assert.deepEqual(success.migrations[2].analysis.operations.map(op=>op.kind),['dropForeignKey','dropColumn']);
+assert.deepEqual(Object.keys(success.finalSchema.tables.posts.columns),['keep','later']);
+assert.deepEqual(success.finalSchema.tables.posts.foreignKeys,{});
+const blocked=run('2026_10_03_000000_bad_owner.php');
+assert.equal(blocked.finalSchema,null);
+assert.deepEqual(blocked.migrations.map(m=>m.status),['applied','applied','failed','blocked']);
+assert.deepEqual(Object.keys(blocked.lastValidSchema.tables.posts.columns),['keep','user_id']);
+assert.ok(blocked.lastValidSchema.tables.posts.foreignKeys.posts_user_id_foreign);
+assert.equal(blocked.diagnostics[0].operationIndex,2);
+console.log(JSON.stringify({success,blocked},null,2));
