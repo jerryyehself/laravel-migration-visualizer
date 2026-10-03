@@ -133,3 +133,7 @@ M19 已合併 PR #66（8c7d6ad），issues #64/#65 與 milestone 已關閉；功
 Core 0.6.0 的 Column.useCurrent 是可選 boolean，與 scalar default 不同。三份 Laravel 12 官方 PHP 保留原始 bytes／commit／SHA-256／授權來源；分析結果 3／3、8 表、0 外鍵。另跑 npm run demo:laravel（CI 已加入），362 tests；讀 docs/milestone-20.zh-TW.md。外部 schema 仍須符合完整既有契約；不執行 PHP 或 DB。
 
 M20 已合併 PR #70（5cea3b4），issues #68/#69 與 milestone 已關閉；功能 head 325238a 的 CI 通過 tests、typecheck、build 與四個 demo。
+
+## 可攜專案 skills
+
+repo 的 .agents/skills/ 包含 migration-core-review、milestone-delivery、migration-ui-review、migration-handoff。接手交接流程讀 migration-handoff；修改 React／ERD 時讀 migration-ui-review；核心 review 已補入固定來源／hash／授權與相容性樣本流程。這些是可讀的工作指引，不會自動建立子代理、排程、轉移對話或擴大權限。雲端是否自動發現技能仍須在該環境確認；AGENTS.md 已提供明確使用入口。
