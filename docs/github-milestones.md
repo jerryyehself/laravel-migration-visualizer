@@ -32,3 +32,5 @@ M11 已合併 main（d9e7a99），issues #32/#33 與 milestone 已關閉。最�
 M12 已合併 main（8777354），對應 issues #36/#37 與 milestone 已關閉；最新 PR head CI 通過。
 
 M13 已合併 main（8d9d02f），issues #40/#41 與 milestone 已關閉；最新 PR head CI 通過。
+
+| 14：最終 Schema ERD | [M14](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/14) | [UI #44](https://github.com/jerryyehself/laravel-migration-visualizer/issues/44)、[tests/docs #45](https://github.com/jerryyehself/laravel-migration-visualizer/issues/45) | 已實作，待 PR／CI／合併；324 tests；core 0.5.0 不變 |
