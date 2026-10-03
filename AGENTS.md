@@ -10,7 +10,7 @@
 - npm workspaces：packages/migration-core 為純 TypeScript domain；apps/web 為 React + TypeScript + Vite。
 - parser、排序、schema replay、diff 與 project diagnostics 都放 core，不放 React hooks。
 - core 接收檔名與 PHP 字串，不讀檔、不執行 PHP、不連資料庫。
-- Milestone 1～13 已完成並在 main；M5～M8 分別由 PR #11、#15、#19、#22 合併。Core 0.5.0。M9 的 web 結果搜尋／狀態篩選已由 PR #26 合併，core 不變。M10 資料夾匯入已由 PR #30 合併（47d5b0f）；M11 診斷定位已由 PR #34 合併（d9e7a99），交付狀態見 docs/github-milestones.md；M12 診斷編輯跳轉已由 PR #38 合併（8777354），狀態見交付紀錄；M13 副本還原已由 PR #42 合併（8d9d02f），狀態見交付紀錄；使用者已同意進入視覺化，M14 最終 schema ERD 已實作，狀態見交付紀錄；先讀 docs/CLOUD_HANDOFF.md、README.md 與 docs/milestone-14.zh-TW.md。
+- Milestone 1～14 已完成並在 main；M5～M8 分別由 PR #11、#15、#19、#22 合併。Core 0.5.0。M9 的 web 結果搜尋／狀態篩選已由 PR #26 合併，core 不變。M10 資料夾匯入已由 PR #30 合併（47d5b0f）；M11 診斷定位已由 PR #34 合併（d9e7a99），交付狀態見 docs/github-milestones.md；M12 診斷編輯跳轉已由 PR #38 合併（8777354），狀態見交付紀錄；M13 副本還原已由 PR #42 合併（8d9d02f），狀態見交付紀錄；使用者已同意進入視覺化，M14 最終 schema ERD 已由 PR #46 合併（652292b），狀態見交付紀錄；先讀 docs/CLOUD_HANDOFF.md、README.md 與 docs/milestone-14.zh-TW.md。
 - 未經新需求，不擴增 timeline、down()、AI、SQL parser、runtime migration execution 或 semantic refactoring detection。
 - SchemaDiff 是結構比較，不猜 rename。失敗後 schemaAfter/finalSchema 為 null；lastValidSchema 僅代表成功前綴。
 
@@ -27,7 +27,7 @@
 
 ## GitHub 工作流程
 - 新功能建立功能分支、對應 milestone/issues 與 PR，不直接推 main。
-- M1～M3 是已完成補登紀錄；M4～M13 已合併，對應 issues 與 milestones 已關閉。
+- M1～M3 是已完成補登紀錄；M4～M14 已合併，對應 issues 與 milestones 已關閉。
 - 每張表的 indexes 與 foreignKeys 是必要欄位，primary metadata 從權威索引同步。外部 initialSchema 必須符合目前契約。
 
 ## 專案 skills

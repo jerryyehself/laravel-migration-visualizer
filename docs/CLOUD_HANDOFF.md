@@ -27,7 +27,7 @@
 - 自訂 base class、完整 Laravel API、DB 方言與 PHP runtime 語意仍不涵蓋；完整限制見 README。
 
 ## 後續範圍
-M1～M13 已交付；後續維持 core/UI 分層、測試、中文教學與 PR 流程。M14 已獲授權進入 ERD；timeline、down()、AI、semantic refactoring detection 仍不在目前範圍。
+M1～M14 已交付；後續維持 core/UI 分層、測試、中文教學與 PR 流程。M14 已獲授權進入 ERD；timeline、down()、AI、semantic refactoring detection 仍不在目前範圍。
 
 ## 原始碼閱讀順序
 src/types.ts → src/project-types.ts → src/ordering.ts → src/project.ts → src/diff.ts → tests/project.test.ts（皆位於 packages/migration-core）。教學請看 docs/tutorial.zh-TW.md 與 docs/milestone-2.zh-TW.md。
@@ -93,3 +93,5 @@ M13 已合併 PR #42（8d9d02f），對應 issues／milestone 已關閉。
 ## Milestone 14 交接
 - 使用者同意開始視覺化，ERD 只使用成功的 finalSchema。SVG 圖形與座標在 web；core 0.5.0 不變。
 - 324 tests，實際拖移／平移／縮放／重設與失敗未知狀態已驗證。讀 docs/milestone-14.zh-TW.md；交付狀態見 github-milestones.md。
+
+M14 已合併 PR #46（652292b），issues #44/#45 與 milestone 已關閉；最新功能 head CI 通過 tests、typecheck、build 與三個 demo。
