@@ -92,3 +92,5 @@ M25 已由 PR #88 合併 main（abab84311fba171a2834feca0e9847d378fd02aa），is
 | 26：外鍵欄位移除 helper | [M26](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/26) | [core/tests/docs #90](https://github.com/jerryyehself/laravel-migration-visualizer/issues/90) | [PR #91](https://github.com/jerryyehself/laravel-migration-visualizer/pull/91) 已合併；1f86cc3；526 tests；core 0.11.0 |
 
 M26 已由 PR #91 合併 main（1f86cc34b7ba5cea806c19f979fcb9231ee8d87e），issue #90／milestone 26 已關閉。功能 head 7b35e25fe75c87b334def63f4eef3fe91543fa67 的 validate CI completed/success（run 37161605578），涵蓋 npm ci、526 tests、typecheck、build 與九個 demo。本地持續接手，雲端停止開發。
+
+| 27：numeric morph helpers | [M27](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/27) | [#93](https://github.com/jerryyehself/laravel-migration-visualizer/issues/93) | 已實作；548 tests；core 0.12.0；PR／CI 待確認 |
