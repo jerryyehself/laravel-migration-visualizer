@@ -28,3 +28,5 @@ graph-focus.ts 是純 web 呈現函式：根據真實卡片高度與目前移動
 下一階段建議加入表的欄位／索引／外鍵詳細檢視，讓長名稱與屬性不必只靠 JSON 查看。
 
 交付狀態見 [GitHub 紀錄](github-milestones.md)。
+
+[PR #62](https://github.com/jerryyehself/laravel-migration-visualizer/pull/62) 已合併 main（d6a170d）；功能 head a313dbc 的 CI 通過 tests、typecheck、build 與三個 demo。Issues #60/#61 與 milestone 已關閉。
