@@ -260,6 +260,13 @@ export function analyzeMigration(source: string, file = 'migration.php'): Analys
                 const name = Array.isArray(value) ? indexName(table, indexColumns(value), type)
                   : type === 'primary' && (value === undefined || value === null) ? null : text(value);
                 operations.push({ kind: 'dropIndex', table, name, indexType: type, source: location(body) });
+              } else if (first.name === 'dropMorphs') {
+                arity(first.args, 1, 2);
+                if (modifiers.length) throw new Error('dropMorphs cannot have modifiers.');
+                const name = text(first.args[0]), names = [`${name}_type`, `${name}_id`];
+                const index = morphIndexName(table,names,first.args[1]);
+                operations.push({ kind:'dropIndex', table, name:index, indexType:'index', source:location(body) });
+                for (const column of names) operations.push({ kind:'dropColumn', table, column, source:location(body) });
               } else if (['numericMorphs','nullableNumericMorphs','uuidMorphs','nullableUuidMorphs'].includes(first.name)) {
                 arity(first.args, 1, 2);
                 if (modifiers.length) throw new Error('Morph helpers cannot have modifiers.');
