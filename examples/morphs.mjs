@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { analyzeProject } from '@lmv/migration-core';
+const root=new URL('../packages/migration-core/tests/fixtures/numeric-morphs/',import.meta.url);
+const run=middle=>analyzeProject(['2026_10_03_000000_later.php',middle,'2026_10_01_000000_create.php'].map(filename=>({filename,source:readFileSync(new URL(filename,root),'utf8')})));
+const success=run('2026_10_02_000000_add.php'),blocked=run('2026_10_02_000000_bad.php');
+assert.equal(success.complete,true);
+assert.deepEqual(success.finalSchema.tables.tags.indexes.custom.columns,['taggable_type','taggable_id']);
+assert.equal(success.finalSchema.tables.tags.columns.taggable_id.type,'bigInteger');
+assert.equal(success.finalSchema.tables.tags.columns.taggable_id.unsigned,true);
+assert.equal(blocked.finalSchema,null);
+assert.deepEqual(Object.keys(blocked.lastValidSchema.tables.tags.columns),['keep']);
+console.log(JSON.stringify({success,blocked},null,2));

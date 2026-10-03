@@ -271,3 +271,7 @@ Core 0.10.0 支援單一靜態陣列參數的 `dropColumn`，依輸入順序展�
 Core 0.11.0 支援獨立 `dropConstrainedForeignId`，只接受一個非空靜態字串，展開成既有 dropForeignKey + dropColumn，JSON 型別不變。慣例名稱不存在時失敗；自訂名稱需明確 dropForeign + dropColumn。其他索引／外鍵仍受保護，整檔失敗保留可信前綴。connection prefix_indexes、model-based dropConstrainedForeignIdFor、動態參數與方法鏈不支援，不保證 DB 執行相容。
 
 教學見 [M26](docs/milestone-26.zh-TW.md)，建置後驗證：`npm run demo:drop-constrained-id`。
+
+## Milestone 27：numeric morphs
+
+Core 0.12.0 支援 numericMorphs／nullableNumericMorphs：type string + unsigned bigInteger id + type/id 複合 index，第二參數省略／null 為慣例名稱，自訂名稱須非空。最多兩個靜態參數，拒絕 after／方法鏈；runtime-dependent morphs／nullableMorphs 仍拒絕。不推測目標外鍵。教學見 [M27](docs/milestone-27.zh-TW.md)；`npm run demo:morphs` 驗證 built package。
