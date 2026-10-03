@@ -194,7 +194,19 @@ export function analyzeMigration(source: string, file = 'migration.php'): Analys
               if (body.kind !== 'expressionstatement') throw new Error('Blueprint control flow is unsupported.');
               const calls = chain(body.expression, receiver);
               if (!calls.length) throw new Error('Expected a Blueprint call.');
-              const [first, ...modifiers] = calls;
+              const [first, ...allModifiers] = calls;
+              const changes = allModifiers.filter(call => call.name === 'change');
+              const changing = changes.length > 0;
+              if (changing) {
+                if (method !== 'table') throw new Error('change is supported only in Schema::table.');
+                if (changes.length !== 1) throw new Error('Expected exactly one change modifier.');
+                arity(changes[0].args, 0);
+                const plain = simpleTypes.has(first.name) || integerTypes.has(first.name) ||
+                  ['string', 'char', 'decimal', 'enum', 'timestamp', 'timestampTz', 'dateTime', 'dateTimeTz', 'time', 'timeTz'].includes(first.name);
+                if (!plain) throw new Error('change supports only single ordinary column definitions, without helpers or auto-increment.');
+                if (allModifiers.some(call => indexTypes.has(call.name))) throw new Error('Index modifiers combined with change are unsupported; use separate index commands.');
+              }
+              const modifiers = allModifiers.filter(call => call.name !== 'change');
               const operations: AtomicOperation[] = [];
               if (first.name === 'foreign') {
                 arity(first.args, 1, 2);
@@ -273,7 +285,7 @@ export function analyzeMigration(source: string, file = 'migration.php'): Analys
                     const type = modifier.name as IndexType;
                     pending.push({ kind: 'addIndex', table, index: { name: name ?? indexName(table, [column.name], type), type, columns: [column.name] }, source: location(body) });
                   }
-                  operations.push({ kind: 'addColumn', table, column, source: location(body) });
+                  operations.push({ kind: changing ? 'changeColumn' : 'addColumn', table, column, source: location(body) });
                 }
                 fluentIndexes.push(...pending);
               }

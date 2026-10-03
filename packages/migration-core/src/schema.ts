@@ -65,6 +65,15 @@ export function applyOperations(initial: SchemaState, operations: readonly Atomi
       set(columns, op.column.name, structuredClone(op.column));
       if (op.column.primary) addIndex({ name: indexName(op.table, [op.column.name], 'primary'), type: 'primary', columns: [op.column.name] });
       else syncPrimary();
+    } else if (op.kind === 'changeColumn') {
+      if (!owns(columns, op.column.name)) fail(`Unknown column: ${op.column.name}`);
+      if (columns[op.column.name].autoIncrement || op.column.autoIncrement || op.column.primary) fail('Changing auto-increment definitions or supplying primary metadata is unsupported.');
+      if (Object.values(foreignKeys).some(key => key.columns.includes(op.column.name)) ||
+          Object.values(state.tables).some(table => Object.values(table.foreignKeys).some(key =>
+            key.referencedTable === op.table && key.referencedColumns.includes(op.column.name)))) fail(`Drop foreign keys before changing referenced column: ${op.table}.${op.column.name}`);
+      // Full replacement: omitted modifiers are removed, indexes retain their identity.
+      set(columns, op.column.name, structuredClone(op.column));
+      syncPrimary();
     } else if (op.kind === 'addIndex') {
       addIndex(op.index);
     } else if (op.kind === 'dropIndex') {

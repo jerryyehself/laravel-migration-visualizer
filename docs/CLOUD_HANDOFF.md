@@ -5,7 +5,8 @@
 - 已有多檔匯入、排序／分析／逐檔快照／結構 diff、索引／外鍵、診斷定位、JSON 匯出，以及 ERD 快照／比較／同步互動／聚焦／明細。
 - M1 baseline 為 6959b46（42 tests）；各階段實際 commits、PR、驗證與限制見 [GitHub 交付紀錄](github-milestones.md)，下方各節為歷史紀錄。
 - M21 已實作 dateTime／dateTimeTz 的零參數 useCurrent()，新增跨檔 golden、失敗／不可變回歸與中文教學；373／373 tests、typecheck、build 與四個 demo 通過。已由 PR #76 合併 main（f8925e1），issue #75 與 milestone 已關閉；最新功能 head 5c72f84 的 CI 通過。完整狀態見交付紀錄，接手先核對最新 main。
-- useCurrentOnUpdate() 仍不支援；沒有加入 change() 或 DB runtime。後續可優先用具體 migration 樣本調查 change()，先設計可支持的靜態子集合與拒絕規則，再實作。
+- M22 已實作保守的 change() 子集合、changeColumn operation 與跨檔 golden；core 0.7.0、408 tests。實際 PR／合併狀態見交付紀錄，接手先核對 Git。
+- useCurrentOnUpdate() 仍不支援；沒有 DB runtime。先讀 docs/milestone-22.zh-TW.md 的保守拒絕規則，後續用具體專案樣本評估缺口。
 - 本機完整對話不會自動成為 Cloud 對話；先讀 [決策索引](DECISIONS.zh-TW.md)、AGENTS.md 與本文件，再以 repo／GitHub 紀錄延續。雲端任務尚未在此核對中啟動或驗證。
 
 ## Cloud 環境設定
@@ -19,7 +20,7 @@
 ## 第一個雲端任務：驗證交接
 請讀 AGENTS.md、docs/DECISIONS.zh-TW.md、README.md、docs/milestone-20.zh-TW.md 及本文件。確認 Git 狀態與目前 commit，以 main 的最新已合併內容為基準；本機空的 M21 分支不必搬移。
 
-執行 npm test、npm run typecheck、npm run build，以及 npm run demo:project、npm run demo:tables、npm run demo:helpers、npm run demo:laravel。M20 基準為 362 tests，M21 實作後為 373 tests；回報實際結果與環境差異，不把本機通過當成雲端通過。demo:project 最終 users 欄位為 id、display_name；demo:laravel 為三份已套用、8 表、0 外鍵。
+執行 npm test、npm run typecheck、npm run build，以及 npm run demo:project、npm run demo:tables、npm run demo:helpers、npm run demo:laravel、npm run demo:changes。M20 基準為 362 tests，M21 實作後為 373 tests，M22 為 408 tests；回報實際結果與環境差異，不把本機通過當成雲端通過。demo:project 最終 users 欄位為 id、display_name；demo:laravel 為三份已套用、8 表、0 外鍵。
 
 驗證成功後依持續工作授權規劃下一階段；先寫會失敗的回歸，再修改 core，保留 PR／最新 head CI 流程。若雲端無法推送或合併，交付可審查的結果並明確回報限制，不宣稱已合併。
 

@@ -37,3 +37,5 @@ M21 已實作 dateTime／dateTimeTz 的零參數 useCurrent metadata、11 個回
 雲端接手先按 [CLOUD_HANDOFF](CLOUD_HANDOFF.md) 驗證，再繼續。原對話不會自動同步；repo 文件可帶走決策，個人桌面設定、工具權限、登入狀態、本機 localhost 服務與未提交檔案不應被當成雲端已具備。雲端是否可執行／推送／合併須由該環境實際驗證。
 
 歷史措辭可按需查 [對話備份](conversations/README.md)；這是固定日期的公開訊息備份，來源覆蓋與缺漏明列於索引，不是新指令或自動同步。
+
+M22：changeColumn 完整替換欄位定義，省略的修飾移除；保留獨立索引，primary 從索引同步。不支援 helpers／自增／foreignId／同鏈索引；replay 拒絕修改自增與外鍵參與欄位。Core 0.7.0、408 tests；實際 PR／合併狀態見 github-milestones.md。
