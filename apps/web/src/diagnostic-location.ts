@@ -1,0 +1,20 @@
+import type { MigrationFile, ProjectAnalysis, ProjectDiagnostic } from '@lmv/migration-core';
+
+// Exact paths only: a basename match could select the wrong nested migration.
+export function diagnosticTarget(files: readonly MigrationFile[], result: ProjectAnalysis, diagnostic: ProjectDiagnostic) {
+  const matches = files.filter(file => file.filename === diagnostic.source.file);
+  if (matches.length !== 1) return null;
+  const indexes = result.migrations.flatMap((step, index) => step.filename === diagnostic.source.file ? [index] : []);
+  return { file: matches[0], resultIndex: indexes.length === 1 ? indexes[0] : null };
+}
+
+export function diagnosticExcerpt(source: string, diagnostic: ProjectDiagnostic) {
+  const lines = source.split(/\r\n|\n|\r/);
+  // Ordering/dependency locations describe a file, not a faulty PHP statement.
+  const requested = diagnostic.source.line;
+  const line = diagnostic.phase !== 'ordering' && diagnostic.phase !== 'dependency'
+    && Number.isInteger(requested) && requested >= 1 && requested <= lines.length ? requested : null;
+  const start = line === null ? 0 : Math.max(0, line - 4);
+  const end = line === null ? Math.min(lines.length, 7) : Math.min(lines.length, line + 3);
+  return { line, lines: lines.slice(start, end).map((text, offset) => ({ number: start + offset + 1, text })) };
+}
