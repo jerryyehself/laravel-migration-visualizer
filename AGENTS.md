@@ -10,13 +10,13 @@
 - npm workspaces：packages/migration-core 為純 TypeScript domain；apps/web 為 React + TypeScript + Vite。
 - parser、排序、schema replay、diff 與 project diagnostics 都放 core，不放 React hooks。
 - core 接收檔名與 PHP 字串，不讀檔、不執行 PHP、不連資料庫。
-- Milestone 1～17 已完成並在 main；M5～M8 分別由 PR #11、#15、#19、#22 合併。Core 0.5.0。M9 的 web 結果搜尋／狀態篩選已由 PR #26 合併，core 不變。M10 資料夾匯入已由 PR #30 合併（47d5b0f）；M11 診斷定位已由 PR #34 合併（d9e7a99），交付狀態見 docs/github-milestones.md；M12 診斷編輯跳轉已由 PR #38 合併（8777354），狀態見交付紀錄；M13 副本還原已由 PR #42 合併（8d9d02f），狀態見交付紀錄；使用者已同意進入視覺化，M14 最終 schema ERD 已由 PR #46 合併（652292b），狀態見交付紀錄；先讀 docs/CLOUD_HANDOFF.md、README.md 與 docs/milestone-17.zh-TW.md。
+- Milestone 1～17 已完成並在 main；M5～M8 分別由 PR #11、#15、#19、#22 合併。Core 0.5.0。M9 的 web 結果搜尋／狀態篩選已由 PR #26 合併，core 不變。M10 資料夾匯入已由 PR #30 合併（47d5b0f）；M11 診斷定位已由 PR #34 合併（d9e7a99），交付狀態見 docs/github-milestones.md；M12 診斷編輯跳轉已由 PR #38 合併（8777354），狀態見交付紀錄；M13 副本還原已由 PR #42 合併（8d9d02f），狀態見交付紀錄；使用者已同意進入視覺化，M14 最終 schema ERD 已由 PR #46 合併（652292b），狀態見交付紀錄；先讀 docs/CLOUD_HANDOFF.md、README.md 與 docs/milestone-18.zh-TW.md。
 - 未經新需求，不擴增 timeline、down()、AI、SQL parser、runtime migration execution 或 semantic refactoring detection。
 - SchemaDiff 是結構比較，不猜 rename。失敗後 schemaAfter/finalSchema 為 null；lastValidSchema 僅代表成功前綴。
 
 ## 開發與驗證
 - Node.js 22.12+，npm。安裝使用 npm ci，保留 package-lock.json。
-- npm test：目前 342 tests（263 core + 5 browser import + 6 export + 9 filters + 10 folder import + 8 diagnostic location + 6 source selection + 8 drafts + 9 graph + 5 snapshots + 8 graph diff + 5 comparison layout）；原 Milestone 1 為 42 tests。
+- npm test：目前 346 tests（263 core + 5 browser import + 6 export + 9 filters + 10 folder import + 8 diagnostic location + 6 source selection + 8 drafts + 9 graph + 5 snapshots + 8 graph diff + 5 comparison layout + 4 focus）；原 Milestone 1 為 42 tests。
 - npm run typecheck
 - npm run build
 - npm run demo:project
@@ -40,3 +40,5 @@ M15 快照選單已由 PR #50 合併（cf8f0b8）；交付狀態見 docs/github-
 M16 結構比較已由 PR #54 合併（25dc11c），狀態見交付紀錄。只標記真實 before／after 與 core diff，不混合 schema 或猜 rename。
 
 M17 比較布局與互動同步已由 PR #58 合併（5054727），狀態見交付紀錄；只共用畫面 state，不混合 schema。
+
+M18 資料表搜尋／聚焦已實作，狀態見交付紀錄。搜尋不隱藏圖形；聚焦只更新畫面 view。
