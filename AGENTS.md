@@ -16,7 +16,7 @@
 
 ## 開發與驗證
 - Node.js 22.12+，npm。安裝使用 npm ci，保留 package-lock.json。
-- npm test：目前 501 tests（412 core + 5 browser import + 6 export + 9 filters + 10 folder import + 8 diagnostic location + 6 source selection + 8 drafts + 9 graph + 5 snapshots + 8 graph diff + 5 comparison layout + 4 focus + 6 table inspector）；原 Milestone 1 為 42 tests。
+- npm test：目前 526 tests（437 core + 5 browser import + 6 export + 9 filters + 10 folder import + 8 diagnostic location + 6 source selection + 8 drafts + 9 graph + 5 snapshots + 8 graph diff + 5 comparison layout + 4 focus + 6 table inspector）；原 Milestone 1 為 42 tests。
 - npm run typecheck
 - npm run build
 - npm run demo:project
@@ -27,6 +27,7 @@
 - npm run demo:current-update
 - npm run demo:index-rename
 - npm run demo:drop-columns
+- npm run demo:drop-constrained-id
 - golden JSON 是預期規格，不可為通過測試而盲目覆寫。
 - 只新增與變更行為相關的測試。報告實際執行的驗證與限制。
 
@@ -73,3 +74,5 @@ M24 已由 PR #85 合併（7580dca），issue #84 與 milestone 已關閉；功�
 M25 已實作靜態 dropColumn 陣列，core 0.10.0；沿用既有 operations／SchemaState。501 tests、八個 demo 通過；讀 docs/milestone-25.zh-TW.md，實際交付狀態見交付紀錄。variadic 字串、空／重複／動態陣列仍拒絕。
 
 M25 已由 PR #88 合併（abab843），issue #87／milestone 25 已關閉；功能 head 48ff342 的 CI 通過 tests、typecheck、build 與八個 demo。
+
+M26 已實作 dropConstrainedForeignId，core 0.11.0，526 tests／九個 demo 通過；讀 docs/milestone-26.zh-TW.md 與交付紀錄。只依慣例刪外鍵後刪欄位；不搜尋 custom name，其他引用保護與整檔回滾不變。

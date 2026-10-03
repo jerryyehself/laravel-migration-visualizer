@@ -157,6 +157,7 @@ UI 提供欄位 helper 成功／失敗範例；`npm run demo:helpers` 驗證建�
 - `timestamps` 展開為兩個 nullable timestamp 欄位。
 - modifiers：`nullable(bool)`、`unsigned(bool)`、`default(scalar)`、`comment(string)`、timestamp／timestampTz／dateTime／dateTimeTz 的零參數 `useCurrent()` 與 `useCurrentOnUpdate()`。
 - `dropColumn('name')` 或 `dropColumn(['a', 'b'])`（非空、不重複的靜態字串列表）、`renameColumn('from', 'to')`。
+- `dropConstrainedForeignId('column')`：先刪慣例名稱的外鍵，再刪欄位；不搜尋自訂外鍵名稱，不自動移除其他索引／外鍵。
 
 AtomicOperation 為 `createTable` / `renameTable` / `dropTable` / `addColumn` / `dropColumn` / `renameColumn` / `changeColumn` / `addIndex` / `dropIndex` / `renameIndex` / `addForeignKey` / `dropForeignKey` discriminated union，含來源位置（行號從 1 起、column 從 0 起）。所有輸出可序列化成 JSON。`id` 的 primary 屬性是欄位 metadata，replay 會將其轉成隱含 primary 索引；外鍵以獨立 ForeignKey model 記錄。
 
@@ -264,3 +265,9 @@ Core 0.9.0 支援 Schema::table 中獨立的 renameIndex('old','new')，新增 r
 Core 0.10.0 支援單一靜態陣列參數的 `dropColumn`，依輸入順序展開既有 operations，沿用整檔原子 replay、索引／外鍵保護與結構 diff。JSON 型別不變。空陣列、重複／非字串／動態名稱、帶鍵或展開陣列、額外參數與 modifiers 均拒絕；Laravel 的 variadic 字串形式仍未支援。這是保守的分析子集合，不保證資料庫執行相容。
 
 教學見 [M25](docs/milestone-25.zh-TW.md)，建置後範例：`npm run demo:drop-columns`。
+
+## Milestone 26：外鍵欄位移除 helper
+
+Core 0.11.0 支援獨立 `dropConstrainedForeignId`，只接受一個非空靜態字串，展開成既有 dropForeignKey + dropColumn，JSON 型別不變。慣例名稱不存在時失敗；自訂名稱需明確 dropForeign + dropColumn。其他索引／外鍵仍受保護，整檔失敗保留可信前綴。connection prefix_indexes、model-based dropConstrainedForeignIdFor、動態參數與方法鏈不支援，不保證 DB 執行相容。
+
+教學見 [M26](docs/milestone-26.zh-TW.md)，建置後驗證：`npm run demo:drop-constrained-id`。
