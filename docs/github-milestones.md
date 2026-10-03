@@ -65,4 +65,4 @@ M20 已合併 main（5cea3b4），issues #68/#69 與 milestone 已關閉；功�
 
 M21 已由 PR #76 合併 main（f8925e1）；issue #75 與 milestone 已關閉。最新功能 head 5c72f84 的 CI 通過 tests、typecheck、build 與四個 demo。
 
-| 22：欄位 change 分析 | [M22](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/22) | [core/tests/docs #78](https://github.com/jerryyehself/laravel-migration-visualizer/issues/78) | 已實作，PR 待建立；408 tests；core 0.7.0 |
+| 22：欄位 change 分析 | [M22](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/22) | [core/tests/docs #78](https://github.com/jerryyehself/laravel-migration-visualizer/issues/78) | [PR #79](https://github.com/jerryyehself/laravel-migration-visualizer/pull/79) 已建立，待 CI／合併；408 tests；core 0.7.0 |
