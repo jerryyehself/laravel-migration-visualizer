@@ -14,6 +14,8 @@ export interface Column {
   default?: Literal;
   /** Database current timestamp default; never an evaluated clock value. */
   useCurrent?: boolean;
+  /** Database current timestamp on update intent; independent of the default. */
+  useCurrentOnUpdate?: boolean;
   comment?: string;
 }
 export type IndexType = 'index' | 'unique' | 'primary';

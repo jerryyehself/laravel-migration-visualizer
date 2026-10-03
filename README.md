@@ -1,4 +1,4 @@
-# Laravel Migration Visualizer — Milestone 20
+# Laravel Migration Visualizer — Milestone 23
 
 React + TypeScript + Vite，npm workspaces monorepo。只做靜態 migration 分析，不執行 PHP 或連接資料庫。
 
@@ -155,7 +155,7 @@ UI 提供欄位 helper 成功／失敗範例；`npm run demo:helpers` 驗證建�
 - `boolean`、`date`、`json`、`jsonb`、`uuid`。
 - `decimal`（precision、scale）、`timestamp` / `dateTime` / `time`（precision）。
 - `timestamps` 展開為兩個 nullable timestamp 欄位。
-- modifiers：`nullable(bool)`、`unsigned(bool)`、`default(scalar)`、`comment(string)`、timestamp／timestampTz／dateTime／dateTimeTz 的零參數 `useCurrent()`。
+- modifiers：`nullable(bool)`、`unsigned(bool)`、`default(scalar)`、`comment(string)`、timestamp／timestampTz／dateTime／dateTimeTz 的零參數 `useCurrent()` 與 `useCurrentOnUpdate()`。
 - `dropColumn('name')`（單一字串）、`renameColumn('from', 'to')`。
 
 AtomicOperation 為 `createTable` / `renameTable` / `dropTable` / `addColumn` / `dropColumn` / `renameColumn` / `changeColumn` / `addIndex` / `dropIndex` / `addForeignKey` / `dropForeignKey` discriminated union，含來源位置（行號從 1 起、column 從 0 起）。所有輸出可序列化成 JSON。`id` 的 primary 屬性是欄位 metadata，replay 會將其轉成隱含 primary 索引；外鍵以獨立 ForeignKey model 記錄。
@@ -231,7 +231,7 @@ ERD 可選專案初始／最終與每份 migration 套用前／後快照；切�
 
 工作台新增「載入 Laravel 12 官方範例」。三份 PHP 固定到上游 commit，附來源、SHA-256 與 MIT 授權資料；測試與 demo 不需要網路。它們全部成功分析得到 8 張表、0 個外鍵，逐份快照為 3／5／8 張表。
 
-Core 0.6.0 在 Column 新增可選 `useCurrent?: boolean`；M21 擴充分析零參數 timestamp／timestampTz／dateTime／dateTimeTz 的 `useCurrent()` 為 `true`，不把資料庫時間預設轉成字串 default 或目前時間。與 `default()` 混用、帶參數、上述四種以外的型別或 `useCurrentOnUpdate()` 仍診斷為不支援。
+Core 0.6.0 在 Column 新增可選 `useCurrent?: boolean`；M21 擴充分析零參數 timestamp／timestampTz／dateTime／dateTimeTz 的 `useCurrent()` 為 `true`，不把資料庫時間預設轉成字串 default 或目前時間。`useCurrent()` 與 `default()` 混用、帶參數、上述四種以外的型別仍診斷為不支援；M23 的 `useCurrentOnUpdate()` 獨立保存更新意圖，可與 scalar default 或 useCurrent 組合，詳見下節。
 
 執行 `npm run demo:laravel` 驗證建置後套件；362 tests。這是三份官方樣本的相容性基準，並非完整 Laravel／資料庫方言支援。設計與限制見 [M20 中文教學](docs/milestone-20.zh-TW.md)。
 
@@ -244,3 +244,11 @@ Core 0.7.0 支援 Schema::table 中單一一般欄位的零參數 change()，正
 Schema::create、helpers、自增定義、foreignId/constrained、同鏈索引修飾與多次／帶參數 change 仍不支援。Replay 拒絕修改既有自增或參與任一外鍵的欄位；先顯式 dropForeign 才能修改外鍵參與欄位。未知表／欄位使整檔回滾，後續快照保持未知。這是靜態子集合，不保證 DB 執行相容。
 
 AtomicOperation 新增 changeColumn variant，外部 exhaustive consumers 須更新；SchemaState JSON 不變。408 tests，執行 npm run demo:changes 驗證建置後公開套件，設計／限制見 [M22 中文教學](docs/milestone-22.zh-TW.md)。
+
+## Milestone 23：更新時的 current timestamp
+
+Core 0.8.0 新增可選 Column.useCurrentOnUpdate。timestamp／timestampTz／dateTime／dateTimeTz 的零參數 useCurrentOnUpdate() 保存 true，不生成 scalar default 或實際時間；可與 useCurrent 或既有 scalar default（含 null）組合，任意順序。useCurrent + default 的衝突仍拒絕；帶參數或其他型別也拒絕。
+
+單欄 softDeletes/Tz 沿用 timestamp 型別修飾；雙欄 timestamps/Tz 仍不接受 chained modifiers。一般欄位 change() 完整替換定義，重列才保留 update 旗標；M22 的 helpers／自增／外鍵／同鏈索引拒絕規則不變。它是核對固定 Laravel 12 MySQL grammar 後保存的意圖，不保證 DB runtime 或其他方言相容。
+
+執行 npm run demo:current-update 驗證建置後 package 的跨檔新增／移除旗標、diff 與失敗快照；完整型別／參數／組合矩陣、來源證據及中文教學見 [M23](docs/milestone-23.zh-TW.md)。

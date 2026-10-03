@@ -112,11 +112,11 @@ function modify(column: Column, modifier: Call) {
     const value = args[0] === undefined ? true : args[0];
     if (typeof value !== 'boolean') throw new Error(`${name} expects a boolean.`);
     column[name] = value;
-  } else if (name === 'useCurrent') {
+  } else if (name === 'useCurrent' || name === 'useCurrentOnUpdate') {
     arity(args, 0);
-    if (!['timestamp', 'timestampTz', 'dateTime', 'dateTimeTz'].includes(column.type)) throw new Error('useCurrent is supported only for timestamp, timestampTz, dateTime and dateTimeTz.');
-    if (Object.hasOwn(column, 'default')) throw new Error('Combining useCurrent and default is unsupported.');
-    column.useCurrent = true;
+    if (!['timestamp', 'timestampTz', 'dateTime', 'dateTimeTz'].includes(column.type)) throw new Error(`${name} is supported only for timestamp, timestampTz, dateTime and dateTimeTz.`);
+    if (name === 'useCurrent' && Object.hasOwn(column, 'default')) throw new Error('Combining useCurrent and default is unsupported.');
+    column[name] = true;
   } else if (name === 'default') {
     if (column.useCurrent) throw new Error('Combining useCurrent and default is unsupported.');
     arity(args, 1); if (Array.isArray(args[0])) throw new Error('default expects a scalar.'); column.default = args[0];
