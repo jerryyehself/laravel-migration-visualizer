@@ -16,13 +16,14 @@
 
 ## 開發與驗證
 - Node.js 22.12+，npm。安裝使用 npm ci，保留 package-lock.json。
-- npm test：目前 373 tests（284 core + 5 browser import + 6 export + 9 filters + 10 folder import + 8 diagnostic location + 6 source selection + 8 drafts + 9 graph + 5 snapshots + 8 graph diff + 5 comparison layout + 4 focus + 6 table inspector）；原 Milestone 1 為 42 tests。
+- npm test：目前 408 tests（319 core + 5 browser import + 6 export + 9 filters + 10 folder import + 8 diagnostic location + 6 source selection + 8 drafts + 9 graph + 5 snapshots + 8 graph diff + 5 comparison layout + 4 focus + 6 table inspector）；原 Milestone 1 為 42 tests。
 - npm run typecheck
 - npm run build
 - npm run demo:project
 - npm run demo:tables
 - npm run demo:helpers
 - npm run demo:laravel
+- npm run demo:changes
 - golden JSON 是預期規格，不可為通過測試而盲目覆寫。
 - 只新增與變更行為相關的測試。報告實際執行的驗證與限制。
 
@@ -55,3 +56,5 @@ M20 已由 PR #70 合併（5cea3b4），issues #68/#69 與 milestone 已關閉�
 M21 擴充 dateTime/dateTimeTz 的零參數 useCurrent metadata；讀 docs/milestone-21.zh-TW.md。373 tests，core JSON 契約沿用 0.6.0；交付狀態見 docs/github-milestones.md。
 
 M21 已由 PR #76 合併（f8925e1），issue #75 與 milestone 已關閉；最新功能 head 5c72f84 的 CI 通過。
+
+M22 新增 changeColumn 公開 operation，core 0.7.0；SchemaState 不變。讀 docs/milestone-22.zh-TW.md 與交付紀錄，勿將保守的 change 子集合宣稱為完整 Laravel／DB 相容。
