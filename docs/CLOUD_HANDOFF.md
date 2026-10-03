@@ -1,7 +1,7 @@
 # Codex Cloud 交接
 
 ## 現況（2026-10-04 核對）
-- M1～M26 已合併 main；M26 功能合併為 1f86cc3／PR #91。Core 0.11.0，本地 526／526 tests、typecheck、build 與九個 demo 通過，PR 最新 head 7b35e25 的 CI 通過。2026-10-04 已接回本地，雲端停止開發。
+- M1～M29 已合併 main；M29 功能合併為 1aa3f83／PR #98。Core 0.14.0，本地 591／591 tests、typecheck、build 與十個 demo 通過，PR 最新 head 1a3db83 的 CI 通過。2026-10-04 本地持續接手，雲端停止開發。
 - 已有多檔匯入、排序／分析／逐檔快照／結構 diff、索引／外鍵、診斷定位、JSON 匯出，以及 ERD 快照／比較／同步互動／聚焦／明細。
 - M1 baseline 為 6959b46（42 tests）；各階段實際 commits、PR、驗證與限制見 [GitHub 交付紀錄](github-milestones.md)，下方各節為歷史紀錄。
 - M21 已實作 dateTime／dateTimeTz 的零參數 useCurrent()，新增跨檔 golden、失敗／不可變回歸與中文教學；373／373 tests、typecheck、build 與四個 demo 通過。已由 PR #76 合併 main（f8925e1），issue #75 與 milestone 已關閉；最新功能 head 5c72f84 的 CI 通過。完整狀態見交付紀錄，接手先核對最新 main。
@@ -160,3 +160,9 @@ M24 已由 PR #85 合併（7580dca），issue #84 與 milestone 已關閉；接�
 ## M26 本地開發
 
 已實作 dropConstrainedForeignId，core 0.11.0，526 tests 與九個 demo 通過。讀 milestone-26.zh-TW.md；已由 PR #91 合併（1f86cc3），issue #90／milestone 26 已關閉；完整證據見 github-milestones.md。雲端維持停止開發。
+
+## M27～M29 三階段本地交付
+
+M27 numeric helpers（PR #94、1b8cd53）、M28 UUID helpers（PR #96、39160f2）、M29 dropMorphs（PR #98、1aa3f83）均已合併，issues／milestones 已關閉。Core 0.14.0，591 tests（新增 65）與十個 demo 通過；各階段最新 head CI 證據見 github-milestones.md。讀 milestone-27／28／29.zh-TW.md。
+
+明確 helpers 展開 type/id 欄位與有序 index，不推測多型 target／foreign key。dropMorphs 先刪一般 index 再 type/id，其他引用保護與整檔回滾不變。Index name 字串 0 使用慣例；空字串／false 保守拒絕。Runtime morphs、ULID、after 與 connection prefix 未模擬。demo:morphs 驗證新增與混合移除／失敗；沒有新 UI 或瀏覽器驗收。
