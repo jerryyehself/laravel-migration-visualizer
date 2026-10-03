@@ -41,3 +41,5 @@ M21 已實作 dateTime／dateTimeTz 的零參數 useCurrent metadata、11 個回
 M22：changeColumn 完整替換欄位定義，省略的修飾移除；保留獨立索引，primary 從索引同步。不支援 helpers／自增／foreignId／同鏈索引；replay 拒絕修改自增與外鍵參與欄位。Core 0.7.0、408 tests；實際 PR／合併狀態見 github-milestones.md。
 
 2026-10-03 雲端接手：乾淨 checkout 由 f7e2383 fast-forward 至 M22 文件 commit 27594f9；雲端實際驗證 408 tests、typecheck、build 與五個 demo 通過（Node 24.19.0、npm 11.9.0）。後續 M23 分支保存 useCurrentOnUpdate 的獨立 metadata，固定 Laravel 12 來源、default/change 組合與保守限制見 milestone-23.zh-TW.md。GitHub API 的代理網路限制與交付狀態以 github-milestones.md 為準；環境草稿保存不等於發布。
+
+M23 已由 PR #82 合併 main（4563f01）；最新 head 6fc61fa 的 CI 通過，issue #81／milestone 23 已關閉。useCurrentOnUpdate 已支援上述明列子集合，前文 M21／M22 的「尚不支援」是當時歷史狀態，不是目前限制。

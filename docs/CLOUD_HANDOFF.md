@@ -1,12 +1,12 @@
 # Codex Cloud 交接
 
 ## 現況（2026-10-03 核對）
-- M1～M22 已合併 main；M22 功能合併為 dbc9aa4／PR #79。Core 0.7.0，最近一次完整驗證為 408／408 tests、typecheck、build 與五個 demo 通過。
+- M1～M23 已合併 main；M23 功能合併為 4563f01／PR #82。Core 0.8.0，雲端 446／446 tests、typecheck、build 與六個 demo 通過，PR 最新 head CI 亦通過。
 - 已有多檔匯入、排序／分析／逐檔快照／結構 diff、索引／外鍵、診斷定位、JSON 匯出，以及 ERD 快照／比較／同步互動／聚焦／明細。
 - M1 baseline 為 6959b46（42 tests）；各階段實際 commits、PR、驗證與限制見 [GitHub 交付紀錄](github-milestones.md)，下方各節為歷史紀錄。
 - M21 已實作 dateTime／dateTimeTz 的零參數 useCurrent()，新增跨檔 golden、失敗／不可變回歸與中文教學；373／373 tests、typecheck、build 與四個 demo 通過。已由 PR #76 合併 main（f8925e1），issue #75 與 milestone 已關閉；最新功能 head 5c72f84 的 CI 通過。完整狀態見交付紀錄，接手先核對最新 main。
 - M22 已實作保守的 change() 子集合、changeColumn operation 與跨檔 golden；core 0.7.0、408 tests。已由 PR #79 合併（dbc9aa4），issue #78 與 milestone 已關閉，功能 head 601946b 的 CI 通過；接手先核對最新 main。
-- 已交付 M22 基準尚不支援 useCurrentOnUpdate()；M23 分支新增此意圖 metadata，尚未合併。先讀 docs/milestone-23.zh-TW.md 與交付紀錄；沒有 DB runtime，M22 保守拒絕規則不變。
+- M23 已支援 useCurrentOnUpdate() 意圖 metadata，已由 PR #82 合併。先讀 docs/milestone-23.zh-TW.md 與交付紀錄；沒有 DB runtime，M22 保守拒絕規則不變。
 - 本機完整對話不會自動成為 Cloud 對話；先讀 [決策索引](DECISIONS.zh-TW.md)、AGENTS.md 與本文件，再以 repo／GitHub 紀錄延續。雲端已接手，實際基準驗證見下方雲端接手紀錄。
 
 ## Cloud 環境設定
@@ -36,7 +36,7 @@
 - 自訂 base class、完整 Laravel API、DB 方言與 PHP runtime 語意仍不涵蓋；完整限制見 README。
 
 ## 後續範圍
-M1～M22 已交付；後續維持 core/UI 分層、測試、中文教學與 PR 流程。M14 已獲授權進入 ERD；timeline、down()、AI、semantic refactoring detection 仍不在目前範圍。
+M1～M23 已交付；後續維持 core/UI 分層、測試、中文教學與 PR 流程。M14 已獲授權進入 ERD；timeline、down()、AI、semantic refactoring detection 仍不在目前範圍。
 
 ## 原始碼閱讀順序
 src/types.ts → src/project-types.ts → src/ordering.ts → src/project.ts → src/diff.ts → tests/project.test.ts（皆位於 packages/migration-core）。教學請看 docs/tutorial.zh-TW.md 與 docs/milestone-2.zh-TW.md。
@@ -139,10 +139,10 @@ M20 已合併 PR #70（5cea3b4），issues #68/#69 與 milestone 已關閉；功
 
 repo 的 .agents/skills/ 包含 migration-core-review、milestone-delivery、migration-ui-review、migration-handoff。接手交接流程讀 migration-handoff；修改 React／ERD 時讀 migration-ui-review；核心 review 已補入固定來源／hash／授權與相容性樣本流程。這些是可讀的工作指引，不會自動建立子代理、排程、轉移對話或擴大權限。雲端是否自動發現技能仍須在該環境確認；AGENTS.md 已提供明確使用入口。
 
-## 雲端接手與 M23 分支（2026-10-03）
+## 雲端接手與 M23 交付（2026-10-03）
 
 接手前 checkout=f7e2383、無未提交變更；origin/main 已 fast-forward 到 27594f9d5456429579222631cca5943f02c97d2a。雲端 Node 24.19.0／npm 11.9.0 重新執行 npm ci，408 tests、typecheck、build、demo:project／tables／helpers／laravel／changes 全通過。這是雲端實測，不沿用本機 CI 證據。
 
-M23 功能分支 feat/m23-current-on-update：core 0.8.0、新增 38 個回歸、跨檔 golden、built-package demo:current-update 與中文教學。接手分支時另執行 npm run demo:current-update；雲端已實測 446／446 tests、typecheck、build 與六個 demo 通過；新任務仍須以實際 runner 結果為準。檢查最新 Git 狀態與交付紀錄，不假設此分支已合併 main。
+M23 已合併（PR #82／4563f01），原功能分支 feat/m23-current-on-update：core 0.8.0、新增 38 個回歸、跨檔 golden、built-package demo:current-update 與中文教學。接手分支時另執行 npm run demo:current-update；雲端已實測 446／446 tests、typecheck、build 與六個 demo 通過；新任務仍須以實際 runner 結果為準。檢查最新 Git 狀態與交付紀錄，PR 最新 head 6fc61fa 的 CI 已通過，issue #81／milestone 23 已結案。
 
-環境 start_skill 已由 M20 更新為讀取當前 milestone、現行 AGENTS 的全部 demo。GitHub 原生 Git 讀取與 M23 分支推送均可用（功能 commit 5cde61e 已以遠端 SHA 確認）；API 受代理限制，已將 api.github.com 加入環境設定草稿。草稿保存不等於 runtime 套用、發布或 CI 通過；發布仍由使用者操作。沒有瀏覽器工具，本次不宣稱互動驗收。
+環境 start_skill 已由 M20 更新為讀取當前 milestone、現行 AGENTS 的全部 demo。GitHub 原生 Git 讀取與 M23 分支推送均可用（功能 commit 5cde61e 已以遠端 SHA 確認）；API 先前受代理限制，api.github.com 已加入草稿；後續已在沙箱外成功建立 PR、查 CI 並合併。唯讀沙箱內的 socket 限制仍需工具核准，不再將先前 403 視為現行 API 阻擋。草稿保存不等於 runtime 套用、發布或 CI 通過；發布仍由使用者操作。沒有瀏覽器工具，本次不宣稱互動驗收。
