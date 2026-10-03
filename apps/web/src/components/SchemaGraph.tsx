@@ -1,19 +1,24 @@
 import { useId, useMemo, useRef, useState } from 'react';
-import type { PointerEvent } from 'react';
+import type { PointerEvent, Dispatch, SetStateAction } from 'react';
 import type { SchemaState, SchemaDiff } from '@lmv/migration-core';
+import { initialGraphView, type GraphLayout, type GraphView } from '../comparison-layout';
 import { graphDiffMarks, memberKey, markLabels } from '../graph-diff';
-import { schemaGraph, NODE_WIDTH, clampZoom, graphFit, edgePath, type Point } from '../schema-graph';
+import { schemaGraph, NODE_WIDTH, clampZoom, edgePath, type Point } from '../schema-graph';
 
-export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 'after' }: { schema: SchemaState; title?: string; diff?: SchemaDiff; side?: 'before' | 'after' }) {
+export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 'after', layout, view, onViewChange }: { schema: SchemaState; title?: string; diff?: SchemaDiff; side?: 'before' | 'after'; layout?: GraphLayout; view?: GraphView; onViewChange?: Dispatch<SetStateAction<GraphView>> }) {
   const graph = useMemo(() => schemaGraph(schema), [schema]);
   const marks = useMemo(() => graphDiffMarks(diff ?? { changes: [] }, side), [diff, side]);
   const marker = useId().replace(/:/g, '');
   const svg = useRef<SVGSVGElement>(null);
-  const [zoom, setZoom] = useState(() => graphFit(graph.width, graph.height));
-  const [pan, setPan] = useState<Point>({ x: 20, y: 20 });
-  const [positions, setPositions] = useState(() => new Map<string, Point>());
+  const bounds = layout ?? graph;
+  const [localView, setLocalView] = useState(() => initialGraphView(bounds));
+  const { zoom, pan, positions } = view ?? localView;
+  const setView = onViewChange ?? setLocalView;
+  const setZoom = (update: (value: number) => number) => setView(current => ({ ...current, zoom: update(current.zoom) }));
+  const setPan = (value: Point) => setView(current => ({ ...current, pan: value }));
+  const setPositions = (update: (value: Map<string, Point>) => Map<string, Point>) => setView(current => ({ ...current, positions: update(current.positions) }));
   const drag = useRef<{ pointer: number; name: string | null; start: Point; origin: Point } | null>(null);
-  const position = (node: { name: string } & Point) => positions.get(node.name) ?? node;
+  const position = (node: { name: string } & Point) => positions.get(node.name) ?? layout?.positions.get(node.name) ?? node;
   function point(event: PointerEvent) {
     const matrix = svg.current?.getScreenCTM();
     if (!matrix) return { x: event.clientX, y: event.clientY };
@@ -34,7 +39,7 @@ export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 
     if (active.name === null) setPan(value);
     else setPositions(current => new Map(current).set(active.name!, value));
   }
-  function reset() { drag.current = null; setPositions(new Map()); setPan({ x: 20, y: 20 }); setZoom(graphFit(graph.width, graph.height)); }
+  function reset() { drag.current = null; setView(initialGraphView(bounds)); }
   return <section className="schema-graph" aria-label={title}>
     <h2>{title}</h2>
     <p>{graph.nodes.length} 張資料表 · {graph.edges.length} 個外鍵關係。箭頭從本表指向引用表；不推測關聯基數。</p>
