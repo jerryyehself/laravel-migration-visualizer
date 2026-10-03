@@ -286,3 +286,7 @@ Morph helpers 的 indexName 字串 `0` 遵循 PHP falsey 規則，使用慣例�
 ## Milestone 29：dropMorphs 與多型欄位生命週期
 
 Core 0.14.0 支援 dropMorphs(name, indexName?)：先移除一般 index，再依 type/id 順序刪兩欄，共用來源。慣例／自訂名稱及字串 0 行為與新增 helpers 一致；不搜尋索引，不自動移除其他約束。任何一步失敗都保留整檔可信前綴，diff 仍是結構比較。教學見 [M29](docs/milestone-29.zh-TW.md)；demo:morphs 驗證 numeric／UUID 新增及混合移除。
+
+## 第一版驗收路線
+
+目前支援與限制以 [相容性矩陣](docs/compatibility.zh-TW.md) 為入口。M30 固定範圍、M31 project corpus／規模驗證、M32 完整瀏覽器流程、M33 可重現版本交付。不要求完整 Laravel API，排除範圍不變。
