@@ -2,6 +2,8 @@
 
 React + TypeScript + Vite，npm workspaces monorepo。只做靜態 migration 分析，不執行 PHP 或連接資料庫。
 
+雲端接手先讀 [決策索引](docs/DECISIONS.zh-TW.md) 與 [交接文件](docs/CLOUD_HANDOFF.md)。
+
 ## 開始使用
 
 需要 Node.js 22.12+（目前以 22.13.1 驗證）與 npm。
@@ -169,7 +171,7 @@ AtomicOperation 為 `createTable` / `renameTable` / `dropTable` / `addColumn` / 
 
 `complete` 代表已識別的 up() 靜態語句都在支援範圍內，不代表 schema replay 一定有效。重複 table / column、不存在的 table / column 、rename 衝突與無效索引引用會在 `applyOperations` 拋錯。Replay 會複製輸入，不會修改原 state；失敗不會回傳半成品。
 
-單檔 UI 從空白 schema 開始，所以單獨貼上 `Schema::table` 時可能顯示「Unknown table」，核心仍支援傳入先前狀態。沒有 timeline、ERD、AI、runtime migration execution、SQL parser。
+單檔 UI 從空白 schema 開始，所以單獨貼上 `Schema::table` 時可能顯示「Unknown table」，核心仍支援傳入先前狀態。目前已有 ERD（M14～M19）；timeline、AI、runtime migration execution、SQL parser 仍未納入。
 
 字串與十進位基本數字只做靜態值轉換（其他進位回報診斷）；超過 JavaScript 安全整數範圍的數值不接受。PHP 的完整語意、跨檔名稱解析、自訂 base migration 類別和資料庫方言不在此階段範圍。
 
