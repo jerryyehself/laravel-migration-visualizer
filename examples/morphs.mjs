@@ -19,3 +19,14 @@ assert.deepEqual(uuid.finalSchema.tables.tags.columns.taggable_id,{name:'taggabl
 assert.deepEqual(uuid.finalSchema.tables.tags.indexes.custom.columns,['taggable_type','taggable_id']);
 assert.equal(uuidRun('2026_10_02_000000_bad.php').finalSchema,null);
 console.log('UUID morph success and atomic failure verified.');
+const lifecycleRoot=new URL('../packages/migration-core/tests/fixtures/drop-morphs/',import.meta.url);
+const lifecycle=middle=>analyzeProject(['2026_10_03_000000_later.php',middle,'2026_10_01_000000_create.php'].map(filename=>({filename,source:readFileSync(new URL(filename,lifecycleRoot),'utf8')})));
+const removed=lifecycle('2026_10_02_000000_drop.php'),retained=lifecycle('2026_10_02_000000_bad.php');
+assert.equal(removed.complete,true);
+assert.deepEqual(Object.keys(removed.finalSchema.tables.tags.columns),['keep','later']);
+assert.deepEqual(removed.finalSchema.tables.tags.indexes,{});
+assert.equal(retained.finalSchema,null);
+assert.deepEqual(Object.keys(retained.lastValidSchema.tables.tags.columns),['keep','n_type','n_id','u_type','u_id']);
+assert.deepEqual(retained.migrations.map(m=>m.status),['applied','failed','blocked']);
+assert.equal(retained.diagnostics[0].operationIndex,3);
+console.log('Mixed numeric/UUID drop lifecycle and atomic failure verified.');
