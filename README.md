@@ -275,3 +275,7 @@ Core 0.11.0 支援獨立 `dropConstrainedForeignId`，只接受一個非空靜�
 ## Milestone 27：numeric morphs
 
 Core 0.12.0 支援 numericMorphs／nullableNumericMorphs：type string + unsigned bigInteger id + type/id 複合 index，第二參數省略／null 為慣例名稱，自訂名稱須非空。最多兩個靜態參數，拒絕 after／方法鏈；runtime-dependent morphs／nullableMorphs 仍拒絕。不推測目標外鍵。教學見 [M27](docs/milestone-27.zh-TW.md)；`npm run demo:morphs` 驗證 built package。
+
+## Milestone 28：UUID morphs
+
+Core 0.13.0 支援 uuidMorphs／nullableUuidMorphs：type string + uuid id + 有序 type/id index。沿用 M27 的省略／null／自訂名稱與拒絕規則，不新增 foreign key 或 JSON variant。ULID 與 runtime-dependent morphs 仍未支援。教學見 [M28](docs/milestone-28.zh-TW.md)；demo:morphs 同時驗證 numeric 與 UUID。

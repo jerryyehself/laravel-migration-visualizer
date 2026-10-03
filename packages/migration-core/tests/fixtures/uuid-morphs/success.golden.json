@@ -1,0 +1,330 @@
+{
+  "complete": true,
+  "appliedCount": 3,
+  "steps": [
+    {
+      "status": "applied",
+      "before": {
+        "tables": {}
+      },
+      "after": {
+        "tables": {
+          "tags": {
+            "name": "tags",
+            "columns": {
+              "keep": {
+                "name": "keep",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              }
+            },
+            "indexes": {},
+            "foreignKeys": {}
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "tableAdded",
+            "table": "tags",
+            "after": {
+              "name": "tags",
+              "columns": {
+                "keep": {
+                  "name": "keep",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {}
+            }
+          }
+        ]
+      }
+    },
+    {
+      "status": "applied",
+      "before": {
+        "tables": {
+          "tags": {
+            "name": "tags",
+            "columns": {
+              "keep": {
+                "name": "keep",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              }
+            },
+            "indexes": {},
+            "foreignKeys": {}
+          }
+        }
+      },
+      "after": {
+        "tables": {
+          "tags": {
+            "name": "tags",
+            "columns": {
+              "keep": {
+                "name": "keep",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "taggable_type": {
+                "name": "taggable_type",
+                "type": "string",
+                "nullable": true,
+                "length": 255
+              },
+              "taggable_id": {
+                "name": "taggable_id",
+                "type": "uuid",
+                "nullable": true
+              }
+            },
+            "indexes": {
+              "custom": {
+                "name": "custom",
+                "type": "index",
+                "columns": [
+                  "taggable_type",
+                  "taggable_id"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "columnAdded",
+            "table": "tags",
+            "column": "taggable_id",
+            "after": {
+              "name": "taggable_id",
+              "type": "uuid",
+              "nullable": true
+            }
+          },
+          {
+            "kind": "columnAdded",
+            "table": "tags",
+            "column": "taggable_type",
+            "after": {
+              "name": "taggable_type",
+              "type": "string",
+              "nullable": true,
+              "length": 255
+            }
+          },
+          {
+            "kind": "indexAdded",
+            "table": "tags",
+            "index": "custom",
+            "after": {
+              "name": "custom",
+              "type": "index",
+              "columns": [
+                "taggable_type",
+                "taggable_id"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "status": "applied",
+      "before": {
+        "tables": {
+          "tags": {
+            "name": "tags",
+            "columns": {
+              "keep": {
+                "name": "keep",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "taggable_type": {
+                "name": "taggable_type",
+                "type": "string",
+                "nullable": true,
+                "length": 255
+              },
+              "taggable_id": {
+                "name": "taggable_id",
+                "type": "uuid",
+                "nullable": true
+              }
+            },
+            "indexes": {
+              "custom": {
+                "name": "custom",
+                "type": "index",
+                "columns": [
+                  "taggable_type",
+                  "taggable_id"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "after": {
+        "tables": {
+          "tags": {
+            "name": "tags",
+            "columns": {
+              "keep": {
+                "name": "keep",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "taggable_type": {
+                "name": "taggable_type",
+                "type": "string",
+                "nullable": true,
+                "length": 255
+              },
+              "taggable_id": {
+                "name": "taggable_id",
+                "type": "uuid",
+                "nullable": true
+              },
+              "later": {
+                "name": "later",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              }
+            },
+            "indexes": {
+              "custom": {
+                "name": "custom",
+                "type": "index",
+                "columns": [
+                  "taggable_type",
+                  "taggable_id"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "columnAdded",
+            "table": "tags",
+            "column": "later",
+            "after": {
+              "name": "later",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "finalSchema": {
+    "tables": {
+      "tags": {
+        "name": "tags",
+        "columns": {
+          "keep": {
+            "name": "keep",
+            "type": "string",
+            "nullable": false,
+            "length": 255
+          },
+          "taggable_type": {
+            "name": "taggable_type",
+            "type": "string",
+            "nullable": true,
+            "length": 255
+          },
+          "taggable_id": {
+            "name": "taggable_id",
+            "type": "uuid",
+            "nullable": true
+          },
+          "later": {
+            "name": "later",
+            "type": "string",
+            "nullable": false,
+            "length": 255
+          }
+        },
+        "indexes": {
+          "custom": {
+            "name": "custom",
+            "type": "index",
+            "columns": [
+              "taggable_type",
+              "taggable_id"
+            ]
+          }
+        },
+        "foreignKeys": {}
+      }
+    }
+  },
+  "lastValidSchema": {
+    "tables": {
+      "tags": {
+        "name": "tags",
+        "columns": {
+          "keep": {
+            "name": "keep",
+            "type": "string",
+            "nullable": false,
+            "length": 255
+          },
+          "taggable_type": {
+            "name": "taggable_type",
+            "type": "string",
+            "nullable": true,
+            "length": 255
+          },
+          "taggable_id": {
+            "name": "taggable_id",
+            "type": "uuid",
+            "nullable": true
+          },
+          "later": {
+            "name": "later",
+            "type": "string",
+            "nullable": false,
+            "length": 255
+          }
+        },
+        "indexes": {
+          "custom": {
+            "name": "custom",
+            "type": "index",
+            "columns": [
+              "taggable_type",
+              "taggable_id"
+            ]
+          }
+        },
+        "foreignKeys": {}
+      }
+    }
+  },
+  "diagnosticCodes": []
+}
