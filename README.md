@@ -1,4 +1,4 @@
-# Laravel Migration Visualizer — Milestone 19
+# Laravel Migration Visualizer — Milestone 20
 
 React + TypeScript + Vite，npm workspaces monorepo。只做靜態 migration 分析，不執行 PHP 或連接資料庫。
 
@@ -153,7 +153,7 @@ UI 提供欄位 helper 成功／失敗範例；`npm run demo:helpers` 驗證建�
 - `boolean`、`date`、`json`、`jsonb`、`uuid`。
 - `decimal`（precision、scale）、`timestamp` / `dateTime` / `time`（precision）。
 - `timestamps` 展開為兩個 nullable timestamp 欄位。
-- modifiers：`nullable(bool)`、`unsigned(bool)`、`default(scalar)`、`comment(string)`。
+- modifiers：`nullable(bool)`、`unsigned(bool)`、`default(scalar)`、`comment(string)`、timestamp／timestampTz 的零參數 `useCurrent()`。
 - `dropColumn('name')`（單一字串）、`renameColumn('from', 'to')`。
 
 AtomicOperation 為 `createTable` / `renameTable` / `dropTable` / `addColumn` / `dropColumn` / `renameColumn` / `addIndex` / `dropIndex` / `addForeignKey` / `dropForeignKey` discriminated union，含來源位置（行號從 1 起、column 從 0 起）。所有輸出可序列化成 JSON。`id` 的 primary 屬性是欄位 metadata，replay 會將其轉成隱含 primary 索引；外鍵以獨立 ForeignKey model 記錄。
@@ -224,3 +224,11 @@ ERD 可選專案初始／最終與每份 migration 套用前／後快照；切�
 ## Milestone 19：資料表明細
 
 聚焦資料表後可展開完整欄位屬性、索引與外鍵。比較每側沿用自己的快照，缺表不補畫；false／0／null 與未指定值保持區別。352 tests；教學見 [M19](docs/milestone-19.zh-TW.md)。
+
+## Milestone 20：Laravel 12 官方相容性基準
+
+工作台新增「載入 Laravel 12 官方範例」。三份 PHP 固定到上游 commit，附來源、SHA-256 與 MIT 授權資料；測試與 demo 不需要網路。它們全部成功分析得到 8 張表、0 個外鍵，逐份快照為 3／5／8 張表。
+
+Core 0.6.0 在 Column 新增可選 `useCurrent?: boolean`；分析零參數 timestamp／timestampTz 的 `useCurrent()` 為 `true`，不把資料庫時間預設轉成字串 default 或目前時間。與 `default()` 混用、帶參數、其他型別或 `useCurrentOnUpdate()` 仍診斷為不支援。
+
+執行 `npm run demo:laravel` 驗證建置後套件；362 tests。這是三份官方樣本的相容性基準，並非完整 Laravel／資料庫方言支援。設計與限制見 [M20 中文教學](docs/milestone-20.zh-TW.md)。

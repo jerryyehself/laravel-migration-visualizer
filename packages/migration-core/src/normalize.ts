@@ -112,7 +112,13 @@ function modify(column: Column, modifier: Call) {
     const value = args[0] === undefined ? true : args[0];
     if (typeof value !== 'boolean') throw new Error(`${name} expects a boolean.`);
     column[name] = value;
+  } else if (name === 'useCurrent') {
+    arity(args, 0);
+    if (!['timestamp', 'timestampTz'].includes(column.type)) throw new Error('useCurrent is supported only for timestamp and timestampTz.');
+    if (Object.hasOwn(column, 'default')) throw new Error('Combining useCurrent and default is unsupported.');
+    column.useCurrent = true;
   } else if (name === 'default') {
+    if (column.useCurrent) throw new Error('Combining useCurrent and default is unsupported.');
     arity(args, 1); if (Array.isArray(args[0])) throw new Error('default expects a scalar.'); column.default = args[0];
   } else if (name === 'comment') {
     arity(args, 1); column.comment = text(args[0]);
