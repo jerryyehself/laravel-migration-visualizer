@@ -21,3 +21,5 @@ Map 保存表名與座標，特殊名稱安全；更新時建立新 Map。共同
 下一階段建議加入資料表搜尋與聚焦，讓大型圖更容易定位；維持純 web 呈現及既有未知快照契約。
 
 交付狀態見 [GitHub 紀錄](github-milestones.md)。
+
+[PR #58](https://github.com/jerryyehself/laravel-migration-visualizer/pull/58) 已合併 main（5054727）；功能 head c04f3ff 的 CI 通過 tests、typecheck、build 與三個 demo。Issues #56/#57 與 milestone 已關閉。
