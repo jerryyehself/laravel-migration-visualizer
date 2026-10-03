@@ -1,0 +1,160 @@
+{
+  "complete": false,
+  "appliedCount": 1,
+  "finalSchema": null,
+  "lastValidSchema": {
+    "tables": {
+      "users": {
+        "name": "users",
+        "columns": {
+          "a": {
+            "name": "a",
+            "type": "string",
+            "nullable": false,
+            "length": 255
+          },
+          "b": {
+            "name": "b",
+            "type": "string",
+            "nullable": false,
+            "length": 255
+          }
+        },
+        "indexes": {
+          "old": {
+            "name": "old",
+            "type": "unique",
+            "columns": [
+              "b",
+              "a"
+            ]
+          }
+        },
+        "foreignKeys": {}
+      }
+    }
+  },
+  "steps": [
+    {
+      "status": "applied",
+      "before": {
+        "tables": {}
+      },
+      "after": {
+        "tables": {
+          "users": {
+            "name": "users",
+            "columns": {
+              "a": {
+                "name": "a",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "b": {
+                "name": "b",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              }
+            },
+            "indexes": {
+              "old": {
+                "name": "old",
+                "type": "unique",
+                "columns": [
+                  "b",
+                  "a"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "tableAdded",
+            "table": "users",
+            "after": {
+              "name": "users",
+              "columns": {
+                "a": {
+                  "name": "a",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                },
+                "b": {
+                  "name": "b",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                }
+              },
+              "indexes": {
+                "old": {
+                  "name": "old",
+                  "type": "unique",
+                  "columns": [
+                    "b",
+                    "a"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            }
+          }
+        ]
+      }
+    },
+    {
+      "status": "failed",
+      "before": {
+        "tables": {
+          "users": {
+            "name": "users",
+            "columns": {
+              "a": {
+                "name": "a",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "b": {
+                "name": "b",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              }
+            },
+            "indexes": {
+              "old": {
+                "name": "old",
+                "type": "unique",
+                "columns": [
+                  "b",
+                  "a"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "after": null,
+      "diff": null
+    },
+    {
+      "status": "blocked",
+      "before": null,
+      "after": null,
+      "diff": null
+    }
+  ],
+  "diagnosticCodes": [
+    "SCHEMA_REPLAY_ERROR",
+    "SCHEMA_BLOCKED"
+  ]
+}
