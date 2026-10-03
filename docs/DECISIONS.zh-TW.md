@@ -45,3 +45,7 @@ M22：changeColumn 完整替換欄位定義，省略的修飾移除；保留獨�
 M23 已由 PR #82 合併 main（4563f01）；最新 head 6fc61fa 的 CI 通過，issue #81／milestone 23 已關閉。useCurrentOnUpdate 已支援上述明列子集合，前文 M21／M22 的「尚不支援」是當時歷史狀態，不是目前限制。
 
 M24：明確 renameIndex operation 保留一般 index／unique 型別與欄位順序，primary 更名保守拒絕；SchemaDiff 不推測語意，仍為 removed+added。2026-10-04 已從雲端 WIP 045e041 接回本地，雲端停止開發。實際驗證與交付見 github-milestones.md。
+
+## M25：靜態多欄位刪除
+
+一個非空、不重複的靜態字串列表按輸入順序展開既有 dropColumn operations；整個參數驗證後才輸出。既有 replay 維持索引／外鍵保護與整檔回滾，diff 按名稱排序。Core 0.10.0 不新增 JSON variant；variadic 字串及動態參數仍拒絕。拒絕空／重複名稱是分析器政策，不宣稱 Laravel／DB 同樣拒絕。詳見 milestone-25.zh-TW.md。

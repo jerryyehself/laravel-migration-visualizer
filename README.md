@@ -156,7 +156,7 @@ UI 提供欄位 helper 成功／失敗範例；`npm run demo:helpers` 驗證建�
 - `decimal`（precision、scale）、`timestamp` / `dateTime` / `time`（precision）。
 - `timestamps` 展開為兩個 nullable timestamp 欄位。
 - modifiers：`nullable(bool)`、`unsigned(bool)`、`default(scalar)`、`comment(string)`、timestamp／timestampTz／dateTime／dateTimeTz 的零參數 `useCurrent()` 與 `useCurrentOnUpdate()`。
-- `dropColumn('name')`（單一字串）、`renameColumn('from', 'to')`。
+- `dropColumn('name')` 或 `dropColumn(['a', 'b'])`（非空、不重複的靜態字串列表）、`renameColumn('from', 'to')`。
 
 AtomicOperation 為 `createTable` / `renameTable` / `dropTable` / `addColumn` / `dropColumn` / `renameColumn` / `changeColumn` / `addIndex` / `dropIndex` / `renameIndex` / `addForeignKey` / `dropForeignKey` discriminated union，含來源位置（行號從 1 起、column 從 0 起）。所有輸出可序列化成 JSON。`id` 的 primary 屬性是欄位 metadata，replay 會將其轉成隱含 primary 索引；外鍵以獨立 ForeignKey model 記錄。
 
@@ -258,3 +258,9 @@ Core 0.8.0 新增可選 Column.useCurrentOnUpdate。timestamp／timestampTz／da
 Core 0.9.0 支援 Schema::table 中獨立的 renameIndex('old','new')，新增 renameIndex operation。一般 index／unique 保留型別與複合欄位順序；primary、同名、未知名稱、目標已存在、動態參數／方法鏈與 create 內更名仍不支援。SchemaState 不變，外部 exhaustive operation consumers 需更新。
 
 結構 diff 仍為 indexRemoved + indexAdded；整檔失敗不洩漏部分更名。npm run demo:index-rename 驗證 built package。設計／限制與本地接回紀錄見 [M24 中文教學](docs/milestone-24.zh-TW.md)。
+
+## Milestone 25：多欄位刪除
+
+Core 0.10.0 支援單一靜態陣列參數的 `dropColumn`，依輸入順序展開既有 operations，沿用整檔原子 replay、索引／外鍵保護與結構 diff。JSON 型別不變。空陣列、重複／非字串／動態名稱、帶鍵或展開陣列、額外參數與 modifiers 均拒絕；Laravel 的 variadic 字串形式仍未支援。這是保守的分析子集合，不保證資料庫執行相容。
+
+教學見 [M25](docs/milestone-25.zh-TW.md)，建置後範例：`npm run demo:drop-columns`。
