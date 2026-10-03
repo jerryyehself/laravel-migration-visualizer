@@ -52,3 +52,5 @@ M17 已合併 main（5054727），issues #56/#57 與 milestone 已關閉；功�
 | 18：資料表搜尋與聚焦 | [M18](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/18) | [UI #60](https://github.com/jerryyehself/laravel-migration-visualizer/issues/60)、[tests/docs #61](https://github.com/jerryyehself/laravel-migration-visualizer/issues/61) | [PR #62](https://github.com/jerryyehself/laravel-migration-visualizer/pull/62) 已合併；d6a170d；346 tests |
 
 M18 已合併 main（d6a170d），issues #60/#61 與 milestone 已關閉；功能 head a313dbc 的 CI 通過。
+
+| 19：資料表明細 | [M19](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/19) | [UI #64](https://github.com/jerryyehself/laravel-migration-visualizer/issues/64)、[tests/docs #65](https://github.com/jerryyehself/laravel-migration-visualizer/issues/65) | 已實作，待 PR／CI／合併；352 tests |
