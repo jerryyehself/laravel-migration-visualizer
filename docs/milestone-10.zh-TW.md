@@ -36,4 +36,4 @@ Component 是畫面單位。ProjectWorkbench 負責輸入：files state 保存�
 
 實際瀏覽器透過資料夾 chooser 選取 fixture：匯入 2 份 PHP、略過 migrations/README.txt，巢狀路徑完整；分析結果 2/2 已套用、0 診斷，最終 users 包含 remember_token。Console 無 warn/error。IO 失敗與 UTF-8 拒絕由單元測試驗證，尚未在瀏覽器實測這兩種錯誤。
 
-[PR #30](https://github.com/jerryyehself/laravel-migration-visualizer/pull/30) 已建立，尚未合併。GitHub 狀態見 [交付紀錄](github-milestones.md)。
+[PR #30](https://github.com/jerryyehself/laravel-migration-visualizer/pull/30) 已合併 main（47d5b0f）；對應 issues／milestone 已關閉。GitHub 狀態見 [交付紀錄](github-milestones.md)。
