@@ -62,3 +62,5 @@ summary { cursor: pointer; padding: 10px 0; color: #176d62; }
 .source-line { display: block; white-space: pre; }
 .source-line.highlighted { background: #ffe3b0; color: #542d00; font-weight: 700; }
 .line-number { display: inline-block; width: 4ch; color: #495565; text-align: right; margin-right: 1ch; }
+
+.modified { background: #fff0cf; color: #735036; }
