@@ -89,4 +89,6 @@ M24 已由 PR #85 合併 main（7580dca）；issue #84 與 milestone 已關閉�
 
 M25 已由 PR #88 合併 main（abab84311fba171a2834feca0e9847d378fd02aa），issue #87／milestone 25 已關閉。功能 head 48ff34298dd933b451833db29531f44b8c147bfc 的 validate CI completed/success（run 37147830907），涵蓋 npm ci、501 tests、typecheck、build 與八個 demo。本地保持接手，雲端停止開發。
 
-| 26：外鍵欄位移除 helper | [M26](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/26) | [core/tests/docs #90](https://github.com/jerryyehself/laravel-migration-visualizer/issues/90) | [PR #91](https://github.com/jerryyehself/laravel-migration-visualizer/pull/91) 已實作，待 CI／合併；526 tests；core 0.11.0 |
+| 26：外鍵欄位移除 helper | [M26](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/26) | [core/tests/docs #90](https://github.com/jerryyehself/laravel-migration-visualizer/issues/90) | [PR #91](https://github.com/jerryyehself/laravel-migration-visualizer/pull/91) 已合併；1f86cc3；526 tests；core 0.11.0 |
+
+M26 已由 PR #91 合併 main（1f86cc34b7ba5cea806c19f979fcb9231ee8d87e），issue #90／milestone 26 已關閉。功能 head 7b35e25fe75c87b334def63f4eef3fe91543fa67 的 validate CI completed/success（run 37161605578），涵蓋 npm ci、526 tests、typecheck、build 與九個 demo。本地持續接手，雲端停止開發。
