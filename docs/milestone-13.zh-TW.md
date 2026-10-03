@@ -31,4 +31,4 @@ ProjectWorkbench 以一份 drafts state 管理這兩者，files 與 modifiedCoun
 
 瀏覽器確認：改名與不合法 PHP 後分析失敗；還原恢復兩個欄位，清除舊結果並停用按鈕，重新分析成功。另一份移除後，剩餘改名副本仍還原到正確原值。載入範例重置，已修改數量與標記正確；console 無 warn/error。
 
-GitHub 交付見 [紀錄](github-milestones.md)。
+[PR #42](https://github.com/jerryyehself/laravel-migration-visualizer/pull/42) 已合併 main（8d9d02f），對應 issues／milestone 已關閉。GitHub 交付見 [紀錄](github-milestones.md)。
