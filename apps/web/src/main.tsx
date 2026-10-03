@@ -7,7 +7,7 @@ import './style.css';
 function App() {
   const [mode, setMode] = useState<'project' | 'single'>('project');
   return <main>
-    <p className="eyebrow">MILESTONE 11 / DIAGNOSTIC LOCATION</p>
+    <p className="eyebrow">MILESTONE 12 / DIAGNOSTIC EDIT</p>
     <h1>Laravel Migration Visualizer</h1>
     <p>PHP → AtomicOperation → SchemaState → SchemaDiff</p>
     <p>靜態分析工作台。僅讀取 up()，不執行 PHP，也不連接資料庫。</p>

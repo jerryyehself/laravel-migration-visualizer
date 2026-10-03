@@ -1,4 +1,4 @@
-# Laravel Migration Visualizer — Milestone 11
+# Laravel Migration Visualizer — Milestone 12
 
 React + TypeScript + Vite，npm workspaces monorepo。只做靜態 migration 分析，不執行 PHP 或連接資料庫。
 
@@ -192,3 +192,7 @@ Unit tests 覆蓋 API、literal、動態語法診斷與 schema invariants；gold
 ## Milestone 11：診斷定位
 
 多檔診斷可點選定位至唯讀 PHP 片段，保留 core 行號並顯示前後三行，同時清除結果篩選並選取對應結果。完整路徑歧義時停用；檔名／前序失敗診斷不高亮占位行號。Core 0.5.0 與匯出契約不變；301 tests。教學見 [M11](docs/milestone-11.zh-TW.md)。
+
+## Milestone 12：診斷編輯跳轉
+
+定位卡片可跳回對應檔案的輸入副本，聚焦並選取錯誤整行。修改後清除舊結果，重新分析才更新 schema；檔案層級診斷只開啟檔案而不猜錯誤行。307 tests，core 0.5.0 不變。教學見 [M12](docs/milestone-12.zh-TW.md)。

@@ -18,3 +18,12 @@ export function diagnosticExcerpt(source: string, diagnostic: ProjectDiagnostic)
   const end = line === null ? Math.min(lines.length, 7) : Math.min(lines.length, line + 3);
   return { line, lines: lines.slice(start, end).map((text, offset) => ({ number: start + offset + 1, text })) };
 }
+
+// Textarea values normalize CRLF/CR to LF; selection offsets use UTF-16 units.
+export function sourceLineSelection(source: string, line: number | null) {
+  const text = source.replace(/\r\n?/g, '\n');
+  const lines = text.split('\n');
+  if (line === null || !Number.isInteger(line) || line < 1 || line > lines.length) return { start: 0, end: 0 };
+  const start = lines.slice(0, line - 1).reduce((offset, value) => offset + value.length + 1, 0);
+  return { start, end: start + lines[line - 1].length };
+}

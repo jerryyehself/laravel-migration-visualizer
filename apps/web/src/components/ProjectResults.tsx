@@ -52,8 +52,8 @@ function SchemaView({ title, schema, unavailable }: { title: string; schema: Sch
 }
 
 // Props are data and callbacks from the parent; this component never replays migrations.
-export function ProjectResults({ result, files, selected, onSelect }: {
-  result: ProjectAnalysis; files: readonly MigrationFile[]; selected: number; onSelect: (index: number) => void;
+export function ProjectResults({ result, files, selected, onSelect, onEdit }: {
+  result: ProjectAnalysis; files: readonly MigrationFile[]; selected: number; onSelect: (index: number) => void; onEdit: (item: ProjectDiagnostic) => void;
 }) {
   const [located, setLocated] = useState<ProjectDiagnostic | null>(null);
   const target = located ? diagnosticTarget(files, result, located) : null;
@@ -77,7 +77,7 @@ export function ProjectResults({ result, files, selected, onSelect }: {
     </div>
     <ProjectExports result={result} />
     <h3>專案診斷</h3><Diagnostics items={result.diagnostics} onLocate={locate} canLocate={canLocate} />
-    {located && target && <DiagnosticSource file={target.file} diagnostic={located} />}
+    {located && target && <DiagnosticSource file={target.file} diagnostic={located} onEdit={onEdit} />}
     <fieldset className="result-filters">
       <legend>篩選分析結果</legend>
       <div className="toolbar">
