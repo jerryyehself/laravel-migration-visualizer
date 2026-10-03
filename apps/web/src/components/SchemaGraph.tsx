@@ -1,10 +1,12 @@
 import { useId, useMemo, useRef, useState } from 'react';
 import type { PointerEvent } from 'react';
-import type { SchemaState } from '@lmv/migration-core';
+import type { SchemaState, SchemaDiff } from '@lmv/migration-core';
+import { graphDiffMarks, memberKey, markLabels } from '../graph-diff';
 import { schemaGraph, NODE_WIDTH, clampZoom, graphFit, edgePath, type Point } from '../schema-graph';
 
-export function SchemaGraph({ schema, title = '最終 Schema ERD' }: { schema: SchemaState; title?: string }) {
+export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 'after' }: { schema: SchemaState; title?: string; diff?: SchemaDiff; side?: 'before' | 'after' }) {
   const graph = useMemo(() => schemaGraph(schema), [schema]);
+  const marks = useMemo(() => graphDiffMarks(diff ?? { changes: [] }, side), [diff, side]);
   const marker = useId().replace(/:/g, '');
   const svg = useRef<SVGSVGElement>(null);
   const [zoom, setZoom] = useState(() => graphFit(graph.width, graph.height));
@@ -48,16 +50,18 @@ export function SchemaGraph({ schema, title = '最終 Schema ERD' }: { schema: S
       <svg ref={svg} viewBox="0 0 1200 560" className="erd-canvas" role="group" aria-label="ERD 畫布"
         onPointerDown={event => start(event, null, pan)} onPointerMove={move}
         onLostPointerCapture={() => { drag.current = null; }} onPointerUp={() => { drag.current = null; }} onPointerCancel={() => { drag.current = null; }}>
-        <defs><marker id={marker} markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#176d62" /></marker></defs>
+        <defs><marker id={marker} markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="context-stroke" /></marker></defs>
         <g transform={`translate(${pan.x} ${pan.y}) scale(${zoom})`}>
           {graph.edges.map(edge => {
             const from = position(graph.nodes.find(node => node.name === edge.from)!);
             const to = position(graph.nodes.find(node => node.name === edge.to)!);
-            return <path key={edge.id} d={edgePath(from, to, edge.from === edge.to)} className="erd-edge" markerEnd={`url(#${marker})`}><title>{edge.from} → {edge.to} · {edge.label}</title></path>;
+            const mark = marks.edges.get(edge.id) ?? (marks.tables.get(edge.from) === 'added' || marks.tables.get(edge.from) === 'removed' ? marks.tables.get(edge.from) : undefined);
+            return <path key={edge.id} d={edgePath(from, to, edge.from === edge.to)} className={`erd-edge ${mark ?? ''}`} markerEnd={`url(#${marker})`}><title>{mark ? markLabels[mark] + ' · ' : ''}{edge.from} → {edge.to} · {edge.label}</title></path>;
           })}
           {graph.nodes.map(node => {
             const at = position(node);
-            return <g key={node.name} transform={`translate(${at.x} ${at.y})`} className="erd-node" role="button" tabIndex={0} aria-label={`移動資料表 ${node.name}`}
+            const mark = marks.tables.get(node.name);
+            return <g key={node.name} transform={`translate(${at.x} ${at.y})`} className={`erd-node ${mark ?? ''}`} role="button" tabIndex={0} aria-label={`移動資料表 ${node.name}`}
               onPointerDown={event => start(event, node.name, at)} onKeyDown={event => {
                 const directions: Record<string, Point> = { ArrowLeft: { x: -20, y: 0 }, ArrowRight: { x: 20, y: 0 }, ArrowUp: { x: 0, y: -20 }, ArrowDown: { x: 0, y: 20 } };
                 const delta = directions[event.key]; if (!delta) return;
@@ -65,17 +69,20 @@ export function SchemaGraph({ schema, title = '最終 Schema ERD' }: { schema: S
               }}>
               <rect width={NODE_WIDTH} height={node.height} rx="8" fill="white" stroke="#176d62" />
               <rect width={NODE_WIDTH} height="40" rx="8" fill="#e4f3ef" />
-              <text x="12" y="26" fontWeight="700">{node.name.length > 32 ? node.name.slice(0, 29) + '…' : node.name}<title>{node.name}</title></text>
-              {node.columns.map((column, index) => <text key={column.name} x="12" y={62 + index * 25}>
-                {`${column.primary ? 'PK ' : ''}${column.foreign ? 'FK ' : ''}${column.name}${column.nullable ? '?' : ''}: ${column.type}`.slice(0, 38)}
-                <title>{column.name}: {column.type}; nullable={String(column.nullable)}; PK={String(column.primary)}; FK={String(column.foreign)}</title>
-              </text>)}
+              <text x="12" y="26" fontWeight="700">{node.name.length > (mark ? 21 : 32) ? node.name.slice(0, mark ? 18 : 29) + '…' : node.name}<title>{node.name}{mark ? ` · ${mark === 'changed' ? '含變更' : markLabels[mark]}` : ''}</title></text>
+              {mark && <text x="210" y="26" className="change-badge">{mark === 'changed' ? '～ 含變更' : mark === 'added' ? '＋ 新增' : '− 移除'}</text>}
+              {node.columns.map((column, index) => {
+                const columnMark = marks.columns.get(memberKey(node.name, column.name)) ?? (mark === 'added' || mark === 'removed' ? mark : undefined);
+                return <text className={columnMark ?? ''} key={column.name} x="12" y={62 + index * 25}>
+                {`${columnMark === 'added' ? '＋ ' : columnMark === 'removed' ? '− ' : columnMark === 'changed' ? '～ ' : ''}${column.primary ? 'PK ' : ''}${column.foreign ? 'FK ' : ''}${column.name}${column.nullable ? '?' : ''}: ${column.type}`.slice(0, 38)}
+                <title>{columnMark ? markLabels[columnMark] + ' · ' : ''}{column.name}: {column.type}; nullable={String(column.nullable)}; PK={String(column.primary)}; FK={String(column.foreign)}</title>
+              </text>; })}
               {node.columns.length === 0 && <text x="12" y="62">沒有欄位</text>}
             </g>;
           })}
         </g>
       </svg>
-      <details><summary>外鍵連線明細</summary><ul>{graph.edges.map(edge => <li key={edge.id}>{edge.from} → {edge.to} · {edge.label}</li>)}</ul></details>
+      <details><summary>外鍵連線明細</summary><ul>{graph.edges.map(edge => <li key={edge.id}>{marks.edges.has(edge.id) ? markLabels[marks.edges.get(edge.id)!] + ' · ' : ''}{edge.from} → {edge.to} · {edge.label}</li>)}</ul></details>
     </>}
   </section>;
 }
