@@ -56,3 +56,5 @@ M18 已合併 main（d6a170d），issues #60/#61 與 milestone 已關閉；功�
 | 19：資料表明細 | [M19](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/19) | [UI #64](https://github.com/jerryyehself/laravel-migration-visualizer/issues/64)、[tests/docs #65](https://github.com/jerryyehself/laravel-migration-visualizer/issues/65) | [PR #66](https://github.com/jerryyehself/laravel-migration-visualizer/pull/66) 已合併；8c7d6ad；352 tests |
 
 M19 已合併 main（8c7d6ad），issues #64/#65 與 milestone 已關閉；功能 head a53c2b2 的 CI 通過。
+
+| 20：Laravel 官方相容性基準 | [M20](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/20) | [core #68](https://github.com/jerryyehself/laravel-migration-visualizer/issues/68)、[tests/docs #69](https://github.com/jerryyehself/laravel-migration-visualizer/issues/69) | 實作完成；362 tests；PR／CI 待驗證；core 0.6.0 |

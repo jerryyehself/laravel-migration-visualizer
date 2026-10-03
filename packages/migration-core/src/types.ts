@@ -12,6 +12,8 @@ export interface Column {
   scale?: number;
   allowedValues?: string[];
   default?: Literal;
+  /** Database current timestamp default; never an evaluated clock value. */
+  useCurrent?: boolean;
   comment?: string;
 }
 export type IndexType = 'index' | 'unique' | 'primary';

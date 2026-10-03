@@ -1,0 +1,79 @@
+{
+  "appliedCount": 3,
+  "tables": {
+    "users": [
+      "id",
+      "name",
+      "email",
+      "email_verified_at",
+      "password",
+      "remember_token",
+      "created_at",
+      "updated_at"
+    ],
+    "password_reset_tokens": [
+      "email",
+      "token",
+      "created_at"
+    ],
+    "sessions": [
+      "id",
+      "user_id",
+      "ip_address",
+      "user_agent",
+      "payload",
+      "last_activity"
+    ],
+    "cache": [
+      "key",
+      "value",
+      "expiration"
+    ],
+    "cache_locks": [
+      "key",
+      "owner",
+      "expiration"
+    ],
+    "jobs": [
+      "id",
+      "queue",
+      "payload",
+      "attempts",
+      "reserved_at",
+      "available_at",
+      "created_at"
+    ],
+    "job_batches": [
+      "id",
+      "name",
+      "total_jobs",
+      "pending_jobs",
+      "failed_jobs",
+      "failed_job_ids",
+      "options",
+      "cancelled_at",
+      "created_at",
+      "finished_at"
+    ],
+    "failed_jobs": [
+      "id",
+      "uuid",
+      "connection",
+      "queue",
+      "payload",
+      "exception",
+      "failed_at"
+    ]
+  },
+  "indexCounts": {
+    "users": 2,
+    "password_reset_tokens": 1,
+    "sessions": 3,
+    "cache": 2,
+    "cache_locks": 2,
+    "jobs": 2,
+    "job_batches": 1,
+    "failed_jobs": 2
+  },
+  "foreignKeyCount": 0
+}

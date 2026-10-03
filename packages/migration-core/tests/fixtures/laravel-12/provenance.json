@@ -1,0 +1,25 @@
+{
+  "repository": "https://github.com/laravel/laravel",
+  "ref": "12.x",
+  "commit": "e90c74ca717e9082d7463a2db50814fe565a3e44",
+  "license": "MIT",
+  "licenseSource": "https://raw.githubusercontent.com/laravel/framework/71cf667d43f9cd3f840b1733bb2b7bec65d72282/LICENSE.md",
+  "frameworkCommit": "71cf667d43f9cd3f840b1733bb2b7bec65d72282",
+  "files": [
+    {
+      "filename": "0001_01_01_000000_create_users_table.php",
+      "source": "https://github.com/laravel/laravel/blob/e90c74ca717e9082d7463a2db50814fe565a3e44/database/migrations/0001_01_01_000000_create_users_table.php",
+      "sha256": "10d79883bc08ce46510f9ad8b1830b4d06d586dc56ae2c8bac3b3e491f69a90f"
+    },
+    {
+      "filename": "0001_01_01_000001_create_cache_table.php",
+      "source": "https://github.com/laravel/laravel/blob/e90c74ca717e9082d7463a2db50814fe565a3e44/database/migrations/0001_01_01_000001_create_cache_table.php",
+      "sha256": "2ca8398390ecef8eaf72aeac7fefce67f7de631b6f2ec7b7081c8db8953215dc"
+    },
+    {
+      "filename": "0001_01_01_000002_create_jobs_table.php",
+      "source": "https://github.com/laravel/laravel/blob/e90c74ca717e9082d7463a2db50814fe565a3e44/database/migrations/0001_01_01_000002_create_jobs_table.php",
+      "sha256": "7c9c712adf4091c87bf2612f4d0dccdfa1df4501553e4ac068b83d7bd5462fa5"
+    }
+  ]
+}
