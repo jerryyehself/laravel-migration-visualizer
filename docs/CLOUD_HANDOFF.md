@@ -1,6 +1,6 @@
 # Codex Cloud 交接
 
-## 現況（2026-10-03 核對）
+## 現況（2026-10-04 核對）
 - M1～M24 已合併 main；M24 功能合併為 7580dca／PR #85。Core 0.9.0，本地 476／476 tests、typecheck、build 與七個 demo 通過，PR 最新 head 337890e 的 CI 通過。2026-10-04 已接回本地，雲端已保存未完成內容並停止開發。
 - 已有多檔匯入、排序／分析／逐檔快照／結構 diff、索引／外鍵、診斷定位、JSON 匯出，以及 ERD 快照／比較／同步互動／聚焦／明細。
 - M1 baseline 為 6959b46（42 tests）；各階段實際 commits、PR、驗證與限制見 [GitHub 交付紀錄](github-milestones.md)，下方各節為歷史紀錄。
@@ -152,3 +152,7 @@ M23 已合併（PR #82／4563f01），原功能分支 feat/m23-current-on-update
 M23 已同步本地 main=a8d7b5a，446 tests、typecheck、build 與六個 demo 已在本地重新通過。M24 雲端 WIP 045e041 保存了測試與 fixtures，已取回 feat/m24-rename-index，雲端已停止開發。原 M22 本地版本保留於 baseline/local-m22。M24 的實際 PR／合併與驗證基準見 github-milestones.md 與 milestone-24.zh-TW.md，不把 WIP 當成功交付。
 
 M24 已由 PR #85 合併（7580dca），issue #84 與 milestone 已關閉；接手時以最新 Git／交付紀錄為準。
+
+## M25 本地開發
+
+已實作靜態 dropColumn 陣列，core 0.10.0，501 tests 與八個 demo 通過。讀 milestone-25.zh-TW.md；是否已合併請核對 github-milestones.md／GitHub 最新 main。雲端維持停止開發，勿同時新增功能。

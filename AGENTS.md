@@ -16,7 +16,7 @@
 
 ## 開發與驗證
 - Node.js 22.12+，npm。安裝使用 npm ci，保留 package-lock.json。
-- npm test：目前 476 tests（387 core + 5 browser import + 6 export + 9 filters + 10 folder import + 8 diagnostic location + 6 source selection + 8 drafts + 9 graph + 5 snapshots + 8 graph diff + 5 comparison layout + 4 focus + 6 table inspector）；原 Milestone 1 為 42 tests。
+- npm test：目前 501 tests（412 core + 5 browser import + 6 export + 9 filters + 10 folder import + 8 diagnostic location + 6 source selection + 8 drafts + 9 graph + 5 snapshots + 8 graph diff + 5 comparison layout + 4 focus + 6 table inspector）；原 Milestone 1 為 42 tests。
 - npm run typecheck
 - npm run build
 - npm run demo:project
@@ -26,6 +26,7 @@
 - npm run demo:changes
 - npm run demo:current-update
 - npm run demo:index-rename
+- npm run demo:drop-columns
 - golden JSON 是預期規格，不可為通過測試而盲目覆寫。
 - 只新增與變更行為相關的測試。報告實際執行的驗證與限制。
 
@@ -68,3 +69,5 @@ M23 新增 Column.useCurrentOnUpdate?: boolean：四種 timestamp/dateTime 型�
 M24 新增一般 index／unique renameIndex operation；core 0.9.0、SchemaState 不變。primary 更名保守拒絕；diff 仍是 removed+added。讀 docs/milestone-24.zh-TW.md 與交付紀錄。
 
 M24 已由 PR #85 合併（7580dca），issue #84 與 milestone 已關閉；功能 head 337890e 的 CI 通過 tests、typecheck、build 與七個 demo。2026-10-04 已接回本地，雲端停止開發。
+
+M25 已實作靜態 dropColumn 陣列，core 0.10.0；沿用既有 operations／SchemaState。501 tests、八個 demo 通過；讀 docs/milestone-25.zh-TW.md，實際交付狀態見交付紀錄。variadic 字串、空／重複／動態陣列仍拒絕。
