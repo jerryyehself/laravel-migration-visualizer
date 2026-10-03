@@ -1,0 +1,359 @@
+{
+  "complete": true,
+  "appliedCount": 3,
+  "finalSchema": {
+    "tables": {
+      "events": {
+        "name": "events",
+        "columns": {
+          "at": {
+            "name": "at",
+            "type": "timestamp",
+            "nullable": true,
+            "precision": 6,
+            "default": null,
+            "comment": "seed"
+          },
+          "zoned": {
+            "name": "zoned",
+            "type": "dateTimeTz",
+            "nullable": false,
+            "precision": 3
+          }
+        },
+        "indexes": {
+          "events_at_index": {
+            "name": "events_at_index",
+            "type": "index",
+            "columns": [
+              "at"
+            ]
+          }
+        },
+        "foreignKeys": {}
+      }
+    }
+  },
+  "lastValidSchema": {
+    "tables": {
+      "events": {
+        "name": "events",
+        "columns": {
+          "at": {
+            "name": "at",
+            "type": "timestamp",
+            "nullable": true,
+            "precision": 6,
+            "default": null,
+            "comment": "seed"
+          },
+          "zoned": {
+            "name": "zoned",
+            "type": "dateTimeTz",
+            "nullable": false,
+            "precision": 3
+          }
+        },
+        "indexes": {
+          "events_at_index": {
+            "name": "events_at_index",
+            "type": "index",
+            "columns": [
+              "at"
+            ]
+          }
+        },
+        "foreignKeys": {}
+      }
+    }
+  },
+  "steps": [
+    {
+      "status": "applied",
+      "before": {
+        "tables": {}
+      },
+      "after": {
+        "tables": {
+          "events": {
+            "name": "events",
+            "columns": {
+              "at": {
+                "name": "at",
+                "type": "timestamp",
+                "nullable": true,
+                "precision": 6,
+                "default": null,
+                "comment": "seed"
+              }
+            },
+            "indexes": {
+              "events_at_index": {
+                "name": "events_at_index",
+                "type": "index",
+                "columns": [
+                  "at"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "tableAdded",
+            "table": "events",
+            "after": {
+              "name": "events",
+              "columns": {
+                "at": {
+                  "name": "at",
+                  "type": "timestamp",
+                  "nullable": true,
+                  "precision": 6,
+                  "default": null,
+                  "comment": "seed"
+                }
+              },
+              "indexes": {
+                "events_at_index": {
+                  "name": "events_at_index",
+                  "type": "index",
+                  "columns": [
+                    "at"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            }
+          }
+        ]
+      }
+    },
+    {
+      "status": "applied",
+      "before": {
+        "tables": {
+          "events": {
+            "name": "events",
+            "columns": {
+              "at": {
+                "name": "at",
+                "type": "timestamp",
+                "nullable": true,
+                "precision": 6,
+                "default": null,
+                "comment": "seed"
+              }
+            },
+            "indexes": {
+              "events_at_index": {
+                "name": "events_at_index",
+                "type": "index",
+                "columns": [
+                  "at"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "after": {
+        "tables": {
+          "events": {
+            "name": "events",
+            "columns": {
+              "at": {
+                "name": "at",
+                "type": "timestamp",
+                "nullable": true,
+                "precision": 6,
+                "default": null,
+                "comment": "seed",
+                "useCurrentOnUpdate": true
+              },
+              "zoned": {
+                "name": "zoned",
+                "type": "dateTimeTz",
+                "nullable": false,
+                "precision": 3,
+                "useCurrent": true,
+                "useCurrentOnUpdate": true
+              }
+            },
+            "indexes": {
+              "events_at_index": {
+                "name": "events_at_index",
+                "type": "index",
+                "columns": [
+                  "at"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "columnChanged",
+            "table": "events",
+            "column": "at",
+            "before": {
+              "name": "at",
+              "type": "timestamp",
+              "nullable": true,
+              "precision": 6,
+              "default": null,
+              "comment": "seed"
+            },
+            "after": {
+              "name": "at",
+              "type": "timestamp",
+              "nullable": true,
+              "precision": 6,
+              "default": null,
+              "comment": "seed",
+              "useCurrentOnUpdate": true
+            }
+          },
+          {
+            "kind": "columnAdded",
+            "table": "events",
+            "column": "zoned",
+            "after": {
+              "name": "zoned",
+              "type": "dateTimeTz",
+              "nullable": false,
+              "precision": 3,
+              "useCurrent": true,
+              "useCurrentOnUpdate": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "status": "applied",
+      "before": {
+        "tables": {
+          "events": {
+            "name": "events",
+            "columns": {
+              "at": {
+                "name": "at",
+                "type": "timestamp",
+                "nullable": true,
+                "precision": 6,
+                "default": null,
+                "comment": "seed",
+                "useCurrentOnUpdate": true
+              },
+              "zoned": {
+                "name": "zoned",
+                "type": "dateTimeTz",
+                "nullable": false,
+                "precision": 3,
+                "useCurrent": true,
+                "useCurrentOnUpdate": true
+              }
+            },
+            "indexes": {
+              "events_at_index": {
+                "name": "events_at_index",
+                "type": "index",
+                "columns": [
+                  "at"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "after": {
+        "tables": {
+          "events": {
+            "name": "events",
+            "columns": {
+              "at": {
+                "name": "at",
+                "type": "timestamp",
+                "nullable": true,
+                "precision": 6,
+                "default": null,
+                "comment": "seed"
+              },
+              "zoned": {
+                "name": "zoned",
+                "type": "dateTimeTz",
+                "nullable": false,
+                "precision": 3
+              }
+            },
+            "indexes": {
+              "events_at_index": {
+                "name": "events_at_index",
+                "type": "index",
+                "columns": [
+                  "at"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "columnChanged",
+            "table": "events",
+            "column": "at",
+            "before": {
+              "name": "at",
+              "type": "timestamp",
+              "nullable": true,
+              "precision": 6,
+              "default": null,
+              "comment": "seed",
+              "useCurrentOnUpdate": true
+            },
+            "after": {
+              "name": "at",
+              "type": "timestamp",
+              "nullable": true,
+              "precision": 6,
+              "default": null,
+              "comment": "seed"
+            }
+          },
+          {
+            "kind": "columnChanged",
+            "table": "events",
+            "column": "zoned",
+            "before": {
+              "name": "zoned",
+              "type": "dateTimeTz",
+              "nullable": false,
+              "precision": 3,
+              "useCurrent": true,
+              "useCurrentOnUpdate": true
+            },
+            "after": {
+              "name": "zoned",
+              "type": "dateTimeTz",
+              "nullable": false,
+              "precision": 3
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "diagnosticCodes": []
+}

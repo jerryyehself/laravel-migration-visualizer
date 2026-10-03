@@ -31,8 +31,8 @@ describe('Laravel 12 pinned compatibility baseline',()=>{
     expect(result.diagnostics[0].code).toBe('UNSUPPORTED_BLUEPRINT');
     expect(result.operations.some(o=>o.kind==='addColumn')).toBe(false);
   });
-  it('keeps useCurrentOnUpdate unsupported and final state unknown',()=>{
-    const source=php("$t->timestamp('at')->useCurrentOnUpdate();");
+  it('keeps parameterized useCurrentOnUpdate unsupported and final state unknown',()=>{
+    const source=php("$t->timestamp('at')->useCurrentOnUpdate(false);");
     const result=analyzeProject([{filename:'2026_01_01_000000_events.php',source}]);
     expect(result.complete).toBe(false); expect(result.finalSchema).toBeNull();
     expect(result.migrations[0].schemaAfter).toBeNull();

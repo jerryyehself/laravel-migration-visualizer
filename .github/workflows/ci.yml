@@ -29,3 +29,4 @@ jobs:
       - run: npm run demo:helpers
       - run: npm run demo:laravel
       - run: npm run demo:changes
+      - run: npm run demo:current-update

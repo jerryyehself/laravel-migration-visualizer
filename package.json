@@ -15,7 +15,8 @@
     "demo:tables": "npm run build -w @lmv/migration-core && node examples/table-lifecycle.mjs",
     "demo:helpers": "npm run build -w @lmv/migration-core && node examples/column-helpers.mjs",
     "demo:changes": "npm run build -w @lmv/migration-core && node examples/change-columns.mjs",
-    "demo:laravel": "npm run build -w @lmv/migration-core && node examples/laravel-baseline.mjs"
+    "demo:laravel": "npm run build -w @lmv/migration-core && node examples/laravel-baseline.mjs",
+    "demo:current-update": "npm run build -w @lmv/migration-core && node examples/current-on-update.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
