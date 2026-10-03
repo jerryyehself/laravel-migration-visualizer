@@ -71,3 +71,19 @@ summary { cursor: pointer; padding: 10px 0; color: #176d62; }
 .erd-node:focus { outline: none; }
 .erd-node:focus rect:first-child { stroke: #d99425; stroke-width: 4; }
 .erd-edge { fill: none; stroke: #176d62; stroke-width: 2; }
+
+.erd-node.added rect:first-child { stroke: #087443; stroke-width: 3; }
+.erd-node.added rect:nth-child(2) { fill: #d8f4e3; }
+.erd-node.removed rect:first-child { stroke: #b22c35; stroke-width: 3; stroke-dasharray: 7 4; }
+.erd-node.removed rect:nth-child(2) { fill: #ffe2e4; }
+.erd-node.changed rect:first-child { stroke: #986000; stroke-width: 3; }
+.erd-node.changed rect:nth-child(2) { fill: #fff0cf; }
+.erd-node text.added { fill: #087443; font-weight: 700; }
+.erd-node text.removed { fill: #b22c35; font-weight: 700; }
+.erd-node text.changed { fill: #986000; font-weight: 700; }
+.erd-node .change-badge { font-size: 12px; }
+.erd-edge.added { stroke: #087443; stroke-width: 3; }
+.erd-edge.removed { stroke: #b22c35; stroke-width: 3; stroke-dasharray: 7 4; }
+.erd-edge.changed { stroke: #986000; stroke-width: 3; }
+
+.erd-node:focus rect:first-child { stroke: #d99425; stroke-width: 4; }

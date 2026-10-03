@@ -1,9 +1,10 @@
-import type { ProjectAnalysis, SchemaState } from '@lmv/migration-core';
+import type { ProjectAnalysis, SchemaState, MigrationSnapshot } from '@lmv/migration-core';
 export interface SchemaSnapshotChoice {
   id: string;
   label: string;
   schema: SchemaState | null;
   unavailable: string;
+  comparison?: MigrationSnapshot;
 }
 // Select existing authoritative snapshots; never replay or substitute a prefix.
 export function schemaSnapshotChoices(result: ProjectAnalysis): SchemaSnapshotChoice[] {
@@ -16,6 +17,9 @@ export function schemaSnapshotChoices(result: ProjectAnalysis): SchemaSnapshotCh
         unavailable: '前序狀態未知，沒有可信的套用前快照。' },
       { id: `after-${index}`, label: `${index + 1}. ${step.filename} · 套用後`, schema: step.schemaAfter,
         unavailable: '此檔未成功套用，沒有可信的套用後快照。' },
+      { id: `diff-${index}`, label: `${index + 1}. ${step.filename} · 結構比較`,
+        schema: step.schemaBefore !== null && step.schemaAfter !== null && step.diff !== null ? step.schemaAfter : null,
+        unavailable: '快照或 diff 未知，無法比較。', comparison: step },
     ]),
   ];
 }

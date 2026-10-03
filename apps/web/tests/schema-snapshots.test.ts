@@ -9,11 +9,11 @@ describe('schema snapshot choices', () => {
   it('follows core order rather than input order and keeps before/after distinct', () => {
     const result = analyzeProject([update, create]);
     const choices = schemaSnapshotChoices(result);
-    expect(choices.map(choice => choice.id)).toEqual(['final', 'initial', 'before-0', 'after-0', 'before-1', 'after-1']);
+    expect(choices.map(choice => choice.id)).toEqual(['final', 'initial', 'before-0', 'after-0', 'diff-0', 'before-1', 'after-1', 'diff-1']);
     expect(choices[2].label).toContain(create.filename);
     expect(choices[2].schema!.tables).toEqual({});
     expect(Object.keys(choices[3].schema!.tables.users.columns)).toEqual(['id']);
-    expect(Object.keys(choices[5].schema!.tables.users.columns)).toEqual(['id', 'name']);
+    expect(Object.keys(choices[6].schema!.tables.users.columns)).toEqual(['id', 'name']);
   });
   it('preserves known empty initial and final states for a zero-file project', () => {
     const choices = schemaSnapshotChoices(analyzeProject([]));
@@ -27,11 +27,11 @@ describe('schema snapshot choices', () => {
     const result = analyzeProject([later, bad, create]);
     const choices = schemaSnapshotChoices(result);
     expect(choices[0].schema).toBeNull();
-    expect(choices[4].schema).toBe(result.migrations[1].schemaBefore);
-    expect(choices[4].schema).not.toBeNull();
-    expect(choices.slice(5).every(choice => choice.schema === null)).toBe(true);
-    expect(choices[5].unavailable).toContain('未成功套用');
-    expect(choices[6].unavailable).toContain('前序狀態未知');
+    expect(choices[5].schema).toBe(result.migrations[1].schemaBefore);
+    expect(choices[5].schema).not.toBeNull();
+    expect(choices.slice(6).every(choice => choice.schema === null)).toBe(true);
+    expect(choices[6].unavailable).toContain('未成功套用');
+    expect(choices[8].unavailable).toContain('前序狀態未知');
   });
   it('does not substitute lastValidSchema after ordering failure', () => {
     const result = analyzeProject([create, create]);
