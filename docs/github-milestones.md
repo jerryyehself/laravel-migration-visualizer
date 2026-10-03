@@ -104,3 +104,5 @@ M28 最新功能 head 07cd086cb6561646ce4fa49bf353d9c9d7fe7ab2 的 validate CI s
 | 29：dropMorphs lifecycle | [M29](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/29) | [#97](https://github.com/jerryyehself/laravel-migration-visualizer/issues/97) | [PR #98](https://github.com/jerryyehself/laravel-migration-visualizer/pull/98) 已合併；1aa3f83；591 tests；core 0.14.0 |
 
 M29 最新功能 head 1a3db8388c0bfa9f093703e7379eab3e56d95d74 的 validate CI success（run 37162686717），PR #98 合併為 1aa3f836a74df3f0bdad50be2e69870723c1a6e9；issue #97／milestone 29 已關閉。三階段 CI 均涵蓋 npm ci、完整 tests、typecheck、build 與十個 demo。
+
+M30：[milestone 30](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/30)／[issue #100](https://github.com/jerryyehself/laravel-migration-visualizer/issues/100)。相容性矩陣與 12 個 probes 已實作，本地 603 tests、typecheck、build 與十個 demo 通過；PR／CI 待確認。
