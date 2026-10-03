@@ -21,7 +21,7 @@ import lifecycleRename from '../../../../packages/migration-core/tests/fixtures/
 import lifecycleDrop from '../../../../packages/migration-core/tests/fixtures/table-lifecycle/2026_04_03_000000_drop_articles.php?raw';
 import lifecycleFinish from '../../../../packages/migration-core/tests/fixtures/table-lifecycle/2026_04_04_000000_drop_members.php?raw';
 import lifecycleInvalid from '../../../../packages/migration-core/tests/fixtures/table-lifecycle/2026_04_03_000000_invalid_drop.php?raw';
-import { readMigrationFiles } from '../import-files';
+import { readMigrationFiles, readMigrationFolder } from '../import-files';
 import { ProjectResults } from './ProjectResults';
 
 function sampleFiles(failing = false): MigrationFile[] {
@@ -71,18 +71,25 @@ export function ProjectWorkbench() {
   const [result, setResult] = useState<ProjectAnalysis | null>(null);
   const [reading, setReading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [folderImport, setFolderImport] = useState<{ importedCount: number; ignoredFiles: string[] } | null>(null);
+  const [folderSupported] = useState(() => 'webkitdirectory' in document.createElement('input'));
   const activeFile = files[selectedInput];
 
   function replaceFiles(next: MigrationFile[]) {
-    setFiles(next); setSelectedInput(0); setResult(null); setError(null);
+    setFiles(next); setSelectedInput(0); setResult(null); setError(null); setFolderImport(null);
   }
   function updateFile(patch: Partial<MigrationFile>) {
     setFiles(current => current.map((file, index) => index === selectedInput ? { ...file, ...patch } : file));
-    setResult(null); setError(null);
+    setResult(null); setError(null); setFolderImport(null);
   }
-  async function importFiles(chosen: File[]) {
-    setReading(true); setError(null); setResult(null);
-    try { replaceFiles(await readMigrationFiles(chosen)); }
+  async function importFiles(chosen: File[], folder = false) {
+    setReading(true); setError(null); setResult(null); setFolderImport(null);
+    try {
+      if (folder) {
+        const imported = await readMigrationFolder(chosen);
+        replaceFiles(imported.files); setFolderImport({ importedCount: imported.files.length, ignoredFiles: imported.ignoredFiles });
+      } else replaceFiles(await readMigrationFiles(chosen));
+    }
     catch (cause) { setError(cause instanceof Error ? cause.message : '匯入失敗。'); }
     finally { setReading(false); }
   }
@@ -103,6 +110,14 @@ export function ProjectWorkbench() {
             event.target.value = '';
             if (chosen.length > 0) void importFiles(chosen);
           }} /></div>
+        <div><label htmlFor="migration-folder">匯入 migrations 資料夾（取代目前清單）</label>
+          <input id="migration-folder" type="file" multiple {...{ webkitdirectory: '' }} disabled={!folderSupported} onChange={event => {
+            const chosen = Array.from(event.target.files ?? []);
+            event.target.value = '';
+            if (chosen.length > 0) void importFiles(chosen, true);
+          }} />
+          {!folderSupported && <p className="muted">此瀏覽器不支援資料夾選取，請使用 PHP 多檔匯入。</p>}
+        </div>
         <button type="button" className="secondary" onClick={() => replaceFiles(sampleFiles())}>載入成功範例</button>
         <button type="button" className="secondary" onClick={() => replaceFiles(sampleFiles(true))}>載入失敗範例</button>
         <button type="button" className="secondary" onClick={() => replaceFiles([
@@ -117,6 +132,13 @@ export function ProjectWorkbench() {
         <button type="button" className="secondary" onClick={() => replaceFiles(helperFiles())}>載入欄位 helper 範例</button>
         <button type="button" className="secondary" onClick={() => replaceFiles(helperFiles(true))}>載入 helper 失敗範例</button>
       </div>
+      <p className="muted">資料夾匯入包含子資料夾中的 .php，保留相對路徑；非 PHP 檔案會略過並列出。請選 migrations 資料夾。</p>
+      {folderImport && <div role="status">
+        <p>已匯入 {folderImport.importedCount} 份 PHP，略過 {folderImport.ignoredFiles.length} 份非 PHP 檔案。</p>
+        {folderImport.ignoredFiles.length > 0 && <details><summary>查看略過的檔案</summary>
+          <ul>{folderImport.ignoredFiles.map((name,index) => <li key={index}>{name}</li>)}</ul>
+        </details>}
+      </div>}
       <p className="muted">檔名格式：YYYY_MM_DD_HHMMSS_description.php。匯入順序不影響分析順序；重複名稱由 core 診斷。</p>
       <div className="project-layout">
         <nav className="migration-list" aria-label="待分析檔案（輸入順序）">
