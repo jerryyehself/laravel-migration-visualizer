@@ -49,3 +49,7 @@ M24：明確 renameIndex operation 保留一般 index／unique 型別與欄位�
 ## M25：靜態多欄位刪除
 
 一個非空、不重複的靜態字串列表按輸入順序展開既有 dropColumn operations；整個參數驗證後才輸出。既有 replay 維持索引／外鍵保護與整檔回滾，diff 按名稱排序。Core 0.10.0 不新增 JSON variant；variadic 字串及動態參數仍拒絕。拒絕空／重複名稱是分析器政策，不宣稱 Laravel／DB 同樣拒絕。詳見 milestone-25.zh-TW.md。
+
+## M26：外鍵欄位移除 helper
+
+依固定 Laravel 12 Blueprint 原始碼，dropConstrainedForeignId 的非空靜態字串展開為慣例命名的 dropForeignKey，再 dropColumn，共用來源。沿用既有 replay，不搜尋自訂外鍵名稱、不忽略缺少約束，不移除其他索引／引用。失敗保留完整可信前綴；model helper／connection prefix／方法鏈仍不支援。Core 0.11.0 不新增 JSON variant，詳見 milestone-26.zh-TW.md。
