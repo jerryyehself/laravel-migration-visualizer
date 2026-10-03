@@ -1,4 +1,4 @@
-# Laravel Migration Visualizer — Milestone 18
+# Laravel Migration Visualizer — Milestone 19
 
 React + TypeScript + Vite，npm workspaces monorepo。只做靜態 migration 分析，不執行 PHP 或連接資料庫。
 
@@ -220,3 +220,7 @@ ERD 可選專案初始／最終與每份 migration 套用前／後快照；切�
 ## Milestone 18：資料表搜尋與聚焦
 
 搜尋只篩選聚焦清單，保留完整 ERD；聚焦目標置中並標記，比較模式同步視野，重設清除選中表。346 tests；core 不變。教學見 [M18](docs/milestone-18.zh-TW.md)。
+
+## Milestone 19：資料表明細
+
+聚焦資料表後可展開完整欄位屬性、索引與外鍵。比較每側沿用自己的快照，缺表不補畫；false／0／null 與未指定值保持區別。352 tests；教學見 [M19](docs/milestone-19.zh-TW.md)。

@@ -1,6 +1,7 @@
 import { useId, useMemo, useRef, useState } from 'react';
 import type { PointerEvent, Dispatch, SetStateAction } from 'react';
 import type { SchemaState, SchemaDiff } from '@lmv/migration-core';
+import { TableDetails } from './TableDetails';
 import { matchingTables, focusGraphTable } from '../graph-focus';
 import { initialGraphView, type GraphLayout, type GraphView } from '../comparison-layout';
 import { graphDiffMarks, memberKey, markLabels } from '../graph-diff';
@@ -110,5 +111,6 @@ export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 
       </svg>
       <details><summary>外鍵連線明細</summary><ul>{graph.edges.map(edge => <li key={edge.id}>{marks.edges.has(edge.id) ? markLabels[marks.edges.get(edge.id)!] + ' · ' : ''}{edge.from} → {edge.to} · {edge.label}</li>)}</ul></details>
     </>}
+    <TableDetails schema={schema} selected={focused} />
   </section>;
 }

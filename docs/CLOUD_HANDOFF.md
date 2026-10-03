@@ -16,7 +16,7 @@
 6. 若 Cloud 使用環境快取，可將 maintenance script 同樣設為 bash scripts/cloud-setup.sh，以確保依照目前 lockfile 安裝。
 
 ## 第一個雲端任務：驗證交接
-請讀取 AGENTS.md、README.md、docs/milestone-2.zh-TW.md 及本文件。先確認 Git 狀態與目前 commit，再執行 npm test、npm run typecheck、npm run build、npm run demo:project。包含 Milestone 18 時預期 346 tests 通過；Milestone 17 為 342 tests；Milestone 16 為 337 tests；Milestone 15 為 329 tests；Milestone 14 為 324 tests；Milestone 13 為 315 tests；Milestone 12 為 307 tests；Milestone 11 為 301 tests；Milestone 10 為 293 tests；Milestone 9 為 283 tests；Milestone 8 為 274 tests；Milestone 7 為 268 tests；Milestone 6 為 224 tests；Milestone 5 為 186 tests；Milestone 4 為 121 tests；僅 Milestone 3 為 76 tests（Milestone 2 交接 commit 75087de 為 71 tests），三份範例依序成功，最終 users 欄位為 id、display_name。以繁體中文回報雲端驗證結果與任何環境差異；若失敗先修復環境或相容性問題。雲端驗證任務只驗證交接，不擴大功能；Milestone 3 已在本機另行實作。
+請讀取 AGENTS.md、README.md、docs/milestone-2.zh-TW.md 及本文件。先確認 Git 狀態與目前 commit，再執行 npm test、npm run typecheck、npm run build、npm run demo:project。包含 Milestone 19 時預期 352 tests 通過；Milestone 18 為 346 tests；Milestone 17 為 342 tests；Milestone 16 為 337 tests；Milestone 15 為 329 tests；Milestone 14 為 324 tests；Milestone 13 為 315 tests；Milestone 12 為 307 tests；Milestone 11 為 301 tests；Milestone 10 為 293 tests；Milestone 9 為 283 tests；Milestone 8 為 274 tests；Milestone 7 為 268 tests；Milestone 6 為 224 tests；Milestone 5 為 186 tests；Milestone 4 為 121 tests；僅 Milestone 3 為 76 tests（Milestone 2 交接 commit 75087de 為 71 tests），三份範例依序成功，最終 users 欄位為 id、display_name。以繁體中文回報雲端驗證結果與任何環境差異；若失敗先修復環境或相容性問題。雲端驗證任務只驗證交接，不擴大功能；Milestone 3 已在本機另行實作。
 
 ## 必須保留的契約
 - core 與 React UI 分離，core 不做 IO。
@@ -115,3 +115,6 @@ M17 已合併 PR #58（5054727），issues #56/#57 與 milestone 已關閉；功
 ERD 搜尋僅改聚焦清單，聚焦只更新 shared／local GraphView，不改 schema。346 tests；讀 docs/milestone-18.zh-TW.md，狀態見 github-milestones.md。
 
 M18 已合併 PR #62（d6a170d），issues #60/#61 與 milestone 已關閉；功能 head a313dbc 的 CI 通過 tests、typecheck、build 與三個 demo。
+
+## Milestone 19 交接
+TableDetails 讀取當前 schema 與 focused，完整呈現欄位／索引／外鍵，缺表或缺省不補猜測值。352 tests；讀 docs/milestone-19.zh-TW.md，狀態見 github-milestones.md。
