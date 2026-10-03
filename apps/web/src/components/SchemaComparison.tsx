@@ -12,7 +12,7 @@ function KnownComparison({ step, before, after, diff }: { step: MigrationSnapsho
   return <section aria-label="ERD 結構比較">
     <h2>{step.filename} · 結構比較</h2>
     <p>＋ 新增（綠）、− 移除（紅）、～ 變更（橙）。移除項目在前圖，新增項目在後圖；表的「含變更」包含欄位、索引或外鍵變化。不推測 rename。</p>
-    <p>共同資料表位置對齊；拖移、平移、縮放與重設會同步兩圖。單側新增／移除的位置在另一圖留空。索引詳情與完整屬性請查看下方變更明細。</p>
+    <p>共同資料表位置對齊；拖移、平移、縮放與重設會同步兩圖。單側新增／移除的位置在另一圖留空。聚焦資料表也會同步兩圖視野，另一側缺少的表不補畫。索引詳情與完整屬性請查看下方變更明細。</p>
     <p role="status">{diff.changes.length} 個結構變化{diff.changes.length === 0 ? '；沒有結構變化。' : '。'}</p>
     <SchemaGraph schema={before} title="套用前 ERD · 移除與變更" diff={diff} side="before" layout={layout} view={view} onViewChange={setView} />
     <SchemaGraph schema={after} title="套用後 ERD · 新增與變更" diff={diff} side="after" layout={layout} view={view} onViewChange={setView} />
