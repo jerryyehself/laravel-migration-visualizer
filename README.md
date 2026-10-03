@@ -1,4 +1,4 @@
-# Laravel Migration Visualizer — Milestone 13
+# Laravel Migration Visualizer — Milestone 14
 
 React + TypeScript + Vite，npm workspaces monorepo。只做靜態 migration 分析，不執行 PHP 或連接資料庫。
 
@@ -200,3 +200,7 @@ Unit tests 覆蓋 API、literal、動態語法診斷與 schema invariants；gold
 ## Milestone 13：修改標記與還原
 
 多檔工作台顯示已修改數量與標記，可將目前檔案的檔名／PHP 還原至匯入或載入時的版本。還原清除舊結果，需重新分析；不寫回磁碟。刪除其他檔案不重設剩餘副本的原值。315 tests；core 0.5.0 不變。教學與限制見 [M13](docs/milestone-13.zh-TW.md)。
+
+## Milestone 14：最終 Schema ERD
+
+成功分析後呈現資料表、欄位與外鍵箭頭，支援拖移、平移、按鈕縮放、方向鍵移動與重設。PK／FK／nullable 由既有 schema 投影，不猜外鍵或關聯基數；失敗時不繪製未知 finalSchema。324 tests，core 0.5.0 不變；教學與布局限制見 [M14](docs/milestone-14.zh-TW.md)。
