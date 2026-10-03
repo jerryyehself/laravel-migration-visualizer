@@ -27,3 +27,5 @@ TableDetails component 的 props 為當前 schema 與 GraphView 的 focused 表�
 下一階段建議從真實 Laravel migration 專案檢查支援率，整理不支援語法與診斷，再依具體樣本補核心 API。
 
 交付狀態見 [GitHub 紀錄](github-milestones.md)。
+
+[PR #66](https://github.com/jerryyehself/laravel-migration-visualizer/pull/66) 已合併 main（8c7d6ad）；功能 head a53c2b2 的 CI 通過 tests、typecheck、build 與三個 demo。Issues #64/#65 與 milestone 已關閉。

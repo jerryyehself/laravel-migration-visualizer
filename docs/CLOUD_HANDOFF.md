@@ -27,7 +27,7 @@
 - 自訂 base class、完整 Laravel API、DB 方言與 PHP runtime 語意仍不涵蓋；完整限制見 README。
 
 ## 後續範圍
-M1～M18 已交付；後續維持 core/UI 分層、測試、中文教學與 PR 流程。M14 已獲授權進入 ERD；timeline、down()、AI、semantic refactoring detection 仍不在目前範圍。
+M1～M19 已交付；後續維持 core/UI 分層、測試、中文教學與 PR 流程。M14 已獲授權進入 ERD；timeline、down()、AI、semantic refactoring detection 仍不在目前範圍。
 
 ## 原始碼閱讀順序
 src/types.ts → src/project-types.ts → src/ordering.ts → src/project.ts → src/diff.ts → tests/project.test.ts（皆位於 packages/migration-core）。教學請看 docs/tutorial.zh-TW.md 與 docs/milestone-2.zh-TW.md。
@@ -118,3 +118,5 @@ M18 已合併 PR #62（d6a170d），issues #60/#61 與 milestone 已關閉；功
 
 ## Milestone 19 交接
 TableDetails 讀取當前 schema 與 focused，完整呈現欄位／索引／外鍵，缺表或缺省不補猜測值。352 tests；讀 docs/milestone-19.zh-TW.md，狀態見 github-milestones.md。
+
+M19 已合併 PR #66（8c7d6ad），issues #64/#65 與 milestone 已關閉；功能 head a53c2b2 的 CI 通過 tests、typecheck、build 與三個 demo。
