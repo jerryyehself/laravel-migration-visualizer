@@ -8,7 +8,7 @@ schema-graph.ts 是 web 的呈現投影：SchemaState → 節點／連線／初�
 
 SchemaGraph 是 React component，props 只有已知 schema。pan、zoom、positions 是畫面 state，拖移只更新它們，不修改 schema。positions 用 Map 保存移動過的表名，避免特殊名稱如 __proto__ 被當成物件原型。初始位置與欄位列則是可重算的資料。
 
-useRef 保存 SVG 元素與目前拖移的起點；它們不是資料庫狀態。指標座標先轉成 SVG 座標，再扣除缩放，確保改變縮放後拖移距離仍正確。鍵盤方向鍵也可移動聚焦中的資料表。使用原生 SVG，未增加依賴套件。
+useRef 保存 SVG 元素與目前拖移的起點；它們不是資料庫狀態。指標座標先轉成 SVG 座標，再扣除縮放，確保改變縮放後拖移距離仍正確。鍵盤方向鍵也可移動聚焦中的資料表。使用原生 SVG，未增加依賴套件。
 
 ## 圖形契約
 
@@ -33,3 +33,5 @@ useRef 保存 SVG 元素與目前拖移的起點；它們不是資料庫狀態�
 內建瀏覽器確認：完整四檔外鍵範例最後刪除外鍵，圖為 2 表／0 關係；保留前三檔後為 2 表／1 關係，posts.author_id 指向 users.user_key。實際指標拖移、方向鍵移動、空白平移、縮放與重設成功；失敗流程沒有 ERD 畫布，顯示最終 schema 未知。Console 無 warn/error。
 
 交付狀態見 [GitHub 紀錄](github-milestones.md)。
+
+[PR #46](https://github.com/jerryyehself/laravel-migration-visualizer/pull/46) 已合併 main（652292b）。GitHub CI 在功能 head 4b61890 通過 tests、typecheck、build 與三個 demo；issues #44/#45 與 milestone 已關閉。
