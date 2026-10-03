@@ -76,6 +76,15 @@ export function applyOperations(initial: SchemaState, operations: readonly Atomi
       syncPrimary();
     } else if (op.kind === 'addIndex') {
       addIndex(op.index);
+    } else if (op.kind === 'renameIndex') {
+      if (typeof op.from !== 'string' || !op.from.length || typeof op.to !== 'string' || !op.to.length) fail('Index names must be non-empty strings.');
+      if (!owns(indexes, op.from)) fail(`Unknown index: ${op.from}`);
+      if (owns(indexes, op.to)) fail(`Index already exists: ${op.to}`);
+      const target = indexes[op.from];
+      if (target.type !== 'index' && target.type !== 'unique') fail('Renaming primary indexes is unsupported.');
+      set(indexes, op.to, { ...target, name:op.to, columns:[...target.columns] });
+      delete indexes[op.from];
+      syncPrimary();
     } else if (op.kind === 'dropIndex') {
       const name = op.name ?? Object.values(indexes).find(index => index.type === 'primary')?.name;
       if (!name || !owns(indexes, name)) fail(`Unknown index: ${op.name ?? 'primary'}`);
