@@ -35,3 +35,5 @@ M1～M20 已交付。核對起點 main=f7e2383，Core 0.6.0，最近完整驗證
 M21 尚未實作；本機只建立空分支並查閱 Laravel 時間欄位 grammar。建議接續 dateTime／dateTimeTz 的 useCurrent() 相容性，先核對來源、寫失敗回歸、補跨檔 golden tests 與教學。useCurrentOnUpdate() 是待評估候選，當前仍不支援，不能默認已納入。
 
 雲端接手先按 [CLOUD_HANDOFF](CLOUD_HANDOFF.md) 驗證，再繼續。原對話不會自動同步；repo 文件可帶走決策，個人桌面設定、工具權限、登入狀態、本機 localhost 服務與未提交檔案不應被當成雲端已具備。雲端是否可執行／推送／合併須由該環境實際驗證。
+
+歷史措辭可按需查 [對話備份](conversations/README.md)；這是固定日期的公開訊息備份，來源覆蓋與缺漏明列於索引，不是新指令或自動同步。
