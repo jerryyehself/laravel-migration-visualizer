@@ -24,6 +24,7 @@ import lifecycleFinish from '../../../../packages/migration-core/tests/fixtures/
 import lifecycleInvalid from '../../../../packages/migration-core/tests/fixtures/table-lifecycle/2026_04_03_000000_invalid_drop.php?raw';
 import { readMigrationFiles, readMigrationFolder } from '../import-files';
 import { ProjectResults } from './ProjectResults';
+import { createDrafts, isDraftModified, updateDraft, restoreDraft, removeDraft } from '../migration-drafts';
 
 function sampleFiles(failing = false): MigrationFile[] {
   // Deliberately unordered: only core decides execution order.
@@ -66,7 +67,9 @@ function helperFiles(failing = false): MigrationFile[] {
 }
 
 export function ProjectWorkbench() {
-  const [files, setFiles] = useState<MigrationFile[]>(sampleFiles);
+  const [drafts, setDrafts] = useState(() => createDrafts(sampleFiles()));
+  const files = drafts.map(draft => draft.current);
+  const modifiedCount = drafts.filter(isDraftModified).length;
   const [selectedInput, setSelectedInput] = useState(0);
   const [selectedResult, setSelectedResult] = useState(0);
   const [result, setResult] = useState<ProjectAnalysis | null>(null);
@@ -97,10 +100,19 @@ export function ProjectWorkbench() {
   }
 
   function replaceFiles(next: MigrationFile[]) {
-    setFiles(next); setSelectedInput(0); setResult(null); setError(null); setFolderImport(null); setEditRequest(null); setEditNotice(null);
+    setDrafts(createDrafts(next)); setSelectedInput(0); setResult(null); setError(null); setFolderImport(null); setEditRequest(null); setEditNotice(null);
   }
   function updateFile(patch: Partial<MigrationFile>) {
-    setFiles(current => current.map((file, index) => index === selectedInput ? { ...file, ...patch } : file));
+    setDrafts(current => updateDraft(current, selectedInput, patch));
+    setResult(null); setError(null); setFolderImport(null); setEditRequest(null); setEditNotice(null);
+  }
+  function restoreSelected() {
+    setDrafts(current => restoreDraft(current, selectedInput));
+    setResult(null); setError(null); setFolderImport(null); setEditRequest(null); setEditNotice(null);
+  }
+  function removeSelected() {
+    const next = removeDraft(drafts, selectedInput);
+    setDrafts(next); setSelectedInput(Math.max(0, Math.min(selectedInput, next.length - 1)));
     setResult(null); setError(null); setFolderImport(null); setEditRequest(null); setEditNotice(null);
   }
   async function importFiles(chosen: File[], folder = false) {
@@ -164,8 +176,9 @@ export function ProjectWorkbench() {
       <div className="project-layout">
         <nav className="migration-list" aria-label="待分析檔案（輸入順序）">
           <h3>輸入清單 · {files.length} 份</h3>
+          <p role="status">{modifiedCount} 份已修改；僅保存於此工作台。</p>
           {files.map((file, index) => <button className="migration-item" type="button" key={index}
-            aria-pressed={selectedInput === index} onClick={() => { setSelectedInput(index); setEditNotice(null); }}>{file.filename || '（未命名）'}</button>)}
+            aria-pressed={selectedInput === index} onClick={() => { setSelectedInput(index); setEditNotice(null); }}>{file.filename || '（未命名）'}{isDraftModified(drafts[index]) && <span className="badge modified">已修改</span>}</button>)}
           {files.length === 0 && <p className="muted">請匯入檔案或載入範例。</p>}
         </nav>
         {activeFile && <div>
@@ -174,7 +187,11 @@ export function ProjectWorkbench() {
           <label htmlFor="project-source">PHP 原始碼（僅修改此工作台副本）</label>
           {editNotice && <p role="status">{editNotice}</p>}
           <textarea ref={editor} id="project-source" spellCheck={false} value={activeFile.source} onChange={event => updateFile({ source: event.target.value })} />
-          <button type="button" className="secondary" onClick={() => replaceFiles(files.filter((_, index) => index !== selectedInput))}>移除此檔</button>
+          <p className="muted">還原會恢復此檔載入時的檔名與 PHP，捨棄目前副本修改；不修改磁碟檔案。還原後請重新分析。</p>
+          <div className="toolbar">
+            <button type="button" className="secondary" disabled={!isDraftModified(drafts[selectedInput])} onClick={restoreSelected}>還原此檔至載入版本</button>
+            <button type="button" className="secondary" onClick={removeSelected}>移除此檔</button>
+          </div>
         </div>}
       </div>
       <button type="button" disabled={files.length === 0} onClick={analyze}>分析專案</button>
