@@ -27,7 +27,7 @@
 - 自訂 base class、完整 Laravel API、DB 方言與 PHP runtime 語意仍不涵蓋；完整限制見 README。
 
 ## 後續範圍
-M1～M16 已交付；後續維持 core/UI 分層、測試、中文教學與 PR 流程。M14 已獲授權進入 ERD；timeline、down()、AI、semantic refactoring detection 仍不在目前範圍。
+M1～M17 已交付；後續維持 core/UI 分層、測試、中文教學與 PR 流程。M14 已獲授權進入 ERD；timeline、down()、AI、semantic refactoring detection 仍不在目前範圍。
 
 ## 原始碼閱讀順序
 src/types.ts → src/project-types.ts → src/ordering.ts → src/project.ts → src/diff.ts → tests/project.test.ts（皆位於 packages/migration-core）。教學請看 docs/tutorial.zh-TW.md 與 docs/milestone-2.zh-TW.md。
@@ -108,3 +108,5 @@ M16 已合併 PR #54（25dc11c），issues #52/#53 與 milestone 已關閉；功
 
 ## Milestone 17 交接
 比較圖共用表名／高度布局與 GraphView，不混合 schema；互動同步，單圖仍本地 state。342 tests；讀 docs/milestone-17.zh-TW.md，狀態見 github-milestones.md。
+
+M17 已合併 PR #58（5054727），issues #56/#57 與 milestone 已關閉；功能 head c04f3ff 的 CI 通過 tests、typecheck、build 與三個 demo。
