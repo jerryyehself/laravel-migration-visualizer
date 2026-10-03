@@ -156,3 +156,7 @@ M24 已由 PR #85 合併（7580dca），issue #84 與 milestone 已關閉；接�
 ## M25 本地開發
 
 已實作靜態 dropColumn 陣列，core 0.10.0，501 tests 與八個 demo 通過。讀 milestone-25.zh-TW.md；已由 PR #88 合併（abab843），issue #87／milestone 25 已關閉；完整證據見 github-milestones.md。雲端維持停止開發，勿同時新增功能。
+
+## M26 本地開發
+
+已實作 dropConstrainedForeignId，core 0.11.0，526 tests 與九個 demo 通過。讀 milestone-26.zh-TW.md；交付狀態以 github-milestones.md／GitHub 最新 main 為準。雲端維持停止開發。

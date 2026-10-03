@@ -1,0 +1,526 @@
+{
+  "complete": true,
+  "appliedCount": 4,
+  "finalSchema": {
+    "tables": {
+      "users": {
+        "name": "users",
+        "columns": {
+          "id": {
+            "name": "id",
+            "type": "bigInteger",
+            "nullable": false,
+            "unsigned": true,
+            "autoIncrement": true,
+            "primary": true
+          }
+        },
+        "indexes": {
+          "users_id_primary": {
+            "name": "users_id_primary",
+            "type": "primary",
+            "columns": [
+              "id"
+            ]
+          }
+        },
+        "foreignKeys": {}
+      },
+      "posts": {
+        "name": "posts",
+        "columns": {
+          "keep": {
+            "name": "keep",
+            "type": "string",
+            "nullable": false,
+            "length": 255
+          },
+          "later": {
+            "name": "later",
+            "type": "string",
+            "nullable": false,
+            "length": 255
+          }
+        },
+        "indexes": {},
+        "foreignKeys": {}
+      }
+    }
+  },
+  "lastValidSchema": {
+    "tables": {
+      "users": {
+        "name": "users",
+        "columns": {
+          "id": {
+            "name": "id",
+            "type": "bigInteger",
+            "nullable": false,
+            "unsigned": true,
+            "autoIncrement": true,
+            "primary": true
+          }
+        },
+        "indexes": {
+          "users_id_primary": {
+            "name": "users_id_primary",
+            "type": "primary",
+            "columns": [
+              "id"
+            ]
+          }
+        },
+        "foreignKeys": {}
+      },
+      "posts": {
+        "name": "posts",
+        "columns": {
+          "keep": {
+            "name": "keep",
+            "type": "string",
+            "nullable": false,
+            "length": 255
+          },
+          "later": {
+            "name": "later",
+            "type": "string",
+            "nullable": false,
+            "length": 255
+          }
+        },
+        "indexes": {},
+        "foreignKeys": {}
+      }
+    }
+  },
+  "steps": [
+    {
+      "status": "applied",
+      "before": {
+        "tables": {}
+      },
+      "after": {
+        "tables": {
+          "users": {
+            "name": "users",
+            "columns": {
+              "id": {
+                "name": "id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": true,
+                "primary": true
+              }
+            },
+            "indexes": {
+              "users_id_primary": {
+                "name": "users_id_primary",
+                "type": "primary",
+                "columns": [
+                  "id"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "tableAdded",
+            "table": "users",
+            "after": {
+              "name": "users",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                }
+              },
+              "indexes": {
+                "users_id_primary": {
+                  "name": "users_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            }
+          }
+        ]
+      }
+    },
+    {
+      "status": "applied",
+      "before": {
+        "tables": {
+          "users": {
+            "name": "users",
+            "columns": {
+              "id": {
+                "name": "id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": true,
+                "primary": true
+              }
+            },
+            "indexes": {
+              "users_id_primary": {
+                "name": "users_id_primary",
+                "type": "primary",
+                "columns": [
+                  "id"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "after": {
+        "tables": {
+          "users": {
+            "name": "users",
+            "columns": {
+              "id": {
+                "name": "id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": true,
+                "primary": true
+              }
+            },
+            "indexes": {
+              "users_id_primary": {
+                "name": "users_id_primary",
+                "type": "primary",
+                "columns": [
+                  "id"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          },
+          "posts": {
+            "name": "posts",
+            "columns": {
+              "keep": {
+                "name": "keep",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "user_id": {
+                "name": "user_id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": false
+              }
+            },
+            "indexes": {},
+            "foreignKeys": {
+              "posts_user_id_foreign": {
+                "name": "posts_user_id_foreign",
+                "columns": [
+                  "user_id"
+                ],
+                "referencedTable": "users",
+                "referencedColumns": [
+                  "id"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "tableAdded",
+            "table": "posts",
+            "after": {
+              "name": "posts",
+              "columns": {
+                "keep": {
+                  "name": "keep",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                },
+                "user_id": {
+                  "name": "user_id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": false
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {
+                "posts_user_id_foreign": {
+                  "name": "posts_user_id_foreign",
+                  "columns": [
+                    "user_id"
+                  ],
+                  "referencedTable": "users",
+                  "referencedColumns": [
+                    "id"
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "status": "applied",
+      "before": {
+        "tables": {
+          "users": {
+            "name": "users",
+            "columns": {
+              "id": {
+                "name": "id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": true,
+                "primary": true
+              }
+            },
+            "indexes": {
+              "users_id_primary": {
+                "name": "users_id_primary",
+                "type": "primary",
+                "columns": [
+                  "id"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          },
+          "posts": {
+            "name": "posts",
+            "columns": {
+              "keep": {
+                "name": "keep",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "user_id": {
+                "name": "user_id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": false
+              }
+            },
+            "indexes": {},
+            "foreignKeys": {
+              "posts_user_id_foreign": {
+                "name": "posts_user_id_foreign",
+                "columns": [
+                  "user_id"
+                ],
+                "referencedTable": "users",
+                "referencedColumns": [
+                  "id"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "after": {
+        "tables": {
+          "users": {
+            "name": "users",
+            "columns": {
+              "id": {
+                "name": "id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": true,
+                "primary": true
+              }
+            },
+            "indexes": {
+              "users_id_primary": {
+                "name": "users_id_primary",
+                "type": "primary",
+                "columns": [
+                  "id"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          },
+          "posts": {
+            "name": "posts",
+            "columns": {
+              "keep": {
+                "name": "keep",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              }
+            },
+            "indexes": {},
+            "foreignKeys": {}
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "columnRemoved",
+            "table": "posts",
+            "column": "user_id",
+            "before": {
+              "name": "user_id",
+              "type": "bigInteger",
+              "nullable": false,
+              "unsigned": true,
+              "autoIncrement": false
+            }
+          },
+          {
+            "kind": "foreignKeyRemoved",
+            "table": "posts",
+            "foreignKey": "posts_user_id_foreign",
+            "before": {
+              "name": "posts_user_id_foreign",
+              "columns": [
+                "user_id"
+              ],
+              "referencedTable": "users",
+              "referencedColumns": [
+                "id"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "status": "applied",
+      "before": {
+        "tables": {
+          "users": {
+            "name": "users",
+            "columns": {
+              "id": {
+                "name": "id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": true,
+                "primary": true
+              }
+            },
+            "indexes": {
+              "users_id_primary": {
+                "name": "users_id_primary",
+                "type": "primary",
+                "columns": [
+                  "id"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          },
+          "posts": {
+            "name": "posts",
+            "columns": {
+              "keep": {
+                "name": "keep",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              }
+            },
+            "indexes": {},
+            "foreignKeys": {}
+          }
+        }
+      },
+      "after": {
+        "tables": {
+          "users": {
+            "name": "users",
+            "columns": {
+              "id": {
+                "name": "id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": true,
+                "primary": true
+              }
+            },
+            "indexes": {
+              "users_id_primary": {
+                "name": "users_id_primary",
+                "type": "primary",
+                "columns": [
+                  "id"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          },
+          "posts": {
+            "name": "posts",
+            "columns": {
+              "keep": {
+                "name": "keep",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "later": {
+                "name": "later",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              }
+            },
+            "indexes": {},
+            "foreignKeys": {}
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "columnAdded",
+            "table": "posts",
+            "column": "later",
+            "after": {
+              "name": "later",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "diagnosticCodes": []
+}

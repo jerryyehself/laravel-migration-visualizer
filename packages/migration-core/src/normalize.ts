@@ -255,6 +255,12 @@ export function analyzeMigration(source: string, file = 'migration.php'): Analys
                 const name = Array.isArray(value) ? indexName(table, indexColumns(value), type)
                   : type === 'primary' && (value === undefined || value === null) ? null : text(value);
                 operations.push({ kind: 'dropIndex', table, name, indexType: type, source: location(body) });
+              } else if (first.name === 'dropConstrainedForeignId') {
+                arity(first.args, 1);
+                if (modifiers.length) throw new Error('dropConstrainedForeignId cannot have modifiers.');
+                const column = text(first.args[0]);
+                operations.push({ kind:'dropForeignKey', table, name:indexName(table,[column],'foreign'), source:location(body) });
+                operations.push({ kind:'dropColumn', table, column, source:location(body) });
               } else if (['dropTimestamps','dropTimestampsTz','dropRememberToken','dropSoftDeletes','dropSoftDeletesTz'].includes(first.name)) {
                 const soft = first.name === 'dropSoftDeletes' || first.name === 'dropSoftDeletesTz';
                 arity(first.args, 0, soft ? 1 : 0);
