@@ -26,4 +26,4 @@ useEffect 在定位卡片更新後把鍵盤焦點移到卡片並捲動至該處�
 
 內建瀏覽器實測：只看已套用後點選 unsupported 診斷，篩選恢復全部並選取第 2 份結果，第 6 行 fullText 高亮；blocked 顯示檔案開頭而不標示錯誤行。修改輸入清除定位，相同完整路徑的重複輸入停用按鈕。最終 Schema 仍未知且下載停用。M11 預覽 5192 無 warn/error；同一 tab 留有舊 5191 預覽斷線的歷史 Vite 訊息，與新頁面無關。
 
-交付狀態見 [GitHub 紀錄](github-milestones.md)。
+[PR #34](https://github.com/jerryyehself/laravel-migration-visualizer/pull/34) 已合併 main（d9e7a99），對應 issues／milestone 已關閉。交付狀態見 [GitHub 紀錄](github-milestones.md)。
