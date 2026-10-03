@@ -50,3 +50,5 @@ React component 是呈現畫面的單元；state 是輸入副本、選取與視�
 雲端 M22 接手基準 `27594f9d5456429579222631cca5943f02c97d2a` 已實際跑過 408 tests、typecheck、build 與五個 demo（Node 24.19.0／npm 11.9.0），不沿用本機驗證證據。M23 雲端完整 446／446 tests、typecheck、build 與六個 demo 均通過。GitHub 交付狀態見交付紀錄；尚未合併時不得寫成已交付。
 
 沒有加入 timeline、down()、AI、SQL parser、runtime migration execution 或 semantic refactoring detection。
+
+[PR #82](https://github.com/jerryyehself/laravel-migration-visualizer/pull/82) 已合併 main（4563f01）；issue #81 與 milestone 23 已關閉。最新 PR head 6fc61fa 的 validate CI 全部通過。
