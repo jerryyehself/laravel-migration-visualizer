@@ -4,7 +4,7 @@
 - Milestone 1 baseline commit：6959b46（42 tests）。
 - Milestone 2：檔名排序、batch analyzer、schemaBefore/schemaAfter、SchemaDiff、project diagnostics、跨 migration golden tests（71 tests）。
 - Milestone 3：React 多檔匯入工作台、逐檔快照／diff／診斷與輸入副本編輯；core 契約不變。新增 5 個匯入測試，合計 76 tests。
-- Milestone 3 已以 7fba001 推送 main。Milestone 4 已合併 PR #7，merge commit c778163（121 tests）。Milestone 5～11 已合併 PR #11/#15/#19/#22/#26/#30/#34，最新功能合併 commit d9e7a99；main 已包含全部功能（301 tests）。
+- Milestone 3 已以 7fba001 推送 main。Milestone 4 已合併 PR #7，merge commit c778163（121 tests）。Milestone 5～12 已合併 PR #11/#15/#19/#22/#26/#30/#34/#38，最新功能合併 commit 8777354；main 已包含全部功能（307 tests）。
 - 本機對話不會自動成為 Cloud 對話；以本文件、AGENTS.md、Git history 與教學文件延續。
 
 ## Cloud 環境設定
@@ -27,7 +27,7 @@
 - 自訂 base class、完整 Laravel API、DB 方言與 PHP runtime 語意仍不涵蓋；完整限制見 README。
 
 ## 後續範圍
-M1～M11 已交付；後續維持 core/UI 分層、測試、中文教學與 PR 流程。timeline、ERD、down()、AI、semantic refactoring detection 仍不在目前範圍。
+M1～M12 已交付；後續維持 core/UI 分層、測試、中文教學與 PR 流程。timeline、ERD、down()、AI、semantic refactoring detection 仍不在目前範圍。
 
 ## 原始碼閱讀順序
 src/types.ts → src/project-types.ts → src/ordering.ts → src/project.ts → src/diff.ts → tests/project.test.ts（皆位於 packages/migration-core）。教學請看 docs/tutorial.zh-TW.md 與 docs/milestone-2.zh-TW.md。
@@ -81,3 +81,5 @@ M11 已合併 PR #34（d9e7a99），對應 issues／milestone 已關閉。
 ## Milestone 12 交接
 - 診斷卡片 callback 跳回輸入副本，等 DOM 更新後聚焦並選取整行。檔案層級診斷游標放開頭；修改後需重新分析。
 - 307 tests，core 0.5.0 不變；讀 docs/milestone-12.zh-TW.md，交付狀態見 github-milestones.md。
+
+M12 已合併 PR #38（8777354），對應 issues／milestone 已關閉。
