@@ -1,19 +1,23 @@
 import { useState } from 'react';
+import { diagnosticTarget } from '../diagnostic-location';
+import { DiagnosticSource } from './DiagnosticSource';
 import { filterMigrationResults, visibleSelection, type ResultStatusFilter } from '../filter-results';
 import { ProjectExports } from './ProjectExports';
-import type { ProjectAnalysis, ProjectDiagnostic, SchemaState } from '@lmv/migration-core';
+import type { MigrationFile, ProjectAnalysis, ProjectDiagnostic, SchemaState } from '@lmv/migration-core';
 
 const phaseLabels: Record<ProjectDiagnostic['phase'], string> = {
   ordering: '檔名排序', analysis: 'PHP 分析', replay: 'Schema 套用', dependency: '前序失敗',
 };
 const statusLabels = { applied: '已套用', failed: '失敗', blocked: '已阻擋' };
 
-export function Diagnostics({ items }: { items: readonly ProjectDiagnostic[] }) {
+export function Diagnostics({ items, onLocate, canLocate }: { items: readonly ProjectDiagnostic[]; onLocate?: (item: ProjectDiagnostic) => void; canLocate?: (item: ProjectDiagnostic) => boolean }) {
   if (items.length === 0) return <p className="muted">沒有診斷。</p>;
   return <ul className="diagnostics">{items.map((item, index) => <li className="diagnostic" key={index}>
     <strong>{phaseLabels[item.phase]} · {item.code}</strong>
     <span>{item.source.file}:{item.source.line}（column {item.source.column}）</span>
     <span>{item.message}</span>
+    {onLocate && <button type="button" className="secondary" disabled={!canLocate?.(item)} onClick={() => onLocate(item)}>定位原始碼 · {item.source.file}:{item.source.line}</button>}
+    {onLocate && !canLocate?.(item) && <span>無法唯一對應輸入檔案，請先修正重複檔名或重新匯入。</span>}
   </li>)}</ul>;
 }
 
@@ -48,9 +52,18 @@ function SchemaView({ title, schema, unavailable }: { title: string; schema: Sch
 }
 
 // Props are data and callbacks from the parent; this component never replays migrations.
-export function ProjectResults({ result, selected, onSelect }: {
-  result: ProjectAnalysis; selected: number; onSelect: (index: number) => void;
+export function ProjectResults({ result, files, selected, onSelect }: {
+  result: ProjectAnalysis; files: readonly MigrationFile[]; selected: number; onSelect: (index: number) => void;
 }) {
+  const [located, setLocated] = useState<ProjectDiagnostic | null>(null);
+  const target = located ? diagnosticTarget(files, result, located) : null;
+  const canLocate = (item: ProjectDiagnostic) => diagnosticTarget(files, result, item) !== null;
+  function locate(item: ProjectDiagnostic) {
+    const next = diagnosticTarget(files, result, item);
+    if (!next) return;
+    setQuery(''); setStatus('all'); setLocated({ ...item });
+    if (next.resultIndex !== null) onSelect(next.resultIndex);
+  }
   const [query, setQuery] = useState('');
   const [status, setStatus] = useState<ResultStatusFilter>('all');
   const visible = filterMigrationResults(result.migrations, query, status);
@@ -63,7 +76,8 @@ export function ProjectResults({ result, selected, onSelect }: {
       <p>{result.complete ? '以下為支援範圍內的靜態分析結果，不代表實際資料庫執行結果。' : '最終 schema 未知。最後可信 schema 只包含成功前綴，不能當成專案最終狀態。'}</p>
     </div>
     <ProjectExports result={result} />
-    <h3>專案診斷</h3><Diagnostics items={result.diagnostics} />
+    <h3>專案診斷</h3><Diagnostics items={result.diagnostics} onLocate={locate} canLocate={canLocate} />
+    {located && target && <DiagnosticSource file={target.file} diagnostic={located} />}
     <fieldset className="result-filters">
       <legend>篩選分析結果</legend>
       <div className="toolbar">
@@ -94,7 +108,7 @@ export function ProjectResults({ result, selected, onSelect }: {
       {step && <div className="step-detail">
         <h2>{step.filename}</h2>
         <p>{statusLabels[step.status]} · {step.analysis.operations.length} 個已識別操作</p>
-        <Diagnostics items={step.diagnostics} />
+        <Diagnostics items={step.diagnostics} onLocate={locate} canLocate={canLocate} />
         {step.status !== 'applied' && <p className="unavailable">此檔的 operations 僅供檢視，沒有套用；不顯示推測的 schema 或 diff。</p>}
         <div className="results">
           <SchemaView title="Schema Before" schema={step.schemaBefore} unavailable="前序狀態未知，沒有可信的分析前快照。" />

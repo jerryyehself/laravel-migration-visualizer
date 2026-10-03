@@ -2,17 +2,21 @@
 
 以繁體中文溝通，持續用教學方式解釋設計；使用者熟悉後端，但沒有 React/Angular 經驗。
 
+## 持續工作授權
+- 使用者於 2026-10-03 授權自行規劃與開始後續 milestone、實作、測試、中文教學、建立 PR，檢查通過後合併並繼續；不逐次詢問。
+- 新增外部權限／帳號、費用、正式部署或破壞性資料操作仍依實際風險與工具權限規則確認。功能範圍的明確排除仍有效。
+
 ## 架構與範圍
 - npm workspaces：packages/migration-core 為純 TypeScript domain；apps/web 為 React + TypeScript + Vite。
 - parser、排序、schema replay、diff 與 project diagnostics 都放 core，不放 React hooks。
 - core 接收檔名與 PHP 字串，不讀檔、不執行 PHP、不連資料庫。
-- Milestone 1～10 已完成並在 main；M5～M8 分別由 PR #11、#15、#19、#22 合併。Core 0.5.0。M9 的 web 結果搜尋／狀態篩選已由 PR #26 合併，core 不變。M10 資料夾匯入已由 PR #30 合併（47d5b0f）；先讀 docs/CLOUD_HANDOFF.md、README.md 與 docs/milestone-10.zh-TW.md。
+- Milestone 1～10 已完成並在 main；M5～M8 分別由 PR #11、#15、#19、#22 合併。Core 0.5.0。M9 的 web 結果搜尋／狀態篩選已由 PR #26 合併，core 不變。M10 資料夾匯入已由 PR #30 合併（47d5b0f）；M11 診斷定位已實作，交付狀態見 docs/github-milestones.md；先讀 docs/CLOUD_HANDOFF.md、README.md 與 docs/milestone-11.zh-TW.md。
 - 未經新需求，不擴增 timeline、ERD、down()、AI、SQL parser、runtime migration execution 或 semantic refactoring detection。
 - SchemaDiff 是結構比較，不猜 rename。失敗後 schemaAfter/finalSchema 為 null；lastValidSchema 僅代表成功前綴。
 
 ## 開發與驗證
 - Node.js 22.12+，npm。安裝使用 npm ci，保留 package-lock.json。
-- npm test：目前 293 tests（263 core + 5 browser import + 6 export + 9 filters + 10 folder import）；原 Milestone 1 為 42 tests。
+- npm test：目前 301 tests（263 core + 5 browser import + 6 export + 9 filters + 10 folder import + 8 diagnostic location）；原 Milestone 1 為 42 tests。
 - npm run typecheck
 - npm run build
 - npm run demo:project
