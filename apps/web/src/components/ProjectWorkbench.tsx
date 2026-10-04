@@ -29,6 +29,13 @@ import { readMigrationFiles, readMigrationFolder } from '../import-files';
 import { ProjectResults } from './ProjectResults';
 import { createDrafts, isDraftModified, updateDraft, restoreDraft, removeDraft } from '../migration-drafts';
 
+const commerceSources = import.meta.glob<string>('../../../../packages/migration-core/tests/fixtures/commerce/*.php', {
+  query: '?raw', import: 'default', eager: true,
+});
+const commerceFiles = () => Object.entries(commerceSources).map(([path, source]) => ({
+  filename: path.split('/').at(-1)!, source,
+})).reverse();
+
 function sampleFiles(failing = false): MigrationFile[] {
   // Deliberately unordered: only core decides execution order.
   return [
@@ -160,6 +167,7 @@ export function ProjectWorkbench() {
           { filename: '0001_01_01_000001_create_cache_table.php', source: laravelCache },
         ])}>載入 Laravel 12 官方範例</button>
         <button type="button" className="secondary" onClick={() => replaceFiles(sampleFiles())}>載入成功範例</button>
+        <button type="button" className="secondary" onClick={() => replaceFiles(commerceFiles())}>載入訂單系統範例（12 檔）</button>
         <button type="button" className="secondary" onClick={() => replaceFiles(sampleFiles(true))}>載入失敗範例</button>
         <button type="button" className="secondary" onClick={() => replaceFiles([
           { filename: '2026_02_03_000000_primary_accounts.php', source: indexedPrimary },
