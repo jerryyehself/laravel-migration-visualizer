@@ -26,7 +26,7 @@ try {
   mkdirSync(join(stage, 'source'), { recursive: true });
   const sourceTar = join(temporary, 'source.tar');
   execFileSync('git', ['archive', '--format=tar', '-o', sourceTar, commit], { cwd: root });
-  execFileSync('tar', ['-xf', sourceTar, '-C', join(stage, 'source')]);
+  execFileSync('tar', ['-xf', sourceTar, '-C', join(stage, 'source')], { env: { ...process.env, COPYFILE_DISABLE: '1' } });
   cpSync(join(root, 'apps/web/dist'), join(stage, 'web'), { recursive: true });
   cpSync(join(root, 'artifacts/verification.json'), join(stage, 'verification.json'));
   cpSync(join(root, 'docs/user-guide.zh-TW.md'), join(stage, 'README.zh-TW.md'));
@@ -43,7 +43,7 @@ try {
   writeFileSync(join(stage, 'manifest.json'), JSON.stringify({ productVersion: product.version, coreVersion: core.version,
     commit, node: process.version, generatedAt: new Date().toISOString(), files }, null, 2) + '\n');
   const archive = join(root, 'artifacts', `${prefix}.tar.gz`);
-  execFileSync('tar', ['-czf', archive, '-C', temporary, prefix]);
+  execFileSync('tar', ['-czf', archive, '-C', temporary, prefix], { env: { ...process.env, COPYFILE_DISABLE: '1' } });
   writeFileSync(archive + '.sha256', `${hash(readFileSync(archive))}  ${prefix}.tar.gz\n`);
   console.log(`Release: ${archive}\nCommit: ${commit}\n${Object.keys(files).length} files hashed; no node_modules or Git credentials included`);
 } finally { rmSync(temporary, { recursive: true, force: true }); }
