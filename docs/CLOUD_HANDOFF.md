@@ -1,13 +1,13 @@
 # Codex Cloud 交接
 
 ## 現況（2026-10-04 核對）
-- M1～M29 已合併 main；M29 功能合併為 1aa3f83／PR #98。Core 0.14.0，本地 591／591 tests、typecheck、build 與十個 demo 通過，PR 最新 head 1a3db83 的 CI 通過。2026-10-04 本地持續接手，雲端停止開發。
+- M1～M32 已合併 main；M32 PR #105／552cbd6，最新 head c4f33df CI 通過。目前 612 tests（520 core + 92 web）、typecheck、build 與十一個 demo 通過。M33 第一版交付以 GitHub 交付紀錄為準；產品／web 1.0.0，core 0.14.0不變。本地接手，雲端停止開發。
 - 已有多檔匯入、排序／分析／逐檔快照／結構 diff、索引／外鍵、診斷定位、JSON 匯出，以及 ERD 快照／比較／同步互動／聚焦／明細。
 - M1 baseline 為 6959b46（42 tests）；各階段實際 commits、PR、驗證與限制見 [GitHub 交付紀錄](github-milestones.md)，下方各節為歷史紀錄。
 - M21 已實作 dateTime／dateTimeTz 的零參數 useCurrent()，新增跨檔 golden、失敗／不可變回歸與中文教學；373／373 tests、typecheck、build 與四個 demo 通過。已由 PR #76 合併 main（f8925e1），issue #75 與 milestone 已關閉；最新功能 head 5c72f84 的 CI 通過。完整狀態見交付紀錄，接手先核對最新 main。
 - M22 已實作保守的 change() 子集合、changeColumn operation 與跨檔 golden；core 0.7.0、408 tests。已由 PR #79 合併（dbc9aa4），issue #78 與 milestone 已關閉，功能 head 601946b 的 CI 通過；接手先核對最新 main。
 - M23 已支援 useCurrentOnUpdate() 意圖 metadata，已由 PR #82 合併。先讀 docs/milestone-23.zh-TW.md 與交付紀錄；沒有 DB runtime，M22 保守拒絕規則不變。
-- 本機完整對話不會自動成為 Cloud 對話；先讀 [決策索引](DECISIONS.zh-TW.md)、AGENTS.md 與本文件，再以 repo／GitHub 紀錄延續。雲端已接手，實際基準驗證見下方雲端接手紀錄。
+- 本機完整對話不會自動成為 Cloud 對話；先讀 [決策索引](DECISIONS.zh-TW.md)、AGENTS.md 與本文件，再以 repo／GitHub 紀錄延續。下方雲端接手紀錄為歷史。
 
 ## Cloud 環境設定
 1. 連接此 GitHub repo，選 main。
@@ -166,3 +166,7 @@ M24 已由 PR #85 合併（7580dca），issue #84 與 milestone 已關閉；接�
 M27 numeric helpers（PR #94、1b8cd53）、M28 UUID helpers（PR #96、39160f2）、M29 dropMorphs（PR #98、1aa3f83）均已合併，issues／milestones 已關閉。Core 0.14.0，591 tests（新增 65）與十個 demo 通過；各階段最新 head CI 證據見 github-milestones.md。讀 milestone-27／28／29.zh-TW.md。
 
 明確 helpers 展開 type/id 欄位與有序 index，不推測多型 target／foreign key。dropMorphs 先刪一般 index 再 type/id，其他引用保護與整檔回滾不變。Index name 字串 0 使用慣例；空字串／false 保守拒絕。Runtime morphs、ULID、after 與 connection prefix 未模擬。demo:morphs 驗證新增與混合移除／失敗；沒有新 UI 或瀏覽器驗收。
+
+## 第一版驗收入口
+
+先讀 docs/user-guide.zh-TW.md、docs/compatibility.zh-TW.md、docs/release-v1.zh-TW.md。以最新 main/tag／manifest 的 commit 為準，不把歷史數字當當前基準。npm ci 後 npm run verify。下一步以真實專案的具體診斷為依據，不自動擴增排除功能。

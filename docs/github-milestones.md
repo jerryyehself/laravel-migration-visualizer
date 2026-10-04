@@ -114,3 +114,7 @@ M31：[milestone 31](https://github.com/jerryyehself/laravel-migration-visualize
 M31 已由 PR #103 合併（42cb7cf），issue #102／milestone 31 已關閉；最新 head d22bf0c 的 CI 通過 609 tests、typecheck、build 與十一個 demo。
 
 M32 已實作跨層與瀏覽器驗收、dev 參數轉傳修正、使用限制與十二檔範例；612 tests／十一個 demo 通過。下載 event 自動化逾時未取得檔案，詳見 milestone-32.zh-TW.md；待 PR CI／合併。
+
+M32 已由 PR #105 合併（552cbd6），issue #104／milestone 32 已關閉；最新 head c4f33df 的 CI 通過 612 tests、typecheck、build 與十一個 demo。
+
+M33 實作產品／web 1.0.0（core 保持 0.14.0）、統一 verify、可追溯 Git HEAD 交付包／SHA-256 manifest、使用手冊及交接更新。交付包需要乾淨 checkout；source archive 可驗證與建置，但重新產包需 clone。最終 CI／merge／release 證據於交付後補登。

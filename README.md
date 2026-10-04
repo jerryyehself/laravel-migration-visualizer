@@ -1,6 +1,8 @@
-# Laravel Migration Visualizer — Milestone 23
+# Laravel Migration Visualizer — v1.0.0
 
 React + TypeScript + Vite，npm workspaces monorepo。只做靜態 migration 分析，不執行 PHP 或連接資料庫。
+
+第一版產品／web 版本為 1.0.0，分析套件維持 0.14.0，JSON 契約沒有因產品版本更名而改變。套件仍 private，沒有 npm 發布或正式網站部署。先讀 [使用手冊](docs/user-guide.zh-TW.md)、[相容性矩陣](docs/compatibility.zh-TW.md) 與 [第一版交付說明](docs/release-v1.zh-TW.md)。
 
 雲端接手先讀 [決策索引](docs/DECISIONS.zh-TW.md) 與 [交接文件](docs/CLOUD_HANDOFF.md)。
 
@@ -19,9 +21,12 @@ npm run dev
 npm test
 npm run typecheck
 npm run build
+npm run verify
 ```
 
 `npm run build` 先建立可獨立使用的 core 套件，再建立網頁。開發時 Vite 直接讀 core 原始碼，不需要預先 build。
+
+`npm run verify` 串接 tests、typecheck、build 與十一個 built-package demos。正式建置可用 `npm run preview -- --host 127.0.0.1 --port 5202 --strictPort` 查看；產生本地交付包使用 `npm run release:bundle`，需要已提交的乾淨 Git checkout、Git 和 tar。它重新驗證目前 HEAD，包內包含 source、web 與 SHA-256 manifest，不包含 node_modules／.git。交付包不保證跨平台 byte-for-byte 相同。
 
 ## 專案結構
 
@@ -289,6 +294,6 @@ Core 0.14.0 支援 dropMorphs(name, indexName?)：先移除一般 index，再依
 
 ## 第一版驗收路線
 
-目前支援與限制以 [相容性矩陣](docs/compatibility.zh-TW.md) 為入口。M30 固定範圍、M31 project corpus／規模驗證、M32 完整瀏覽器流程、M33 可重現版本交付。不要求完整 Laravel API，排除範圍不變。
+目前支援與限制以 [相容性矩陣](docs/compatibility.zh-TW.md) 為入口。M30 固定範圍、M31 project corpus／規模驗證、M32 瀏覽器流程、M33 可重現版本交付；實際 PR／CI／合併狀態見 [交付紀錄](docs/github-milestones.md)。不要求完整 Laravel API，排除範圍不變。
 
 `npm run demo:acceptance` 驗證十二檔自撰訂單 corpus 與 250/1000 檔合成專案；效能觀察與限制見 [M31](docs/milestone-31.zh-TW.md)。不是任意真實專案相容或瀏覽器效能保證。
