@@ -168,7 +168,7 @@ npm run release:bundle
 
 ## GitHub Pages
 
-單一 repo 的 GitHub Actions 從 main 驗證與建置，再發布 apps/web/dist。手動重新發布用 npm run publish:pages，或在 Actions 執行 Deploy GitHub Pages。首次切換程序與狀態見 [單一 repo 發布](docs/single-repo-publication.zh-TW.md)；新網址須等首次 deployment 成功後才可使用。
+單一 repo 的 GitHub Actions 從 main 驗證與建置，再發布 apps/web/dist。手動重新發布用 npm run publish:pages，或在 Actions 執行 Deploy GitHub Pages。2026-10-04 首次部署已成功，線上工作台可使用；切換紀錄見 [單一 repo 發布](docs/single-repo-publication.zh-TW.md)。
 
 
 ## 文件與開發紀錄
@@ -187,4 +187,4 @@ npm run release:bundle
 
 ## 原始碼公開前檢查
 
-此分支準備切換為單一公開 repo，尚待完成歷史處理與實際發布。逐字對話與來源 manifest 已移到本機私人備份，架構決策與教學仍保留。舊 Git 歷史、PR 與 v1.0.0 附件仍有歷史副本，不能只刪除 main 的檔案就直接公開；詳見 [檢查結果與待處理項目](docs/publication-audit.zh-TW.md)。
+2026-10-04 已經使用者核准清理所有分支／tag 的私人對話匯出與個人 email，重建 v1.0.0 附件，再將來源 repo 轉為公開。私人備份保留在 repo 外；架構決策與教學仍保留。GitHub 舊 PR diff／commit cache 可能仍有歷史副本，不能宣稱已完全清除；詳見 [發布紀錄](docs/single-repo-publication.zh-TW.md) 與 [原始檢查](docs/publication-audit.zh-TW.md)。

@@ -1,5 +1,15 @@
 # GitHub 專案功能設定
 
+## 目前狀態：單一來源 repo
+
+2026-10-04 已切換來源 repo 為公開；About 指向 https://jerryyehself.github.io/laravel-migration-visualizer/ ，原有十一個 topics 保留。來源 repo 的 Social preview 已上傳 docs/images/social-preview.jpg，重新載入後確認已保存。README 的 CI／Deployments 連結都指向來源 repo。
+
+[來源部署紀錄](https://github.com/jerryyehself/laravel-migration-visualizer/deployments/github-pages) 已由 Actions 真正部署：deployment 6835695538、run 37169871507、main 029d67d。npm run publish:pages 只排入來源 main 的 Pages workflow，不再推另一個 repo。排入不等於上線，須查 deployment 成功。
+
+舊 laravel-migration-visualizer-pages 尚待最終刪除確認，已備份且不再負責正式新網址。詳見 single-repo-publication.zh-TW.md。以下為切換前的歷史設定紀錄，不能視為現行發布方式。
+
+## 切換前歷史紀錄
+
 2026-10-04 核對與更新。設定是 GitHub repo metadata，不在 React state 或 migration-core；clone 不會自動重新套用。Core／UI 功能與 JSON 契約未變。
 
 ## 已設定
