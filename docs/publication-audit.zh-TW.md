@@ -19,6 +19,7 @@
 - 唯讀查詢來源 GitHub repo 確認 private；遠端 58 個 branches、一個 v1.0.0 tag。舊 branches 與 tag 都可能保留已刪文件，不能只清 main。
 - 檢查 GitHub 112 筆 Issues／PR 的 title/body、0 筆 issue comments、0 筆 review comments、一份 release 說明；未命中上述隱私標記。這不涵蓋所有 Actions logs、附件、PR review body 或 GitHub 保留的不可達 objects。
 - PR #73 的 files API 確認仍有四個原始對話檔 diff。歷史 rewrite 不保證移除 GitHub PR cache；公開前須核對，必要時由維護者聯絡 GitHub Support。
+- [GitHub 官方清理說明](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository) 明列 force push 後舊 SHA 與 PR 仍可能可讀，且 Support 不協助移除非敏感資料。本次主要是對話隱私，不能保證 Support 會受理；不可把歷史重寫視為一定能安全公開原 repo。
 - v1.0.0 指向舊來源；本地同名交付 archive 確認包含逐字對話與 manifest。GitHub release 仍有既有 tar.gz 與 checksum。此次沒有下載／替換附件，也不宣稱驗證了遠端附件 bytes。
 - Actions artifacts API total_count=0；沒有下載或讀取所有 CI logs。公開部署 repo 仍只有 built web；編譯後 JS 與內建範例本來就可由網站訪客讀取。
 
