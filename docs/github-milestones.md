@@ -110,3 +110,7 @@ M30：[milestone 30](https://github.com/jerryyehself/laravel-migration-visualize
 M30 已由 [PR #101](https://github.com/jerryyehself/laravel-migration-visualizer/pull/101) 合併為 5acd1a3，issue #100／milestone 30 已關閉；head 8bf0831 的 validate success（run 37163408363）。
 
 M31：[milestone 31](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/31)／[issue #102](https://github.com/jerryyehself/laravel-migration-visualizer/issues/102)。十二檔 authored corpus、規模與失敗驗證已實作；609 tests／十一個 demo 通過，PR/CI 待確認。
+
+M31 已由 PR #103 合併（42cb7cf），issue #102／milestone 31 已關閉；最新 head d22bf0c 的 CI 通過 609 tests、typecheck、build 與十一個 demo。
+
+M32 已實作跨層與瀏覽器驗收、dev 參數轉傳修正、使用限制與十二檔範例；612 tests／十一個 demo 通過。下載 event 自動化逾時未取得檔案，詳見 milestone-32.zh-TW.md；待 PR CI／合併。
