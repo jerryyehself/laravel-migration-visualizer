@@ -106,3 +106,7 @@ M28 最新功能 head 07cd086cb6561646ce4fa49bf353d9c9d7fe7ab2 的 validate CI s
 M29 最新功能 head 1a3db8388c0bfa9f093703e7379eab3e56d95d74 的 validate CI success（run 37162686717），PR #98 合併為 1aa3f836a74df3f0bdad50be2e69870723c1a6e9；issue #97／milestone 29 已關閉。三階段 CI 均涵蓋 npm ci、完整 tests、typecheck、build 與十個 demo。
 
 M30：[milestone 30](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/30)／[issue #100](https://github.com/jerryyehself/laravel-migration-visualizer/issues/100)。相容性矩陣與 12 個 probes 已實作，本地 603 tests、typecheck、build 與十個 demo 通過；PR／CI 待確認。
+
+M30 已由 [PR #101](https://github.com/jerryyehself/laravel-migration-visualizer/pull/101) 合併為 5acd1a3，issue #100／milestone 30 已關閉；head 8bf0831 的 validate success（run 37163408363）。
+
+M31：[milestone 31](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/31)／[issue #102](https://github.com/jerryyehself/laravel-migration-visualizer/issues/102)。十二檔 authored corpus、規模與失敗驗證已實作；609 tests／十一個 demo 通過，PR/CI 待確認。
