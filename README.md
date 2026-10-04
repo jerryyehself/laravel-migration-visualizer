@@ -290,3 +290,5 @@ Core 0.14.0 支援 dropMorphs(name, indexName?)：先移除一般 index，再依
 ## 第一版驗收路線
 
 目前支援與限制以 [相容性矩陣](docs/compatibility.zh-TW.md) 為入口。M30 固定範圍、M31 project corpus／規模驗證、M32 完整瀏覽器流程、M33 可重現版本交付。不要求完整 Laravel API，排除範圍不變。
+
+`npm run demo:acceptance` 驗證十二檔自撰訂單 corpus 與 250/1000 檔合成專案；效能觀察與限制見 [M31](docs/milestone-31.zh-TW.md)。不是任意真實專案相容或瀏覽器效能保證。
