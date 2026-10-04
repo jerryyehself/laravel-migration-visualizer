@@ -1,12 +1,12 @@
 # Laravel Migration Visualizer
 
-[![CI](https://github.com/jerryyehself/laravel-migration-visualizer/actions/workflows/ci.yml/badge.svg)](https://github.com/jerryyehself/laravel-migration-visualizer/actions/workflows/ci.yml) · [部署紀錄](https://github.com/jerryyehself/laravel-migration-visualizer-pages/deployments/github-pages)
+[![CI](https://github.com/jerryyehself/laravel-migration-visualizer/actions/workflows/ci.yml/badge.svg)](https://github.com/jerryyehself/laravel-migration-visualizer/actions/workflows/ci.yml) · [部署紀錄](https://github.com/jerryyehself/laravel-migration-visualizer/deployments/github-pages)
 
 把 Laravel migrations 轉成可檢視的資料庫結構，理解每份 migration 改了哪些資料表、欄位、索引與外鍵。
 
 這是一個 **React + TypeScript + Vite 的靜態分析工作台**：使用 glayzzle/php-parser 讀取 PHP AST，分析 `up()`，不執行 PHP、不連接資料庫。檔案在瀏覽器本地讀取，不會上傳至伺服器。
 
-**第一版已交付：產品／web `1.0.0`，migration-core `0.14.0`。** [線上工作台](https://jerryyehself.github.io/laravel-migration-visualizer-pages/) · [版本與交付包](https://github.com/jerryyehself/laravel-migration-visualizer/releases/tag/v1.0.0) · [使用手冊](docs/user-guide.zh-TW.md) · [相容性矩陣](docs/compatibility.zh-TW.md)
+**第一版已交付：產品／web `1.0.0`，migration-core `0.14.0`。** [線上工作台](https://jerryyehself.github.io/laravel-migration-visualizer/) · [版本與交付包](https://github.com/jerryyehself/laravel-migration-visualizer/releases/tag/v1.0.0) · [使用手冊](docs/user-guide.zh-TW.md) · [相容性矩陣](docs/compatibility.zh-TW.md)
 
 ## 畫面預覽
 
@@ -26,7 +26,7 @@
 
 ## 快速開始
 
-需要 **Node.js 22.12+** 與 npm；不需要 PHP、Composer、資料庫或 API key。這是私有 repo，clone 需要存取權限。
+需要 **Node.js 22.12+** 與 npm；不需要 PHP、Composer、資料庫或 API key。
 
 ```sh
 git clone https://github.com/jerryyehself/laravel-migration-visualizer.git
@@ -168,15 +168,8 @@ npm run release:bundle
 
 ## GitHub Pages
 
-[線上版](https://jerryyehself.github.io/laravel-migration-visualizer-pages/) 以獨立[公開部署 repo](https://github.com/jerryyehself/laravel-migration-visualizer-pages) 提供。來源 repo 保持私有，部署 repo 只包含建置後的 HTML／JS／CSS 與 `.nojekyll`，不包含原始文件、對話備份或憑證。網站匯入仍在使用者的瀏覽器中處理。
+單一 repo 的 GitHub Actions 從 main 驗證與建置，再發布 apps/web/dist。手動重新發布用 npm run publish:pages，或在 Actions 執行 Deploy GitHub Pages。首次切換程序與狀態見 [單一 repo 發布](docs/single-repo-publication.zh-TW.md)；新網址須等首次 deployment 成功後才可使用。
 
-重新發布需要來源 repo、Node/npm、Git，以及具備部署 repo 寫入權限的已登入 `gh` CLI：
-
-```sh
-npm run publish:pages
-```
-
-指令先執行完整 verify，再以 `/laravel-migration-visualizer-pages/` 建置、更新部署 repo 的 main，由 Pages 自動發布。臨時 checkout 使用 GitHub noreply 作者資訊，完成後恢復本地 root 建置。沒有新增 GitHub Actions 密鑰；詳細流程與首次發布證據見 [M34](docs/milestone-34.zh-TW.md)。v1.0.0 release archive 是當時的版本，重新發布入口在最新 main。
 
 ## 文件與開發紀錄
 
@@ -194,4 +187,4 @@ npm run publish:pages
 
 ## 原始碼公開前檢查
 
-來源目前維持私有。逐字對話與來源 manifest 已移到本機私人備份，架構決策與教學仍保留。舊 Git 歷史、PR 與 v1.0.0 附件仍有歷史副本，不能只刪除 main 的檔案就直接公開；詳見 [檢查結果與待處理項目](docs/publication-audit.zh-TW.md)。
+此分支準備切換為單一公開 repo，尚待完成歷史處理與實際發布。逐字對話與來源 manifest 已移到本機私人備份，架構決策與教學仍保留。舊 Git 歷史、PR 與 v1.0.0 附件仍有歷史副本，不能只刪除 main 的檔案就直接公開；詳見 [檢查結果與待處理項目](docs/publication-audit.zh-TW.md)。
