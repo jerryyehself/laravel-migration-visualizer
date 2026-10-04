@@ -6,6 +6,12 @@
 
 **第一版已交付：產品／web `1.0.0`，migration-core `0.14.0`。** [版本與交付包](https://github.com/jerryyehself/laravel-migration-visualizer/releases/tag/v1.0.0) · [使用手冊](docs/user-guide.zh-TW.md) · [相容性矩陣](docs/compatibility.zh-TW.md)
 
+## 畫面預覽
+
+![訂單系統範例的最終 Schema ERD，顯示五張資料表與三個外鍵關係](docs/images/erd-preview.jpg)
+
+十二檔訂單系統範例的實際工作台畫面：五張資料表、三個明確外鍵。圖片來自本地瀏覽器驗收；多型欄位不會被推測成外鍵。
+
 ## 可以做什麼
 
 - **多檔分析**：匯入 PHP 檔案或 migrations 資料夾，由 core 按檔名排序並逐份分析。
