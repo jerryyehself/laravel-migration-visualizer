@@ -1,6 +1,16 @@
 # 單一公開 repo 與 Pages 整合
 
-目標 repo：jerryyehself/laravel-migration-visualizer。目標網址：https://jerryyehself.github.io/laravel-migration-visualizer/ 。本文件與分支是切換準備；GitHub visibility、歷史清理及首次 deployment 尚未執行，不宣稱新網址已上線。
+來源 repo：jerryyehself/laravel-migration-visualizer，已公開。正式網址：https://jerryyehself.github.io/laravel-migration-visualizer/ 。2026-10-04 已完成歷史清理、release 重建與首次部署。
+
+## 實際切換紀錄
+
+- PR #115 已合併；核准後在獨立 mirror 清理歷史，核對 122 個 refs 的檔案內容，除三份私人匯出移除外保持一致。62 個 heads／tags 以 atomic push 和逐 ref lease 更新，未嘗試修改 GitHub 唯讀 PR refs。
+- 整理後 main：029d67dcc9863b9243df9823b8e83a7167a9fc92；v1.0.0：e52935ac267c4bcacb6d4ec883b4d5e2d149009f。舊 checkout 已私人備份，本機 Git 改用整理後的 clone。
+- v1.0.0 附件已替換為清理後 tag 的重建包。Archive SHA-256：1428f6887a454f9cd2962bffb8947d6cdd3c92e3af4b45eb7ef23aa756d9e1c5；版本與功能不變。
+- [首次 Pages run](https://github.com/jerryyehself/laravel-migration-visualizer/actions/runs/37169871507) 成功：verify、612 tests、typecheck、build、十一個 demos 和部署。Deployment 6835695538；正式 HTML、JS、CSS 均 HTTP 200。
+- 正式網站驗收：十二檔全部套用、零診斷、五張表與三個外鍵；失敗專案最終快照未知且不繪製 ERD。沒有測下載。About 已改新網址，原創 Social preview 已上傳並重新載入確認。
+- 舊部署 repo 尚未刪除：CLI 憑證缺少 delete_repo scope，HTTP 403；已在登入的 GitHub 設定頁準備最終刪除步驟，等待操作當下確認。新網站已不依賴舊 repo。
+- GitHub 舊 PR diff／commit cache 仍可能保留歷史副本；使用者已接受這項限制。公開不代表原始碼已授予開源授權。
 
 ## 發布流程
 
@@ -22,4 +32,4 @@ React component／props／state 與 migration-core 完全不變。Vite base 只�
 
 ## 歷史 commit 引用
 
-清理會改 Git SHA。里程碑文件中的舊 SHA 是歷史交付證據，不可偽稱它們是清理後的 IDs。清理工具的 commit-map 保存於私人備份；正式切換後需提供對應表並標記文件。GitHub PR 關係與簽章不會自動重建。
+清理已改 Git SHA。里程碑文件中的舊 SHA 是清理前的歷史交付證據，不是目前 IDs；完整對照見 [歷史 SHA 對照](history-commit-map.tsv)。GitHub PR 關係與簽章不會自動重建。原始 Git／對照另有私人備份，不能把舊 clone 的分支直接推回來源 repo。
