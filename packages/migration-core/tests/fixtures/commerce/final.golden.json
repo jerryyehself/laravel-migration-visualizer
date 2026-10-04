@@ -1,0 +1,243 @@
+{
+  "tables": {
+    "users": {
+      "name": "users",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "bigInteger",
+          "nullable": false,
+          "unsigned": true,
+          "autoIncrement": true,
+          "primary": true
+        },
+        "email": {
+          "name": "email",
+          "type": "string",
+          "nullable": false,
+          "length": 255
+        }
+      },
+      "indexes": {
+        "users_id_primary": {
+          "name": "users_id_primary",
+          "type": "primary",
+          "columns": [
+            "id"
+          ]
+        },
+        "users_email_unique": {
+          "name": "users_email_unique",
+          "type": "unique",
+          "columns": [
+            "email"
+          ]
+        }
+      },
+      "foreignKeys": {}
+    },
+    "products": {
+      "name": "products",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "bigInteger",
+          "nullable": false,
+          "unsigned": true,
+          "autoIncrement": true,
+          "primary": true
+        },
+        "code": {
+          "name": "code",
+          "type": "string",
+          "nullable": false,
+          "length": 255
+        },
+        "price": {
+          "name": "price",
+          "type": "decimal",
+          "nullable": true,
+          "precision": 10,
+          "scale": 2,
+          "default": 0
+        }
+      },
+      "indexes": {
+        "products_id_primary": {
+          "name": "products_id_primary",
+          "type": "primary",
+          "columns": [
+            "id"
+          ]
+        },
+        "products_sku_unique": {
+          "name": "products_sku_unique",
+          "type": "unique",
+          "columns": [
+            "code"
+          ]
+        }
+      },
+      "foreignKeys": {}
+    },
+    "orders": {
+      "name": "orders",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "bigInteger",
+          "nullable": false,
+          "unsigned": true,
+          "autoIncrement": true,
+          "primary": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "bigInteger",
+          "nullable": false,
+          "unsigned": true,
+          "autoIncrement": false
+        },
+        "status": {
+          "name": "status",
+          "type": "enum",
+          "nullable": false,
+          "allowedValues": [
+            "pending",
+            "paid"
+          ],
+          "default": "pending"
+        },
+        "placed_at": {
+          "name": "placed_at",
+          "type": "timestamp",
+          "nullable": false,
+          "precision": 0,
+          "useCurrent": true
+        }
+      },
+      "indexes": {
+        "orders_id_primary": {
+          "name": "orders_id_primary",
+          "type": "primary",
+          "columns": [
+            "id"
+          ]
+        },
+        "orders_state_idx": {
+          "name": "orders_state_idx",
+          "type": "index",
+          "columns": [
+            "status"
+          ]
+        }
+      },
+      "foreignKeys": {
+        "orders_user_id_foreign": {
+          "name": "orders_user_id_foreign",
+          "columns": [
+            "user_id"
+          ],
+          "referencedTable": "users",
+          "referencedColumns": [
+            "id"
+          ]
+        }
+      }
+    },
+    "order_items": {
+      "name": "order_items",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "bigInteger",
+          "nullable": false,
+          "unsigned": true,
+          "autoIncrement": true,
+          "primary": true
+        },
+        "order_id": {
+          "name": "order_id",
+          "type": "bigInteger",
+          "nullable": false,
+          "unsigned": true,
+          "autoIncrement": false
+        },
+        "product_id": {
+          "name": "product_id",
+          "type": "bigInteger",
+          "nullable": false,
+          "unsigned": true,
+          "autoIncrement": false
+        },
+        "qty": {
+          "name": "qty",
+          "type": "integer",
+          "nullable": false,
+          "unsigned": true
+        }
+      },
+      "indexes": {
+        "order_items_id_primary": {
+          "name": "order_items_id_primary",
+          "type": "primary",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "foreignKeys": {
+        "order_items_order_id_foreign": {
+          "name": "order_items_order_id_foreign",
+          "columns": [
+            "order_id"
+          ],
+          "referencedTable": "orders",
+          "referencedColumns": [
+            "id"
+          ],
+          "onDelete": "cascade"
+        },
+        "order_items_product_id_foreign": {
+          "name": "order_items_product_id_foreign",
+          "columns": [
+            "product_id"
+          ],
+          "referencedTable": "products",
+          "referencedColumns": [
+            "id"
+          ]
+        }
+      }
+    },
+    "attachments": {
+      "name": "attachments",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "bigInteger",
+          "nullable": false,
+          "unsigned": true,
+          "autoIncrement": true,
+          "primary": true
+        },
+        "path": {
+          "name": "path",
+          "type": "string",
+          "nullable": false,
+          "length": 255
+        }
+      },
+      "indexes": {
+        "attachments_id_primary": {
+          "name": "attachments_id_primary",
+          "type": "primary",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "foreignKeys": {}
+    }
+  }
+}
