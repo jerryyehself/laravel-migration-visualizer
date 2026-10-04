@@ -3,3 +3,10 @@ dist/
 coverage/
 .DS_Store
 artifacts/
+
+# Private conversation exports must stay outside version control.
+docs/conversations/*
+!docs/conversations/README.md
+.env
+.env.*
+!.env.example
