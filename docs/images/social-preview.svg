@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640">
+<rect width="1280" height="640" fill="#102b29"/>
+<circle cx="1160" cy="80" r="300" fill="#173936"/>
+<path d="M0 610H1280" stroke="#66d9bc" stroke-width="8"/>
+<g font-family="Arial, Helvetica, sans-serif">
+<text x="64" y="84" font-size="18" fill="#8ee5ce" letter-spacing="3">STATIC ANALYSIS • LARAVEL MIGRATIONS</text>
+<text x="64" y="182" font-size="62" font-weight="700" fill="#ffffff">Laravel Migration</text>
+<text x="64" y="254" font-size="62" font-weight="700" fill="#ffffff">Visualizer</text>
+<text x="64" y="319" font-size="25" fill="#cee1dc">Understand your schema, one migration at a time.</text>
+<text x="64" y="385" font-size="21" fill="#8ee5ce">Schema snapshots   /   Structural diffs   /   ERD</text>
+<rect x="64" y="455" width="534" height="60" rx="12" fill="#1e4641"/>
+<text x="86" y="492" font-size="18" fill="#ffffff">PHP source → AST → Operations → Schema</text>
+<text x="64" y="563" font-size="17" fill="#b3cbc4">React + TypeScript • Runs in your browser • No PHP execution</text>
+<g stroke="#66d9bc" stroke-width="3" fill="none"><path d="M874 192H912V351H968"/><path d="M874 387H912V351"/></g>
+<g fill="#ecf6f2"><rect x="704" y="126" width="170" height="136" rx="14"/><rect x="704" y="321" width="170" height="136" rx="14"/><rect x="968" y="285" width="244" height="170" rx="14"/></g>
+<g fill="#c8e9df"><path d="M718 126H860Q874 126 874 140V172H704V140Q704 126 718 126"/><path d="M718 321H860Q874 321 874 335V367H704V335Q704 321 718 321"/><path d="M982 285H1198Q1212 285 1212 299V331H968V299Q968 285 982 285"/></g>
+<g fill="#173b34" font-size="22" font-weight="700"><text x="724" y="157">users</text><text x="724" y="352">products</text><text x="988" y="316">orders</text></g>
+<g fill="#395950" font-size="18"><text x="724" y="202">id</text><text x="724" y="235">email</text><text x="724" y="397">id</text><text x="724" y="430">name</text><text x="988" y="362">id</text><text x="988" y="395">user_id</text><text x="988" y="428">product_id</text></g>
+</g></svg>

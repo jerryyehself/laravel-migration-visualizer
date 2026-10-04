@@ -1,5 +1,7 @@
 # Laravel Migration Visualizer
 
+[![CI](https://github.com/jerryyehself/laravel-migration-visualizer/actions/workflows/ci.yml/badge.svg)](https://github.com/jerryyehself/laravel-migration-visualizer/actions/workflows/ci.yml) · [部署紀錄](https://github.com/jerryyehself/laravel-migration-visualizer-pages/deployments/github-pages)
+
 把 Laravel migrations 轉成可檢視的資料庫結構，理解每份 migration 改了哪些資料表、欄位、索引與外鍵。
 
 這是一個 **React + TypeScript + Vite 的靜態分析工作台**：使用 glayzzle/php-parser 讀取 PHP AST，分析 `up()`，不執行 PHP、不連接資料庫。檔案在瀏覽器本地讀取，不會上傳至伺服器。
