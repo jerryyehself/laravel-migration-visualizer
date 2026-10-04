@@ -21,17 +21,5 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
-      - run: npm test
-      - run: npm run typecheck
-      - run: npm run build
-      - run: npm run demo:project
-      - run: npm run demo:tables
-      - run: npm run demo:helpers
-      - run: npm run demo:laravel
-      - run: npm run demo:changes
-      - run: npm run demo:current-update
-      - run: npm run demo:index-rename
-      - run: npm run demo:drop-columns
-      - run: npm run demo:drop-constrained-id
-      - run: npm run demo:morphs
-      - run: npm run demo:acceptance
+      - run: npm run verify
+      - run: node scripts/release-bundle.mjs
