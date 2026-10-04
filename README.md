@@ -4,7 +4,7 @@
 
 這是一個 **React + TypeScript + Vite 的靜態分析工作台**：使用 glayzzle/php-parser 讀取 PHP AST，分析 `up()`，不執行 PHP、不連接資料庫。檔案在瀏覽器本地讀取，不會上傳至伺服器。
 
-**第一版已交付：產品／web `1.0.0`，migration-core `0.14.0`。** [版本與交付包](https://github.com/jerryyehself/laravel-migration-visualizer/releases/tag/v1.0.0) · [使用手冊](docs/user-guide.zh-TW.md) · [相容性矩陣](docs/compatibility.zh-TW.md)
+**第一版已交付：產品／web `1.0.0`，migration-core `0.14.0`。** [線上工作台](https://jerryyehself.github.io/laravel-migration-visualizer-pages/) · [版本與交付包](https://github.com/jerryyehself/laravel-migration-visualizer/releases/tag/v1.0.0) · [使用手冊](docs/user-guide.zh-TW.md) · [相容性矩陣](docs/compatibility.zh-TW.md)
 
 ## 畫面預覽
 
@@ -162,7 +162,19 @@ npm run release:bundle
 - 沒有草稿持久化。重新整理或切換工作台會失去輸入／結果，編輯不回寫原始 PHP。
 - timeline、`down()`、AI、SQL parser、runtime migration execution、semantic refactoring detection 不在第一版。
 - JSON 匯出功能保留；**依使用者目前要求，暫緩下載互動與落盤驗收**。歷史下載自動化逾時不視為已驗證，這次 README 更新不測下載。
-- 產品／web `1.0.0` 與 core `0.14.0` 分開版本化；套件仍 private，沒有 npm 發布或正式網站部署。
+- 產品／web `1.0.0` 與 core `0.14.0` 分開版本化；套件仍 private，沒有 npm 發布；線上版由 GitHub Pages 提供。
+
+## GitHub Pages
+
+[線上版](https://jerryyehself.github.io/laravel-migration-visualizer-pages/) 以獨立[公開部署 repo](https://github.com/jerryyehself/laravel-migration-visualizer-pages) 提供。來源 repo 保持私有，部署 repo 只包含建置後的 HTML／JS／CSS 與 `.nojekyll`，不包含原始文件、對話備份或憑證。網站匯入仍在使用者的瀏覽器中處理。
+
+重新發布需要來源 repo、Node/npm、Git，以及具備部署 repo 寫入權限的已登入 `gh` CLI：
+
+```sh
+npm run publish:pages
+```
+
+指令先執行完整 verify，再以 `/laravel-migration-visualizer-pages/` 建置、更新部署 repo 的 main，由 Pages 自動發布。臨時 checkout 使用 GitHub noreply 作者資訊，完成後恢復本地 root 建置。沒有新增 GitHub Actions 密鑰；詳細流程與首次發布證據見 [M34](docs/milestone-34.zh-TW.md)。v1.0.0 release archive 是當時的版本，重新發布入口在最新 main。
 
 ## 文件與開發紀錄
 
