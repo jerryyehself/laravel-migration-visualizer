@@ -189,3 +189,7 @@ npm run publish:pages
 | [決策索引](docs/DECISIONS.zh-TW.md)／[交接文件](docs/CLOUD_HANDOFF.md) | 本地／雲端接手與範圍延續 |
 
 修改專案前請讀 [AGENTS.md](AGENTS.md) 與 repo 內 `.agents/skills/`；新功能走分支／PR，確認最新 HEAD CI 後再合併。
+
+## 原始碼公開前檢查
+
+來源目前維持私有。逐字對話與來源 manifest 已移到本機私人備份，架構決策與教學仍保留。舊 Git 歷史、PR 與 v1.0.0 附件仍有歷史副本，不能只刪除 main 的檔案就直接公開；詳見 [檢查結果與待處理項目](docs/publication-audit.zh-TW.md)。

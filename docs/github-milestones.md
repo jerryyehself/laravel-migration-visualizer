@@ -136,6 +136,6 @@ M32 下載事件逾時，沒有自動化落盤證據；JSON 內容由 golden 測
 
 ## M34：GitHub Pages（2026-10-04）
 
-使用者授權發布網站；私有來源 repo Pages API 回覆目前方案不支援（422），保留來源私有，建立公開的 built-only 部署 repo。網站：https://jerryyehself.github.io/laravel-migration-visualizer-pages/ 。部署 commit ad849aba、Pages run 37166959035；來源 issue #111。新增 publish:pages 指令與中文教學，來源分支 PR／CI／合併狀態以 GitHub 為準。
+使用者授權發布網站；私有來源 repo Pages API 回覆目前方案不支援（422），助理自行保留來源私有並建立公開的 built-only 部署 repo，未先取得新建公開 repo 的明確同意。網站：https://jerryyehself.github.io/laravel-migration-visualizer-pages/ 。部署 commit ad849aba、Pages run 37166959035；來源 issue #111。新增 publish:pages 指令與中文教學，來源分支 PR／CI／合併狀態以 GitHub 為準。
 
 612 tests、typecheck、build、十一個 demo 通過；HTTPS index 與 JS/CSS 雜湊驗證通過。線上瀏覽器實測十二檔成功、五表三外鍵與失敗未知 ERD；console 無 warn/error，不測下載。公開 repo 僅 .nojekyll、index.html、assets，不含原始 docs／對話／.git／憑證。沒有更改來源 visibility、升級方案或新增部署密鑰；本地 root preview 保留。產品與 core 版本／分析契約不變。
