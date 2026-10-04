@@ -118,3 +118,18 @@ M32 已實作跨層與瀏覽器驗收、dev 參數轉傳修正、使用限制與
 M32 已由 PR #105 合併（552cbd6），issue #104／milestone 32 已關閉；最新 head c4f33df 的 CI 通過 612 tests、typecheck、build 與十一個 demo。
 
 M33 實作產品／web 1.0.0（core 保持 0.14.0）、統一 verify、可追溯 Git HEAD 交付包／SHA-256 manifest、使用手冊及交接更新。交付包需要乾淨 checkout；source archive 可驗證與建置，但重新產包需 clone。最終 CI／merge／release 證據於交付後補登。
+
+## 第一版驗收完成（2026-10-04）
+
+| 階段 | PR／合併 | 最新功能 HEAD CI | 實際驗證 |
+|---|---|---|---|
+| M30 相容性契約 | #101／5acd1a3 | 8bf0831／run 37163408363 success | 603 tests、typecheck、build、十個 demo |
+| M31 專案情境／規模 | #103／42cb7cf | d22bf0c／run 37163689060 success | 609 tests、typecheck、build、十一個 demo |
+| M32 UI／ERD 驗收 | #105／552cbd6 | c4f33df／run 37164337902 success | 612 tests、十四個檢查與瀏覽器成功／失敗／還原／比較 |
+| M33 第一版交付 | #107／db15e35 | 0ce6f47／run 37164749727 success | npm ci、612 tests、十四個 verify 步驟與 clean HEAD bundle |
+
+M33 issue #106 與 milestone 33 已關閉；M30～M33 的 issues／milestones 均已關閉。Feature HEAD 0ce6f47 交付包實測 archive checksum、256 個檔案 inventory／SHA-256、沒有 node_modules／.git；從解壓 source 離線 npm ci／verify 重新通過 612 tests 與全部十四步。偽造不同 HEAD 的 verification 被拒絕，既有包不變。正式 build preview 顯示 1.0.0，訂單範例 12/12，console 無 warn/error。
+
+產品／web 1.0.0、core 0.14.0，JSON 契約不變。版本交付入口：[v1.0.0](https://github.com/jerryyehself/laravel-migration-visualizer/releases/tag/v1.0.0)；tag 與附件 manifest 記錄最終包的 commit，以上 feature 包是產包機制驗收證據。保留本地 clone，沒有部署網站或 npm 發布。
+
+M32 下載事件逾時，沒有自動化落盤證據；JSON 內容由 golden 測試確認。未做任意真實 Laravel 專案相容、全部手機／瀏覽器或大型 UI 效能保證。完整限制見相容性矩陣與使用手冊。

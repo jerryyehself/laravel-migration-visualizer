@@ -1,7 +1,7 @@
 # Codex Cloud 交接
 
 ## 現況（2026-10-04 核對）
-- M1～M32 已合併 main；M32 PR #105／552cbd6，最新 head c4f33df CI 通過。目前 612 tests（520 core + 92 web）、typecheck、build 與十一個 demo 通過。M33 第一版交付以 GitHub 交付紀錄為準；產品／web 1.0.0，core 0.14.0不變。本地接手，雲端停止開發。
+- M1～M33 已合併 main；M33 PR #107／db15e35，最新 head 0ce6f47 CI 通過 verify 與產包。目前 612 tests（520 core + 92 web）、typecheck、build 與十一個 demo 通過。M33 第一版交付以 GitHub 交付紀錄為準；產品／web 1.0.0，core 0.14.0不變。本地接手，雲端停止開發。
 - 已有多檔匯入、排序／分析／逐檔快照／結構 diff、索引／外鍵、診斷定位、JSON 匯出，以及 ERD 快照／比較／同步互動／聚焦／明細。
 - M1 baseline 為 6959b46（42 tests）；各階段實際 commits、PR、驗證與限制見 [GitHub 交付紀錄](github-milestones.md)，下方各節為歷史紀錄。
 - M21 已實作 dateTime／dateTimeTz 的零參數 useCurrent()，新增跨檔 golden、失敗／不可變回歸與中文教學；373／373 tests、typecheck、build 與四個 demo 通過。已由 PR #76 合併 main（f8925e1），issue #75 與 milestone 已關閉；最新功能 head 5c72f84 的 CI 通過。完整狀態見交付紀錄，接手先核對最新 main。
