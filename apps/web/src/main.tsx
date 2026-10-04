@@ -3,11 +3,12 @@ import { createRoot } from 'react-dom/client';
 import { ProjectWorkbench } from './components/ProjectWorkbench';
 import { SingleWorkbench } from './components/SingleWorkbench';
 import './style.css';
+import { version } from '../package.json';
 
 function App() {
   const [mode, setMode] = useState<'project' | 'single'>('project');
   return <main>
-    <p className="eyebrow">LARAVEL MIGRATION / STATIC ANALYSIS</p>
+    <p className="eyebrow">VERSION {version} / STATIC ANALYSIS</p>
     <h1>Laravel Migration Visualizer</h1>
     <p>PHP → AtomicOperation → SchemaState → SchemaDiff</p>
     <p>靜態分析工作台。僅讀取 up()，不執行 PHP，也不連接資料庫。</p>
