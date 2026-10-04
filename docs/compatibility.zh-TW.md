@@ -1,6 +1,6 @@
 # 第一版相容性矩陣
 
-目標是可驗證的靜態分析子集合，不是完整 Laravel 或資料庫 interpreter。基準為固定 Laravel 12 framework commit `71cf667d43f9cd3f840b1733bb2b7bec65d72282`；[Blueprint 原始碼](https://github.com/laravel/framework/blob/71cf667d43f9cd3f840b1733bb2b7bec65d72282/src/Illuminate/Database/Schema/Blueprint.php)。完整參數政策見 README「支援範圍」及各 milestone 教學。
+目標是可驗證的靜態分析子集合，不是完整 Laravel 或資料庫 interpreter。基準為固定 Laravel 12 framework commit `71cf667d43f9cd3f840b1733bb2b7bec65d72282`；[Blueprint 原始碼](https://github.com/laravel/framework/blob/71cf667d43f9cd3f840b1733bb2b7bec65d72282/src/Illuminate/Database/Schema/Blueprint.php)。支援概覽見 README「支援範圍」，完整參數政策見各 milestone 教學。
 
 | 類別 | 第一版支援 | 主要限制／證據 |
 |---|---|---|
