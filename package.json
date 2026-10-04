@@ -7,7 +7,7 @@
     "apps/*"
   ],
   "scripts": {
-    "dev": "npm run dev -w @lmv/web",
+    "dev": "npm run dev -w @lmv/web --",
     "build": "npm run build -w @lmv/migration-core && npm run build -w @lmv/web",
     "test": "vitest run",
     "typecheck": "tsc --noEmit -p packages/migration-core/tsconfig.json && tsc --noEmit -p apps/web/tsconfig.json",
