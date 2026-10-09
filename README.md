@@ -192,3 +192,5 @@ npm run release:bundle
 `nullableTimestamps()` 與單一靜態非負整數 precision 已支援，展開兩個 nullable timestamp 欄位。明確 null、動態參數、修飾鏈與 change 拒絕；不含 nullableTimestampsTz。core 0.15.0，JSON 形狀不變；來源與樣本限制見 [M37 教學](docs/milestone-37.zh-TW.md)。
 
 表／欄位明細可列出名稱直接涉及的 migration 操作，跳到唯讀 PHP 來源並返回原快照選取；不推測 rename 身分或把 failed／blocked 語法操作當成生效。實作與交付狀態見 [R4 說明](docs/r4-operation-sources.zh-TW.md)。
+
+單次 migration 的狀態、來源、結構 diff 及 Before／After 明細跳轉，見 [R5 教學](docs/r5-migration-reading.zh-TW.md)。未知和已知無變更分開；rename 操作不合併結構移除／新增。

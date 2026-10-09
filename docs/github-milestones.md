@@ -155,3 +155,9 @@ PR #126 merge cbfdf61347c33ff25a44e88be49a6ce7f15aeb26；head 61f4bfce2b1230b24e
 ## M38：R4 操作來源往返
 
 issue #127／milestone 38；651 tests 的本地證據與六項 Chromium 任務見 r4-operation-sources.zh-TW.md。認證已恢復，PR 最新 head CI／merge 尚待本批交付。
+
+M38 已由 PR #128 merge 47b8e0ac1f57edf8727c6a896fa6de8708b6de0d；head 5ead8c086507878d0a10fa0fe1e74c7d6d8b23a9／validate run 37901972576 success。issue #127／milestone 38 closed。
+
+## M39：R5 單次變更閱讀
+
+issue #129／milestone 39；660 tests，八項 Chromium 任務与六項 R4 回歸通過，core／JSON 不變。教學 r5-migration-reading.zh-TW.md，CI／merge 待交付。

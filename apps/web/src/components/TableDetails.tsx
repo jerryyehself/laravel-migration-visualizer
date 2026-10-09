@@ -3,9 +3,11 @@ import type { SchemaState, ProjectAnalysis } from '@lmv/migration-core';
 import { OperationSources } from './OperationSources';
 import type { SourceNavigation } from '../operation-sources';
 
-export function TableDetails({ schema, selected, selectedColumn, selectionRequest, analysis, onSource }: { schema: SchemaState; selected?: string; selectedColumn?: string; selectionRequest?: number; analysis?: ProjectAnalysis; onSource?: SourceNavigation }) {
+export function TableDetails({ schema, selected, selectedColumn, selectionRequest, analysis, onSource, openOnSelection }: { openOnSelection?:boolean; schema: SchemaState; selected?: string; selectedColumn?: string; selectionRequest?: number; analysis?: ProjectAnalysis; onSource?: SourceNavigation }) {
   const table = selected !== undefined && Object.hasOwn(schema.tables, selected) ? schema.tables[selected] : null;
   const activeColumn = table && selectedColumn !== undefined && Object.hasOwn(table.columns, selectedColumn) ? selectedColumn : undefined;
+  const tableRef = useRef<HTMLElement>(null);
+  useEffect(() => { if (openOnSelection && activeColumn === undefined) { tableRef.current?.scrollIntoView({block:"center"}); tableRef.current?.focus({preventScroll:true}); } }, [openOnSelection, selected, activeColumn]);
   const columnRef = useRef<HTMLElement>(null);
   useEffect(() => {
     if (activeColumn !== undefined) {
@@ -13,11 +15,11 @@ export function TableDetails({ schema, selected, selectedColumn, selectionReques
       columnRef.current?.focus({ preventScroll: true });
     }
   }, [schema, selected, activeColumn, selectionRequest]);
-  return <section className="table-inspector" aria-label="資料表詳細檢視">
+  return <section ref={tableRef} tabIndex={-1} className="table-inspector" aria-label="資料表詳細檢視">
     <h3>資料表詳細檢視</h3>
     {selected === undefined ? <p className="muted">請先聚焦資料表，以查看完整欄位、索引與外鍵。</p> : !table ?
       <p className="unavailable">此快照沒有資料表 {selected}；不補畫或複製另一側的資料。</p> :
-      <details key={JSON.stringify([selected, activeColumn, selectionRequest])} open={activeColumn !== undefined ? true : undefined}><summary>查看 {selected} 的欄位、索引與外鍵</summary>
+      <details key={JSON.stringify([selected, activeColumn, selectionRequest])} open={activeColumn !== undefined || openOnSelection ? true : undefined}><summary>查看 {selected} 的欄位、索引與外鍵</summary>
         <p>以下為目前快照的完整資料；未出現的選用屬性表示未指定，不代表資料庫預設值。</p>
         {analysis && onSource && <OperationSources result={analysis} query={{table:table.name}} onSource={onSource} />}
         {analysis && onSource && activeColumn !== undefined && <OperationSources result={analysis} query={{table:table.name,column:activeColumn}} onSource={onSource} />}

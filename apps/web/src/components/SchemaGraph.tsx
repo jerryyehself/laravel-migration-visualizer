@@ -1,4 +1,4 @@
-import type { SourceNavigation } from '../operation-sources';
+import type { SourceNavigation, StructureQuery } from '../operation-sources';
 import { useId, useMemo, useRef, useState } from 'react';
 import type { PointerEvent, Dispatch, SetStateAction } from 'react';
 import type { SchemaState, SchemaDiff, ProjectAnalysis } from '@lmv/migration-core';
@@ -8,7 +8,7 @@ import { initialGraphView, type GraphLayout, type GraphView } from '../compariso
 import { graphDiffMarks, memberKey, markLabels } from '../graph-diff';
 import { schemaGraph, NODE_WIDTH, clampZoom, edgePath, type Point } from '../schema-graph';
 
-export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 'after', layout, view, onViewChange, analysis, onSource, onSelectionChange }: { schema: SchemaState; title?: string; diff?: SchemaDiff; side?: 'before' | 'after'; layout?: GraphLayout; view?: GraphView; onViewChange?: Dispatch<SetStateAction<GraphView>>; analysis?: ProjectAnalysis; onSource?: SourceNavigation; onSelectionChange?: () => void }) {
+export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 'after', layout, view, onViewChange, analysis, onSource, onSelectionChange, initialSelection }: { initialSelection?:StructureQuery; schema: SchemaState; title?: string; diff?: SchemaDiff; side?: 'before' | 'after'; layout?: GraphLayout; view?: GraphView; onViewChange?: Dispatch<SetStateAction<GraphView>>; analysis?: ProjectAnalysis; onSource?: SourceNavigation; onSelectionChange?: () => void }) {
   const graph = useMemo(() => schemaGraph(schema), [schema]);
   const marks = useMemo(() => graphDiffMarks(diff ?? { changes: [] }, side), [diff, side]);
   const marker = useId().replace(/:/g, '');
@@ -18,12 +18,12 @@ export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 
   const searchId = useId();
   const columnSearchId = useId();
   const [columnQuery, setColumnQuery] = useState('');
-  const columnRequest = useRef(0);
-  const [selectedColumn, setSelectedColumn] = useState<{ table: string; column: string; request: number }>();
+  const columnRequest = useRef(initialSelection?.column === undefined ? 0 : 1);
+  const [selectedColumn, setSelectedColumn] = useState<{ table: string; column: string; request: number } | undefined>(() => initialSelection?.column !== undefined && Object.hasOwn(schema.tables,initialSelection.table) && Object.hasOwn(schema.tables[initialSelection.table].columns,initialSelection.column) ? {...initialSelection,column:initialSelection.column,request:1} : undefined);
   const columnMatches = useMemo(() => matchingColumns(schema, columnQuery), [schema, columnQuery]);
   const matches = matchingTables(graph.nodes.map(node => node.name), query);
   const bounds = layout ?? graph;
-  const [localView, setLocalView] = useState(() => initialGraphView(bounds));
+  const [localView, setLocalView] = useState(() => { const initial = initialGraphView(bounds); const node = graph.nodes.find(node=>node.name === initialSelection?.table); return node ? focusGraphTable(initial,node,layout?.positions.get(node.name) ?? node) : initial; });
   const { zoom, pan, positions, focused } = view ?? localView;
   const setView = onViewChange ?? setLocalView;
   const setZoom = (update: (value: number) => number) => setView(current => ({ ...current, zoom: update(current.zoom) }));
@@ -130,6 +130,6 @@ export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 
       </svg>
       <details><summary>外鍵連線明細</summary><ul>{graph.edges.map(edge => <li key={edge.id}>{marks.edges.has(edge.id) ? markLabels[marks.edges.get(edge.id)!] + ' · ' : ''}{edge.from} → {edge.to} · {edge.label}</li>)}</ul></details>
     </>}
-    <TableDetails schema={schema} selected={focused} selectedColumn={selectedColumn && selectedColumn.table === focused ? selectedColumn.column : undefined} selectionRequest={selectedColumn?.request} analysis={analysis} onSource={onSource} />
+    <TableDetails openOnSelection={initialSelection?.table === focused} schema={schema} selected={focused} selectedColumn={selectedColumn && selectedColumn.table === focused ? selectedColumn.column : undefined} selectionRequest={selectedColumn?.request} analysis={analysis} onSource={onSource} />
   </section>;
 }
