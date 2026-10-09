@@ -1,7 +1,7 @@
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
-import { analyzeProject } from '@lmv/migration-core';
+import { analyzeProject } from '../../../packages/migration-core/src/index.js';
 import { OperationSources, OperationSourcePanel } from '../src/components/OperationSources';
 import { operationSources } from '../src/operation-sources';
 const filename='nested/2026_10_09_000001_create.php';
