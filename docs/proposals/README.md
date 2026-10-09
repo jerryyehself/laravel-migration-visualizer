@@ -51,4 +51,4 @@ R 編號是研究提案 ID，不是已建立的 GitHub milestone。順序可依�
 - 2026-10-09：使用者要求依 docs/proposals/、狀態流程、確認紀錄及文件分支／PR 保存；本次只授權文件交付。本地負責後續檢查，研究端維持交接角色。
 - 各 R 提案目前沒有個別實作核准。不得以「照這個去做」的文件保存指令推定整批功能 approved。
 
-相關 issue：未建立。文件 PR：由本次 docs/research-proposals 分支提出；查詢該分支 PR 取得實際編號。功能 PR：無。
+相關 issue：未建立。文件 PR：[保存提案與派工流程 #117](https://github.com/jerryyehself/laravel-migration-visualizer/pull/117)，尚未合併。功能 PR：無。
