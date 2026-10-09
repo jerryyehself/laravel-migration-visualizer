@@ -1,10 +1,10 @@
 # R3：專案結構探索
 
-- 狀態：approved（修訂 2 全部步驟；尚未開始執行）
+- 狀態：in_progress（修訂 2；R3.1／R3.2／R3.4，R3.3 依證據跳過）
 - 日期／修訂：2026-10-09／2
 - 負責端：雲端開發 session 執行；本研究 session 僅研究、決策文件與交接，不做程式實作
 - 依賴：R1；是否需要 R2 由樣本結果決定
-- 相關 issue：未建立
+- 相關 issue：[#122](https://github.com/jerryyehself/laravel-migration-visualizer/issues/122)；milestone 36
 - 文件 PR：[初始保存 #117](https://github.com/jerryyehself/laravel-migration-visualizer/pull/117)、[R1.1 核准補登 #118](https://github.com/jerryyehself/laravel-migration-visualizer/pull/118) 已合併；全路線核准由 docs/approve-research-roadmap 分支交付
 - 功能 PR：無
 
@@ -58,5 +58,19 @@ Eloquent 解析、猜多型 FK、大圖性能保證、新布局算法、寫回 P
 
 ## 批次狀態與交付紀錄
 
-本提案修訂 2 的全部批次均 approved；雲端開發 session 應依序核對前置條件，開工時記錄 in_progress，取得實際驗收／交付證據後標 done。
-本次只更新核准文件，未啟動任何批次、未修改程式、未建立功能 issue／PR。狀態轉換依 [提案流程](README.md)。
+R3.1／R3.2／R3.4 in_progress；R1 的前置已交付，具體契約與實作如本次紀錄。R3.3 依需求證據不足跳過；不是 FK 導覽已完成。milestone 36／issue #122，最新 HEAD CI／merge 後才稱 done。
+
+## R3.1 當前快照欄位搜尋契約（2026-10-09）
+
+核准 PR #119；前置 R1 PR #121／2dfbbc6 已合併。R1 的 jobs.reserved_at 任務需先知道表名，現在補全欄位查找。milestone 36；有限檔案為 graph-focus、SchemaGraph、TableDetails、style 與相關 tests／教學。
+
+- 每張 ERD 只查自己的已知 schema；before／after 各自查，不合併或以 lastValid 補 final。未知快照沒有搜尋介面，已知空白可搜尋但無結果。
+- 只按欄位名稱做 trim、大小寫不敏感、literal substring；不按表名或型別匹配，不解讀 regex。保留原始表／欄位順序。
+- 結果以 table+column 識別，完整顯示兩個名稱；同名欄位是不同結果。空查詢提示輸入且不列全部欄位，非空無匹配明確顯示。
+- 點結果沿用表聚焦，展開該表明細、標記完整欄位並捲動／轉移鍵盤焦點。再次點同一結果仍可重新展開；React 用 request 只記錄這次畫面操作，不寫 schema。
+- 清除搜尋只清查詢，保留目前選取；表聚焦或重設位置清欄位選取。切換快照沿用既有 key remount，清搜尋與選取。比較共享 table focus／view，但欄位選取只在操作的該側，不補另一側。
+- 不改 core／DTO／exports、不隱藏圖形／FK、不加持久化或布局。
+
+R3.3：R1 可用成功前綴無 FK，BookStack after 未知，無直接鄰居任務需求證據；按核准的條件式流程跳過，不把 FK 功能列為已交付。
+
+驗收：literal／同名／未知／空白／切換 adapter；選取／缺欄位明細；Chromium R1 任務、重複點擊、鍵盤焦點、兩側與未知；必要 tests/typecheck/build/demo。完成此批 PR 才記 done。

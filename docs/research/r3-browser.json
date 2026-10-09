@@ -1,0 +1,20 @@
+{
+  "sampleCommits": [
+    "d056c6493dd7bf905e471f2ad6fe716c35642ae4",
+    "ff661b59f6f605bf768fe850c0d0a8a2dc09d203"
+  ],
+  "passed": [
+    "duplicate column identity",
+    "graph retained",
+    "keyboard Enter opens and focuses exact column",
+    "repeat selection reopens details",
+    "clear query retains selection",
+    "no matches",
+    "snapshot resets selection and query",
+    "comparison searches own side",
+    "missing side not copied",
+    "unknown has no search",
+    "known empty distinct"
+  ],
+  "consoleErrors": []
+}

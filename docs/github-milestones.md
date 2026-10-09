@@ -139,3 +139,11 @@ M32 下載事件逾時，沒有自動化落盤證據；JSON 內容由 golden 測
 使用者授權發布網站；私有來源 repo Pages API 回覆目前方案不支援（422），助理自行保留來源私有並建立公開的 built-only 部署 repo，未先取得新建公開 repo 的明確同意。網站：https://jerryyehself.github.io/laravel-migration-visualizer-pages/ 。部署 commit ad849aba、Pages run 37166959035；來源 issue #111。新增 publish:pages 指令與中文教學，來源分支 PR／CI／合併狀態以 GitHub 為準。
 
 612 tests、typecheck、build、十一個 demo 通過；HTTPS index 與 JS/CSS 雜湊驗證通過。線上瀏覽器實測十二檔成功、五表三外鍵與失敗未知 ERD；console 無 warn/error，不測下載。公開 repo 僅 .nojekyll、index.html、assets，不含原始 docs／對話／.git／憑證。沒有更改來源 visibility、升級方案或新增部署密鑰；本地 root preview 保留。產品與 core 版本／分析契約不變。
+
+## M35：R1 真實專案基準（2026-10-09）
+
+PR #121 已合併 2dfbbc64b4effa14bb4c2b2c62888866c587f5e7；功能 head 7b0a98751221bde7939b232222533c4759bce6f3，validate run 37896480621 success。issue #120／milestone 35 closed。兩個固定 MIT 樣本共 112 PHP、118 檔來源校驗；Laravel.io 2 applied／1 failed／6 blocked，BookStack 0／1／102，final 均未知。雲端 verify 612 tests／14 步、來源重取再現／改動拒絕、Chromium 查找／比較／未知／切換通過；core／UI 不變，未測下載。報告 docs/research/r1-baseline.zh-TW.md。
+
+## M36：R3 當前快照欄位搜尋
+
+milestone 36／issue #122，R3 修訂 2 核准範圍的 R3.1／R3.2／R3.4；R3.3 無需求證據跳過。619 tests，core 0.14.0／JSON 不變；Chromium 11 項交互通過，console 無 warning/error。教學 docs/milestone-36.zh-TW.md；本批 PR 最新 HEAD CI 與 merge 尚待交付，不因程式完成而先稱已合併。

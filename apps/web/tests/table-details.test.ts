@@ -47,3 +47,18 @@ describe('table inspector rendering contract', () => {
     expect(html).not.toContain('此快照沒有資料表');
   });
 });
+
+describe('searched column details', () => {
+  it('opens the inspector and marks only the selected current column', () => {
+    const schema: SchemaState = { tables: { users: { ...table('users'), columns: { id: { name: 'id', type: 'integer', nullable: false }, email: { name: 'email', type: 'string', nullable: false } } } } };
+    const html = renderToStaticMarkup(createElement(TableDetails, { schema, selected: 'users', selectedColumn: 'email' }));
+    expect(html).toContain('open=""');
+    expect(html.match(/data-selected="true"/g)).toHaveLength(1);
+    expect(html).toContain('搜尋選取欄位：email');
+  });
+  it('does not open or mark a column missing from this snapshot', () => {
+    const html = renderToStaticMarkup(createElement(TableDetails, { schema: { tables: { users: table('users') } }, selected: 'users', selectedColumn: 'constructor' }));
+    expect(html).not.toContain('open=""');
+    expect(html).not.toContain('data-selected="true"');
+  });
+});

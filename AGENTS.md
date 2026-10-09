@@ -26,7 +26,7 @@
 ## 開發與驗證
 - 使用者於 2026-10-04 要求暫緩下載測試；不做下載互動／落盤驗收，直到使用者另行恢復。既有匯出功能與序列化契約保留。
 - Node.js 22.12+，npm。安裝使用 npm ci，保留 package-lock.json。
-- npm test：目前 612 tests（520 core + 92 web）；M1 baseline 為 42 tests。M33 產品／web 版本 1.0.0，core 0.14.0 契約不變。統一驗證用 npm run verify；實際交付狀態見 github-milestones.md。
+- npm test：目前 619 tests（520 core + 99 web）；M1 baseline 為 42 tests。M33 產品／web 版本 1.0.0，core 0.14.0 契約不變。統一驗證用 npm run verify；實際交付狀態見 github-milestones.md。
 - npm run typecheck
 - npm run build
 - npm run demo:project
@@ -101,3 +101,5 @@ M29 已由 PR #98 合併（1aa3f83），issue #97／milestone 29 已關閉；最
 M30～M32 已合併：相容矩陣、十二檔 corpus／250與1000檔 core correctness、UI 驗收與 dev 參數轉傳修正。M32 下載 event 自動化逾時，不宣稱落盤驗證。第一版手冊／限制見 docs/user-guide.zh-TW.md、docs/release-v1.zh-TW.md。
 
 M33 已由 PR #107 合併（db15e35），issue #106／milestone 33 已關閉；head 0ce6f47 的 CI 通過 verify 與產包。解壓 source 重新 npm ci／verify 也通過 612 tests。產品／web 1.0.0，core 0.14.0。
+
+R3／milestone 36 新增當前已知快照欄位搜尋與明細定位；core／JSON 不變。教學見 docs/milestone-36.zh-TW.md，交付以最新 PR／CI／merge 記錄為準。
