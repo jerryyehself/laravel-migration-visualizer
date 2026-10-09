@@ -188,3 +188,5 @@ npm run release:bundle
 ## 原始碼公開前檢查
 
 2026-10-04 已經使用者核准清理所有分支／tag 的私人對話匯出與個人 email，重建 v1.0.0 附件，再將來源 repo 轉為公開。私人備份保留在 repo 外；架構決策與教學仍保留。GitHub 舊 PR diff／commit cache 可能仍有歷史副本，不能宣稱已完全清除；詳見 [發布紀錄](docs/single-repo-publication.zh-TW.md) 與 [原始檢查](docs/publication-audit.zh-TW.md)。
+
+`nullableTimestamps()` 與單一靜態非負整數 precision 已支援，展開兩個 nullable timestamp 欄位。明確 null、動態參數、修飾鏈與 change 拒絕；不含 nullableTimestampsTz。core 0.15.0，JSON 形狀不變；來源與樣本限制見 [M37 教學](docs/milestone-37.zh-TW.md)。

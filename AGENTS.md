@@ -19,14 +19,14 @@
 - npm workspaces：packages/migration-core 為純 TypeScript domain；apps/web 為 React + TypeScript + Vite。
 - parser、排序、schema replay、diff 與 project diagnostics 都放 core，不放 React hooks。
 - core 接收檔名與 PHP 字串，不讀檔、不執行 PHP、不連資料庫。
-- Milestone 1～33 已完成並在 main；M5～M8 分別由 PR #11、#15、#19、#22 合併。Core 0.14.0。M9 的 web 結果搜尋／狀態篩選已由 PR #26 合併，core 不變。M10 資料夾匯入已由 PR #30 合併（47d5b0f）；M11 診斷定位已由 PR #34 合併（d9e7a99），交付狀態見 docs/github-milestones.md；M12 診斷編輯跳轉已由 PR #38 合併（8777354），狀態見交付紀錄；M13 副本還原已由 PR #42 合併（8d9d02f），狀態見交付紀錄；使用者已同意進入視覺化，M14 最終 schema ERD 已由 PR #46 合併（652292b），狀態見交付紀錄；先讀 docs/DECISIONS.zh-TW.md、docs/CLOUD_HANDOFF.md、README.md 與 docs/milestone-20.zh-TW.md。
+- Milestone 1～33 已完成並在 main；M5～M8 分別由 PR #11、#15、#19、#22 合併。M33 時 Core 0.14.0；本批 Core 0.15.0，詳見 M37。M9 的 web 結果搜尋／狀態篩選已由 PR #26 合併，core 不變。M10 資料夾匯入已由 PR #30 合併（47d5b0f）；M11 診斷定位已由 PR #34 合併（d9e7a99），交付狀態見 docs/github-milestones.md；M12 診斷編輯跳轉已由 PR #38 合併（8777354），狀態見交付紀錄；M13 副本還原已由 PR #42 合併（8d9d02f），狀態見交付紀錄；使用者已同意進入視覺化，M14 最終 schema ERD 已由 PR #46 合併（652292b），狀態見交付紀錄；先讀 docs/DECISIONS.zh-TW.md、docs/CLOUD_HANDOFF.md、README.md 與 docs/milestone-20.zh-TW.md。
 - 未經新需求，不擴增 timeline、down()、AI、SQL parser、runtime migration execution 或 semantic refactoring detection。
 - SchemaDiff 是結構比較，不猜 rename。失敗後 schemaAfter/finalSchema 為 null；lastValidSchema 僅代表成功前綴。
 
 ## 開發與驗證
 - 使用者於 2026-10-04 要求暫緩下載測試；不做下載互動／落盤驗收，直到使用者另行恢復。既有匯出功能與序列化契約保留。
 - Node.js 22.12+，npm。安裝使用 npm ci，保留 package-lock.json。
-- npm test：目前 619 tests（520 core + 99 web）；M1 baseline 為 42 tests。M33 產品／web 版本 1.0.0，core 0.14.0 契約不變。統一驗證用 npm run verify；實際交付狀態見 github-milestones.md。
+- npm test：目前 639 tests（540 core + 99 web）；M1 baseline 為 42 tests。M33 產品／web 版本 1.0.0，core 0.14.0 契約不變。統一驗證用 npm run verify；實際交付狀態見 github-milestones.md。
 - npm run typecheck
 - npm run build
 - npm run demo:project
@@ -103,3 +103,5 @@ M30～M32 已合併：相容矩陣、十二檔 corpus／250與1000檔 core corre
 M33 已由 PR #107 合併（db15e35），issue #106／milestone 33 已關閉；head 0ce6f47 的 CI 通過 verify 與產包。解壓 source 重新 npm ci／verify 也通過 612 tests。產品／web 1.0.0，core 0.14.0。
 
 R3／milestone 36 新增當前已知快照欄位搜尋與明細定位；core／JSON 不變。教學見 docs/milestone-36.zh-TW.md，交付以最新 PR／CI／merge 記錄為準。
+
+R2／milestone 37 的 nullableTimestamps 單項靜態別名，core 0.15.0；JSON 形狀不變，拒絕範圍與樣本限制見 milestone-37.zh-TW.md。新增 demo:nullable-timestamps，統一 verify 包含 12 個 demos。

@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { analyzeProject } from '@lmv/migration-core';
+const root=new URL('../packages/migration-core/tests/fixtures/nullable-timestamps/',import.meta.url);
+const file=filename=>({filename,source:readFileSync(new URL(filename,root),'utf8')});
+const pair=file('2026_10_09_000002_add_timestamps.php');
+const success=analyzeProject([pair,file('2026_10_09_000001_create_users.php')]);
+assert.equal(success.complete,true);
+assert.deepEqual(success.finalSchema,JSON.parse(readFileSync(new URL('success.golden.json',root),'utf8')));
+const failure=analyzeProject([file('2026_10_09_000000_create_collision.php'),pair,file('2026_10_09_000003_after.php')]);
+assert.deepEqual(failure.migrations.map(step=>step.status),['applied','failed','blocked']);
+assert.equal(failure.migrations[1].diagnostics[0].phase,'replay');
+assert.equal(failure.finalSchema,null);
+assert.equal(Object.hasOwn(failure.lastValidSchema.tables.users.columns,'created_at'),false);
+assert.equal(failure.migrations[1].schemaAfter,null);assert.equal(failure.migrations[2].schemaBefore,null);
+console.log(JSON.stringify({complete:success.complete,columns:success.finalSchema.tables.users.columns,failureStatuses:failure.migrations.map(step=>step.status)},null,2));

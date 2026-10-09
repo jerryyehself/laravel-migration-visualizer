@@ -45,4 +45,5 @@ const results = manifests.map(sample => {
     observation: { elapsedMs, node: process.version, platform: process.platform, note: 'Single-run observation, not a performance guarantee.' },
   };
 });
-console.log(JSON.stringify({ coreVersion: '0.14.0', results }, null, 2));
+const coreVersion = JSON.parse(readFileSync(new URL('../packages/migration-core/package.json', import.meta.url),'utf8')).version;
+console.log(JSON.stringify({ coreVersion, results }, null, 2));
