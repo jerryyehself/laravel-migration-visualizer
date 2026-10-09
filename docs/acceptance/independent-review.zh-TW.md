@@ -149,6 +149,6 @@ IR-01 的第一次取證 helper 在收合後以 role locator 重新找隱藏來�
 
 本報告及有限 JSON／截圖證據只在獨立 `docs/independent-review-r1-r6` 分支保存；第三方完整 source、本輪自製 helper、完整 log／trace 留在 ignored artifacts 或 /tmp，未加入產品測試／fixture。證據的 SHA-256 清單見 [evidence-sha256.json](evidence/evidence-sha256.json)。
 
-Git read 可用，但 `gh api repos/jerryyehself/laravel-migration-visualizer --jq '.permissions'` 在一般與核准的 sandbox 外執行均回傳 `Forbidden`；因此尚未建立文件 PR，不能把 Git 可讀等同 API／PR 可寫。驗收端保留文件 commit／patch，分支推送結果另於交付訊息回報；不自行合併或修改網路設定／要求新憑證。
+Git read 可用，但 `gh api repos/jerryyehself/laravel-migration-visualizer --jq '.permissions'` 在一般與核准的 sandbox 外執行均回傳 `Forbidden`；文件分支已成功推送至 origin；實際執行 `gh pr create --base main --head docs/independent-review-r1-r6`，GitHub GraphQL POST 也回傳 `Forbidden`，所以文件 PR 未建立。不能把 Git 可讀／可推等同 API／PR 可寫。驗收端保留文件 commit／patch；不自行合併或修改網路設定／要求新憑證。
 
 交回實作端的優先順序：先修 IR-01 並複驗收合／正常來源返回與失效；再處理 IR-02 的 fresh-page console；文件端校正 IR-03／IR-04。其餘已知相容性界線不應為讓樣本 complete 而放寬。修正完成後以新的實際 commit 定點複验，保留本輪失敗證據；本報告不授權驗收端實作。
