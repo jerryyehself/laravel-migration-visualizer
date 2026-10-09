@@ -55,7 +55,7 @@ const simpleTypes = new Set(['text', 'longText', 'mediumText', 'boolean', 'date'
 const integerTypes = new Set(['integer', 'bigInteger', 'smallInteger', 'tinyInteger', 'mediumInteger', 'unsignedInteger', 'unsignedBigInteger', 'unsignedSmallInteger', 'unsignedTinyInteger', 'unsignedMediumInteger']);
 function columns(call: Call): Column[] {
   const { name: method, args } = call;
-  if (method === 'timestamps' || method === 'timestampsTz') {
+  if (method === 'timestamps' || method === 'timestampsTz' || method === 'nullableTimestamps') {
     arity(args, 0, 1);
     return ['created_at', 'updated_at'].map(name => ({ name, type: method === 'timestampsTz' ? 'timestampTz' : 'timestamp', nullable: true, precision: integer(args[0], 0) }));
   }
@@ -305,7 +305,7 @@ export function analyzeMigration(source: string, file = 'migration.php'): Analys
                 operations.push({ kind: 'renameColumn', table, from: text(first.args[0]), to: text(first.args[1]), source: location(body) });
               } else {
                 const definitions = columns(first);
-                if (['timestamps','timestampsTz'].includes(first.name) && modifiers.length) throw new Error('Timestamp pair helpers do not support chained modifiers.');
+                if (['timestamps','timestampsTz','nullableTimestamps'].includes(first.name) && modifiers.length) throw new Error('Timestamp pair helpers do not support chained modifiers.');
                 const pending: AtomicOperation[] = [];
                 for (const column of definitions) {
                   const indexes = modifiers.filter(modifier => indexTypes.has(modifier.name));

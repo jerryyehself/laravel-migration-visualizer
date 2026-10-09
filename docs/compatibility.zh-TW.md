@@ -8,7 +8,7 @@
 | Schema lifecycle | create/table/rename/drop/dropIfExists | 靜態名稱／closure；table-lifecycle.test |
 | Columns | integer 家族、string/char/text、boolean/date/json/uuid、decimal、時間／enum | 明確參數子集合；core/column-helpers.test |
 | Modifiers | nullable/unsigned/default/comment/current time metadata | default 靜態 scalar；current 不求值；current-on-update.test |
-| Helpers | timestamps、softDeletes、rememberToken 與對應 drop | helpers 展開既有 commands；column-helpers.test |
+| Helpers | timestamps、nullableTimestamps（靜態 precision 子集合）、softDeletes、rememberToken 與對應 drop | helpers 展開既有 commands；column-helpers／nullable-timestamps.test |
 | Indexes | index/unique/primary、drop、一般 index/unique rename | 不支援 primary rename、fullText、spatial、algorithm；indexes/rename-index.test |
 | Foreign keys | foreign/references/on、foreignId/constrained、actions、dropForeign、dropConstrainedForeignId | 不推測 custom constraint；外部 initialSchema 必須符合契約；foreign-keys.test |
 | Polymorphic | numeric/nullableNumericMorphs、uuid/nullableUuidMorphs、dropMorphs | 不支援 runtime morphs、ULID、after，不猜 target/FK；三個 morph tests |
@@ -25,3 +25,5 @@
 ## 不保證的事項
 
 DB driver DDL、implicit indexes、connection prefix/defaultStringLength、runtime configuration、外部 JSON runtime validation，以及任意 PHP。整檔原子 replay 是可信分析規則，不代表資料庫 transaction 保證。Timeline/down/AI/SQL parser/runtime execution/semantic refactoring detection 不在第一版驗收範圍。
+
+R2 nullableTimestamps：零參數或單一靜態非負整數；拒絕明確 null、動態、額外參數、修飾鏈及 change，不含 nullableTimestampsTz。來源／樣本界線見 milestone-37.zh-TW.md。

@@ -1,10 +1,10 @@
 # R2：高影響相容性補強
 
-- 狀態：approved（修訂 2 全部步驟；尚未開始執行）
+- 狀態：in_progress（修訂 2；單項 nullableTimestamps）
 - 日期／修訂：2026-10-09／2
 - 負責端：雲端開發 session 執行；本研究 session 僅研究、決策文件與交接，不做程式實作
 - 依賴：R1 完成，且具體 API／參數／拒絕範圍於核准路線內具體化並記錄
-- 相關 issue：未建立
+- 相關 issue：#125；milestone 37
 - 文件 PR：[初始保存 #117](https://github.com/jerryyehself/laravel-migration-visualizer/pull/117)、[R1.1 核准補登 #118](https://github.com/jerryyehself/laravel-migration-visualizer/pull/118) 已合併；全路線核准由 docs/approve-research-roadmap 分支交付
 - 功能 PR：無
 
@@ -15,7 +15,7 @@
 A：補有限靜態子集合。B：只改善診斷。C：略過未知語法繼續 replay，可用圖增多但破壞可信度。
 
 ## 選定方向（已核准）
-依 R1 選 A 或 B；拒絕 C。目前沒有指定 API，須先依 R1 證據完成契約步驟，再開始對應實作；路線內不需再問核准。
+依 R1 選 A 或 B；拒絕 C。本批依 R1 BookStack 證據選 nullableTimestamps，具體契約見下方 R2.1；其他 API 未包含在本批。
 
 ## 範圍與可派小任務
 1. 將選定 API／參數、官方固定來源與樣本影響補入本提案修訂。
@@ -58,4 +58,12 @@ A：補有限靜態子集合。B：只改善診斷。C：略過未知語法繼�
 ## 批次狀態與交付紀錄
 
 本提案修訂 2 的全部批次均 approved；雲端開發 session 應依序核對前置條件，開工時記錄 in_progress，取得實際驗收／交付證據後標 done。
-本次只更新核准文件，未啟動任何批次、未修改程式、未建立功能 issue／PR。狀態轉換依 [提案流程](README.md)。
+本次 R2.1 契約已記錄，R2.2／R2.3 單項實作與樣本驗證進行中，issue #125／milestone 37；教學 milestone-37.zh-TW.md。狀態轉換依 [提案流程](README.md)。
+
+## R2.1 單項契約（2026-10-09）
+
+R1 BookStack 首檔 :22 呼叫 nullableTimestamps；:26 DB 寫入另拒絕。固定 Laravel v12.69.3 source commit 58ea544a2a80dc03c168e13a5dc9a1d176a88717，Blueprint.php SHA-256 78cf6274c8cb061f545cc7738366411fe2966654d6ed651cef4e79ed7cd9fb90；:1288 helper 直接委派 timestamps(:1272)。
+
+支援零參數或單一靜態非負整數 precision；沿用 timestamps 的省略 precision=0 分析器政策，展開 created_at／updated_at 兩個 nullable timestamp addColumn，共用來源。這不是 DB default precision 的推定。拒絕明確 null、字串／bool／小數／負值／動態、額外參數、所有修飾鏈含 index／useCurrent／default／change。Laravel 可接受 null，但本工具靜態子集合依既有 timestamps 契約拒絕；不放寬既有 helper 或加入 nullableTimestampsTz。
+
+core 0.15.0 支援行為新增，SchemaState／AtomicOperation JSON 形狀不變。原子 replay、索引／外鍵、unknown 契約不變；真實 BookStack 仍被 DB 寫入拒絕，不能宣稱 complete。只改 normalize helper 判斷、guard、相關回歸／golden／demo、版本 metadata 及中文契約。

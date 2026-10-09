@@ -25,7 +25,8 @@
     "verify": "node scripts/verify.mjs",
     "release:bundle": "npm run verify && node scripts/release-bundle.mjs",
     "preview": "npm run preview -w @lmv/web --",
-    "publish:pages": "npm run verify && node scripts/publish-pages.mjs"
+    "publish:pages": "npm run verify && node scripts/publish-pages.mjs",
+    "demo:nullable-timestamps": "npm run build -w @lmv/migration-core && node examples/nullable-timestamps.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

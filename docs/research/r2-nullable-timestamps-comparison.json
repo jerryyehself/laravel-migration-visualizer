@@ -1,0 +1,132 @@
+{
+  "beforeCore": "0.14.0",
+  "afterCore": "0.15.0",
+  "samples": [
+    {
+      "id": "laravelio",
+      "commit": "d056c6493dd7bf905e471f2ad6fe716c35642ae4",
+      "beforeCounts": {
+        "applied": 2,
+        "failed": 1,
+        "blocked": 6
+      },
+      "afterCounts": {
+        "applied": 2,
+        "failed": 1,
+        "blocked": 6
+      },
+      "beforeFirstFailureDiagnostics": [
+        {
+          "code": "UNSUPPORTED_BLUEPRINT",
+          "message": "Expected a static scalar literal; expressions are not evaluated.",
+          "source": {
+            "file": "database/migrations/2024_09_27_095949_add_hero_image_additional_columns_to_articles.php",
+            "line": 15,
+            "column": 12
+          },
+          "phase": "analysis",
+          "severity": "error"
+        }
+      ],
+      "afterFirstFailureDiagnostics": [
+        {
+          "code": "UNSUPPORTED_BLUEPRINT",
+          "message": "Expected a static scalar literal; expressions are not evaluated.",
+          "source": {
+            "file": "database/migrations/2024_09_27_095949_add_hero_image_additional_columns_to_articles.php",
+            "line": 15,
+            "column": 12
+          },
+          "phase": "analysis",
+          "severity": "error"
+        }
+      ],
+      "timestampOperations": [],
+      "finalSchemaKnown": false
+    },
+    {
+      "id": "bookstack",
+      "commit": "ff661b59f6f605bf768fe850c0d0a8a2dc09d203",
+      "beforeCounts": {
+        "applied": 0,
+        "failed": 1,
+        "blocked": 102
+      },
+      "afterCounts": {
+        "applied": 0,
+        "failed": 1,
+        "blocked": 102
+      },
+      "beforeFirstFailureDiagnostics": [
+        {
+          "code": "UNSUPPORTED_BLUEPRINT",
+          "message": "Expected a non-empty string.",
+          "source": {
+            "file": "database/migrations/2014_10_12_000000_create_users_table.php",
+            "line": 22,
+            "column": 12
+          },
+          "phase": "analysis",
+          "severity": "error"
+        },
+        {
+          "code": "UNSUPPORTED_STATEMENT",
+          "message": "Only direct Schema calls in up() are supported; control flow and helper calls are not evaluated.",
+          "source": {
+            "file": "database/migrations/2014_10_12_000000_create_users_table.php",
+            "line": 26,
+            "column": 8
+          },
+          "phase": "analysis",
+          "severity": "error"
+        }
+      ],
+      "afterFirstFailureDiagnostics": [
+        {
+          "code": "UNSUPPORTED_STATEMENT",
+          "message": "Only direct Schema calls in up() are supported; control flow and helper calls are not evaluated.",
+          "source": {
+            "file": "database/migrations/2014_10_12_000000_create_users_table.php",
+            "line": 26,
+            "column": 8
+          },
+          "phase": "analysis",
+          "severity": "error"
+        }
+      ],
+      "timestampOperations": [
+        {
+          "kind": "addColumn",
+          "table": "users",
+          "column": {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true,
+            "precision": 0
+          },
+          "source": {
+            "file": "database/migrations/2014_10_12_000000_create_users_table.php",
+            "line": 22,
+            "column": 12
+          }
+        },
+        {
+          "kind": "addColumn",
+          "table": "users",
+          "column": {
+            "name": "updated_at",
+            "type": "timestamp",
+            "nullable": true,
+            "precision": 0
+          },
+          "source": {
+            "file": "database/migrations/2014_10_12_000000_create_users_table.php",
+            "line": 22,
+            "column": 12
+          }
+        }
+      ],
+      "finalSchemaKnown": false
+    }
+  ]
+}

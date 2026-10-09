@@ -1,0 +1,28 @@
+{
+  "tables": {
+    "users": {
+      "name": "users",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "nullable": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": true,
+          "precision": 3
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "nullable": true,
+          "precision": 3
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {}
+    }
+  }
+}
