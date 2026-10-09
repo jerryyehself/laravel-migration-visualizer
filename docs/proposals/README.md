@@ -47,7 +47,7 @@
 
 | ID | 提案 | 狀態 | 依賴 |
 |---|---|---|---|
-| R1 | [真實專案與使用任務基準](R1-project-baseline.zh-TW.md) | approved | 無 |
+| R1 | [真實專案與使用任務基準](R1-project-baseline.zh-TW.md) | in_progress（#120） | 無 |
 | R2 | [高影響相容性補強](R2-compatibility.zh-TW.md) | approved | R1 結果與具體 API 契約記錄 |
 | R3 | [專案結構探索](R3-schema-exploration.zh-TW.md) | approved | R1；與 R2 的關係依樣本結果決定 |
 | R4 | [結構與 migration 來源串接](R4-source-navigation.zh-TW.md) | approved | R1、R3；來源查詢契約記錄 |

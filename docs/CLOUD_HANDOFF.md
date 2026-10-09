@@ -1,6 +1,10 @@
 # Codex Cloud 交接
 
-## 現況（2026-10-04 核對）
+## 當前分工（2026-10-09）
+
+PR #119（bdd64bc）已記錄 R1～R6 修訂 2 全部核准，雲端開發 session 執行；研究 session 只保存決策。下方「本地接手／雲端停止開發」是歷史交接，已由這次分工取代。最新批次見 docs/proposals/README.md 與 docs/research/r1-baseline.zh-TW.md；不能用歷史固定 tests／SHA 代替當次證據。
+
+## 歷史現況（2026-10-04 核對）
 - M1～M33 已合併 main；M33 PR #107／db15e35，最新 head 0ce6f47 CI 通過 verify 與產包。目前 612 tests（520 core + 92 web）、typecheck、build 與十一個 demo 通過。M33 第一版交付以 GitHub 交付紀錄為準；產品／web 1.0.0，core 0.14.0不變。本地接手，雲端停止開發。
 - 已有多檔匯入、排序／分析／逐檔快照／結構 diff、索引／外鍵、診斷定位、JSON 匯出，以及 ERD 快照／比較／同步互動／聚焦／明細。
 - M1 baseline 為 6959b46（42 tests）；各階段實際 commits、PR、驗證與限制見 [GitHub 交付紀錄](github-milestones.md)，下方各節為歷史紀錄。

@@ -1,0 +1,620 @@
+[
+  {
+    "repo": "laravelio/laravel.io",
+    "commit": "d056c6493dd7bf905e471f2ad6fe716c35642ae4",
+    "truncated": false,
+    "paths": [
+      "database/migrations/2024_08_28_104736_create_job_batches_table.php",
+      "database/migrations/2024_08_28_104755_create_jobs_table.php",
+      "database/migrations/2024_09_27_095949_add_hero_image_additional_columns_to_articles.php",
+      "database/migrations/2024_11_28_202608_add_bluesky_column_to_users.php",
+      "database/migrations/2025_03_28_104443_add_sponsored_column_to_articles_table.php",
+      "database/migrations/2025_06_14_222049_add_verified_author_at_to_users_table.php",
+      "database/migrations/2025_09_11_152525_add_has_identicon_to_users_table.php",
+      "database/migrations/2025_09_12_073227_add_new_indexes.php",
+      "database/migrations/2025_11_05_195225_create_cache_table.php",
+      "database/schema/mysql-schema.sql"
+    ],
+    "files": [
+      {
+        "path": "database/migrations/2024_08_28_104736_create_job_batches_table.php",
+        "sha256": "5eab0124164733ba8c6d286ad878534a3dd216f79f8c289093e93f7af133646a"
+      },
+      {
+        "path": "database/migrations/2024_08_28_104755_create_jobs_table.php",
+        "sha256": "8f2acf688443869e61175d0fa0e51f87b44b7a3e93cbfb51bb065cf5acc90930"
+      },
+      {
+        "path": "database/migrations/2024_09_27_095949_add_hero_image_additional_columns_to_articles.php",
+        "sha256": "7d692fec49bd573986e752041fa56c5fb629015e4376bbc5ea6f6f26bcb680fe"
+      },
+      {
+        "path": "database/migrations/2024_11_28_202608_add_bluesky_column_to_users.php",
+        "sha256": "764a239ed98c92f48a294ba95e1a3265e0ec24d1a22f3c6cbdb061704e36d3ed"
+      },
+      {
+        "path": "database/migrations/2025_03_28_104443_add_sponsored_column_to_articles_table.php",
+        "sha256": "0b36ca20313189ac609662c18af2d7b92b45f691cad1b689e8421377df449f42"
+      },
+      {
+        "path": "database/migrations/2025_06_14_222049_add_verified_author_at_to_users_table.php",
+        "sha256": "80d0e91a4aa7541f64c1dd4c8f9067648a97980712ef7a29f0b12778de8065fa"
+      },
+      {
+        "path": "database/migrations/2025_09_11_152525_add_has_identicon_to_users_table.php",
+        "sha256": "139239ca79f03114145a36c42ecd356136fc8375a95fb194469a5b624ad76eb6"
+      },
+      {
+        "path": "database/migrations/2025_09_12_073227_add_new_indexes.php",
+        "sha256": "c50ce920899ede4c5d948b0fce7426a06f11fef5abba55a17d58bc23c1dd8f8b"
+      },
+      {
+        "path": "database/migrations/2025_11_05_195225_create_cache_table.php",
+        "sha256": "20f769d3c11748c1cc42c41cd3789b0b9b2cd0db44ee22d378addac3ff8aed4f"
+      },
+      {
+        "path": "LICENSE.md",
+        "sha256": "8d204e1298b82927f9a397b941df0fa53826fb14d876c7d2cd99965cbe3735b6"
+      },
+      {
+        "path": "composer.lock",
+        "sha256": "99c4bf0ce432525c2193330beb0c4f8f7276edc3d6cdb39f85491ece289f6be2"
+      },
+      {
+        "path": "composer.json",
+        "sha256": "31f5d7c4ffe9ec885ede6e06b4b162d345295caa0d3d046387e6d995603d5fdc"
+      }
+    ],
+    "licenses": [
+      "LICENSE.md"
+    ],
+    "lockedLaravel": "v11.55.0",
+    "id": "laravelio",
+    "license": "MIT",
+    "laravelConstraint": "^11.5"
+  },
+  {
+    "repo": "BookStackApp/BookStack",
+    "commit": "ff661b59f6f605bf768fe850c0d0a8a2dc09d203",
+    "truncated": false,
+    "paths": [
+      "database/migrations/.gitkeep",
+      "database/migrations/2014_10_12_000000_create_users_table.php",
+      "database/migrations/2014_10_12_100000_create_password_resets_table.php",
+      "database/migrations/2015_07_12_114933_create_books_table.php",
+      "database/migrations/2015_07_12_190027_create_pages_table.php",
+      "database/migrations/2015_07_13_172121_create_images_table.php",
+      "database/migrations/2015_07_27_172342_create_chapters_table.php",
+      "database/migrations/2015_08_08_200447_add_users_to_entities.php",
+      "database/migrations/2015_08_09_093534_create_page_revisions_table.php",
+      "database/migrations/2015_08_16_142133_create_activities_table.php",
+      "database/migrations/2015_08_29_105422_add_roles_and_permissions.php",
+      "database/migrations/2015_08_30_125859_create_settings_table.php",
+      "database/migrations/2015_08_31_175240_add_search_indexes.php",
+      "database/migrations/2015_09_04_165821_create_social_accounts_table.php",
+      "database/migrations/2015_09_05_164707_add_email_confirmation_table.php",
+      "database/migrations/2015_11_21_145609_create_views_table.php",
+      "database/migrations/2015_11_26_221857_add_entity_indexes.php",
+      "database/migrations/2015_12_05_145049_fulltext_weighting.php",
+      "database/migrations/2015_12_07_195238_add_image_upload_types.php",
+      "database/migrations/2015_12_09_195748_add_user_avatars.php",
+      "database/migrations/2016_01_11_210908_add_external_auth_to_users.php",
+      "database/migrations/2016_02_25_184030_add_slug_to_revisions.php",
+      "database/migrations/2016_02_27_120329_update_permissions_and_roles.php",
+      "database/migrations/2016_02_28_084200_add_entity_access_controls.php",
+      "database/migrations/2016_03_09_203143_add_page_revision_types.php",
+      "database/migrations/2016_03_13_082138_add_page_drafts.php",
+      "database/migrations/2016_03_25_123157_add_markdown_support.php",
+      "database/migrations/2016_04_09_100730_add_view_permissions_to_roles.php",
+      "database/migrations/2016_04_20_192649_create_joint_permissions_table.php",
+      "database/migrations/2016_05_06_185215_create_tags_table.php",
+      "database/migrations/2016_07_07_181521_add_summary_to_page_revisions.php",
+      "database/migrations/2016_09_29_101449_remove_hidden_roles.php",
+      "database/migrations/2016_10_09_142037_create_attachments_table.php",
+      "database/migrations/2017_01_21_163556_create_cache_table.php",
+      "database/migrations/2017_01_21_163602_create_sessions_table.php",
+      "database/migrations/2017_03_19_091553_create_search_index_table.php",
+      "database/migrations/2017_04_20_185112_add_revision_counts.php",
+      "database/migrations/2017_07_02_152834_update_db_encoding_to_ut8mb4.php",
+      "database/migrations/2017_08_01_130541_create_comments_table.php",
+      "database/migrations/2017_08_29_102650_add_cover_image_display.php",
+      "database/migrations/2018_07_15_173514_add_role_external_auth_id.php",
+      "database/migrations/2018_08_04_115700_create_bookshelves_table.php",
+      "database/migrations/2019_07_07_112515_add_template_support.php",
+      "database/migrations/2019_08_17_140214_add_user_invites_table.php",
+      "database/migrations/2019_12_29_120917_add_api_auth.php",
+      "database/migrations/2020_08_04_111754_drop_joint_permissions_id.php",
+      "database/migrations/2020_08_04_131052_remove_role_name_field.php",
+      "database/migrations/2020_09_19_094251_add_activity_indexes.php",
+      "database/migrations/2020_09_27_210059_add_entity_soft_deletes.php",
+      "database/migrations/2020_09_27_210528_create_deletions_table.php",
+      "database/migrations/2020_11_07_232321_simplify_activities_table.php",
+      "database/migrations/2020_12_30_173528_add_owned_by_field_to_entities.php",
+      "database/migrations/2021_01_30_225441_add_settings_type_column.php",
+      "database/migrations/2021_03_08_215138_add_user_slug.php",
+      "database/migrations/2021_05_15_173110_create_favourites_table.php",
+      "database/migrations/2021_06_30_173111_create_mfa_values_table.php",
+      "database/migrations/2021_07_03_085038_add_mfa_enforced_to_roles_table.php",
+      "database/migrations/2021_08_28_161743_add_export_role_permission.php",
+      "database/migrations/2021_09_26_044614_add_activities_ip_column.php",
+      "database/migrations/2021_11_26_070438_add_index_for_user_ip.php",
+      "database/migrations/2021_12_07_111343_create_webhooks_table.php",
+      "database/migrations/2021_12_13_152024_create_jobs_table.php",
+      "database/migrations/2021_12_13_152120_create_failed_jobs_table.php",
+      "database/migrations/2022_01_03_154041_add_webhooks_timeout_error_columns.php",
+      "database/migrations/2022_04_17_101741_add_editor_change_field_and_permission.php",
+      "database/migrations/2022_04_25_140741_update_polymorphic_types.php",
+      "database/migrations/2022_07_16_170051_drop_joint_permission_type.php",
+      "database/migrations/2022_08_17_092941_create_references_table.php",
+      "database/migrations/2022_09_02_082910_fix_shelf_cover_image_types.php",
+      "database/migrations/2022_10_07_091406_flatten_entity_permissions_table.php",
+      "database/migrations/2022_10_08_104202_drop_entity_restricted_field.php",
+      "database/migrations/2023_01_24_104625_refactor_joint_permissions_storage.php",
+      "database/migrations/2023_01_28_141230_copy_color_settings_for_dark_mode.php",
+      "database/migrations/2023_02_20_093655_increase_attachments_path_length.php",
+      "database/migrations/2023_02_23_200227_add_updated_at_index_to_pages.php",
+      "database/migrations/2023_06_10_071823_remove_guest_user_secondary_roles.php",
+      "database/migrations/2023_06_25_181952_remove_bookshelf_create_entity_permissions.php",
+      "database/migrations/2023_07_25_124945_add_receive_notifications_role_permissions.php",
+      "database/migrations/2023_07_31_104430_create_watches_table.php",
+      "database/migrations/2023_08_21_174248_increase_cache_size.php",
+      "database/migrations/2023_12_02_104541_add_default_template_to_books.php",
+      "database/migrations/2023_12_17_140913_add_description_html_to_entities.php",
+      "database/migrations/2024_01_01_104542_add_default_template_to_chapters.php",
+      "database/migrations/2024_02_04_141358_add_views_updated_index.php",
+      "database/migrations/2024_05_04_154409_rename_activity_relation_columns.php",
+      "database/migrations/2024_09_29_140340_ensure_editor_value_set.php",
+      "database/migrations/2024_10_29_114420_add_import_role_permission.php",
+      "database/migrations/2024_11_02_160700_create_imports_table.php",
+      "database/migrations/2024_11_27_171039_add_instance_id_setting.php",
+      "database/migrations/2025_01_29_180933_create_sort_rules_table.php",
+      "database/migrations/2025_02_05_150842_add_sort_rule_id_to_books.php",
+      "database/migrations/2025_04_18_215145_add_content_refs_and_archived_to_comments.php",
+      "database/migrations/2025_09_02_111542_remove_unused_columns.php",
+      "database/migrations/2025_09_15_132850_create_entities_table.php",
+      "database/migrations/2025_09_15_134701_migrate_entity_data.php",
+      "database/migrations/2025_09_15_134751_update_entity_relation_columns.php",
+      "database/migrations/2025_09_15_134813_drop_old_entity_tables.php",
+      "database/migrations/2025_10_18_163331_clean_user_id_references.php",
+      "database/migrations/2025_10_22_134507_update_comments_relation_field_names.php",
+      "database/migrations/2025_11_23_161812_create_slug_history_table.php",
+      "database/migrations/2025_12_15_140219_create_mention_history_table.php",
+      "database/migrations/2025_12_19_103417_add_views_viewable_type_index.php",
+      "database/migrations/2026_04_19_141616_add_revision_view_all_permission.php",
+      "database/migrations/2026_07_27_201402_update_users_external_auth_id_collation.php"
+    ],
+    "files": [
+      {
+        "path": "database/migrations/2014_10_12_000000_create_users_table.php",
+        "sha256": "7ff8efa13538cd7efbe476651221d5a50deb5295301fa94eaaccffabb530e98d"
+      },
+      {
+        "path": "database/migrations/2014_10_12_100000_create_password_resets_table.php",
+        "sha256": "a2dfb43962cb100180734c59243b543600ac56025156ac426ace55959cdd9793"
+      },
+      {
+        "path": "database/migrations/2015_07_12_114933_create_books_table.php",
+        "sha256": "7a2dc7d0a41568d805f89e2d5278ec0722775c350b0ac41f9757e87a4c84ff3b"
+      },
+      {
+        "path": "database/migrations/2015_07_12_190027_create_pages_table.php",
+        "sha256": "491df12260ced253635cd2ca97792b020325661901bbaee287f7a15f33e7c82b"
+      },
+      {
+        "path": "database/migrations/2015_07_13_172121_create_images_table.php",
+        "sha256": "6001b89e93f346ba2f3649d3b24621d39bc4ff63e854f25ee90b915bbe7c88a4"
+      },
+      {
+        "path": "database/migrations/2015_07_27_172342_create_chapters_table.php",
+        "sha256": "d820cc2793228c154c6b8e00fc1132cef44ae0a1157d04a3b5548b4a0a7db5e7"
+      },
+      {
+        "path": "database/migrations/2015_08_08_200447_add_users_to_entities.php",
+        "sha256": "9ae18e483f0bf78ce4e6c3fd8b6c8716ea520107729b941bca6cd587169408fa"
+      },
+      {
+        "path": "database/migrations/2015_08_09_093534_create_page_revisions_table.php",
+        "sha256": "e9a57b935543d023c0fb3be45821669fb8e4c0cc7c56db2df78113837f67cd07"
+      },
+      {
+        "path": "database/migrations/2015_08_16_142133_create_activities_table.php",
+        "sha256": "5d6004ae78e53299209f5d3f78efca252ced4b3d60b59d92be5fe49826f983bd"
+      },
+      {
+        "path": "database/migrations/2015_08_29_105422_add_roles_and_permissions.php",
+        "sha256": "afcfeca6332e4ccaef8b3e5ad89663500ea90d19143934a7b5a17d8c4cd8430c"
+      },
+      {
+        "path": "database/migrations/2015_08_30_125859_create_settings_table.php",
+        "sha256": "4c2d7de0d56f9fe4ee87106c7b560f74bb1fbb068bad10a2ae9f3c5e633cbb53"
+      },
+      {
+        "path": "database/migrations/2015_08_31_175240_add_search_indexes.php",
+        "sha256": "89a21881ba2c2aa4706a1d0c2600481e6c5f12bbf599a20ff6a6837e30edd208"
+      },
+      {
+        "path": "database/migrations/2015_09_04_165821_create_social_accounts_table.php",
+        "sha256": "22d3a8fb1e6dc0b38baefe192939a7dcd4b2e13bcf2af8de2f173edf61f6b414"
+      },
+      {
+        "path": "database/migrations/2015_09_05_164707_add_email_confirmation_table.php",
+        "sha256": "434b7b98574190d618df97f777b3435be960627fc83086bc8b1f65100e2a48f7"
+      },
+      {
+        "path": "database/migrations/2015_11_21_145609_create_views_table.php",
+        "sha256": "8c9ce73103a219da084f36586dcf693f7384be967dba145f28c955446dcbea20"
+      },
+      {
+        "path": "database/migrations/2015_11_26_221857_add_entity_indexes.php",
+        "sha256": "9396037124f7a7a8ae6cbb221a2cdb2e2be416a66714ac659bddddf3f6aac3f8"
+      },
+      {
+        "path": "database/migrations/2015_12_05_145049_fulltext_weighting.php",
+        "sha256": "7085208e8d5b302dd6ad821cf82ca5272f5e67c27025831976f96faa57a9d600"
+      },
+      {
+        "path": "database/migrations/2015_12_07_195238_add_image_upload_types.php",
+        "sha256": "1b24d1e0976ace51ce73b4ac42d509bff0a6def0dcf77f54f61ba2d05b838c38"
+      },
+      {
+        "path": "database/migrations/2015_12_09_195748_add_user_avatars.php",
+        "sha256": "37f7cdce59c4e63aeed0f824466a48c6579051d091a7e8ca413b261903ae0bc0"
+      },
+      {
+        "path": "database/migrations/2016_01_11_210908_add_external_auth_to_users.php",
+        "sha256": "19a5d2ebf513e5a125456644ef92aba64abef77999424eaac6381190ec74eb57"
+      },
+      {
+        "path": "database/migrations/2016_02_25_184030_add_slug_to_revisions.php",
+        "sha256": "a84c6161f77a70dfaf587cfd71e449b852f2794131a7de231cc7087f1b9a65c0"
+      },
+      {
+        "path": "database/migrations/2016_02_27_120329_update_permissions_and_roles.php",
+        "sha256": "e6902a02d4291c82b0940919a21dcf0eea14c5b08cfa2170b49c64316b6b1485"
+      },
+      {
+        "path": "database/migrations/2016_02_28_084200_add_entity_access_controls.php",
+        "sha256": "495e951e447807eefd55e7ed7a9babc3b4da344f50b6ee103adee9ae147f0ad5"
+      },
+      {
+        "path": "database/migrations/2016_03_09_203143_add_page_revision_types.php",
+        "sha256": "77b95e4fb56ffd0b21bc297f47382fb49cf3a007ba34b538a605618a2db7da95"
+      },
+      {
+        "path": "database/migrations/2016_03_13_082138_add_page_drafts.php",
+        "sha256": "a6fce4b8bcacbb47fdda0ffa172d33d116236a28d644de832a4b8eb789588ac5"
+      },
+      {
+        "path": "database/migrations/2016_03_25_123157_add_markdown_support.php",
+        "sha256": "57cf1f55706f6259d3e34e6ed0b9742df0086f793597595b97ed1c77fb504e52"
+      },
+      {
+        "path": "database/migrations/2016_04_09_100730_add_view_permissions_to_roles.php",
+        "sha256": "4982d51da12ded6a1a20ca66bcac7b28dffe0ac896b4ce92196ce51f4745f98b"
+      },
+      {
+        "path": "database/migrations/2016_04_20_192649_create_joint_permissions_table.php",
+        "sha256": "7551d73ceaa35163287943a6f0f5eecf4e812cbef3b7a099961e8cde26a0afd0"
+      },
+      {
+        "path": "database/migrations/2016_05_06_185215_create_tags_table.php",
+        "sha256": "2aeea9d351efc64b8b2f799b5c671f1c2000221290b6158124f92bf8f7fac1ba"
+      },
+      {
+        "path": "database/migrations/2016_07_07_181521_add_summary_to_page_revisions.php",
+        "sha256": "cbda620bd129b80f73f6a42d0e026d165d6b258f0cd211ac9330cd881e9b7a2f"
+      },
+      {
+        "path": "database/migrations/2016_09_29_101449_remove_hidden_roles.php",
+        "sha256": "e45c7d22bf6cbf557824a77c282b7ffdcb02d422e9a4f6b8e4b0c9aeebc76763"
+      },
+      {
+        "path": "database/migrations/2016_10_09_142037_create_attachments_table.php",
+        "sha256": "f14d74a24a1abb37cf89914f8e19781980bf5fb888d1c2394121bed73b88ab3b"
+      },
+      {
+        "path": "database/migrations/2017_01_21_163556_create_cache_table.php",
+        "sha256": "beddfa92089e2e92a8e9993b20912e60dfda54b452464b45168572ee9cd9ba07"
+      },
+      {
+        "path": "database/migrations/2017_01_21_163602_create_sessions_table.php",
+        "sha256": "2c1289182e833ca745bd863b51f8869dac4895be714d017860f08f37c53cacb6"
+      },
+      {
+        "path": "database/migrations/2017_03_19_091553_create_search_index_table.php",
+        "sha256": "4150fed8b1902fb5d62a1eec87ae6b4048f2e43d08ef800bd2745fbc59f1a9ae"
+      },
+      {
+        "path": "database/migrations/2017_04_20_185112_add_revision_counts.php",
+        "sha256": "affd4d5b3c507c46435980b2d7105db044a69e164a7d218e12c9f1979ad7c1cd"
+      },
+      {
+        "path": "database/migrations/2017_07_02_152834_update_db_encoding_to_ut8mb4.php",
+        "sha256": "f132c7a974e5bb2a769493ebed710082f6ffd764c7d7aad925cb6295b43eb3c2"
+      },
+      {
+        "path": "database/migrations/2017_08_01_130541_create_comments_table.php",
+        "sha256": "e55af2a8c39e6aa0f6284d9be4797550bd173bfd0dcc15ae1045c57d7a30b929"
+      },
+      {
+        "path": "database/migrations/2017_08_29_102650_add_cover_image_display.php",
+        "sha256": "875916c05372af23d7846fadbd346d708e2904cb8c37791b7497e9d6d84ddd13"
+      },
+      {
+        "path": "database/migrations/2018_07_15_173514_add_role_external_auth_id.php",
+        "sha256": "174952f6d1c6a5beb586999f48357bfebc096ab73b982fbc50a4b64a658b89d0"
+      },
+      {
+        "path": "database/migrations/2018_08_04_115700_create_bookshelves_table.php",
+        "sha256": "bb2f4d71572f848a0ce0807e7008849744bbc179aa0bdabf53696e245d2c3e9d"
+      },
+      {
+        "path": "database/migrations/2019_07_07_112515_add_template_support.php",
+        "sha256": "b30facf15c062d76086b715fab76b9eb1043eb7b1e09f9efd46ed80f38747834"
+      },
+      {
+        "path": "database/migrations/2019_08_17_140214_add_user_invites_table.php",
+        "sha256": "2fc5989a7cfd0b75d3b75206135855d6c6bc88505d445cc5988614fd49eaf16d"
+      },
+      {
+        "path": "database/migrations/2019_12_29_120917_add_api_auth.php",
+        "sha256": "e0fce4b72905dd5a85c5d9a45ca5b933232a899ef91cc72d647f9be50ffd841a"
+      },
+      {
+        "path": "database/migrations/2020_08_04_111754_drop_joint_permissions_id.php",
+        "sha256": "da3077c96e7fa07f24f744b6e097e3114391a93a911b92024e60c85120dd6c8e"
+      },
+      {
+        "path": "database/migrations/2020_08_04_131052_remove_role_name_field.php",
+        "sha256": "d6e8376cb8d0f3f1baa56887eda42ad0cd292b278cfc00610b9ad61f51a9bcc7"
+      },
+      {
+        "path": "database/migrations/2020_09_19_094251_add_activity_indexes.php",
+        "sha256": "97722f8fe37f37ccdd5d9c62f4e3fd7ffeab302d1fac25e19f0ceb84f95d2c5a"
+      },
+      {
+        "path": "database/migrations/2020_09_27_210059_add_entity_soft_deletes.php",
+        "sha256": "142ece0f067ce6f4f718f8f140c55d49bac31f2f520831e4107f7d8081a6598c"
+      },
+      {
+        "path": "database/migrations/2020_09_27_210528_create_deletions_table.php",
+        "sha256": "cffed5ae2eabe117b3cff1af6971d2513c6acb196574edbfeb0c621ddb9011a1"
+      },
+      {
+        "path": "database/migrations/2020_11_07_232321_simplify_activities_table.php",
+        "sha256": "5d2a8863ae9dff2f1dbae3471948bd3f2b4e3ba88f0a22523b434efbe8468ad4"
+      },
+      {
+        "path": "database/migrations/2020_12_30_173528_add_owned_by_field_to_entities.php",
+        "sha256": "8e2cdab2345d04f3688f91133487415613ad3ea258a8b8ae0cd00a8c3e63913b"
+      },
+      {
+        "path": "database/migrations/2021_01_30_225441_add_settings_type_column.php",
+        "sha256": "eb539c1b429c9a8a2b1c790e7cde5dc258ad30aef8de051cce4227c8627e028e"
+      },
+      {
+        "path": "database/migrations/2021_03_08_215138_add_user_slug.php",
+        "sha256": "9671d8d84c33470ed7af70bb76e03d6d5cfd789beed01e8c3bcf91e2cb21ca86"
+      },
+      {
+        "path": "database/migrations/2021_05_15_173110_create_favourites_table.php",
+        "sha256": "c10fdb63560b955a6012f998bd5f8437d3a2fd01d31382b7e12e6b1cd3ae6fe3"
+      },
+      {
+        "path": "database/migrations/2021_06_30_173111_create_mfa_values_table.php",
+        "sha256": "c3aa1134a29cc200ee86690b62e54e920f2eb0b8777a3289626a80c30d29e804"
+      },
+      {
+        "path": "database/migrations/2021_07_03_085038_add_mfa_enforced_to_roles_table.php",
+        "sha256": "ab0308cce96f63ccac703143ea2c61734312fa75bcc47fbf751d2a14dca5b533"
+      },
+      {
+        "path": "database/migrations/2021_08_28_161743_add_export_role_permission.php",
+        "sha256": "0c945673bff31736ff4553ee7f65e5deeec37128809a9f78c09ad6cf2a4dff49"
+      },
+      {
+        "path": "database/migrations/2021_09_26_044614_add_activities_ip_column.php",
+        "sha256": "dcd8f4d0de1578ded2b32c564ded4b478f4688716bbb8e6c005afee2ae724c2c"
+      },
+      {
+        "path": "database/migrations/2021_11_26_070438_add_index_for_user_ip.php",
+        "sha256": "c682c82207970126c7f6c63e338e1fb748f2f9fdcd566237d2ea941eefe62b09"
+      },
+      {
+        "path": "database/migrations/2021_12_07_111343_create_webhooks_table.php",
+        "sha256": "86b3342a2232c55603097ec9b8acf6f01d8118f978e6839cf79c21876520de1d"
+      },
+      {
+        "path": "database/migrations/2021_12_13_152024_create_jobs_table.php",
+        "sha256": "272142f39d5d6b58c7352429baf7bc1f1730c403dfece33258530e2cdd3daedd"
+      },
+      {
+        "path": "database/migrations/2021_12_13_152120_create_failed_jobs_table.php",
+        "sha256": "1b2dc826a38de3e6cdd351fc5e0b96689440086e8027454453347036f1860ef3"
+      },
+      {
+        "path": "database/migrations/2022_01_03_154041_add_webhooks_timeout_error_columns.php",
+        "sha256": "982416d439f0f57e67336caf8fa012bdacda539d499c4afdb0be877d3059f27f"
+      },
+      {
+        "path": "database/migrations/2022_04_17_101741_add_editor_change_field_and_permission.php",
+        "sha256": "2a1fa449710b6f1d003fa2556b571c10e64e199ad188a97144f55b5506a569af"
+      },
+      {
+        "path": "database/migrations/2022_04_25_140741_update_polymorphic_types.php",
+        "sha256": "03ddde65f9864ac9ca595e77fa10e3cc8330bc12110835ff09c20621d6259b3e"
+      },
+      {
+        "path": "database/migrations/2022_07_16_170051_drop_joint_permission_type.php",
+        "sha256": "f9343b0a2bbe01a12a69ec9fc5d6a2751a9b48ed7acebfd0b941fd36fa561a40"
+      },
+      {
+        "path": "database/migrations/2022_08_17_092941_create_references_table.php",
+        "sha256": "108a100ab1929d1e1bd63e723fefe172db762f0a3d95adc6e69533d1eef1e404"
+      },
+      {
+        "path": "database/migrations/2022_09_02_082910_fix_shelf_cover_image_types.php",
+        "sha256": "c854c573b907061319d33cba6af5240e067b3f32fcb0a3700fbbe53291d289e1"
+      },
+      {
+        "path": "database/migrations/2022_10_07_091406_flatten_entity_permissions_table.php",
+        "sha256": "f01bccbc048417f12c6ced094a93a98e2092edb270600d5b3b136401b9b49566"
+      },
+      {
+        "path": "database/migrations/2022_10_08_104202_drop_entity_restricted_field.php",
+        "sha256": "0d3c745aeb0a7ab82ba5157d6b5add1099b2f5c29ac5716aff918efc8ca7b2df"
+      },
+      {
+        "path": "database/migrations/2023_01_24_104625_refactor_joint_permissions_storage.php",
+        "sha256": "984b2978bb7ab0da042990bf57b22faac9b05a9e37155e0f92b009fdc9b8ddf8"
+      },
+      {
+        "path": "database/migrations/2023_01_28_141230_copy_color_settings_for_dark_mode.php",
+        "sha256": "ebb81239fba936a0ffcafa62851b1949dd0378979eec0c46b53b793de010fc72"
+      },
+      {
+        "path": "database/migrations/2023_02_20_093655_increase_attachments_path_length.php",
+        "sha256": "327a84281e7ea5f182e57688acb4cab04904dc5dd21cd159cbe70e80a730ecbf"
+      },
+      {
+        "path": "database/migrations/2023_02_23_200227_add_updated_at_index_to_pages.php",
+        "sha256": "9d5357468b0308494a3ebc26178934f8177301aea9d1dc3fef0e463ef53c6e5b"
+      },
+      {
+        "path": "database/migrations/2023_06_10_071823_remove_guest_user_secondary_roles.php",
+        "sha256": "8832c2f9366fe849a8fd308a79f0da13c931a4c46dce47430c3b9c5e54bc8419"
+      },
+      {
+        "path": "database/migrations/2023_06_25_181952_remove_bookshelf_create_entity_permissions.php",
+        "sha256": "e167b64c730599887fab2d4b2185ae462b62e322ea6786546f196a1c79b79946"
+      },
+      {
+        "path": "database/migrations/2023_07_25_124945_add_receive_notifications_role_permissions.php",
+        "sha256": "26c82380f939deeaad9acd2ac6779fe2e7c4470fcb5b406fc1e03ba93fb4fd37"
+      },
+      {
+        "path": "database/migrations/2023_07_31_104430_create_watches_table.php",
+        "sha256": "d98a4660d3dc4d136a4145884da5fb931d1f24bbb84b67543fc8e92f9934af30"
+      },
+      {
+        "path": "database/migrations/2023_08_21_174248_increase_cache_size.php",
+        "sha256": "b3ebdb33d10b18abd500a9d40d652214b822838876f31469e8d62607ae241344"
+      },
+      {
+        "path": "database/migrations/2023_12_02_104541_add_default_template_to_books.php",
+        "sha256": "8396a2c22beec3884799168a41a775a17e1e375fec306aa197fde38d69c4cb99"
+      },
+      {
+        "path": "database/migrations/2023_12_17_140913_add_description_html_to_entities.php",
+        "sha256": "0f1498a9774774a626174c6abc3da63b92888bf2b1f52f3f6b1fdc685d30c009"
+      },
+      {
+        "path": "database/migrations/2024_01_01_104542_add_default_template_to_chapters.php",
+        "sha256": "a2e7a1a3c8e60155f0352570624d7cd68150d4210b2dcae99b0cafdb8ec29de2"
+      },
+      {
+        "path": "database/migrations/2024_02_04_141358_add_views_updated_index.php",
+        "sha256": "996415cee7bac6eef40a8eab695f4037a2f3e33badfd620dcbcbde13909338ef"
+      },
+      {
+        "path": "database/migrations/2024_05_04_154409_rename_activity_relation_columns.php",
+        "sha256": "52596c4e155a9dee862984df2b66ab6b54d7e69a9a4fc6ba299f2bda08eb18a5"
+      },
+      {
+        "path": "database/migrations/2024_09_29_140340_ensure_editor_value_set.php",
+        "sha256": "112dcd6b6bd84e7ee80bebfe758e4661d2b2ba7a093f45c445c42ebb39c963f9"
+      },
+      {
+        "path": "database/migrations/2024_10_29_114420_add_import_role_permission.php",
+        "sha256": "79790a94b7217ac57c00d3c8826f1f6aafd4193cd9613796f83c6f6638dfec3d"
+      },
+      {
+        "path": "database/migrations/2024_11_02_160700_create_imports_table.php",
+        "sha256": "bedba161c77ee7eb5e6bc588fe1e442a089ddfad3db50babe5ef3407e077e7bb"
+      },
+      {
+        "path": "database/migrations/2024_11_27_171039_add_instance_id_setting.php",
+        "sha256": "4671f3f22e08d0bda1e32747f133fe9ceb5380ad51ee6cfef6b48298e42b2509"
+      },
+      {
+        "path": "database/migrations/2025_01_29_180933_create_sort_rules_table.php",
+        "sha256": "960ea5c74b4c2b5b67328a8ec4ce74eadfc2f7ed17221cd9896e0e307c334995"
+      },
+      {
+        "path": "database/migrations/2025_02_05_150842_add_sort_rule_id_to_books.php",
+        "sha256": "311f16de46167b9267e7b5027b6d57f2a7e7f1f5ff18269afc03fd27c03e8adc"
+      },
+      {
+        "path": "database/migrations/2025_04_18_215145_add_content_refs_and_archived_to_comments.php",
+        "sha256": "ec9cad0386ef215a83313a5a5e480d5191cb8cc442e77f494ba3a68afe340c23"
+      },
+      {
+        "path": "database/migrations/2025_09_02_111542_remove_unused_columns.php",
+        "sha256": "3020da4e0f4e08cd81ad988bfb1c08ab1355bdee37c10bb0cddf31f9f32eb396"
+      },
+      {
+        "path": "database/migrations/2025_09_15_132850_create_entities_table.php",
+        "sha256": "8653f37b0568f1a41827bb7f69187990128d13d5b7ffda77db27d6a5c0598205"
+      },
+      {
+        "path": "database/migrations/2025_09_15_134701_migrate_entity_data.php",
+        "sha256": "3228eabdf130717a3448b2478b5656d7e552ff1a697b19a85bbda8be1fe22072"
+      },
+      {
+        "path": "database/migrations/2025_09_15_134751_update_entity_relation_columns.php",
+        "sha256": "3a77224f4d2f3258c399e2ae1d1ff06428f4f11088a6d6c98988e44a09315816"
+      },
+      {
+        "path": "database/migrations/2025_09_15_134813_drop_old_entity_tables.php",
+        "sha256": "6eeabed82c1de022281190fb316bc1680358773306fe06dcc21d8e2b05040884"
+      },
+      {
+        "path": "database/migrations/2025_10_18_163331_clean_user_id_references.php",
+        "sha256": "eeae23f52d1718e29cf453af3adfb80f18fac4e2fa5ec1ae31c4cd8360d96db9"
+      },
+      {
+        "path": "database/migrations/2025_10_22_134507_update_comments_relation_field_names.php",
+        "sha256": "77903061365b8f1b96e8447774e64857b0127aa3616b655550c790d120994d2d"
+      },
+      {
+        "path": "database/migrations/2025_11_23_161812_create_slug_history_table.php",
+        "sha256": "8845585ccaf2e7ff91e353893ce2caad7b9bd64d461c51fbf1464f258cf9b069"
+      },
+      {
+        "path": "database/migrations/2025_12_15_140219_create_mention_history_table.php",
+        "sha256": "421b8d42e7ebf3dd6da193d901eb2006c9e338890b7a1eda7533f8990624fbc2"
+      },
+      {
+        "path": "database/migrations/2025_12_19_103417_add_views_viewable_type_index.php",
+        "sha256": "59aa59087b16ccf2b09d32bbd7a19f367db4cc2508d1183f87cbbe88b0fa46ac"
+      },
+      {
+        "path": "database/migrations/2026_04_19_141616_add_revision_view_all_permission.php",
+        "sha256": "d6527d686a95b0a85ae8c6c1974486872bcf3a3169468dd26ee5e633db648ba4"
+      },
+      {
+        "path": "database/migrations/2026_07_27_201402_update_users_external_auth_id_collation.php",
+        "sha256": "a9135fd0fa53de9d1bf28b3e035f983b917689d637f239d56b60e030b869bc7e"
+      },
+      {
+        "path": "LICENSE",
+        "sha256": "5f4d637095720b29defa9ac3f17a0d4fcfe689139fcb8708373c5fe170fb5811"
+      },
+      {
+        "path": "composer.lock",
+        "sha256": "826e80eafda63b62e6b427abf447a1d2255261ce69fc0e0c15bb7a5b1697fa89"
+      },
+      {
+        "path": "composer.json",
+        "sha256": "9d4c8e18db9ef20b7f158b9637279f43e4ceba86ceca7a9df66a8746ad08fe12"
+      }
+    ],
+    "licenses": [
+      "LICENSE"
+    ],
+    "lockedLaravel": "v12.69.3",
+    "id": "bookstack",
+    "license": "MIT",
+    "laravelConstraint": "^v12.26.4"
+  }
+]
