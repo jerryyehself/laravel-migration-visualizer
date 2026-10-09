@@ -5,7 +5,7 @@
 - 負責端：雲端開發 session 執行；本研究 session 僅研究、決策文件與交接，不做程式實作
 - 依賴：R1、R3；來源查詢契約於核准路線內具體化並記錄
 - 相關 issue：未建立
-- 文件 PR：docs/research-proposals 分支的保存 PR（不等於功能核准）
+- 文件 PR：[初始保存 #117](https://github.com/jerryyehself/laravel-migration-visualizer/pull/117)、[R1.1 核准補登 #118](https://github.com/jerryyehself/laravel-migration-visualizer/pull/118) 已合併；全路線核准由 docs/approve-research-roadmap 分支交付
 - 功能 PR：無
 
 ## 要解決的問題
@@ -40,7 +40,7 @@ Semantic rename inference、穩定物件 identity、timeline、DB／models 關�
 | 批次 | 前置條件 | 本次只做的範圍 | 交付物與驗證 | 停止點／本次不做 |
 |---|---|---|---|---|
 | R4.1 來源語意契約 | R1／R3 結果可讀 | 逐一列 directly involved 的 operation，明列 FK 來源／目標、table rename、column rename、刪除重建、failed／blocked；定義 DTO 欄位、排序與公開 export 決策 | 來源查詢規格與人工預期案例；記錄該批契約與驗收 | 不創建穩定物件 identity，不把名稱匹配叫 lineage |
-| R4.2 純查詢 service | 來源契約已核准 | 只從既有 ProjectAnalysis／operations／SourceLocation 建來源查詢；區分語法涉及與可信已套用效果，依規格安排 core 或純 web adapter | service／DTO diff、涉及／未涉及與同名重建／rename／失敗回歸；若公開 export 則 built-package 驗證 | 不重跑 parser／replay，不改 SchemaDiff；不延伸為全歷史追蹤 |
+| R4.2 純查詢 service | 來源契約已記錄且符合核准路線 | 只從既有 ProjectAnalysis／operations／SourceLocation 建來源查詢；區分語法涉及與可信已套用效果，依規格安排 core 或純 web adapter | service／DTO diff、涉及／未涉及與同名重建／rename／失敗回歸；若公開 export 則 built-package 驗證 | 不重跑 parser／replay，不改 SchemaDiff；不延伸為全歷史追蹤 |
 | R4.3 結構→來源入口 | 查詢 service 完成 | 只在表／欄位明細顯示來源列表並跳到 migration／PHP；保留來源的 snapshot 與物件選取返回目標 | 相關 UI 驗收，來源定位與不在該側的物件明確顯示 | 不改磁碟 PHP，不增加另一套編輯器或資料持久化 |
 | R4.4 返回與交付 | 來源入口完成 | 只完成來源→原結構返回、快照切換／副本修改時選取失效處理；驗收指定雙向任務 | 兩端導航、失效與未知案例；必要 checks、最新 HEAD CI／merge | 來源不足時明列未知；跨 rename identity 另立提案 |
 
