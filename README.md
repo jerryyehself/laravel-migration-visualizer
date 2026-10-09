@@ -194,3 +194,5 @@ npm run release:bundle
 表／欄位明細可列出名稱直接涉及的 migration 操作，跳到唯讀 PHP 來源並返回原快照選取；不推測 rename 身分或把 failed／blocked 語法操作當成生效。實作與交付狀態見 [R4 說明](docs/r4-operation-sources.zh-TW.md)。
 
 單次 migration 的狀態、來源、結構 diff 及 Before／After 明細跳轉，見 [R5 教學](docs/r5-migration-reading.zh-TW.md)。未知和已知無變更分開；rename 操作不合併結構移除／新增。
+
+本輪雙目標整合驗收、固定樣本結果與交付限制，見 [R6 驗收](docs/r6-integration-acceptance.zh-TW.md)。

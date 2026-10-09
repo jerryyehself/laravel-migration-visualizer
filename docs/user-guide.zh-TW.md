@@ -54,3 +54,5 @@ npm run dev -- --host 127.0.0.1 --port 5202 --strictPort
 選擇逐檔分析結果，先看狀態與快照已知性，再讀診斷、操作及 PHP、結構 diff、涉及物件。Before／After 明細按鈕只開各側存在的表／欄位；「此側不存在」不同於「快照未知」。rename 操作顯示 from→to，結構差異仍是移除與新增。
 
 明細跳轉會重設該圖位置；來源返回保留原快照與選取。完整快照、diff、operations 保留在展開區。副本修改後舊結果立即失效。教學：[R5](r5-migration-reading.zh-TW.md)。
+
+兩個真實專案的完整導覽任務、已知成功前綴與未支援範圍，見 [R6 驗收](r6-integration-acceptance.zh-TW.md)。

@@ -28,7 +28,7 @@
 - 不把資料庫 runtime 正確性、完整 Laravel API、大型專案效能、瀏覽器持久化或外部 JSON runtime 驗證視為已有保證。
 - 自主繼續工作不等於已設定週期排程，也不代表本機對話會自行在背景無限運作。本次不建立或交接任何新排程。
 
-## 最新狀態與下一步
+## 歷史狀態（下列 M20／M21 是當時基準）
 
 M1～M20 已交付。核對起點 main=f7e2383，Core 0.6.0，最近完整驗證 362 tests；實際狀態以 Git／[GitHub 紀錄](github-milestones.md) 為準，不能只依本段固定 commit。
 
@@ -63,3 +63,7 @@ M27～M29 已交付並合併，證據見 github-milestones.md。Morph indexName 
 ## 第一版交付決策
 
 2026-10-04 依使用者同意連續完成 M30～M33。產品／web 1.0.0，core 保留 0.14.0，不宣稱完整 Laravel 相容。第一版包含相容矩陣、專桁情境／規模 correctness、UI 驗收、手冊與可追溯 Git HEAD 的交付包；沒有布署／新費用。實際驗證與合併狀態見 github-milestones.md。
+
+## 2026-10-09 當前核對
+
+R1～R6 修訂 2 全部經使用者核准，雲端開發、研究端只保存文件；以 proposals/README.md 狀態與實際 PR／CI／merge 為準。R1／R3／R2／R4／R5 已由 #121／#123／#126／#128／#130 交付；core 0.15.0，660 tests／12 demos。R6 整合驗收與限制見 r6-integration-acceptance.zh-TW.md。R2 僅補 nullableTimestamps 靜態別名，樣本仍有 dynamic after／DB write 拒絕；R3 FK 導覽缺需求證據跳過。路線 done 不授權新增 draft 功能。
