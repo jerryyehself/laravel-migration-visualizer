@@ -10,14 +10,14 @@
 
 | 狀態 | 意義與必要證據 |
 |---|---|
-| draft | 可研究、討論與修訂；不可開始該提案的實作／開發 issues。 |
+| approved | 可研究、討論與修訂；不可開始該提案的實作／開發 issues。 |
 | approved | 使用者已確認指定 ID、版本與範圍；文件記錄日期、確認內容與來源。 |
-| in_progress | 本地開發端開始已核准工作；記錄負責 session、issue／PR 與實際範圍。 |
+| in_progress | 雲端開發 session開始已核准工作；記錄負責 session、issue／PR 與實際範圍。 |
 | done | 核准範圍已驗收交付；記錄 merge commit、驗證與限制，不把僅有程式碼當成完成。 |
 
 若 approved 後新增範圍，新增 draft 提案或保留原核准內容、另列待核准變更；未核准部分不可實作。不要把 done 提案重新解讀成新授權。
 
-## 本地開發端每次收到「繼續」
+## 雲端開發 session每次收到「繼續」
 
 1. 保護未提交工作；同步遠端、核對 main 與文件 PR 的實際狀態，不盲目 pull 或覆蓋本地變更。
 2. 讀 AGENTS.md、本入口、已核准提案及其依賴；參考 A-01 報告。未合併文件必須明確取得指定 PR／分支，不假裝已在 main。
@@ -47,12 +47,12 @@
 
 | ID | 提案 | 狀態 | 依賴 |
 |---|---|---|---|
-| R1 | [真實專案與使用任務基準](R1-project-baseline.zh-TW.md) | approved（僅 R1.1；其餘 draft） | 無 |
-| R2 | [高影響相容性補強](R2-compatibility.zh-TW.md) | draft | R1 結果與具體 API 範圍核准 |
-| R3 | [專案結構探索](R3-schema-exploration.zh-TW.md) | draft | R1；與 R2 的關係依樣本結果決定 |
-| R4 | [結構與 migration 來源串接](R4-source-navigation.zh-TW.md) | draft | R1、R3；來源查詢契約核准 |
-| R5 | [單次變更閱讀流程](R5-change-reading.zh-TW.md) | draft | R1、R4 |
-| R6 | [整合驗收與交付](R6-acceptance.zh-TW.md) | draft | 已核准且完成的前序範圍 |
+| R1 | [真實專案與使用任務基準](R1-project-baseline.zh-TW.md) | approved | 無 |
+| R2 | [高影響相容性補強](R2-compatibility.zh-TW.md) | approved | R1 結果與具體 API 範圍核准 |
+| R3 | [專案結構探索](R3-schema-exploration.zh-TW.md) | approved | R1；與 R2 的關係依樣本結果決定 |
+| R4 | [結構與 migration 來源串接](R4-source-navigation.zh-TW.md) | approved | R1、R3；來源查詢契約核准 |
+| R5 | [單次變更閱讀流程](R5-change-reading.zh-TW.md) | approved | R1、R4 |
+| R6 | [整合驗收與交付](R6-acceptance.zh-TW.md) | approved | 已核准且完成的前序範圍 |
 
 R 編號是研究提案 ID，不是已建立的 GitHub milestone。順序可依證據修訂；R2 不必為湊 milestone 而實作。
 
@@ -64,7 +64,7 @@ R 編號是研究提案 ID，不是已建立的 GitHub milestone。順序可依�
 ## 使用者確認紀錄
 
 - 2026-10-09：使用者同意同時討論「理解專案結構」與「理解單次 migration 變更」；這是產品目標共識，不是 R1～R6 實作核准。
-- 2026-10-09：使用者要求依 docs/proposals/、狀態流程、確認紀錄及文件分支／PR 保存；本次只授權文件交付。本地負責後續檢查，研究端維持交接角色。
-- R1 修訂 2 的 R1.1 已經使用者確認核准：選定至少兩個公開專案樣本，記錄 commit、Laravel 版本、授權與 migration 路徑，不修改程式。使用者澄清「我不是核准了嗎」，並要求「更新啊 等什麼」；本地端可直接執行此批，不重問同一核准。R1.2、R1.3 與 R2～R6 仍為 draft。
+- 2026-10-09：使用者要求依 docs/proposals/、狀態流程、確認紀錄及文件分支／PR 保存；本次只授權文件交付。雲端開發 session 負責後續檢查，研究端維持交接角色。
+- R1 修訂 2 的 R1.1 已經使用者確認核准：選定至少兩個公開專案樣本，記錄 commit、Laravel 版本、授權與 migration 路徑，不修改程式。使用者澄清「我不是核准了嗎」，並要求「更新啊 等什麼」；雲端開發 session可直接執行此批，不重問同一核准。R1.2、R1.3 與 R2～R6 仍為 draft。
 
-相關 issue：未建立。文件 PR：[保存提案與派工流程 #117](https://github.com/jerryyehself/laravel-migration-visualizer/pull/117)，已合併。R1.1 核准補登由 docs/approve-r1-1 文件分支交付。功能 PR：無。
+相關 issue：未建立。文件 PR：[保存提案與派工流程 #117](https://github.com/jerryyehself/laravel-migration-visualizer/pull/117)，已合併。R1.1 核准補登 [#118](https://github.com/jerryyehself/laravel-migration-visualizer/pull/118) 已合併；全路線核准由 docs/approve-research-roadmap 分支交付。功能 PR：無。
