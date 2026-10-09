@@ -1,13 +1,14 @@
+import type { SourceNavigation } from '../operation-sources';
 import { useId, useMemo, useRef, useState } from 'react';
 import type { PointerEvent, Dispatch, SetStateAction } from 'react';
-import type { SchemaState, SchemaDiff } from '@lmv/migration-core';
+import type { SchemaState, SchemaDiff, ProjectAnalysis } from '@lmv/migration-core';
 import { TableDetails } from './TableDetails';
 import { matchingTables, matchingColumns, focusGraphTable } from '../graph-focus';
 import { initialGraphView, type GraphLayout, type GraphView } from '../comparison-layout';
 import { graphDiffMarks, memberKey, markLabels } from '../graph-diff';
 import { schemaGraph, NODE_WIDTH, clampZoom, edgePath, type Point } from '../schema-graph';
 
-export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 'after', layout, view, onViewChange }: { schema: SchemaState; title?: string; diff?: SchemaDiff; side?: 'before' | 'after'; layout?: GraphLayout; view?: GraphView; onViewChange?: Dispatch<SetStateAction<GraphView>> }) {
+export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 'after', layout, view, onViewChange, analysis, onSource, onSelectionChange }: { schema: SchemaState; title?: string; diff?: SchemaDiff; side?: 'before' | 'after'; layout?: GraphLayout; view?: GraphView; onViewChange?: Dispatch<SetStateAction<GraphView>>; analysis?: ProjectAnalysis; onSource?: SourceNavigation; onSelectionChange?: () => void }) {
   const graph = useMemo(() => schemaGraph(schema), [schema]);
   const marks = useMemo(() => graphDiffMarks(diff ?? { changes: [] }, side), [diff, side]);
   const marker = useId().replace(/:/g, '');
@@ -33,6 +34,7 @@ export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 
   function focusTable(name: string) {
     const node = graph.nodes.find(node => node.name === name);
     if (!node) return;
+    onSelectionChange?.();
     setSelectedColumn(undefined);
     setView(current => focusGraphTable(current, node, current.positions.get(name) ?? layout?.positions.get(name) ?? node));
     svg.current?.scrollIntoView({ block: 'center' });
@@ -58,7 +60,7 @@ export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 
     if (active.name === null) setPan(value);
     else setPositions(current => new Map(current).set(active.name!, value));
   }
-  function reset() { drag.current = null; setSelectedColumn(undefined); setView(initialGraphView(bounds)); }
+  function reset() { onSelectionChange?.(); drag.current = null; setSelectedColumn(undefined); setView(initialGraphView(bounds)); }
   return <section className="schema-graph" aria-label={title}>
     <h2>{title}</h2>
     <p>{graph.nodes.length} 張資料表 · {graph.edges.length} 個外鍵關係。箭頭從本表指向引用表；不推測關聯基數。</p>
@@ -128,6 +130,6 @@ export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 
       </svg>
       <details><summary>外鍵連線明細</summary><ul>{graph.edges.map(edge => <li key={edge.id}>{marks.edges.has(edge.id) ? markLabels[marks.edges.get(edge.id)!] + ' · ' : ''}{edge.from} → {edge.to} · {edge.label}</li>)}</ul></details>
     </>}
-    <TableDetails schema={schema} selected={focused} selectedColumn={selectedColumn && selectedColumn.table === focused ? selectedColumn.column : undefined} selectionRequest={selectedColumn?.request} />
+    <TableDetails schema={schema} selected={focused} selectedColumn={selectedColumn && selectedColumn.table === focused ? selectedColumn.column : undefined} selectionRequest={selectedColumn?.request} analysis={analysis} onSource={onSource} />
   </section>;
 }

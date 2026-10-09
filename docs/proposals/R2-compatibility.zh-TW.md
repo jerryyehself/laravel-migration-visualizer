@@ -1,6 +1,6 @@
 # R2：高影響相容性補強
 
-- 狀態：in_progress（修訂 2；單項 nullableTimestamps）
+- 狀態：done（修訂 2；單項 nullableTimestamps）
 - 日期／修訂：2026-10-09／2
 - 負責端：雲端開發 session 執行；本研究 session 僅研究、決策文件與交接，不做程式實作
 - 依賴：R1 完成，且具體 API／參數／拒絕範圍於核准路線內具體化並記錄
@@ -67,3 +67,5 @@ R1 BookStack 首檔 :22 呼叫 nullableTimestamps；:26 DB 寫入另拒絕。固
 支援零參數或單一靜態非負整數 precision；沿用 timestamps 的省略 precision=0 分析器政策，展開 created_at／updated_at 兩個 nullable timestamp addColumn，共用來源。這不是 DB default precision 的推定。拒絕明確 null、字串／bool／小數／負值／動態、額外參數、所有修飾鏈含 index／useCurrent／default／change。Laravel 可接受 null，但本工具靜態子集合依既有 timestamps 契約拒絕；不放寬既有 helper 或加入 nullableTimestampsTz。
 
 core 0.15.0 支援行為新增，SchemaState／AtomicOperation JSON 形狀不變。原子 replay、索引／外鍵、unknown 契約不變；真實 BookStack 仍被 DB 寫入拒絕，不能宣稱 complete。只改 normalize helper 判斷、guard、相關回歸／golden／demo、版本 metadata 及中文契約。
+
+交付：PR #126 merge cbfdf61347c33ff25a44e88be49a6ce7f15aeb26；head 61f4bfce2b1230b24ed97389a1573c9bcaafd32f／validate run 37898773657 success。issue #125／milestone 37 closed。驗證 639 tests／15 步／12 demos；只新增 nullableTimestamps 子集合，真實樣本仍不完整。

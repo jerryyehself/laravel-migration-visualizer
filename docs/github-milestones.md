@@ -147,3 +147,11 @@ PR #121 已合併 2dfbbc64b4effa14bb4c2b2c62888866c587f5e7；功能 head 7b0a987
 ## M36：R3 當前快照欄位搜尋
 
 milestone 36／issue #122，R3 修訂 2 核准範圍的 R3.1／R3.2／R3.4；R3.3 無需求證據跳過。619 tests，core 0.14.0／JSON 不變；Chromium 11 項交互通過，console 無 warning/error。教學 docs/milestone-36.zh-TW.md；PR #123 已合併 9e4b804e5465e2ea9f10a926ca7a55c194a63585；head b0929fad640eb713a74a8b859a3e04fe1206db6e 的 validate run 37897374107 success。issue #122／milestone 36 closed。
+
+## M37：R2 nullableTimestamps
+
+PR #126 merge cbfdf61347c33ff25a44e88be49a6ce7f15aeb26；head 61f4bfce2b1230b24ed97389a1573c9bcaafd32f／validate run 37898773657 success。issue #125／milestone 37 closed；雲端 639 tests、typecheck、build、12 demos。core 0.15.0，樣本限制見 milestone-37.zh-TW.md。
+
+## M38：R4 操作來源往返
+
+issue #127／milestone 38；651 tests 的本地證據與六項 Chromium 任務見 r4-operation-sources.zh-TW.md。認證已恢復，PR 最新 head CI／merge 尚待本批交付。

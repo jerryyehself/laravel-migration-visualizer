@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { OperationSourcePanel } from './OperationSources';
+import type { OperationSource, SourceNavigation } from '../operation-sources';
+import { useState, useRef } from 'react';
 import { diagnosticTarget } from '../diagnostic-location';
 import { DiagnosticSource } from './DiagnosticSource';
 import { filterMigrationResults, visibleSelection, type ResultStatusFilter } from '../filter-results';
@@ -56,10 +58,23 @@ function SchemaView({ title, schema, unavailable }: { title: string; schema: Sch
 export function ProjectResults({ result, files, selected, onSelect, onEdit }: {
   result: ProjectAnalysis; files: readonly MigrationFile[]; selected: number; onSelect: (index: number) => void; onEdit: (item: ProjectDiagnostic) => void;
 }) {
+  const [operationSource, setOperationSource] = useState<OperationSource | null>(null);
+  const sourceOrigin = useRef<HTMLElement | null>(null);
+  const [sourceReturnNotice,setSourceReturnNotice] = useState<string | null>(null);
+  const clearSource = () => { setOperationSource(null); sourceOrigin.current = null; setSourceReturnNotice(null); };
+  const openSource: SourceNavigation = (hit,origin) => {
+    sourceOrigin.current = origin; setLocated(null); setSourceReturnNotice(null); setQuery(''); setStatus('all'); onSelect(hit.migrationIndex); setOperationSource(hit);
+  };
+  function returnSource() {
+    const origin = sourceOrigin.current; clearSource();
+    if (origin?.isConnected) { origin.scrollIntoView({block:'center'}); origin.focus({preventScroll:true}); }
+    else setSourceReturnNotice('原結構選取已失效，請重新選擇快照與物件。');
+  }
   const [located, setLocated] = useState<ProjectDiagnostic | null>(null);
   const target = located ? diagnosticTarget(files, result, located) : null;
   const canLocate = (item: ProjectDiagnostic) => diagnosticTarget(files, result, item) !== null;
   function locate(item: ProjectDiagnostic) {
+    clearSource();
     const next = diagnosticTarget(files, result, item);
     if (!next) return;
     setQuery(''); setStatus('all'); setLocated({ ...item });
@@ -77,7 +92,9 @@ export function ProjectResults({ result, files, selected, onSelect, onEdit }: {
       <p>{result.complete ? '以下為支援範圍內的靜態分析結果，不代表實際資料庫執行結果。' : '最終 schema 未知。最後可信 schema 只包含成功前綴，不能當成專案最終狀態。'}</p>
     </div>
     <ProjectExports result={result} />
-    <SchemaSnapshots result={result} />
+    <SchemaSnapshots result={result} onSource={openSource} onSelectionChange={clearSource} />
+    {sourceReturnNotice && <p role="status" className="unavailable">{sourceReturnNotice}</p>}
+    {operationSource && <OperationSourcePanel hit={operationSource} files={files} onBack={returnSource} />}
     <h3>專案診斷</h3><Diagnostics items={result.diagnostics} onLocate={locate} canLocate={canLocate} />
     {located && target && <DiagnosticSource file={target.file} diagnostic={located} onEdit={onEdit} />}
     <fieldset className="result-filters">
