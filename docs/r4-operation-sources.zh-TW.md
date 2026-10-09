@@ -1,6 +1,6 @@
 # R4：結構與 PHP 來源往返
 
-核准 PR #119／R4 修訂 2；R1 #121、R3 #123 已合併。雲端分支 feat/r4-operation-sources 本地實作；GitHub 認證 401，尚無 R4 issue／milestone／PR，不稱已合併。core 0.15.0 來自尚未合併的 R2 #126；本批沒有新增 core export 或 JSON variant。
+核准 PR #119／R4 修訂 2；R1 #121、R3 #123 已合併。雲端分支 feat/r4-operation-sources；milestone 38／issue #127。認證恢復後已移到 R2 #126 merge cbfdf613 的最新 main；等待本批 PR／CI 交付。core 0.15.0 來自已合併 R2；本批沒有新增 core export 或 JSON variant。
 
 ## 查詢契約
 

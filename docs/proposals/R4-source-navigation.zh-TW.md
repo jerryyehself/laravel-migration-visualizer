@@ -4,7 +4,7 @@
 - 日期／修訂：2026-10-09／2
 - 負責端：雲端開發 session 執行；本研究 session 僅研究、決策文件與交接，不做程式實作
 - 依賴：R1、R3；來源查詢契約於核准路線內具體化並記錄
-- 相關 issue：未建立
+- 相關 issue：#127／milestone 38
 - 文件 PR：[初始保存 #117](https://github.com/jerryyehself/laravel-migration-visualizer/pull/117)、[R1.1 核准補登 #118](https://github.com/jerryyehself/laravel-migration-visualizer/pull/118) 已合併；全路線核准由 docs/approve-research-roadmap 分支交付
 - 功能 PR：無
 
