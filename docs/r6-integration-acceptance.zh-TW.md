@@ -33,7 +33,7 @@ BookStack ff661b59f6f605bf768fe850c0d0a8a2dc09d203：103 PHP，Laravel lock v12.
 
 ## 驗證與交付
 
-本輪 npm run verify 在乾淨輸入 HEAD 28c1d59 上完成：660 tests（540 core／120 web）、typecheck、build、12 demos／15 步全部通過；Node v24.19.0／Linux。research/r6-verification.json 保存 commit、clean=true 及各命令 exit code。PR 最新 head CI／merge 另核對，不沿用前序綠燈。React 仍只消費 DTO；純 web service 整理 labels、literal 物件查詢與側別可用性，畫面 state 不重新 replay。
+本輪 npm run verify 在乾淨輸入 HEAD 28c1d59 上完成：660 tests（540 core／120 web）、typecheck、build、12 demos／15 步全部通過；Node v24.19.0／Linux。research/r6-verification.json 保存 commit、clean=true 及各命令 exit code。PR #132 merge ce403562788959039baee1bdebe59ed7b2302029；head b974995d2c07b6be4f851758c750081381327360／validate run 37903282365 success。issue #131／milestone 40 closed。 本批獨立 CI 通過後合併，不沿用前序綠燈。React 仍只消費 DTO；純 web service 整理 labels、literal 物件查詢與側別可用性，畫面 state 不重新 replay。
 
 ## 未涵蓋與下一步
 

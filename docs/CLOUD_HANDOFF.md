@@ -4,7 +4,7 @@
 
 PR #119（bdd64bc）已記錄 R1～R6 修訂 2 全部核准，雲端開發 session 執行；研究 session 只保存決策。下方「本地接手／雲端停止開發」是歷史交接，已由這次分工取代。最新批次見 docs/proposals/README.md 與 docs/research/r1-baseline.zh-TW.md；不能用歷史固定 tests／SHA 代替當次證據。
 
-R1 #121／2dfbbc6、R3 #123／9e4b804、R2 #126／cbfdf61、R4 #128／47b8e0a、R5 #130／28c1d59 已交付。core 0.15.0，660 tests（540 core／120 web）、15 verify 步驟／12 demos；R6 正在整合驗收與交接，詳見 r6-integration-acceptance.zh-TW.md。R3.3 FK 導覽無需求證據跳過；不把跳過當已實作。沒有背景排程、下載驗收或新部署。
+R1 #121／2dfbbc6、R3 #123／9e4b804、R2 #126／cbfdf61、R4 #128／47b8e0a、R5 #130／28c1d59 已交付。core 0.15.0，660 tests（540 core／120 web）、15 verify 步驟／12 demos；R6 已由 #132／ce40356 完成整合驗收與交接，詳見 r6-integration-acceptance.zh-TW.md。R3.3 FK 導覽無需求證據跳過；不把跳過當已實作。沒有背景排程、下載驗收或新部署。
 
 ## 歷史現況（2026-10-04 核對）
 - M1～M33 已合併 main；M33 PR #107／db15e35，最新 head 0ce6f47 CI 通過 verify 與產包。目前 612 tests（520 core + 92 web）、typecheck、build 與十一個 demo 通過。M33 第一版交付以 GitHub 交付紀錄為準；產品／web 1.0.0，core 0.14.0不變。本地接手，雲端停止開發。
@@ -184,3 +184,5 @@ main 28c1d59 是本輪 R6 驗收起點，接手仍查實際最新 origin/main。
 長時間 Vite server 曾仍呈現舊 core 的 nullableTimestamps 診斷；重啟我們啟動的 server 加 --force 後，本輪完整 Chromium 任務通過。切換分支或依賴後重啟並驗證代表案例，不只看 PID 或首頁。localhost／CDP／登入不會自動轉移。
 
 環境 start_skill 草稿已保存，更新至 npm run verify、660 tests／12 demos、分工與資料可信度規則；保存不等於發布。要使設定在後續環境生效，使用者需於環境設定檢閱、保存再發布；沒有替使用者發布。
+
+R1～R6 修訂 2 本輪已完成；R6 PR #132 merge ce403562788959039baee1bdebe59ed7b2302029；head b974995d2c07b6be4f851758c750081381327360／validate run 37903282365 success。issue #131／milestone 40 closed。 接手先讀提案入口，沒有新的具體 approved 功能時不自行擴增。未提交工作為空；舊功能／WIP 分支仍保留，最新 main 以實際 remote 為準。
