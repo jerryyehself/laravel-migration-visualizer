@@ -1,6 +1,6 @@
 # R5：單次變更閱讀流程
 
-- 狀態：approved（修訂 2 全部步驟；尚未開始執行）
+- 狀態：in_progress（修訂 2；本地單次變更閱讀流程）
 - 日期／修訂：2026-10-09／2
 - 負責端：雲端開發 session 執行；本研究 session 僅研究、決策文件與交接，不做程式實作
 - 依賴：R1、R4
@@ -60,3 +60,13 @@ CI／CLI、部署安全、任意兩版本比較、semantic refactoring、down()�
 
 本提案修訂 2 的全部批次均 approved；雲端開發 session 應依序核對前置條件，開工時記錄 in_progress，取得實際驗收／交付證據後標 done。
 本次只更新核准文件，未啟動任何批次、未修改程式、未建立功能 issue／PR。狀態轉換依 [提案流程](README.md)。
+
+## R5.1 本次閱讀契約（2026-10-09）
+
+核准 PR #119；R1 已合併，R4 本地結果／來源契約與六項瀏覽器任務可讀，GitHub 尚未交付。本地分支 feat/r5-migration-reading，在 R4 已保存 commit 上續作；恢復認證後分開 PR，不把 stacked 本地實作當已合併。
+
+逐檔閱讀順序：狀態／before-after 已知性 → 診斷 → 已識別語法 operations 與 PHP 來源 → 真實結構 diff → 涉及物件的 before/after 明細跳轉。rename operation 明列 from→to，diff 仍原樣 removed+added，不做語意合併。完整 raw 快照／DTO 保留在展開面板。
+
+純 web adapter 讀當前 MigrationSnapshot，不 parse/replay；operations 是語法證據，failed/blocked 不稱生效。diff=null 顯示未知，[] 顯示已知無結構變化。涉及物件由 operations 明列的 names 及 diff 結構項合併 literal query，不合併物件 identity；同名刪除重建只代表同名字串。分別以 schemaBefore/schemaAfter own-property 查可導航性，區分快照未知與物件不存在。索引／FK 結構項導向所屬表完整明細，不新建穩定 constraint identity。
+
+物件明細按鈕只導向現有 before-N/after-N 快照並初始化該表／欄位聚焦；新增項目不能補畫 before，移除項目不能補畫 after。此明確跳轉重設該圖 view；一般快照選單仍清選取。沿用 R4 source→原處返回及修改失效，不另建編輯器／任意兩版本比較／部署安全規則。

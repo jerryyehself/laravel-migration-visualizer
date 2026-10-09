@@ -1,5 +1,6 @@
+import { MigrationReading } from './MigrationReading';
 import { OperationSourcePanel } from './OperationSources';
-import type { OperationSource, SourceNavigation } from '../operation-sources';
+import type { OperationSource, SourceNavigation, StructureQuery } from '../operation-sources';
 import { useState, useRef } from 'react';
 import { diagnosticTarget } from '../diagnostic-location';
 import { DiagnosticSource } from './DiagnosticSource';
@@ -58,6 +59,9 @@ function SchemaView({ title, schema, unavailable }: { title: string; schema: Sch
 export function ProjectResults({ result, files, selected, onSelect, onEdit }: {
   result: ProjectAnalysis; files: readonly MigrationFile[]; selected: number; onSelect: (index: number) => void; onEdit: (item: ProjectDiagnostic) => void;
 }) {
+  const [snapshotId,setSnapshotId] = useState('final');
+  const [focusTarget,setFocusTarget] = useState<{query:StructureQuery;request:number}>();
+  const focusRequest = useRef(0);
   const [operationSource, setOperationSource] = useState<OperationSource | null>(null);
   const sourceOrigin = useRef<HTMLElement | null>(null);
   const [sourceReturnNotice,setSourceReturnNotice] = useState<string | null>(null);
@@ -92,7 +96,7 @@ export function ProjectResults({ result, files, selected, onSelect, onEdit }: {
       <p>{result.complete ? '以下為支援範圍內的靜態分析結果，不代表實際資料庫執行結果。' : '最終 schema 未知。最後可信 schema 只包含成功前綴，不能當成專案最終狀態。'}</p>
     </div>
     <ProjectExports result={result} />
-    <SchemaSnapshots result={result} onSource={openSource} onSelectionChange={clearSource} />
+    <SchemaSnapshots selectedId={snapshotId} onSelectSnapshot={id=>{setSnapshotId(id);setFocusTarget(undefined);}} focusTarget={focusTarget} result={result} onSource={openSource} onSelectionChange={clearSource} />
     {sourceReturnNotice && <p role="status" className="unavailable">{sourceReturnNotice}</p>}
     {operationSource && <OperationSourcePanel hit={operationSource} files={files} onBack={returnSource} />}
     <h3>專案診斷</h3><Diagnostics items={result.diagnostics} onLocate={locate} canLocate={canLocate} />
@@ -127,9 +131,9 @@ export function ProjectResults({ result, files, selected, onSelect, onEdit }: {
       {step && <div className="step-detail">
         <h2>{step.filename}</h2>
         <p>{statusLabels[step.status]} · {step.analysis.operations.length} 個已識別操作</p>
-        <Diagnostics items={step.diagnostics} onLocate={locate} canLocate={canLocate} />
+        <MigrationReading step={step} index={activeIndex!} diagnostics={<Diagnostics items={step.diagnostics} onLocate={locate} canLocate={canLocate} />} onSource={openSource} onObject={(side,query)=>{ clearSource(); setLocated(null); setSnapshotId(`${side}-${activeIndex}`); setFocusTarget({query,request:++focusRequest.current}); }} />
         {step.status !== 'applied' && <p className="unavailable">此檔的 operations 僅供檢視，沒有套用；不顯示推測的 schema 或 diff。</p>}
-        <div className="results">
+        <details><summary>完整快照、diff 與 operations</summary><div className="results">
           <SchemaView title="Schema Before" schema={step.schemaBefore} unavailable="前序狀態未知，沒有可信的分析前快照。" />
           <SchemaView title="Schema After" schema={step.schemaAfter} unavailable="未成功套用，沒有可信的分析後快照。" />
         </div>
@@ -142,7 +146,7 @@ export function ProjectResults({ result, files, selected, onSelect, onEdit }: {
             <details><summary>SchemaDiff JSON</summary><pre>{JSON.stringify(step.diff, null, 2)}</pre></details>
           </>}
         </article>
-        <details><summary>AtomicOperation JSON</summary><pre>{JSON.stringify(step.analysis.operations, null, 2)}</pre></details>
+        <details><summary>AtomicOperation JSON</summary><pre>{JSON.stringify(step.analysis.operations, null, 2)}</pre></details></details>
       </div>}
     </div>
     <SchemaView title={result.complete ? '專案最終 Schema' : '最後可信 Schema（僅成功前綴）'}
