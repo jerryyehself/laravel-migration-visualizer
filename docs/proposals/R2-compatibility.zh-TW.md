@@ -5,7 +5,7 @@
 - 負責端：雲端開發 session 執行；本研究 session 僅研究、決策文件與交接，不做程式實作
 - 依賴：R1 完成，且具體 API／參數／拒絕範圍於核准路線內具體化並記錄
 - 相關 issue：未建立
-- 文件 PR：docs/research-proposals 分支的保存 PR（不等於功能核准）
+- 文件 PR：[初始保存 #117](https://github.com/jerryyehself/laravel-migration-visualizer/pull/117)、[R1.1 核准補登 #118](https://github.com/jerryyehself/laravel-migration-visualizer/pull/118) 已合併；全路線核准由 docs/approve-research-roadmap 分支交付
 - 功能 PR：無
 
 ## 要解決的問題
@@ -24,7 +24,7 @@ A：補有限靜態子集合。B：只改善診斷。C：略過未知語法繼�
 4. 重跑 R1 樣本比較差異，保留失敗證據。
 
 ## 排除項目
-完整 PHP／Laravel／DB 方言；猜測動態語意；放寬原子 replay／unknown；新增未核准 API。
+完整 PHP／Laravel／DB 方言；猜測動態語意；放寬原子 replay／unknown；超出 R1 證據與靜態子集合方向的 API。
 既有 core 不做 IO／不執行 PHP／不連 DB、結構 diff 不猜 rename、lastValidSchema 不補 finalSchema 的契約延續。
 
 ## 驗收條件
@@ -39,8 +39,8 @@ A：補有限靜態子集合。B：只改善診斷。C：略過未知語法繼�
 
 | 批次 | 前置條件 | 本次只做的範圍 | 交付物與驗證 | 停止點／本次不做 |
 |---|---|---|---|---|
-| R2.1 契約定稿 | R1 結果可讀；只有研究／規格工作授權 | 每批只選一個具名 API/helper 或一個具名診斷問題；列全部支援參數、拒絕規則、固定官方來源、DTO 版本影響與樣本效益 | 本提案修訂中的明確契約與驗收案例；核對具體契約未超出已核准路線 | 僅實作 R1 證據支持、符合已核准靜態子集合方向且有完整契約的 API；此步不以 R2 標題視為 broad API 授權 |
-| R2.2 單項 core 補強 | 該批具體契約已記錄且符合核准路線 | 只改本批 parser／normalize／replay 所需路徑及相關測試；先建立失敗／成功／原子回滾案例；只在核准時新增 DTO variant | 可審查 diff、相關測試結果及 golden 推導；core 不做 IO | 發現第二 API、runtime 語意或契約擴張則另列 draft；不自動納入 |
+| R2.1 契約定稿 | R1 結果可讀；R1～R6 已核准；此批先完成規格 | 每批只選一個具名 API/helper 或一個具名診斷問題；列全部支援參數、拒絕規則、固定官方來源、DTO 版本影響與樣本效益 | 本提案修訂中的明確契約與驗收案例；核對具體契約未超出已核准路線 | 僅實作 R1 證據支持、符合已核准靜態子集合方向且有完整契約的 API；此步不以 R2 標題視為 broad API 授權 |
+| R2.2 單項 core 補強 | 該批具體契約已記錄且符合核准路線 | 只改本批 parser／normalize／replay 所需路徑及相關測試；先建立失敗／成功／原子回滾案例；如需 DTO variant，先記錄版本與相容性影響；超出既有可信度契約另提案 | 可審查 diff、相關測試結果及 golden 推導；core 不做 IO | 第二 API 另開具體批次契約；runtime 語意或超出路線的契約擴張另列 draft |
 | R2.3 樣本回歸與交付 | 單項實作完成 | 重跑受影響 R1 樣本、必要 core checks／built-package demo，更新相容矩陣與該批紀錄；走功能 PR | 實際前後結果、tests／typecheck／build／相關 demo、最新 HEAD CI 與 merge 證據 | 通過且交付才完成本批；下一 API 要有自己的具體契約與範圍，不為使樣本 complete 繼續擴增 |
 
 每次開始前記錄批次 ID、核准修訂、輸入版本、預計檔案／範圍；結束時記錄實際變更、驗證、issue／PR／commit、未完成項目與下一批前置條件。遇到新需求先列 draft；同一已核准範圍內的必要修正不需要重複取得批准。
