@@ -59,6 +59,7 @@ R 編號是研究提案 ID，不是已建立的 GitHub milestone。順序可依�
 ## 研究與模板
 
 - [A-01 定位比對報告](A-01-positioning-report.zh-TW.md)：外部已核實能力與研究推論分開；後續决策需記錄採用或不採用的理由。
+- [A-02 功能探索方法與需求證據審查](A-02-discovery-evidence.zh-TW.md)：draft；官方方法來源、先前候選的證據缺口與研究記錄格式，不是 R7 或開發授權。
 - [提案模板](TEMPLATE.zh-TW.md)。
 
 ## 使用者確認紀錄
