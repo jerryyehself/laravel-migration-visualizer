@@ -61,3 +61,5 @@ R1 三批實作／研究證據已完成；提案 done、issue 關閉與 mileston
 ## 本次驗證
 
 雲端 npm run verify 全部 14 步通過：612 tests、typecheck、build、11 built-package demos；固定來源下載／SHA、分析重現、改動來源拒絕亦通過。瀏覽器兩樣本驗收與限制如上。新 CLI 未納入離線 verify，避免 CI 依賴外部第三方網路；按上述明確命令另外執行。
+
+交付更新：PR #121 的 head 7b0a987 validate CI run 37896480621 success；merge 2dfbbc64b4effa14bb4c2b2c62888866c587f5e7。issue #120／milestone 35 closed，R1 三批已交付。

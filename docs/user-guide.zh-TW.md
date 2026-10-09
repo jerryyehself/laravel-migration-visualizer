@@ -40,3 +40,7 @@ npm run dev -- --host 127.0.0.1 --port 5202 --strictPort
 交付包有 source/、web/、README.zh-TW.md、verification.json 與 manifest.json。manifest 記錄 commit、產品／core 版本、逐檔 SHA-256；旁邊 .sha256 可在相同資料夾用 `shasum -a 256 -c *.sha256` 檢查 archive。產品版本不表示完整 Laravel runtime 相容。
 
 從 source/ 執行 npm ci 與 npm run verify 可重建。release:bundle 另需 Git checkout，不能在沒有 .git 的 source archive 直接執行；要重新產包請 clone repo 並 checkout manifest 中的 commit。建置包含時間與環境資訊，保證來源可追溯，沒有宣稱跨平台 archive 雜湊恆等。
+
+## 欄位查找（R3）
+
+選已知 ERD 快照後，在「搜尋目前快照欄位」輸入部分欄位名，不分大小寫。點 table.column 結果或用 Tab／Enter 選取，會聚焦表並展開該欄位明細。清查詢保留目前選取；切换快照會清查詢與選取。未知快照無查找入口；比較兩側各查自己的資料，不補另一側缺表／欄位。搜尋只改畫面，不改 schema／匯出。教學與驗證限制見 milestone-36.zh-TW.md。

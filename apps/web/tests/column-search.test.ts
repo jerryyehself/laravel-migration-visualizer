@@ -1,3 +1,6 @@
+import { createElement } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { SchemaGraph } from '../src/components/SchemaGraph';
 import { describe, expect, it } from 'vitest';
 import { matchingColumns } from '../src/graph-focus';
 import type { SchemaState } from '@lmv/migration-core';
@@ -26,4 +29,13 @@ describe('current snapshot column search', () => {
     const tables = Object.create(null); tables.__proto__ = table('__proto__', ['constructor']); tables.other = table('other', ['constructor']);
     expect(matchingColumns({ tables }, 'constructor')).toEqual([{ table: '__proto__', column: 'constructor' }, { table: 'other', column: 'constructor' }]);
   });
+});
+
+it('renders the initial known-empty graph with an unselected inspector and a blank-query hint', () => {
+  const html = renderToStaticMarkup(createElement(SchemaGraph, { schema: { tables: {} } }));
+  expect(html).toContain('搜尋目前快照欄位');
+  expect(html).toContain('輸入欄位名稱開始搜尋');
+  expect(html).toContain('已知的空白 schema');
+  expect(html).toContain('請先聚焦資料表');
+  expect(html).not.toContain('查看欄位');
 });

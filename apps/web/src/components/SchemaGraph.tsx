@@ -2,7 +2,7 @@ import { useId, useMemo, useRef, useState } from 'react';
 import type { PointerEvent, Dispatch, SetStateAction } from 'react';
 import type { SchemaState, SchemaDiff } from '@lmv/migration-core';
 import { TableDetails } from './TableDetails';
-import { matchingTables, focusGraphTable } from '../graph-focus';
+import { matchingTables, matchingColumns, focusGraphTable } from '../graph-focus';
 import { initialGraphView, type GraphLayout, type GraphView } from '../comparison-layout';
 import { graphDiffMarks, memberKey, markLabels } from '../graph-diff';
 import { schemaGraph, NODE_WIDTH, clampZoom, edgePath, type Point } from '../schema-graph';
@@ -15,6 +15,11 @@ export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 
   const nodeRefs = useRef(new Map<string, SVGGElement>());
   const [query, setQuery] = useState('');
   const searchId = useId();
+  const columnSearchId = useId();
+  const [columnQuery, setColumnQuery] = useState('');
+  const columnRequest = useRef(0);
+  const [selectedColumn, setSelectedColumn] = useState<{ table: string; column: string; request: number }>();
+  const columnMatches = useMemo(() => matchingColumns(schema, columnQuery), [schema, columnQuery]);
   const matches = matchingTables(graph.nodes.map(node => node.name), query);
   const bounds = layout ?? graph;
   const [localView, setLocalView] = useState(() => initialGraphView(bounds));
@@ -28,6 +33,7 @@ export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 
   function focusTable(name: string) {
     const node = graph.nodes.find(node => node.name === name);
     if (!node) return;
+    setSelectedColumn(undefined);
     setView(current => focusGraphTable(current, node, current.positions.get(name) ?? layout?.positions.get(name) ?? node));
     svg.current?.scrollIntoView({ block: 'center' });
     nodeRefs.current.get(name)?.focus({ preventScroll: true });
@@ -52,7 +58,7 @@ export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 
     if (active.name === null) setPan(value);
     else setPositions(current => new Map(current).set(active.name!, value));
   }
-  function reset() { drag.current = null; setView(initialGraphView(bounds)); }
+  function reset() { drag.current = null; setSelectedColumn(undefined); setView(initialGraphView(bounds)); }
   return <section className="schema-graph" aria-label={title}>
     <h2>{title}</h2>
     <p>{graph.nodes.length} 張資料表 · {graph.edges.length} 個外鍵關係。箭頭從本表指向引用表；不推測關聯基數。</p>
@@ -71,6 +77,17 @@ export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 
       <div className="table-focus-list">{matches.map(name => <button type="button" className="secondary" key={name} aria-pressed={focused === name} onClick={() => focusTable(name)}>聚焦資料表 {name}</button>)}</div>
       {matches.length === 0 && <p className="muted">沒有符合的資料表。</p>}
       <button type="button" className="secondary" disabled={query === ''} onClick={() => setQuery('')}>清除資料表搜尋</button>
+    </fieldset>
+    <fieldset className="graph-search">
+      <legend>尋找欄位</legend>
+      <label htmlFor={columnSearchId}>搜尋目前快照欄位</label>
+      <input id={columnSearchId} type="search" value={columnQuery} onChange={event => setColumnQuery(event.target.value)} placeholder="例如 user_id" />
+      <p className="muted" role="status">{columnQuery.trim() === '' ? '輸入欄位名稱開始搜尋。' : `找到 ${columnMatches.length} 個欄位。`}只搜尋此圖快照；圖形與外鍵仍完整顯示。</p>
+      <div className="table-focus-list">{columnMatches.map(match => <button type="button" className="secondary" key={JSON.stringify([match.table, match.column])}
+        aria-pressed={focused === match.table && selectedColumn?.table === match.table && selectedColumn.column === match.column}
+        onClick={() => { focusTable(match.table); setSelectedColumn({ ...match, request: ++columnRequest.current }); }}>查看欄位 {match.table}.{match.column}</button>)}</div>
+      {columnQuery.trim() !== '' && columnMatches.length === 0 && <p className="muted">沒有符合的欄位。</p>}
+      <button type="button" className="secondary" disabled={columnQuery === ''} onClick={() => setColumnQuery('')}>清除欄位搜尋</button>
     </fieldset>
     {graph.unresolved > 0 && <p className="unavailable">{graph.unresolved} 個外鍵缺少引用表，未繪製連線。</p>}
     {graph.nodes.length === 0 ? <p>已知的空白 schema：沒有資料表可繪製。</p> : <>
@@ -111,6 +128,6 @@ export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 
       </svg>
       <details><summary>外鍵連線明細</summary><ul>{graph.edges.map(edge => <li key={edge.id}>{marks.edges.has(edge.id) ? markLabels[marks.edges.get(edge.id)!] + ' · ' : ''}{edge.from} → {edge.to} · {edge.label}</li>)}</ul></details>
     </>}
-    <TableDetails schema={schema} selected={focused} />
+    <TableDetails schema={schema} selected={focused} selectedColumn={selectedColumn && selectedColumn.table === focused ? selectedColumn.column : undefined} selectionRequest={selectedColumn?.request} />
   </section>;
 }

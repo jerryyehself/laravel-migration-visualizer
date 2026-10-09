@@ -1,3 +1,4 @@
+import type { SchemaState } from '@lmv/migration-core';
 import type { GraphView } from './comparison-layout';
 import { clampZoom, NODE_WIDTH, type Point } from './schema-graph';
 export function matchingTables(names: readonly string[], query: string) {
@@ -8,4 +9,14 @@ export function focusGraphTable(view: GraphView, node: { name: string; height: n
   const zoom = clampZoom(Math.min(1, 480 / node.height));
   return { ...view, focused: node.name, zoom,
     pan: { x: 600 - (position.x + NODE_WIDTH / 2) * zoom, y: 280 - (position.y + node.height / 2) * zoom } };
+}
+
+export interface ColumnMatch { table: string; column: string }
+/** View query only: never filters or mutates the schema itself. */
+export function matchingColumns(schema: SchemaState | null, query: string): ColumnMatch[] {
+  const text = query.trim().toLowerCase();
+  if (!schema || !text) return [];
+  return Object.values(schema.tables).flatMap(table =>
+    Object.values(table.columns).filter(column => column.name.toLowerCase().includes(text))
+      .map(column => ({ table: table.name, column: column.name })));
 }
