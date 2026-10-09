@@ -1,10 +1,10 @@
 # R1：真實專案與使用任務基準
 
-- 狀態：approved（修訂 2 全部步驟；尚未開始執行）
+- 狀態：in_progress（修訂 2；R1.1～R1.3 已取得實測證據，待 PR 交付）
 - 日期／修訂：2026-10-09／2
 - 負責端：雲端開發 session 執行；本研究 session 僅研究、決策文件與交接，不做程式實作
 - 依賴：無
-- 相關 issue：未建立
+- 相關 issue：[#120](https://github.com/jerryyehself/laravel-migration-visualizer/issues/120)；[milestone 35](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/35)
 - 文件 PR：[初始保存 #117](https://github.com/jerryyehself/laravel-migration-visualizer/pull/117)、[R1.1 核准補登 #118](https://github.com/jerryyehself/laravel-migration-visualizer/pull/118) 已合併；全路線核准由 docs/approve-research-roadmap 分支交付
 - 功能 PR：無
 
@@ -57,5 +57,10 @@ A：直接新增 API，快但可能補錯痛點。B：先固定真實樣本與�
 
 ## 批次狀態與交付紀錄
 
-本提案修訂 2 的全部批次均 approved；雲端開發 session 應依序核對前置條件，開工時記錄 in_progress，取得實際驗收／交付證據後標 done。
-本次只更新核准文件，未啟動任何批次、未修改程式、未建立功能 issue／PR。狀態轉換依 [提案流程](README.md)。
+| 批次 | 執行證據 | 交付狀態 |
+|---|---|---|
+| R1.1 | 兩個固定公開專案、118 檔來源雜湊、Laravel 版本及 MIT 原文核對 | in_progress：證據完成，待此批 PR 合併 |
+| R1.2 | 112 PHP 原樣分析，2/1/6 與 0/1/102；重取來源再現相同結果 | in_progress：證據完成，待此批 PR 合併 |
+| R1.3 | Chromium 結構／變更任務、未知快照／切換驗收；R2/R3 有限建議 | in_progress：證據完成，待此批 PR 合併 |
+
+2026-10-09 雲端執行；輸入 main bdd64bc。來源、實測、任務、可重現方式與限制見 [R1 基準報告](../research/r1-baseline.zh-TW.md)。milestone 35、issue #120；PR 最新 HEAD CI／merge 未完成前不稱 done。沒有修改 core／UI；R2～R6 維持 approved，未算入本批交付。
