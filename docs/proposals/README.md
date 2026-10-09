@@ -61,7 +61,7 @@ R 編號是研究提案 ID，不是已建立的 GitHub milestone。順序可依�
 - [A-01 定位比對報告](A-01-positioning-report.zh-TW.md)：外部已核實能力與研究推論分開；後續决策需記錄採用或不採用的理由。
 - [A-02 功能探索方法與需求證據審查](A-02-discovery-evidence.zh-TW.md)：draft；官方方法來源、先前候選的證據缺口與研究記錄格式，不是 R7 或開發授權。
 - [A-03 多人 migration 協作競品核對](A-03-migration-collaboration.zh-TW.md)：draft；Bytebase／Atlas／Neon 的審查、PR 結果與隔離 DB 分支官方證據，不核准 LMV 擴增範圍。
-- [A-04 現行介面與顯示整理候選](A-04-ui-presentation-audit.zh-TW.md)：draft；最新 main 的範例／DTO／編輯／結果入口盤點，以及有限的顯示整理範圍，尚未核准實作。
+- [A-04 現行介面與顯示整理候選](A-04-ui-presentation-audit.zh-TW.md)：draft 修訂 2；入口與選取流程盤點、表的順序閱讀缺口，以及統一步驟／明細入口的候選，尚未核准實作。
 - [提案模板](TEMPLATE.zh-TW.md)。
 
 ## 使用者確認紀錄
