@@ -1,0 +1,105 @@
+{
+  "browser": "151.0.7922.173",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "results": [
+    {
+      "name": "L01 Laravel.io 完整輸入、final 未知與成功前綴",
+      "status": "failed",
+      "error": "Expecting value: line 1 column 1 (char 0)",
+      "traceback": "Traceback (most recent call last):\n  File \"/tmp/lmv-independent-browser.py\", line 10, in check\n    detail=fn(); results.append({'name':name,'status':'passed','detail':detail,'seconds':round(time.time()-started,2)})\n           ^^^^\n  File \"/tmp/lmv-independent-browser.py\", line 60, in laravel_unknown\n    r=project_json(); assert r['finalSchema'] is None and sorted(r['lastValidSchema']['tables'])==['job_batches','jobs']\n      ^^^^^^^^^^^^^^\n  File \"/tmp/lmv-independent-browser.py\", line 46, in project_json\n    return json.loads(detail.locator('pre').inner_text())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py\", line 346, in loads\n    return _default_decoder.decode(s)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py\", line 338, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py\", line 356, in raw_decode\n    raise JSONDecodeError(\"Expecting value\", s, err.value) from None\njson.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)\n"
+    },
+    {
+      "name": "L02 表／欄位搜尋至真實明細與鍵盤焦點",
+      "status": "passed",
+      "detail": "Table search preserves both graph nodes; trimmed case-insensitive column search, keyboard Enter and selected detail focus verified.",
+      "seconds": 0.6
+    },
+    {
+      "name": "L03 清搜尋、重複選取與無匹配",
+      "status": "passed",
+      "detail": "Clear, repeated same-column selection, no-match and unchanged graph checked.",
+      "seconds": 0.37
+    },
+    {
+      "name": "L04 完整結構任務：PHP、對應摘要與返回",
+      "status": "failed",
+      "error": "Locator.inner_text: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\".step-details > h2\")\n",
+      "traceback": "Traceback (most recent call last):\n  File \"/tmp/lmv-independent-browser.py\", line 10, in check\n    detail=fn(); results.append({'name':name,'status':'passed','detail':detail,'seconds':round(time.time()-started,2)})\n           ^^^^\n  File \"/tmp/lmv-independent-browser.py\", line 106, in structure_source\n    includes(page.locator('.step-details > h2'),'2024_08_28_104755_create_jobs_table.php')\n  File \"/tmp/lmv-independent-browser.py\", line 20, in includes\n    text=loc.inner_text()\n         ^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/sync_api/_generated.py\", line 19446, in inner_text\n    self._sync(self._impl_obj.inner_text(timeout=to_milliseconds(timeout)))\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_sync_base.py\", line 115, in _sync\n    return task.result()\n           ^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_locator.py\", line 498, in inner_text\n    return await self._frame.inner_text(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_frame.py\", line 743, in inner_text\n    return await self._channel.send(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_connection.py\", line 76, in send\n    return await self._connection.wrap_api_call(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_connection.py\", line 632, in wrap_api_call\n    raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nplaywright._impl._errors.TimeoutError: Locator.inner_text: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\".step-details > h2\")\n\n"
+    },
+    {
+      "name": "L05 完整單次變更任務與新增物件側別",
+      "status": "passed",
+      "detail": "9 operations, real tableAdded diff, source line19 and return focus; newly added reserved_at only navigates After.",
+      "seconds": 0.44
+    },
+    {
+      "name": "L06 表明細導航與快照切換重設",
+      "status": "passed",
+      "detail": "Table detail navigation focuses inspector; manual snapshot change clears search/selection.",
+      "seconds": 0.23
+    },
+    {
+      "name": "L07 failed／blocked 操作與快照可信度",
+      "status": "failed",
+      "error": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for get_by_role(\"region\", name=\"單次變更閱讀\", exact=True).get_by_role(\"button\", name=\"查看操作 PHP\").first\n",
+      "traceback": "Traceback (most recent call last):\n  File \"/tmp/lmv-independent-browser.py\", line 10, in check\n    detail=fn(); results.append({'name':name,'status':'passed','detail':detail,'seconds':round(time.time()-started,2)})\n           ^^^^\n  File \"/tmp/lmv-independent-browser.py\", line 150, in failed_blocked\n    op.click();includes(source_panel(),'前序阻擋：未套用');back_to(op)\n    ^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/sync_api/_generated.py\", line 17876, in click\n    self._sync(\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_sync_base.py\", line 115, in _sync\n    return task.result()\n           ^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_locator.py\", line 165, in click\n    return await self._frame._click(self._selector, strict=True, **params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_frame.py\", line 593, in _click\n    await self._channel.send(\"click\", self._timeout, locals_to_params(locals()))\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_connection.py\", line 76, in send\n    return await self._connection.wrap_api_call(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_connection.py\", line 632, in wrap_api_call\n    raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nplaywright._impl._errors.TimeoutError: Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for get_by_role(\"region\", name=\"單次變更閱讀\", exact=True).get_by_role(\"button\", name=\"查看操作 PHP\").first\n\n"
+    },
+    {
+      "name": "L08 結果篩選與無結果",
+      "status": "passed",
+      "detail": "Status/name filters preserve full schema; zero results remove reading; clear restores real migration.",
+      "seconds": 0.27
+    },
+    {
+      "name": "L09 副本修改使舊分析／來源／匯出失效",
+      "status": "passed",
+      "detail": "Only in-memory browser copy edited; old result, sources, summary and export controls unmounted.",
+      "seconds": 0.31
+    },
+    {
+      "name": "B01 BookStack 原始完整樣本與 helper／DB write 界線",
+      "status": "failed",
+      "error": "Expecting value: line 1 column 1 (char 0)",
+      "traceback": "Traceback (most recent call last):\n  File \"/tmp/lmv-independent-browser.py\", line 10, in check\n    detail=fn(); results.append({'name':name,'status':'passed','detail':detail,'seconds':round(time.time()-started,2)})\n           ^^^^\n  File \"/tmp/lmv-independent-browser.py\", line 183, in bookstack\n    r=project_json();assert r['finalSchema'] is None and r['lastValidSchema']['tables']=={}\n      ^^^^^^^^^^^^^^\n  File \"/tmp/lmv-independent-browser.py\", line 46, in project_json\n    return json.loads(detail.locator('pre').text_content())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py\", line 346, in loads\n    return _default_decoder.decode(s)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py\", line 338, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py\", line 356, in raw_decode\n    raise JSONDecodeError(\"Expecting value\", s, err.value) from None\njson.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)\n"
+    },
+    {
+      "name": "S01 rename、完整變更任務與 Before／After 自己的資料",
+      "status": "passed",
+      "detail": "Rename literal operation and removed+added diff kept separate; old Before/new After only, PHP line6 return focus; comparison sides independently searched.",
+      "seconds": 1.2
+    },
+    {
+      "name": "S02 快照／選取切換使來源失效",
+      "status": "passed",
+      "detail": "Changing snapshot and focusing a table invalidate old source panel/column.",
+      "seconds": 0.52
+    },
+    {
+      "name": "S03 內建失敗案例可信度回歸",
+      "status": "failed",
+      "error": "Expecting value: line 1 column 1 (char 0)",
+      "traceback": "Traceback (most recent call last):\n  File \"/tmp/lmv-independent-browser.py\", line 10, in check\n    detail=fn(); results.append({'name':name,'status':'passed','detail':detail,'seconds':round(time.time()-started,2)})\n           ^^^^\n  File \"/tmp/lmv-independent-browser.py\", line 250, in failure_fixture\n    load_sample('載入失敗範例');r=project_json()\n                                  ^^^^^^^^^^^^^^\n  File \"/tmp/lmv-independent-browser.py\", line 46, in project_json\n    return json.loads(detail.locator('pre').text_content())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py\", line 346, in loads\n    return _default_decoder.decode(s)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py\", line 338, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py\", line 356, in raw_decode\n    raise JSONDecodeError(\"Expecting value\", s, err.value) from None\njson.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)\n"
+    },
+    {
+      "name": "S04 資料表 rename／移除側別導航",
+      "status": "passed",
+      "detail": "Table rename/remove navigates exact existing side, no identity inference or copied table.",
+      "seconds": 0.82
+    },
+    {
+      "name": "S05 已知空白／已知無變更／未知的區別",
+      "status": "failed",
+      "error": "Expecting value: line 1 column 1 (char 0)",
+      "traceback": "Traceback (most recent call last):\n  File \"/tmp/lmv-independent-browser.py\", line 10, in check\n    detail=fn(); results.append({'name':name,'status':'passed','detail':detail,'seconds':round(time.time()-started,2)})\n           ^^^^\n  File \"/tmp/lmv-independent-browser.py\", line 279, in noop\n    r=project_json();assert r['complete'] and r['finalSchema']=={'tables':{}} and r['migrations'][0]['diff']=={'changes':[]}\n      ^^^^^^^^^^^^^^\n  File \"/tmp/lmv-independent-browser.py\", line 46, in project_json\n    return json.loads(detail.locator('pre').text_content())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py\", line 346, in loads\n    return _default_decoder.decode(s)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py\", line 338, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py\", line 356, in raw_decode\n    raise JSONDecodeError(\"Expecting value\", s, err.value) from None\njson.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)\n"
+    }
+  ],
+  "console": [
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    }
+  ]
+}

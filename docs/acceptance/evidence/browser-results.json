@@ -1,0 +1,112 @@
+{
+  "browser": "151.0.7922.173",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "results": [
+    {
+      "name": "L01 Laravel.io 完整輸入、final 未知與成功前綴",
+      "status": "passed",
+      "detail": "Browser-imported original 9 PHP; counts 2/1/6; final null, prefix job_batches/jobs; raw DTO checked.",
+      "seconds": 0.78
+    },
+    {
+      "name": "L02 表／欄位搜尋至真實明細與鍵盤焦點",
+      "status": "passed",
+      "detail": "Table search preserves both graph nodes; trimmed case-insensitive column search, keyboard Enter and selected detail focus verified.",
+      "seconds": 0.52
+    },
+    {
+      "name": "L03 清搜尋、重複選取與無匹配",
+      "status": "passed",
+      "detail": "Clear, repeated same-column selection, no-match and unchanged graph checked.",
+      "seconds": 0.37
+    },
+    {
+      "name": "L04 完整結構任務：PHP、對應摘要與返回",
+      "status": "passed",
+      "detail": "Complete structure→source line19→matching migration summary→original after-1/column/source-button focus task passed; filters cleared on source navigation.",
+      "seconds": 0.62
+    },
+    {
+      "name": "L05 完整單次變更任務與新增物件側別",
+      "status": "passed",
+      "detail": "9 operations, real tableAdded diff, source line19 and return focus; newly added reserved_at only navigates After.",
+      "seconds": 0.47
+    },
+    {
+      "name": "L06 表明細導航與快照切換重設",
+      "status": "passed",
+      "detail": "Table detail navigation focuses inspector; manual snapshot change clears search/selection.",
+      "seconds": 0.21
+    },
+    {
+      "name": "L07 failed／blocked 操作與快照可信度",
+      "status": "passed",
+      "detail": "First failed preserves graph before but no after; blocked both null and no detail navigation; blocked syntax source labelled not applied.",
+      "seconds": 0.65
+    },
+    {
+      "name": "L08 結果篩選與無結果",
+      "status": "passed",
+      "detail": "Status/name filters preserve full schema; zero results remove reading; clear restores real migration.",
+      "seconds": 0.28
+    },
+    {
+      "name": "L09 副本修改使舊分析／來源／匯出失效",
+      "status": "passed",
+      "detail": "Only in-memory browser copy edited; old result, sources, summary and export controls unmounted.",
+      "seconds": 0.33
+    },
+    {
+      "name": "B01 BookStack 原始完整樣本與 helper／DB write 界線",
+      "status": "passed",
+      "detail": "103 original PHP, counts 0/1/102; helper recognized at22, only DB write diagnostic26; known empty vs null; no speculative users table.",
+      "seconds": 2.92
+    },
+    {
+      "name": "S01 rename、完整變更任務與 Before／After 自己的資料",
+      "status": "passed",
+      "detail": "Rename literal operation and removed+added diff kept separate; old Before/new After only, PHP line6 return focus; comparison sides independently searched.",
+      "seconds": 1.13
+    },
+    {
+      "name": "S02 快照／選取切換使來源失效",
+      "status": "passed",
+      "detail": "Changing snapshot and focusing a table invalidate old source panel/column.",
+      "seconds": 0.52
+    },
+    {
+      "name": "S03 內建失敗案例可信度回歸",
+      "status": "passed",
+      "detail": {
+        "failedIndex": 1,
+        "statuses": [
+          "applied",
+          "failed",
+          "blocked"
+        ]
+      },
+      "seconds": 0.44
+    },
+    {
+      "name": "S04 資料表 rename／移除側別導航",
+      "status": "passed",
+      "detail": "Table rename/remove navigates exact existing side, no identity inference or copied table.",
+      "seconds": 0.77
+    },
+    {
+      "name": "S05 已知空白／已知無變更／未知的區別",
+      "status": "passed",
+      "detail": "In-memory independent one-file dropIfExists absent input; known empty, zero diff and applied distinguished from unknown. No repository fixture modified.",
+      "seconds": 0.34
+    }
+  ],
+  "console": [
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    }
+  ]
+}

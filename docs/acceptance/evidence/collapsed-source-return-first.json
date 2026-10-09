@@ -1,0 +1,14 @@
+{
+  "snapshot": "after-1",
+  "originConnected": true,
+  "originVisible": false,
+  "originFocused": false,
+  "selectedColumnExists": 1,
+  "selectedColumnVisible": false,
+  "sourcePanelRemaining": 0,
+  "focus": {
+    "tag": "BODY",
+    "text": "VERSION 1.0.0 / STATIC ANALYSISLaravel Migration VisualizerPHP → AtomicOperation → SchemaState → SchemaDiff靜態分析工作台。僅讀取 up()，不執行 PHP，也不連接資料庫。使用範圍與限制可分析"
+  },
+  "returnNotice": 0
+}
