@@ -1,6 +1,6 @@
 # R4：結構與 PHP 來源往返
 
-核准 PR #119／R4 修訂 2；R1 #121、R3 #123 已合併。雲端分支 feat/r4-operation-sources；milestone 38／issue #127。認證恢復後已移到 R2 #126 merge cbfdf613 的最新 main；等待本批 PR／CI 交付。core 0.15.0 來自已合併 R2；本批沒有新增 core export 或 JSON variant。
+核准 PR #119／R4 修訂 2；R1 #121、R3 #123 已合併。雲端分支 feat/r4-operation-sources；milestone 38／issue #127。認證恢復後已移到 R2 #126 merge cbfdf613 的最新 main；本批已由 PR #128 merge 47b8e0ac1f57edf8727c6a896fa6de8708b6de0d；issue／milestone closed。core 0.15.0 來自已合併 R2；本批沒有新增 core export 或 JSON variant。
 
 ## 查詢契約
 
@@ -24,4 +24,4 @@ ProjectResults 的 state 保存目前 source selection，ref 保存原按鈕 DOM
 
 Chromium／R1 Laravel.io：reserved_at → PHP 第 19 行；Enter 可用；結果篩選清除且選正確 migration；返回保留 after-1、table／column／焦點；換快照清來源；副本修改清分析／來源。內建失敗樣本確認 failed／blocked 語法與 applied 不混淆。console 無 warnings/errors；紀錄 research/r4-browser.json，截圖 artifacts/r4-operation-source.png。未做下載、手機或 DB 執行。
 
-統一 verify（新增 constraint removal test 前）650 tests、typecheck、build、12 demos／15 步通過；新一項追加回歸在 8 service tests 中通過，隨後完整 npm test 651 tests 通過。CI／GitHub 交付需認證恢復後另記，不沿用 R2 的 CI 當 R4 證據。
+統一 verify（新增 constraint removal test 前）650 tests、typecheck、build、12 demos／15 步通過；新一項追加回歸在 8 service tests 中通過，隨後完整 npm test 651 tests 通過。恢復認證後，完整 verify 651 tests／15 步通過。PR #128 最新 head 5ead8c086507878d0a10fa0fe1e74c7d6d8b23a9／run 37901972576 success；其獨立 CI 通過後合併。首輪 CI 因新增 tests 依賴既有 dist 失敗，改 source import 後通過。

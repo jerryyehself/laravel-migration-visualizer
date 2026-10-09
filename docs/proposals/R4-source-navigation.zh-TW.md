@@ -63,7 +63,7 @@ R4.1 契約已記錄，R4.2～R4.4 的查詢／元件／瀏覽器驗收已在本
 
 ## R4.1 查詢與導航契約（2026-10-09）
 
-核准 PR #119；前置 R1 #121／R3 #123 已合併。GitHub 憑證失效，issue／milestone 尚不能建立；本地分支 feat/r4-operation-sources 先保存可審查實作，恢復認證後補追蹤及 PR。不稱已發布或已合併。
+核准 PR #119；前置 R1 #121／R3 #123 已合併。開工時曾因 GitHub 401 先保存本地分支 feat/r4-operation-sources，之後認證恢復，已補 issue #127／milestone 38／PR #128 並合併；該阻礙是歷史紀錄。
 
 查詢為純 web adapter，不公開新 core export／DTO。輸入 ProjectAnalysis 及 table、可選 column 的完整 literal 名稱；輸出依 core migration 順序／operationIndex 排序的 migrationIndex、filename、status、operation、SourceLocation。table 查詢包含 op.table、renameTable 的 to、addForeignKey 的 referencedTable。column 查詢只包含同表 addColumn／changeColumn 的 column.name、dropColumn 的字串、renameColumn 的 from/to、addIndex.columns、addForeignKey 的本表 columns 或目標 referencedColumns。create/drop/renameTable、drop/renameIndex、dropForeignKey 沒有明確欄位名稱，不推導欄位 lineage，也不由 schemaBefore 猜參與欄位。
 
@@ -73,6 +73,6 @@ TableDetails 在已選表及已選欄位顯示來源列表，點列跳對應 mig
 
 有限檔案：operation-sources query／tests、來源列表及唯讀面板、TableDetails／SchemaGraph／SchemaComparison／SchemaSnapshots／ProjectResults props 接線、來源片段 utility、中文教學。沒有 IO／parser／replay／diff 改動，沒有新編輯器、持久化或模型解析。
 
-執行證據與教學：[R4 操作來源](../r4-operation-sources.zh-TW.md)。未新增 core export 或物件 identity；GitHub 認證恢復後須核對當時最新 main／保存分支，補追蹤及 PR，不把本地驗證稱 CI。
+執行證據與教學：[R4 操作來源](../r4-operation-sources.zh-TW.md)。未新增 core export 或物件 identity；GitHub 交付已完成，獨立 head CI 及 merge 證據見下段。
 
 交付：head 5ead8c086507878d0a10fa0fe1e74c7d6d8b23a9／validate run 37901972576 success；issue #127／milestone 38 closed。651 tests／15 verify 步驟／12 demos 與六項來源往返瀏覽器任務通過。首輪 CI 發現 tests 依賴已產出的 dist，修為既有 source import 後最新 CI 通過。

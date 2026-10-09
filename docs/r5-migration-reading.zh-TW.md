@@ -20,6 +20,6 @@ ProjectResults state 保存 snapshotId 及 focusTarget，像 controller 保存�
 
 六項 adapter tests：noop／failed／blocked、欄位 rename、表 rename、整檔失敗語法、prototype 名稱、輸入不變與原索引。三項呈現 tests：狀態已知性、rename／側別缺失、React escaping／來源未知。tests 使用 source import，fresh checkout 不需事先 dist。
 
-Chromium 八項任務：真實 Laravel.io jobs.reserved_at 新增僅 after 可用；摘要 PHP 定位第 19 行及返回焦點／欄位；表明細導航與選單重設；明確 rename 及 removed+added；舊欄位 before、新欄位 after；failed before 可用、after 未知；blocked 兩側未知不可導航；副本修改清摘要。console 無 warnings/errors；research/r5-browser.json。截圖 artifacts/r5-reading-summary.png、r5-migration-reading.png。雲端 npm run verify：660 tests、typecheck、build、12 demos／15 步全部通過；本批 PR 最新 head CI 仍需另核對。
+Chromium 八項任務：真實 Laravel.io jobs.reserved_at 新增僅 after 可用；摘要 PHP 定位第 19 行及返回焦點／欄位；表明細導航與選單重設；明確 rename 及 removed+added；舊欄位 before、新欄位 after；failed before 可用、after 未知；blocked 兩側未知不可導航；副本修改清摘要。console 無 warnings/errors；research/r5-browser.json。截圖 artifacts/r5-reading-summary.png、r5-migration-reading.png。雲端 npm run verify：660 tests、typecheck、build、12 demos／15 步全部通過；PR #130 最新 head 5db1590b39f014d1beafed6cae575366e37df87a／run 37902435289 success；merge 28c1d59d365673a07f558fe42f30fbaf673f6d4e，issue #129／milestone 39 closed。
 
 R4 六項瀏覽器回歸另行確認來源原有流程。沒有測下載、全部手機／瀏覽器或 DB runtime；不新增 timeline、任意版本比較或部署安全判斷。

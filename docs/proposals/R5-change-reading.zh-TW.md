@@ -63,7 +63,7 @@ CI／CLI、部署安全、任意兩版本比較、semantic refactoring、down()�
 
 ## R5.1 本次閱讀契約（2026-10-09）
 
-核准 PR #119；R1 已合併，R4 來源契約與六項瀏覽器任務可讀，已由 #128 合併 47b8e0a。本地分支 feat/r5-migration-reading，在 R4 已保存 commit 上續作；恢復認證後分開 PR，不把 stacked 本地實作當已合併。
+核准 PR #119；R1 已合併，R4 來源契約與六項瀏覽器任務可讀，已由 #128 合併 47b8e0a。本地分支 feat/r5-migration-reading，在 R4 已保存 commit 上續作；當時 stacked 本地實作已分開 PR #130 交付，merge 證據見下段。
 
 逐檔閱讀順序：狀態／before-after 已知性 → 診斷 → 已識別語法 operations 與 PHP 來源 → 真實結構 diff → 涉及物件的 before/after 明細跳轉。rename operation 明列 from→to，diff 仍原樣 removed+added，不做語意合併。完整 raw 快照／DTO 保留在展開面板。
 
@@ -71,6 +71,6 @@ CI／CLI、部署安全、任意兩版本比較、semantic refactoring、down()�
 
 物件明細按鈕只導向現有 before-N/after-N 快照並初始化該表／欄位聚焦；新增項目不能補畫 before，移除項目不能補畫 after。此明確跳轉重設該圖 view；一般快照選單仍清選取。沿用 R4 source→原處返回及修改失效，不另建編輯器／任意兩版本比較／部署安全規則。
 
-R5.2／R5.3 本地摘要及導航完成；九項新增 tests，八項 Chromium 任務／console 無 warnings/errors。R5.4 正在統一驗證與 PR 交付；未標 done。
+R5.2／R5.3 本地摘要及導航完成；九項新增 tests，八項 Chromium 任務／console 無 warnings/errors。R5.4 統一驗證、PR 最新 head CI 與合併已完成；狀態 done，證據見下段。
 
 交付：PR #130 head 5db1590b39f014d1beafed6cae575366e37df87a／validate run 37902435289 success，issue #129／milestone 39 closed。660 tests／15 verify 步驟／12 demos；八項 R5、六項 R4、十一項 R3 Chromium 任務通過，console 無 warning/error。
