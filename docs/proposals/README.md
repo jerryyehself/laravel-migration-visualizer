@@ -69,7 +69,7 @@ R 編號是研究提案 ID，不是已建立的 GitHub milestone。順序可依�
 - 必要規格及有限 API 依 R1 證據具體化並記錄；條件式步驟保留條件，超出排除或可信度契約的需求仍另立 draft。
 - 使用者已授權確定決策文件檢查後合併 main；研究 session 只更新文件，不做程式實作。
 
-相關 issue：未建立。文件 PR：[保存提案與派工流程 #117](https://github.com/jerryyehself/laravel-migration-visualizer/pull/117)，已合併。R1.1 核准補登 [#118](https://github.com/jerryyehself/laravel-migration-visualizer/pull/118) 已合併；全路線核准由 docs/approve-research-roadmap 分支交付。功能 PR：無。
+初始文件階段（歷史）：尚未建立功能 issue。文件 PR：[保存提案與派工流程 #117](https://github.com/jerryyehself/laravel-migration-visualizer/pull/117)，已合併。R1.1 核准補登 [#118](https://github.com/jerryyehself/laravel-migration-visualizer/pull/118) 已合併；全路線核准由 docs/approve-research-roadmap 分支交付；當時尚無功能 PR。目前功能交付見上表與各提案。
 
 ## 本輪完成（2026-10-09）
 
