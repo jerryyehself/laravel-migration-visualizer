@@ -67,3 +67,5 @@ M27～M29 已交付並合併，證據見 github-milestones.md。Morph indexName 
 ## 2026-10-09 當前核對
 
 R1～R6 修訂 2 全部經使用者核准，雲端開發、研究端只保存文件；以 proposals/README.md 狀態與實際 PR／CI／merge 為準。R1／R3／R2／R4／R5 已由 #121／#123／#126／#128／#130 交付；core 0.15.0，660 tests／12 demos。R6 整合驗收與限制見 r6-integration-acceptance.zh-TW.md。R2 僅補 nullableTimestamps 靜態別名，樣本仍有 dynamic after／DB write 拒絕；R3 FK 導覽缺需求證據跳過。路線 done 不授權新增 draft 功能。
+
+R6 #132／ce403562 已交付，R1～R6 修訂 2 狀態均 done，R3.3 依證據跳過。最新 head CI／merge 與雲端實證已保存；後續開發需新具體核准範圍。

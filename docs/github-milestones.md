@@ -167,3 +167,5 @@ M39 已由 PR #130 merge 28c1d59d365673a07f558fe42f30fbaf673f6d4e；head 5db1590
 ## M40：R6 整合驗收
 
 issue #131／milestone 40；核准 R1～R5 已合併範圍，本輪十一項 Chromium 任務通過。雲端 verify 660 tests／15 步／12 demos 通過；最新文件 PR CI／merge 於交付後補登。詳見 r6-integration-acceptance.zh-TW.md。
+
+M40 交付：PR #132 merge ce403562788959039baee1bdebe59ed7b2302029；head b974995d2c07b6be4f851758c750081381327360／validate run 37903282365 success。issue #131／milestone 40 closed。 R1～R6 修訂 2 本輪完成；詳見提案入口與 R6 教學。

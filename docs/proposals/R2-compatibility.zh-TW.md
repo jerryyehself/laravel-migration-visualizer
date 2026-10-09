@@ -6,7 +6,7 @@
 - 依賴：R1 完成，且具體 API／參數／拒絕範圍於核准路線內具體化並記錄
 - 相關 issue：#125；milestone 37
 - 文件 PR：[初始保存 #117](https://github.com/jerryyehself/laravel-migration-visualizer/pull/117)、[R1.1 核准補登 #118](https://github.com/jerryyehself/laravel-migration-visualizer/pull/118) 已合併；全路線核准由 docs/approve-research-roadmap 分支交付
-- 功能 PR：無
+- 功能 PR：#126，已合併
 
 ## 要解決的問題
 單個不支援語法可能阻斷專案，不能用 broad API 清單代替樣本痛點。
