@@ -5,7 +5,7 @@
 ## 研究提案與本地派工（2026-10-09）
 - 每次使用者說「繼續」，本地開發端先保護未提交工作、同步並讀取 [提案入口](docs/proposals/README.md)，核對最新已核准決策與依赖，再選下一項工作。
 - 研究端可透過文件分支／PR 保存 draft；只有使用者明確確認具體提案與範圍才標 approved。開發只執行 approved，或續作可追溯核准的 in_progress；歷史自主工作授權不把研究構想變成需求。
-- 文件 PR 合併不等於核准功能。R1～R6 目前是 draft；[A-01](docs/proposals/A-01-positioning-report.zh-TW.md) 是後續決策參考，不是功能清單。
+- 文件 PR 合併不等於核准功能。R1 修訂 2 的 R1.1 已於 2026-10-09 經使用者確認 approved，僅選至少兩個公開樣本並記錄 commit／Laravel 版本／授權／migration 路徑，不修改程式；本地端不重問此批核准。R1.2、R1.3 與 R2～R6 仍為 draft；[A-01](docs/proposals/A-01-positioning-report.zh-TW.md) 是後續決策參考，不是功能清單。
 - 本地負責開發與每次「繼續」的檢查；研究 session 維持研究／交接，不雙邊同時實作。不自行背景輪詢；固定時間檢查需另設排程，本次未建立。
 
 ## 持續工作授權
