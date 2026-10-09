@@ -100,3 +100,6 @@ summary { cursor: pointer; padding: 10px 0; color: #176d62; }
 .column-detail dd { margin: 0; }
 
 .column-detail[data-selected="true"] { border: 2px solid #176d62; background: #e4f3ef; }
+
+.operation-source-list { overflow-wrap: anywhere; }
+.operation-source-list li { margin-bottom: 12px; }

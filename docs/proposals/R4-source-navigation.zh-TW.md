@@ -1,6 +1,6 @@
 # R4：結構與 migration 來源串接
 
-- 狀態：approved（修訂 2 全部步驟；尚未開始執行）
+- 狀態：in_progress（修訂 2；名稱直接涉及的 operation 查詢與來源往返）
 - 日期／修訂：2026-10-09／2
 - 負責端：雲端開發 session 執行；本研究 session 僅研究、決策文件與交接，不做程式實作
 - 依賴：R1、R3；來源查詢契約於核准路線內具體化並記錄
@@ -59,4 +59,18 @@ Semantic rename inference、穩定物件 identity、timeline、DB／models 關�
 ## 批次狀態與交付紀錄
 
 本提案修訂 2 的全部批次均 approved；雲端開發 session 應依序核對前置條件，開工時記錄 in_progress，取得實際驗收／交付證據後標 done。
-本次只更新核准文件，未啟動任何批次、未修改程式、未建立功能 issue／PR。狀態轉換依 [提案流程](README.md)。
+R4.1 契約已記錄，R4.2～R4.4 的查詢／元件／瀏覽器驗收已在本地完成，尚待 GitHub 追蹤／PR／CI／merge。狀態轉換依 [提案流程](README.md)。
+
+## R4.1 查詢與導航契約（2026-10-09）
+
+核准 PR #119；前置 R1 #121／R3 #123 已合併。GitHub 憑證失效，issue／milestone 尚不能建立；本地分支 feat/r4-operation-sources 先保存可審查實作，恢復認證後補追蹤及 PR。不稱已發布或已合併。
+
+查詢為純 web adapter，不公開新 core export／DTO。輸入 ProjectAnalysis 及 table、可選 column 的完整 literal 名稱；輸出依 core migration 順序／operationIndex 排序的 migrationIndex、filename、status、operation、SourceLocation。table 查詢包含 op.table、renameTable 的 to、addForeignKey 的 referencedTable。column 查詢只包含同表 addColumn／changeColumn 的 column.name、dropColumn 的字串、renameColumn 的 from/to、addIndex.columns、addForeignKey 的本表 columns 或目標 referencedColumns。create/drop/renameTable、drop/renameIndex、dropForeignKey 沒有明確欄位名稱，不推導欄位 lineage，也不由 schemaBefore 猜參與欄位。
+
+列出 applied／failed／blocked 的語法涉及；只有 applied 表示靜態 replay 成功，後兩者不得說生效。同名刪除重建保留每個 migrationIndex／operationIndex，不合併身分；名稱 rename 只匹配 operation 明列的前後名稱，不追蹤跨檔身分。source 缺少／行號無效標未知，不補值。
+
+TableDetails 在已選表及已選欄位顯示來源列表，點列跳對應 migration 結果與唯讀 PHP 片段。原快照／表／欄位／畫面仍保留，返回按鈕回到原來源列的焦點。切換快照或選取另一物件清來源面板；副本修改沿用既有結果失效／卸載機制。回到斷開的 DOM 目標不假裝返回；清面板後明列須重新選取。
+
+有限檔案：operation-sources query／tests、來源列表及唯讀面板、TableDetails／SchemaGraph／SchemaComparison／SchemaSnapshots／ProjectResults props 接線、來源片段 utility、中文教學。沒有 IO／parser／replay／diff 改動，沒有新編輯器、持久化或模型解析。
+
+執行證據與教學：[R4 操作來源](../r4-operation-sources.zh-TW.md)。未新增 core export 或物件 identity；GitHub 認證恢復後須核對當時最新 main／保存分支，補追蹤及 PR，不把本地驗證稱 CI。

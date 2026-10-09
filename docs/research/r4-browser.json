@@ -1,0 +1,11 @@
+{
+  "passed": [
+    "structure column to exact PHP line via Enter",
+    "source resets result filters and selects original migration index",
+    "return preserves snapshot/table/column and button focus",
+    "snapshot switch clears source",
+    "input edit invalidates analysis and source",
+    "failed and blocked syntax distinct from applied"
+  ],
+  "consoleErrors": []
+}
