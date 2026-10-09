@@ -5,7 +5,7 @@
 - 負責端：雲端開發 session 執行；本研究 session 僅研究、決策文件與交接，不做程式實作
 - 依賴：R1、R4
 - 相關 issue：未建立
-- 文件 PR：docs/research-proposals 分支的保存 PR（不等於功能核准）
+- 文件 PR：[初始保存 #117](https://github.com/jerryyehself/laravel-migration-visualizer/pull/117)、[R1.1 核准補登 #118](https://github.com/jerryyehself/laravel-migration-visualizer/pull/118) 已合併；全路線核准由 docs/approve-research-roadmap 分支交付
 - 功能 PR：無
 
 ## 要解決的問題
@@ -39,8 +39,8 @@ CI／CLI、部署安全、任意兩版本比較、semantic refactoring、down()�
 
 | 批次 | 前置條件 | 本次只做的範圍 | 交付物與驗證 | 停止點／本次不做 |
 |---|---|---|---|---|
-| R5.1 閱讀流程規格 | R1／R4 結果可讀 | 盤點現有逐檔結果／比較，指定 applied、failed、blocked 各自入口與展示順序；定義受影響清單與兩側明細跳轉 | 一份有限互動規格、三狀態案例與核准記錄 | 不重做比較引擎；任意兩快照比較與安全警示排除 |
-| R5.2 單次變更摘要 | 流程規格已核准 | 只整合當前 migration 的 operations、diff、diagnostics 與受影響物件列表；rename 操作證據和 removed+added diff 分開 | 成功／無變更／failed／blocked adapter 與呈現驗證 | operations 不等於已生效；未知不可轉成空 diff |
+| R5.1 閱讀流程規格 | R1／R4 結果可讀 | 盤點現有逐檔結果／比較，指定 applied、failed、blocked 各自入口與展示順序；定義受影響清單與兩側明細跳轉 | 一份有限互動規格、三狀態案例與既有核准記錄 | 不重做比較引擎；任意兩快照比較與安全警示排除 |
+| R5.2 單次變更摘要 | 流程規格已記錄且符合核准路線 | 只整合當前 migration 的 operations、diff、diagnostics 與受影響物件列表；rename 操作證據和 removed+added diff 分開 | 成功／無變更／failed／blocked adapter 與呈現驗證 | operations 不等於已生效；未知不可轉成空 diff |
 | R5.3 明細與來源連結 | 摘要完成且 R4 可用 | 只把摘要項目連到 before／after 各自表明細與 PHP；沿用真實雙圖與既有同步 view | 新增／刪除／變更／rename／缺表的導航驗收 | 不合併兩側 schema，不建立新的 schema 推算 |
 | R5.4 任務回歸與交付 | 前述核准步驟完成 | 驗收指定單次變更任務與副本重分析；完成相關 checks、手冊與功能 PR | 使用者能指出操作、差異及來源；CI／merge 證據與限制 | 部署安全、CI reporter、CLI 不隨本批加入 |
 
