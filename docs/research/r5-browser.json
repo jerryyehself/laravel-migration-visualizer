@@ -1,0 +1,13 @@
+{
+  "passed": [
+    "real project new column side availability and focus",
+    "summary operation to exact PHP and return focus/detail",
+    "table detail navigation and snapshot reset",
+    "explicit rename plus removed/added diff",
+    "removed before and added after use own snapshots",
+    "failed known-before unknown-after with disabled after",
+    "blocked both unknown and no object navigation",
+    "input copy edit invalidates reading"
+  ],
+  "consoleErrors": []
+}

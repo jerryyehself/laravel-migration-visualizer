@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { analyzeProject } from '@lmv/migration-core';
+import { analyzeProject } from '../../../packages/migration-core/src/index.js';
 import { migrationReading, objectAvailability, operationLabel } from '../src/migration-reading';
 const file=(order:number,body:string)=>({filename:`2026_10_09_${String(order).padStart(6,'0')}_read.php`,source:`<?php return new class extends Migration {function up(){${body}}};`});
 describe('single migration reading contract',()=>{

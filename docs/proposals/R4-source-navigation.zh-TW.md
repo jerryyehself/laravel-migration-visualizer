@@ -1,12 +1,12 @@
 # R4：結構與 migration 來源串接
 
-- 狀態：in_progress（修訂 2；名稱直接涉及的 operation 查詢與來源往返）
+- 狀態：done（修訂 2；名稱直接涉及的 operation 查詢與來源往返）
 - 日期／修訂：2026-10-09／2
 - 負責端：雲端開發 session 執行；本研究 session 僅研究、決策文件與交接，不做程式實作
 - 依賴：R1、R3；來源查詢契約於核准路線內具體化並記錄
 - 相關 issue：#127／milestone 38
 - 文件 PR：[初始保存 #117](https://github.com/jerryyehself/laravel-migration-visualizer/pull/117)、[R1.1 核准補登 #118](https://github.com/jerryyehself/laravel-migration-visualizer/pull/118) 已合併；全路線核准由 docs/approve-research-roadmap 分支交付
-- 功能 PR：無
+- 功能 PR：#128，merge 47b8e0ac1f57edf8727c6a896fa6de8708b6de0d
 
 ## 要解決的問題
 從結構到來源與逐次變更目前缺少統一入口；同名或已刪物件容易被誤當成同一身分。
@@ -74,3 +74,5 @@ TableDetails 在已選表及已選欄位顯示來源列表，點列跳對應 mig
 有限檔案：operation-sources query／tests、來源列表及唯讀面板、TableDetails／SchemaGraph／SchemaComparison／SchemaSnapshots／ProjectResults props 接線、來源片段 utility、中文教學。沒有 IO／parser／replay／diff 改動，沒有新編輯器、持久化或模型解析。
 
 執行證據與教學：[R4 操作來源](../r4-operation-sources.zh-TW.md)。未新增 core export 或物件 identity；GitHub 認證恢復後須核對當時最新 main／保存分支，補追蹤及 PR，不把本地驗證稱 CI。
+
+交付：head 5ead8c086507878d0a10fa0fe1e74c7d6d8b23a9／validate run 37901972576 success；issue #127／milestone 38 closed。651 tests／15 verify 步驟／12 demos 與六項來源往返瀏覽器任務通過。首輪 CI 發現 tests 依賴已產出的 dist，修為既有 source import 後最新 CI 通過。
