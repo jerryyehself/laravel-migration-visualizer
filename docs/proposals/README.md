@@ -62,6 +62,7 @@ R 編號是研究提案 ID，不是已建立的 GitHub milestone。順序可依�
 - [A-02 功能探索方法與需求證據審查](A-02-discovery-evidence.zh-TW.md)：draft；官方方法來源、先前候選的證據缺口與研究記錄格式，不是 R7 或開發授權。
 - [A-03 多人 migration 協作競品核對](A-03-migration-collaboration.zh-TW.md)：draft；Bytebase／Atlas／Neon 的審查、PR 結果與隔離 DB 分支官方證據，不核准 LMV 擴增範圍。
 - [A-04 現行介面與顯示整理候選](A-04-ui-presentation-audit.zh-TW.md)：draft 修訂 2；入口與選取流程盤點、表的順序閱讀缺口，以及統一步驟／明細入口的候選，尚未核准實作。
+- [A-05 UI／UX 規劃來源與工作指引](A-05-ux-planning-guidance.zh-TW.md)：draft；官方 skill 比較、NN/g／Norman 原文存取限制，以及任務／方案／畫面狀態規劃指引，未安裝 skill 或核准開發。
 - [提案模板](TEMPLATE.zh-TW.md)。
 
 ## 使用者確認紀錄

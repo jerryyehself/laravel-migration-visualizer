@@ -49,6 +49,8 @@ R4 的直接涉及操作清單是既有能力；不是每次變更後的表狀�
 
 ## 外部依據與限制
 
+後續 UI／UX 規劃先依 [A-05 指引與來源查核](A-05-ux-planning-guidance.zh-TW.md) 補任務、方案與畫面狀態，不把本報告的候選入口直接當成已選定布局。NN/g／Norman 原文查核的未完成部分見 A-05。
+
 - [GOV.UK Design System — Details](https://github.com/alphagov/govuk-design-system/blob/737898813f1832fbda610edd85afe228f594390b/src/components/details/index.md)：適合收合只有部分使用者需要的細節；明確要求不要隱藏多數使用者需要的資訊。本次據此把原始 JSON／進階案例與分析狀態分層，不能據此斷言任何特定 LMV 按鈕無人需要。
 - [18F — Heuristic evaluation](https://github.com/18F/guides/blob/debc24b34f23686194d9fe42e391859d569bd39a/content/methods/discover/heuristic-evaluation.md)：建議顯示系統狀態、使用使用者熟悉的語言而非系統導向詞彙。本輪是單人、未操作頁面的初步盤點，不宣稱已完成文件建議的多人評估。
 
