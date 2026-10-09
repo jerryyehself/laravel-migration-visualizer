@@ -51,8 +51,8 @@
 | R2 | [高影響相容性補強](R2-compatibility.zh-TW.md) | done（#126；nullableTimestamps） | R1 結果與具體 API 契約記錄 |
 | R3 | [專案結構探索](R3-schema-exploration.zh-TW.md) | done（#123；FK 批次依證據跳過） | R1；與 R2 的關係依樣本結果決定 |
 | R4 | [結構與 migration 來源串接](R4-source-navigation.zh-TW.md) | done（#128） | R1、R3；來源查詢契約記錄 |
-| R5 | [單次變更閱讀流程](R5-change-reading.zh-TW.md) | in_progress（#129；milestone 39） | R1、R4 |
-| R6 | [整合驗收與交付](R6-acceptance.zh-TW.md) | approved | 已核准且完成的前序範圍 |
+| R5 | [單次變更閱讀流程](R5-change-reading.zh-TW.md) | done（#130） | R1、R4 |
+| R6 | [整合驗收與交付](R6-acceptance.zh-TW.md) | in_progress（#131；milestone 40） | 已核准且完成的前序範圍 |
 
 R 編號是研究提案 ID，不是已建立的 GitHub milestone。順序可依證據修訂；R2 不必為湊 milestone 而實作。
 

@@ -1,10 +1,10 @@
 # R6：雙目標整合驗收與交付
 
-- 狀態：approved（修訂 2 全部步驟；尚未開始執行）
+- 狀態：in_progress（修訂 2；固定範圍與本輪整合驗收）
 - 日期／修訂：2026-10-09／2
 - 負責端：雲端開發 session 執行；本研究 session 僅研究、決策文件與交接，不做程式實作
 - 依賴：僅限已核准且完成的前序範圍
-- 相關 issue：未建立
+- 相關 issue：#131／milestone 40
 - 文件 PR：[初始保存 #117](https://github.com/jerryyehself/laravel-migration-visualizer/pull/117)、[R1.1 核准補登 #118](https://github.com/jerryyehself/laravel-migration-visualizer/pull/118) 已合併；全路線核准由 docs/approve-research-roadmap 分支交付
 - 功能 PR：無
 
@@ -59,3 +59,7 @@ A：沿用 R1 任務做整合驗收。B：只看 tests 數。C：順便補新功
 
 本提案修訂 2 的全部批次均 approved；雲端開發 session 應依序核對前置條件，開工時記錄 in_progress，取得實際驗收／交付證據後標 done。
 本次只更新核准文件，未啟動任何批次、未修改程式、未建立功能 issue／PR。狀態轉換依 [提案流程](README.md)。
+
+## 本次批次
+
+R6.1 固定 R1 样本與 R1～R5 已合併範圍，輸入 main 28c1d59d365673a07f558fe42f30fbaf673f6d4e；R3.3 FK 導覽沒有需求證據已跳過。R6.2 本輪十一項 Chromium 任務通過，source→摘要→各側 detail、未知／已知空白／failed／blocked、副本失效，console 無 warning/error。首次長時間 Vite 畫面仍載入舊 core，重啟 --force 後重跑全部任務通過，未修改分析規則。R6.3 正在 verify／文件交付；詳見 ../r6-integration-acceptance.zh-TW.md。

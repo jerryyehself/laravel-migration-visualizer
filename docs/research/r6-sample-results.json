@@ -1,0 +1,219 @@
+{
+  "coreVersion": "0.15.0",
+  "inputCommit": "28c1d59d365673a07f558fe42f30fbaf673f6d4e",
+  "samples": [
+    {
+      "id": "laravelio",
+      "repo": "laravelio/laravel.io",
+      "commit": "d056c6493dd7bf905e471f2ad6fe716c35642ae4",
+      "counts": {
+        "applied": 2,
+        "failed": 1,
+        "blocked": 6
+      },
+      "complete": false,
+      "finalSchemaKnown": false,
+      "lastValidTables": [
+        "job_batches",
+        "jobs"
+      ],
+      "firstFailure": {
+        "filename": "database/migrations/2024_09_27_095949_add_hero_image_additional_columns_to_articles.php",
+        "beforeTables": [
+          "job_batches",
+          "jobs"
+        ],
+        "diagnostics": [
+          {
+            "code": "UNSUPPORTED_BLUEPRINT",
+            "message": "Expected a static scalar literal; expressions are not evaluated.",
+            "source": {
+              "file": "database/migrations/2024_09_27_095949_add_hero_image_additional_columns_to_articles.php",
+              "line": 15,
+              "column": 12
+            },
+            "phase": "analysis",
+            "severity": "error"
+          }
+        ],
+        "operations": [
+          {
+            "kind": "renameColumn",
+            "table": "articles",
+            "from": "hero_image",
+            "to": "hero_image_id",
+            "source": {
+              "file": "database/migrations/2024_09_27_095949_add_hero_image_additional_columns_to_articles.php",
+              "line": 23,
+              "column": 12
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "bookstack",
+      "repo": "BookStackApp/BookStack",
+      "commit": "ff661b59f6f605bf768fe850c0d0a8a2dc09d203",
+      "counts": {
+        "applied": 0,
+        "failed": 1,
+        "blocked": 102
+      },
+      "complete": false,
+      "finalSchemaKnown": false,
+      "lastValidTables": [],
+      "firstFailure": {
+        "filename": "database/migrations/2014_10_12_000000_create_users_table.php",
+        "beforeTables": [],
+        "diagnostics": [
+          {
+            "code": "UNSUPPORTED_STATEMENT",
+            "message": "Only direct Schema calls in up() are supported; control flow and helper calls are not evaluated.",
+            "source": {
+              "file": "database/migrations/2014_10_12_000000_create_users_table.php",
+              "line": 26,
+              "column": 8
+            },
+            "phase": "analysis",
+            "severity": "error"
+          }
+        ],
+        "operations": [
+          {
+            "kind": "createTable",
+            "table": "users",
+            "source": {
+              "file": "database/migrations/2014_10_12_000000_create_users_table.php",
+              "line": 16,
+              "column": 8
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "users",
+            "column": {
+              "name": "id",
+              "type": "integer",
+              "nullable": false,
+              "unsigned": true,
+              "autoIncrement": true,
+              "primary": true
+            },
+            "source": {
+              "file": "database/migrations/2014_10_12_000000_create_users_table.php",
+              "line": 17,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "users",
+            "column": {
+              "name": "name",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            },
+            "source": {
+              "file": "database/migrations/2014_10_12_000000_create_users_table.php",
+              "line": 18,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "users",
+            "column": {
+              "name": "email",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            },
+            "source": {
+              "file": "database/migrations/2014_10_12_000000_create_users_table.php",
+              "line": 19,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "users",
+            "column": {
+              "name": "password",
+              "type": "string",
+              "nullable": false,
+              "length": 60
+            },
+            "source": {
+              "file": "database/migrations/2014_10_12_000000_create_users_table.php",
+              "line": 20,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "users",
+            "column": {
+              "name": "remember_token",
+              "type": "string",
+              "length": 100,
+              "nullable": true
+            },
+            "source": {
+              "file": "database/migrations/2014_10_12_000000_create_users_table.php",
+              "line": 21,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "users",
+            "column": {
+              "name": "created_at",
+              "type": "timestamp",
+              "nullable": true,
+              "precision": 0
+            },
+            "source": {
+              "file": "database/migrations/2014_10_12_000000_create_users_table.php",
+              "line": 22,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "users",
+            "column": {
+              "name": "updated_at",
+              "type": "timestamp",
+              "nullable": true,
+              "precision": 0
+            },
+            "source": {
+              "file": "database/migrations/2014_10_12_000000_create_users_table.php",
+              "line": 22,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addIndex",
+            "table": "users",
+            "index": {
+              "name": "users_email_unique",
+              "type": "unique",
+              "columns": [
+                "email"
+              ]
+            },
+            "source": {
+              "file": "database/migrations/2014_10_12_000000_create_users_table.php",
+              "line": 19,
+              "column": 12
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

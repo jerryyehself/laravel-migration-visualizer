@@ -161,3 +161,9 @@ M38 已由 PR #128 merge 47b8e0ac1f57edf8727c6a896fa6de8708b6de0d；head 5ead8c0
 ## M39：R5 單次變更閱讀
 
 issue #129／milestone 39；660 tests，八項 Chromium 任務与六項 R4 回歸通過，core／JSON 不變。教學 r5-migration-reading.zh-TW.md，CI／merge 待交付。
+
+M39 已由 PR #130 merge 28c1d59d365673a07f558fe42f30fbaf673f6d4e；head 5db1590b39f014d1beafed6cae575366e37df87a／validate run 37902435289 success。issue #129／milestone 39 closed。
+
+## M40：R6 整合驗收
+
+issue #131／milestone 40；核准 R1～R5 已合併範圍，本輪十一項 Chromium 任務通過。雲端 verify 660 tests／15 步／12 demos 通過；最新文件 PR CI／merge 於交付後補登。詳見 r6-integration-acceptance.zh-TW.md。

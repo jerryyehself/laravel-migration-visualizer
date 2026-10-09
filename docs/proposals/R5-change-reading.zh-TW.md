@@ -1,12 +1,12 @@
 # R5：單次變更閱讀流程
 
-- 狀態：in_progress（修訂 2；本地單次變更閱讀流程）
+- 狀態：done（修訂 2；本地單次變更閱讀流程）
 - 日期／修訂：2026-10-09／2
 - 負責端：雲端開發 session 執行；本研究 session 僅研究、決策文件與交接，不做程式實作
 - 依賴：R1、R4
 - 相關 issue：#129／milestone 39
 - 文件 PR：[初始保存 #117](https://github.com/jerryyehself/laravel-migration-visualizer/pull/117)、[R1.1 核准補登 #118](https://github.com/jerryyehself/laravel-migration-visualizer/pull/118) 已合併；全路線核准由 docs/approve-research-roadmap 分支交付
-- 功能 PR：無
+- 功能 PR：#130／merge 28c1d59d365673a07f558fe42f30fbaf673f6d4e
 
 ## 要解決的問題
 既有 operations／diff／雙圖比較可用，但閱讀流程需整合，避免使用者在多塊結果間自行拼湊。
@@ -63,7 +63,7 @@ CI／CLI、部署安全、任意兩版本比較、semantic refactoring、down()�
 
 ## R5.1 本次閱讀契約（2026-10-09）
 
-核准 PR #119；R1 已合併，R4 來源契約與六項瀏覽器任務可讀，已由 #128 合併 47b8e0a。本地分支 feat/r5-migration-reading，在 R4 已保存 commit 上續作；恢復認證後分開 PR，不把 stacked 本地實作當已合併。
+核准 PR #119；R1 已合併，R4 來源契約與六項瀏覽器任務可讀，已由 #128 合併 47b8e0a。本地分支 feat/r5-migration-reading，在 R4 已保存 commit 上續作；當時 stacked 本地實作已分開 PR #130 交付，merge 證據見下段。
 
 逐檔閱讀順序：狀態／before-after 已知性 → 診斷 → 已識別語法 operations 與 PHP 來源 → 真實結構 diff → 涉及物件的 before/after 明細跳轉。rename operation 明列 from→to，diff 仍原樣 removed+added，不做語意合併。完整 raw 快照／DTO 保留在展開面板。
 
@@ -71,4 +71,6 @@ CI／CLI、部署安全、任意兩版本比較、semantic refactoring、down()�
 
 物件明細按鈕只導向現有 before-N/after-N 快照並初始化該表／欄位聚焦；新增項目不能補畫 before，移除項目不能補畫 after。此明確跳轉重設該圖 view；一般快照選單仍清選取。沿用 R4 source→原處返回及修改失效，不另建編輯器／任意兩版本比較／部署安全規則。
 
-R5.2／R5.3 本地摘要及導航完成；九項新增 tests，八項 Chromium 任務／console 無 warnings/errors。R5.4 正在統一驗證與 PR 交付；未標 done。
+R5.2／R5.3 本地摘要及導航完成；九項新增 tests，八項 Chromium 任務／console 無 warnings/errors。R5.4 統一驗證、PR 最新 head CI 與合併已完成；狀態 done，證據見下段。
+
+交付：PR #130 head 5db1590b39f014d1beafed6cae575366e37df87a／validate run 37902435289 success，issue #129／milestone 39 closed。660 tests／15 verify 步驟／12 demos；八項 R5、六項 R4、十一項 R3 Chromium 任務通過，console 無 warning/error。

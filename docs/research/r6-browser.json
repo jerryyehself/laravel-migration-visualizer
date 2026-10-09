@@ -1,0 +1,18 @@
+{
+  "inputCommit": "28c1d59d365673a07f558fe42f30fbaf673f6d4e",
+  "coreVersion": "0.15.0",
+  "passed": [
+    "structure to exact source to migration reading to own-side details",
+    "BookStack timestamp syntax recognized but first DB write still fails",
+    "known empty before versus unknown final has no graph",
+    "real project new column side availability and focus",
+    "summary operation to exact PHP and return focus/detail",
+    "table detail navigation and snapshot reset",
+    "explicit rename plus removed/added diff",
+    "removed before and added after use own snapshots",
+    "failed known-before unknown-after with disabled after",
+    "blocked both unknown and no object navigation",
+    "input copy edit invalidates reading"
+  ],
+  "consoleErrors": []
+}
