@@ -24,4 +24,4 @@ SchemaGraph 是讀取 schema props 的呈現元件，類似把 service DTO 交�
 
 Chromium 使用 R1 固定的 Laravel.io／BookStack 原始資料：同名 id 的 table.column 結果、圖形未篩除、Enter 選 reserved_at、焦點移至完整欄位、關閉後再次選取展開、清 query 保留選取、無匹配、快照重設、比較兩側獨立、另一側缺表不補、未知無搜尋、已知空白區分全部通過。console 無 warnings/errors；詳見 docs/research/r3-browser.json；截圖 artifacts/r3-column-search.png。沒有下載、手機或大圖效能驗收，也沒宣稱兩個真實專案都 complete。
 
-GitHub 最新 HEAD CI／merge 以該 PR 與 docs/github-milestones.md 的實際交付紀錄為準；合併前提案維持 in_progress。
+PR #123 head b0929fa 的 validate CI run 37897374107 success，已合併 9e4b804；issue #122／milestone 36 closed，提案完成批次已標 done。完整交付紀錄見 docs/github-milestones.md。

@@ -1,12 +1,12 @@
 # R3：專案結構探索
 
-- 狀態：in_progress（修訂 2；R3.1／R3.2／R3.4，R3.3 依證據跳過）
+- 狀態：done（修訂 2；R3.1／R3.2／R3.4 已合併，R3.3 依證據跳過）
 - 日期／修訂：2026-10-09／2
 - 負責端：雲端開發 session 執行；本研究 session 僅研究、決策文件與交接，不做程式實作
 - 依賴：R1；是否需要 R2 由樣本結果決定
 - 相關 issue：[#122](https://github.com/jerryyehself/laravel-migration-visualizer/issues/122)；milestone 36
 - 文件 PR：[初始保存 #117](https://github.com/jerryyehself/laravel-migration-visualizer/pull/117)、[R1.1 核准補登 #118](https://github.com/jerryyehself/laravel-migration-visualizer/pull/118) 已合併；全路線核准由 docs/approve-research-roadmap 分支交付
-- 功能 PR：無
+- 功能 PR：[#123](https://github.com/jerryyehself/laravel-migration-visualizer/pull/123)，已合併
 
 ## 要解決的問題
 現有表搜尋、聚焦與明細已交付；需要證明欄位查找或關係導覽的具體缺口。
@@ -58,7 +58,7 @@ Eloquent 解析、猜多型 FK、大圖性能保證、新布局算法、寫回 P
 
 ## 批次狀態與交付紀錄
 
-R3.1／R3.2／R3.4 in_progress；R1 的前置已交付，具體契約與實作如本次紀錄。R3.3 依需求證據不足跳過；不是 FK 導覽已完成。milestone 36／issue #122，最新 HEAD CI／merge 後才稱 done。
+R3.1／R3.2／R3.4 done；R1 的前置已交付，具體契約與實作如本次紀錄。R3.3 依需求證據不足跳過；不是 FK 導覽已完成。milestone 36／issue #122，最新 HEAD CI／merge 已核對，見下列交付紀錄。
 
 ## R3.1 當前快照欄位搜尋契約（2026-10-09）
 
@@ -73,4 +73,8 @@ R3.1／R3.2／R3.4 in_progress；R1 的前置已交付，具體契約與實作�
 
 R3.3：R1 可用成功前綴無 FK，BookStack after 未知，無直接鄰居任務需求證據；按核准的條件式流程跳過，不把 FK 功能列為已交付。
 
-驗收：literal／同名／未知／空白／切換 adapter；選取／缺欄位明細；Chromium R1 任務、重複點擊、鍵盤焦點、兩側與未知；必要 tests/typecheck/build/demo。完成此批 PR 才記 done。
+驗收：literal／同名／未知／空白／切換 adapter；選取／缺欄位明細；Chromium R1 任務、重複點擊、鍵盤焦點、兩側與未知；必要 tests/typecheck/build/demo。本批 PR 已合併，done 僅指已實作批次。
+
+## 已完成交付（2026-10-09）
+
+PR #123；head b0929fad640eb713a74a8b859a3e04fe1206db6e，validate CI run 37897374107 success；squash merge 9e4b804e5465e2ea9f10a926ca7a55c194a63585。issue #122／milestone 36 closed。619 tests／typecheck／build／11 demos 及 Chromium 11 項交互通過，console 無 warnings/errors。R3.3 無需求證據跳過，不宣稱新增 FK 導覽。core／JSON 不變，未測下載或部署新網站。
