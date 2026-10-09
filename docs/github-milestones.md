@@ -146,4 +146,4 @@ PR #121 已合併 2dfbbc64b4effa14bb4c2b2c62888866c587f5e7；功能 head 7b0a987
 
 ## M36：R3 當前快照欄位搜尋
 
-milestone 36／issue #122，R3 修訂 2 核准範圍的 R3.1／R3.2／R3.4；R3.3 無需求證據跳過。619 tests，core 0.14.0／JSON 不變；Chromium 11 項交互通過，console 無 warning/error。教學 docs/milestone-36.zh-TW.md；本批 PR 最新 HEAD CI 與 merge 尚待交付，不因程式完成而先稱已合併。
+milestone 36／issue #122，R3 修訂 2 核准範圍的 R3.1／R3.2／R3.4；R3.3 無需求證據跳過。619 tests，core 0.14.0／JSON 不變；Chromium 11 項交互通過，console 無 warning/error。教學 docs/milestone-36.zh-TW.md；PR #123 已合併 9e4b804e5465e2ea9f10a926ca7a55c194a63585；head b0929fad640eb713a74a8b859a3e04fe1206db6e 的 validate run 37897374107 success。issue #122／milestone 36 closed。
