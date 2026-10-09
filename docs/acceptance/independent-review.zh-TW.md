@@ -34,7 +34,7 @@ npm run verify
 node scripts/research-baseline.mjs artifacts/independent-review/inputs
 ```
 
-`verify` 本輪於 2026-10-09 17:17:35（Asia/Taipei）開始，原命令 exit code 0；38 個測試檔、660 tests（540 core／120 web）通過，沒有 failed 或 skipped tests。報告包含此次 HEAD、clean=true 及全部 15 commands 的 exitCode=0：[verification.json](evidence/verification.json)。12 個 demos 為 project、tables、helpers、changes、laravel、index-rename、current-update、drop-columns、drop-constrained-id、morphs、acceptance、nullable-timestamps。
+`verify` 本輪於 2026-10-09 17:17:35（Asia/Taipei）開始，原命令 exit code 0；38 個測試檔、660 tests 通過，沒有 failed 或 skipped tests。報告包含此次 HEAD、clean=true 及全部 15 commands 的 exitCode=0：[verification.json](evidence/verification.json)。12 個 demos 為 project、tables、helpers、changes、laravel、index-rename、current-update、drop-columns、drop-constrained-id、morphs、acceptance、nullable-timestamps。
 
 以 R1 manifest 中的固定 repository／commit／path 從 GitHub raw 重新取得 118 檔，使用 TLS 正常驗證，逐一驗證既有 SHA-256 後才使用；未修改原始 bytes 或預期 hash。包括 112 migrations、composer.json／lock 與授權檔；**未取得或解析 SQL dump，未執行 PHP／Composer／DB**。取檔使用本輪外部 helper，因既有 `gh api` 路徑被拒絕；沒有修改 repo 取檔腳本或憑證。
 
