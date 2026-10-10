@@ -1,5 +1,13 @@
 # Codex Cloud 交接
 
+## 下一項已核准工作（2026-10-10）
+
+使用者已選定方案 A；[R7 修訂 1](proposals/R7-workspace-reading.zh-TW.md) 為 approved，尚未開工。同一工作區整合 migration 清單、ERD、表明細；統一步驟／側別、前一份／下一份、選表與持續查看，以及 PHP 預覽返回。雲端開發 session 可依 R7.1～R7.3 核對前置條件後執行，不重問同一方案；研究 session 不實作。
+
+文件保存於 `docs/r7-workspace-a`，尚未合併 main／建立文件 PR（本輪 GitHub API Forbidden）。接手先取得此分支文件，再核對實際最新 main；本輪 main 起點為 `2fe510870c4d41d7c24459173d7e32f2f625968c`，不得當成永久最新 SHA。另一研究分支的 A-04／A-05 仍為 draft，不把全部候選納入。
+
+本次只核准 R7 的 UI 主流程；沒有核心相容性、動畫時間軸、改名歷史追蹤、持久化、新部署或下載驗收授權。main push 仍可能觸發 Pages，文件與功能合併都須辨識部署影響。功能狀態依實際開工、驗收及 PR／CI／merge 證據更新。
+
 ## 當前分工（2026-10-09）
 
 PR #119（bdd64bc）已記錄 R1～R6 修訂 2 全部核准，雲端開發 session 執行；研究 session 只保存決策。下方「本地接手／雲端停止開發」是歷史交接，已由這次分工取代。最新批次見 docs/proposals/README.md 與 docs/research/r1-baseline.zh-TW.md；不能用歷史固定 tests／SHA 代替當次證據。
