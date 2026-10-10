@@ -1,6 +1,6 @@
 # M42／R7：同一工作區閱讀 migration
 
-2026-10-10，issue #135／milestone 42。核准來源是研究 session 的方案 A，以及雲端使用者「好」確認先修獨立驗收缺陷、再交付 R7。輸入 main d159cbe1dbcba347858eab266109abbfdb094d20；R3～R6 與 IR 修正已合併。功能 PR／latest-head CI／merge 尚待交付，不宣稱已发布或 release。
+2026-10-10，issue #135／milestone 42。核准來源是研究 session 的方案 A，以及雲端使用者「好」確認先修獨立驗收缺陷、再交付 R7。輸入 main d159cbe1dbcba347858eab266109abbfdb094d20；R3～R6 與 IR 修正已合併。PR #137 merge 96f13b0c2f8fba1389f5f5e915bcec346229747b；head 4080690468227623340747561111791695123890／validate run 38040663529 success。issue #135／milestone 42 closed。 沒有發布新 release。
 
 ## 操作與可信度
 
@@ -40,3 +40,7 @@ R7 的 16 項實際 browser 任務通過：預設 final 與入口、第二／第
 ## 限制與停止點
 
 未執行真人可用性、下載互動／落盤、大型 browser 效能、PHP／DB runtime 或新部署／release。快照切換可重設布局，不保證永久位置；來源返回在既有 view 仍可恢復。A-04／A-05 等相鄰 draft 未實作，不增加 history DTO、timeline、任意時點比較、持久化或 URL state。
+
+## 交付狀態
+
+R7.1～R7.3 全部 done；上述雲端與 latest-head CI 為本批實證。main 合併可能依現有 workflow 更新 Pages，沒有新增部署設定或執行額外發布命令。雲端 start_skill 草稿已更新 670 tests／12 demos 與核准 R7；工具回覆 saved、requires_publish=true，保存不等於發布環境版本。

@@ -53,7 +53,7 @@
 | R4 | [結構與 migration 來源串接](R4-source-navigation.zh-TW.md) | done（#128） | R1、R3；來源查詢契約記錄 |
 | R5 | [單次變更閱讀流程](R5-change-reading.zh-TW.md) | done（#130） | R1、R4 |
 | R6 | [整合驗收與交付](R6-acceptance.zh-TW.md) | done（#132） | 已核准且完成的前序範圍 |
-| R7 | [方案 A：同一工作區閱讀變更](R7-workspace-reading.zh-TW.md) | in_progress（issue #135／milestone 42；R7.3 交付中） | 已交付 R3／R4／R5／R6 |
+| R7 | [方案 A：同一工作區閱讀變更](R7-workspace-reading.zh-TW.md) | done（#137／96f13b0；R7.1～R7.3） | 已交付 R3／R4／R5／R6 |
 
 R 編號是研究提案 ID，不是已建立的 GitHub milestone。順序可依證據修訂；R2 不必為湊 milestone 而實作。
 
@@ -77,6 +77,8 @@ R 編號是研究提案 ID，不是已建立的 GitHub milestone。順序可依�
 
 R1～R6 修訂 2 已依上表實際交付；R3.3 按證據跳過，其他限制保持。R6 #132 最新 head b974995d／run 37903282365 success，merge ce403562；issue #131／milestone 40 closed。後續候選仍需具體提案／核准，不把 done 重新當開工指令。
 
-## R7 文件交接（2026-10-10）
+## R7 最初研究文件交接（歷史，2026-10-10）
 
 R7 修訂 1 已核准，功能尚未開工；文件分支 `docs/r7-workspace-a`。GitHub API 本輪仍 Forbidden，文件 PR 尚未建立；未合併 main。開發端須明確取回此分支／文件並核對核准內容，不假裝 main 已包含 R7，也不把另一文件分支 `docs/a02-discovery-evidence` 的全部 draft 轉成開發需求。main 文件合併可能觸發 Pages，本研究 session 未擴張部署授權。
+
+R7 開發端最終交付：PR #137 merge 96f13b0c2f8fba1389f5f5e915bcec346229747b；head 4080690468227623340747561111791695123890／validate run 38040663529 success。issue #135／milestone 42 closed。 雲端 verify 670 tests／12 demos，16 項工作區與九項來源返回 browser checks 通過。最新現行 main 依 Git 核對，不把上述歷史的未開工／Forbidden 當現在狀態。

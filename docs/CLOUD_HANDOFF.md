@@ -2,9 +2,9 @@
 
 ## 下一項已核准工作（2026-10-10）
 
-使用者已選定方案 A；[R7 修訂 1](proposals/R7-workspace-reading.zh-TW.md) 為 in_progress，issue #135／milestone 42，工作區與相關回歸已完成、交付檢查進行中。同一工作區整合 migration 清單、ERD、表明細；統一步驟／側別、前一份／下一份、選表與持續查看，以及 PHP 預覽返回。雲端開發 session 可依 R7.1～R7.3 核對前置條件後執行，不重問同一方案；研究 session 不實作。
+使用者已選定方案 A；[R7 修訂 1](proposals/R7-workspace-reading.zh-TW.md) 為 done，PR #137／96f13b0，issue #135／milestone 42 closed。同一工作區整合 migration 清單、ERD、表明細；統一步驟／側別、前一份／下一份、選表與持續查看，以及 PHP 預覽返回。雲端開發 session 可依 R7.1～R7.3 核對前置條件後執行，不重問同一方案；研究 session 不實作。
 
-文件保存於 `docs/r7-workspace-a`，尚未合併 main／建立文件 PR（本輪 GitHub API Forbidden）。接手先取得此分支文件，再核對實際最新 main；本輪 main 起點為 `2fe510870c4d41d7c24459173d7e32f2f625968c`，不得當成永久最新 SHA。另一研究分支的 A-04／A-05 仍為 draft，不把全部候選納入。
+最初研究文件來源為 `docs/r7-workspace-a`（當時研究端 API Forbidden），開發端已取得並隨 #136 合併進 main。接手先讀 main 內文件，再核對實際最新 main；本輪 main 起點為 `2fe510870c4d41d7c24459173d7e32f2f625968c`，不得當成永久最新 SHA。另一研究分支的 A-04／A-05 仍為 draft，不把全部候選納入。
 
 本次只核准 R7 的 UI 主流程；沒有核心相容性、動畫時間軸、改名歷史追蹤、持久化、新部署或下載驗收授權。main push 仍可能觸發 Pages，文件與功能合併都須辨識部署影響。功能狀態依實際開工、驗收及 PR／CI／merge 證據更新。
 
@@ -198,3 +198,5 @@ R1～R6 修訂 2 本輪已完成；R6 PR #132 merge ce403562788959039baee1bdebe5
 ## 2026-10-10 IR／R7 接續
 
 IR-01～04 已由 #136 合併 d159cbe1dbcba347858eab266109abbfdb094d20，660 tests／15 verify 步驟／12 demos，latest head CI success。R7 基於此 main，UI-only；實際狀態及驗收見 milestone-42.zh-TW.md，不把舊草稿或舊 660 基準當本批證據。
+
+R7.1～R7.3 done：PR #137 merge 96f13b0c2f8fba1389f5f5e915bcec346229747b；head 4080690468227623340747561111791695123890／validate run 38040663529 success。issue #135／milestone 42 closed。 雲端 verify 670 tests（540 core／130 web）、15 步／12 demos；16 項工作區 browser checks、九項來源返回回歸，console 無 warning/error，教學 milestone-42.zh-TW.md。core 0.15.0／產品 web 1.0.0 沿用，沒有新 release。start_skill 草稿已保存 670 基準與核准 R7（requires_publish=true），沒有發布環境設定。沒有下一個 approved 任務時不開始相鄰 draft。
