@@ -1,7 +1,8 @@
+import { restoreSourceFocus } from '../source-return';
 import { MigrationReading } from './MigrationReading';
 import { OperationSourcePanel } from './OperationSources';
 import type { OperationSource, SourceNavigation, StructureQuery } from '../operation-sources';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { diagnosticTarget } from '../diagnostic-location';
 import { DiagnosticSource } from './DiagnosticSource';
 import { filterMigrationResults, visibleSelection, type ResultStatusFilter } from '../filter-results';
@@ -65,14 +66,15 @@ export function ProjectResults({ result, files, selected, onSelect, onEdit }: {
   const [operationSource, setOperationSource] = useState<OperationSource | null>(null);
   const sourceOrigin = useRef<HTMLElement | null>(null);
   const [sourceReturnNotice,setSourceReturnNotice] = useState<string | null>(null);
+  const returnNotice = useRef<HTMLParagraphElement>(null);
+  useEffect(() => { if (sourceReturnNotice) returnNotice.current?.focus(); }, [sourceReturnNotice]);
   const clearSource = () => { setOperationSource(null); sourceOrigin.current = null; setSourceReturnNotice(null); };
   const openSource: SourceNavigation = (hit,origin) => {
     sourceOrigin.current = origin; setLocated(null); setSourceReturnNotice(null); setQuery(''); setStatus('all'); onSelect(hit.migrationIndex); setOperationSource(hit);
   };
   function returnSource() {
     const origin = sourceOrigin.current; clearSource();
-    if (origin?.isConnected) { origin.scrollIntoView({block:'center'}); origin.focus({preventScroll:true}); }
-    else setSourceReturnNotice('原結構選取已失效，請重新選擇快照與物件。');
+    if (!restoreSourceFocus(origin)) setSourceReturnNotice('原結構選取已失效，請重新選擇快照與物件。');
   }
   const [located, setLocated] = useState<ProjectDiagnostic | null>(null);
   const target = located ? diagnosticTarget(files, result, located) : null;
@@ -97,7 +99,7 @@ export function ProjectResults({ result, files, selected, onSelect, onEdit }: {
     </div>
     <ProjectExports result={result} />
     <SchemaSnapshots selectedId={snapshotId} onSelectSnapshot={id=>{setSnapshotId(id);setFocusTarget(undefined);}} focusTarget={focusTarget} result={result} onSource={openSource} onSelectionChange={clearSource} />
-    {sourceReturnNotice && <p role="status" className="unavailable">{sourceReturnNotice}</p>}
+    {sourceReturnNotice && <p ref={returnNotice} tabIndex={-1} role="status" className="unavailable">{sourceReturnNotice}</p>}
     {operationSource && <OperationSourcePanel hit={operationSource} files={files} onBack={returnSource} />}
     <h3>專案診斷</h3><Diagnostics items={result.diagnostics} onLocate={locate} canLocate={canLocate} />
     {located && target && <DiagnosticSource file={target.file} diagnostic={located} onEdit={onEdit} />}
