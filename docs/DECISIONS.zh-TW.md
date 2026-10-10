@@ -74,8 +74,10 @@ R6 #132／ce403562 已交付，R1～R6 修訂 2 狀態均 done，R3.3 依證據�
 
 使用者對 A／B 畫面草圖及操作規則回覆「A」。已核准 [R7 修訂 1](proposals/R7-workspace-reading.zh-TW.md)：同一工作區的 migration 清單／ERD／表明細，統一步驟與側別、順序導航、選表／拖移、保留表名稱及 PHP 預覽返回。core 與公開 JSON 不變；不追跨 rename 身分、推測未知結果或增設時間軸。
 
-R7 為 approved，尚未開工／交付。研究 session 只保存規格；雲端開發 session 依 R7 批次執行，無需重問方案 A。首頁／範例／JSON 等相鄰整理仍 draft。文件分支 `docs/r7-workspace-a` 未合併 main，GitHub API 本輪 Forbidden；main push 會觸發 Pages，未以本次選 A 擴張研究端部署授權。
+最初研究核准時（歷史）R7 為 approved，尚未開工／交付。研究 session 只保存規格；雲端開發 session 依 R7 批次執行，無需重問方案 A。首頁／範例／JSON 等相鄰整理仍 draft。文件分支 `docs/r7-workspace-a` 未合併 main，GitHub API 本輪 Forbidden；main push 會觸發 Pages，未以本次選 A 擴張研究端部署授權。
 
 ## R7 同一工作區實作契約（2026-10-10）
 
 已核准 A：ProjectResults 擁有目前步驟／側別與 literal 表名 state，workspaceReading 只選既有 DTO，WorkspaceDetails 固定顯示各側自己的資料；SchemaGraph 的 click／Enter／Space 選表，5px 以上移動才拖曳。來源唯讀預覽不更動閱讀 state；篩選不更動 core 序列。没有新增 core／JSON／history 身分契約。issue #135／milestone 42，交付證據見 milestone-42.zh-TW.md。
+
+R7 已交付：PR #137 merge 96f13b0c2f8fba1389f5f5e915bcec346229747b；head 4080690468227623340747561111791695123890／validate run 38040663529 success。issue #135／milestone 42 closed。 core／JSON 不變，雲端 verify 670 tests／12 demos 與 browser 回歸通過；後續範圍依提案核准流程，不擴大 A-04／A-05 draft。
