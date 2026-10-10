@@ -56,9 +56,11 @@ Semantic rename inference、穩定物件 identity、timeline、DB／models 關�
 - 超出路線排除項目或改變可信快照／公開契約承諾的新增需求，仍另列 draft，不因全部核准而自動納入。
 - 使用者已授權確定決策文件檢查後合併 main。
 
-## 批次狀態與交付紀錄
+## 開工前／當時進度紀錄（歷史）
 
-本提案修訂 2 的全部批次均 approved；雲端開發 session 應依序核對前置條件，開工時記錄 in_progress，取得實際驗收／交付證據後標 done。
+以下保存 2026-10-09 開工前或尚未交付時的紀錄，當前狀態為文件開頭的 done，實際 merge 見交付段落。
+
+當時本提案修訂 2 的全部批次均 approved；雲端開發 session 應依序核對前置條件，開工時記錄 in_progress，取得實際驗收／交付證據後標 done。
 R4.1 契約已記錄，R4.2～R4.4 的查詢／元件／瀏覽器驗收已在本地完成，尚待 GitHub 追蹤／PR／CI／merge。狀態轉換依 [提案流程](README.md)。
 
 ## R4.1 查詢與導航契約（2026-10-09）

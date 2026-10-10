@@ -1,6 +1,6 @@
 # 第一版使用手冊
 
-Laravel Migration Visualizer 1.0.0 是瀏覽器中的靜態分析工作台。它讀取 migration 的 up()，用支援的 Schema／Blueprint 操作推導 schema 與變化，不執行 PHP、資料庫或 SQL。Core 版本 0.14.0；完整支援邊界見 source/docs/compatibility.zh-TW.md（repo 內為 docs/compatibility.zh-TW.md）。
+Laravel Migration Visualizer 1.0.0 是瀏覽器中的靜態分析工作台。它讀取 migration 的 up()，用支援的 Schema／Blueprint 操作推導 schema 與變化，不執行 PHP、資料庫或 SQL。目前 main 的 core 版本為 0.15.0（10/4 的 v1.0.0 release 為 0.14.0）；完整支援邊界見 source/docs/compatibility.zh-TW.md（repo 內為 docs/compatibility.zh-TW.md）。
 
 ## 安裝與開啟
 

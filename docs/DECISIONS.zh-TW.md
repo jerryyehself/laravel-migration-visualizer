@@ -69,3 +69,9 @@ M27～M29 已交付並合併，證據見 github-milestones.md。Morph indexName 
 R1～R6 修訂 2 全部經使用者核准，雲端開發、研究端只保存文件；以 proposals/README.md 狀態與實際 PR／CI／merge 為準。R1／R3／R2／R4／R5 已由 #121／#123／#126／#128／#130 交付；core 0.15.0，660 tests／12 demos。R6 整合驗收與限制見 r6-integration-acceptance.zh-TW.md。R2 僅補 nullableTimestamps 靜態別名，樣本仍有 dynamic after／DB write 拒絕；R3 FK 導覽缺需求證據跳過。路線 done 不授權新增 draft 功能。
 
 R6 #132／ce403562 已交付，R1～R6 修訂 2 狀態均 done，R3.3 依證據跳過。最新 head CI／merge 與雲端實證已保存；後續開發需新具體核准範圍。
+
+## 2026-10-10：方案 A 核准
+
+使用者對 A／B 畫面草圖及操作規則回覆「A」。已核准 [R7 修訂 1](proposals/R7-workspace-reading.zh-TW.md)：同一工作區的 migration 清單／ERD／表明細，統一步驟與側別、順序導航、選表／拖移、保留表名稱及 PHP 預覽返回。core 與公開 JSON 不變；不追跨 rename 身分、推測未知結果或增設時間軸。
+
+R7 為 approved，尚未開工／交付。研究 session 只保存規格；雲端開發 session 依 R7 批次執行，無需重問方案 A。首頁／範例／JSON 等相鄰整理仍 draft。文件分支 `docs/r7-workspace-a` 未合併 main，GitHub API 本輪 Forbidden；main push 會觸發 Pages，未以本次選 A 擴張研究端部署授權。
