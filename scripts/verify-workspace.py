@@ -57,6 +57,7 @@ with sync_playwright() as p:
  # Select a source whose migration differs from the currently displayed step.
  origin=details().locator('[aria-label="操作來源 users"] button').first.element_handle()
  original_header=header().inner_text()
+ original_graph=page.locator('.erd-canvas > g').get_attribute('transform')
  origin.click()
  expect(page.get_by_label('結構操作原始碼',exact=True)).to_be_visible()
  assert header().inner_text()==original_header
@@ -65,6 +66,7 @@ with sync_playwright() as p:
  page.get_by_role('button',name='返回原結構選取',exact=True).click()
  assert origin.is_visible() and origin.evaluate('(e)=>e===document.activeElement')
  assert header().inner_text()==original_header
+ assert page.locator('.erd-canvas > g').get_attribute('transform')==original_graph
  checks.append('other-migration preview and collapsed return preserve step/side/table/focus')
  # Keyboard selects a graph table; movement must not masquerade as selection.
  node=page.get_by_role('button',name='選取或移動資料表 users',exact=True)
@@ -117,7 +119,19 @@ with sync_playwright() as p:
  page.get_by_label('搜尋目前快照欄位',exact=True).fill('display_name')
  page.get_by_role('button',name='查看欄位 users.display_name',exact=True).click()
  expect(details().locator('.column-detail[data-selected=true]')).to_contain_text('display_name')
- checks.append('column search selects the same fixed detail pane')
+ page.get_by_role('button',name='查看欄位 users.display_name',exact=True).click()
+ expect(details().locator('.column-detail[data-selected=true]')).to_contain_text('display_name')
+ # Summary jump and own-side column absence in comparison.
+ obj=page.locator('.migration-reading li').filter(has=page.locator('strong',has_text='users.display_name'))
+ obj.get_by_role('button',name='After · 查看明細',exact=True).click()
+ expect(details().locator('.column-detail[data-selected=true]')).to_contain_text('display_name')
+ control('前後比較').click()
+ page.get_by_label('搜尋目前快照欄位',exact=True).nth(1).fill('display_name')
+ page.get_by_role('button',name='查看欄位 users.display_name',exact=True).click()
+ expect(details().locator('section[aria-label="套用前資料表明細"]')).to_contain_text('沒有欄位 display_name')
+ expect(details().locator('section[aria-label="套用後資料表明細"] .column-detail[data-selected=true]')).to_contain_text('display_name')
+ control('套用後').click()
+ checks.append('column search/reselection and summary jump share fixed details; comparison reads own columns')
  page.set_viewport_size({'width':390,'height':844})
  control('下一份 migration').click();expect(header()).to_contain_text('第 3／3 份')
  expect(details()).to_contain_text('目前表：users')

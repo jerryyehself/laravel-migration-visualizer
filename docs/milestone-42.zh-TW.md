@@ -31,7 +31,7 @@ python3 scripts/verify-workspace.py
 python3 scripts/verify-source-return.py
 ```
 
-R7 的 16 項實際 browser 任務通過：預設 final 與入口、第二／第三檔 users 欄位變化、比較的移除欄位只在 before、篩選與原始順序、另一檔来源預覽、收合返回、Enter／Space／方向鍵、初始與 final、不同表拖曳不改選取、rename 缺表、診斷定位、failed／blocked／unknown、欄位搜尋、390px 無水平溢出／來源返回、修改副本失效、兩個固定真實專案。console warning/error 為空。來源返回獨立九項 DOM／互動回歸也通過。
+R7 的 16 項實際 browser 任務通過：預設 final 與入口、第二／第三檔 users 欄位變化、比較的移除欄位只在 before、篩選與原始順序、另一檔来源預覽、收合返回、Enter／Space／方向鍵、初始與 final、不同表拖曳不改選取、rename 缺表、診斷定位、failed／blocked／unknown、欄位搜尋／重選／摘要跳轉及比較缺欄、390px 無水平溢出／來源返回、修改副本失效、兩個固定真實專案。console warning/error 為空。來源返回獨立九項 DOM／互動回歸也通過。
 
 真實樣本採 R1 已固定的原始 PHP：Laravel.io 9 檔仍 2 applied／1 failed／6 blocked，after(callback) 不支援；BookStack 103 檔仍 0／1／102，nullableTimestamps 語法可識別但 DB write 不支援。兩者 final 圖都未知；失敗的 before 仍可讀、後續 blocked 不補畫。此次不增加相容性或跳過失敗。
 
