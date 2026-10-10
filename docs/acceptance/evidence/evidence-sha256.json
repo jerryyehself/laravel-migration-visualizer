@@ -1,0 +1,50 @@
+[
+  {
+    "path": "bookstack-syntax.png",
+    "sha256": "9ddcdbfb00737f0cfd86c985fc56a2cacb565cc43b7c3aa66e108d517e7db413"
+  },
+  {
+    "path": "browser-first-run.json",
+    "sha256": "55fd5ec1218586a25f73d9fdb104fa2ab07b0df0b09583ac11e9944987ebc98d"
+  },
+  {
+    "path": "browser-results.json",
+    "sha256": "54137347fc6bcc4995ecab837694771416a687ff2dbe9c148255016f6c54d52a"
+  },
+  {
+    "path": "collapsed-source-return-first.json",
+    "sha256": "ad0382717bc0d9b61ba5724cae746cc3c7db697b577cb989bc156963cea8ad7c"
+  },
+  {
+    "path": "collapsed-source-return.json",
+    "sha256": "ad0382717bc0d9b61ba5724cae746cc3c7db697b577cb989bc156963cea8ad7c"
+  },
+  {
+    "path": "collapsed-source-return.png",
+    "sha256": "28e01a8329db911b2e1fc33e5f5b18c24e462f48d898df799b7fa537d4d4dbd5"
+  },
+  {
+    "path": "console-diagnosis.json",
+    "sha256": "22a95ae5db788ee6ad556caffd9c71315543bea47209fe38fe905cd6f8e23a71"
+  },
+  {
+    "path": "laravelio-source.png",
+    "sha256": "e3321082b86691b8341e32913c334040b817ab4206a23451ca5188f607c13f57"
+  },
+  {
+    "path": "rename-after-details.png",
+    "sha256": "9be9934db25414844a0e6e4afff216554c447f19d5ed6cf9d15541fbf180b046"
+  },
+  {
+    "path": "sample-summary.json",
+    "sha256": "af7a7d6ea2bf00bdd352276a8fadd583974edc6692106d32e170b013c9d4cf5b"
+  },
+  {
+    "path": "source-hashes.json",
+    "sha256": "b2b03ce59d3351393276f80350ba27005e6ae62d511a6c497d584975c231b7d3"
+  },
+  {
+    "path": "verification.json",
+    "sha256": "9081a611575702aadd29cda10a37d48dc7e84b46a51aef9d3b9ca4f3015f1cb9"
+  }
+]
