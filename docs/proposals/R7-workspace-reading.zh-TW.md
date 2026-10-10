@@ -1,13 +1,13 @@
 # R7：方案 A，同一工作區閱讀 migration 變更
 
-- 狀態：approved；尚未開發或交付
+- 狀態：in_progress；已實作並通過工作區瀏覽器驗證，全套交付檢查／PR 待完成
 - 日期／修訂：2026-10-10（Asia/Taipei）／1
 - 核准來源：本研究 session 中，使用者對上一則 A／B 草圖明確回覆「A」
 - 負責端：研究 session 保存規格與交接；雲端開發 session 實作與驗收
 - 核對基準：最新遠端 main `2fe510870c4d41d7c24459173d7e32f2f625968c`；開工時重新核對
 - 依賴：已交付 R3／R4／R5／R6、現行 ProjectAnalysis／MigrationSnapshot／SchemaDiff
 - 文件分支：`docs/r7-workspace-a`；文件 PR 未建立，GitHub API 本輪仍 Forbidden
-- 功能 issue／PR／milestone：未建立；由開發端開始核准批次時依實際紀錄補上
+- 功能 issue #135／milestone 42；PR 待建立。開發基準為 IR 修正合併 d159cbe1dbcba347858eab266109abbfdb094d20
 
 ## 問題與現行能力
 
@@ -117,3 +117,7 @@ A-04／A-05 整份仍為 draft；本次只把已展示並選定的 A 整理為 R
 本輪交付：本文件、提案索引、決策與雲端交接更新，僅文件變更及 diff／連結檢查。GitHub API 本輪唯讀重試仍 Forbidden，文件 PR 未建立；文件分支推送／main 交付以本輪實際結果補記，不編造 PR。
 
 現行 Pages workflow 對 main push 沒有 docs 排除，文件合併會觸發部署。本 session 不合併 main 或修改 workflow；確定文件可透過本分支交接。既有文件合併授權保留，但 A 的確認不擴張研究端部署授權。
+
+## 開發端本批記錄（2026-10-10）
+
+使用者於本雲端對話回覆「好」，確認先修 IR-01～04 再實作已核准 R7。IR 已由 #136 合併；R7.1／R7.2 在 feat/r7-workspace-reading 完成相關回歸，R7.3 交付進行中。實際檔案與證據見 [M42 教學](../milestone-42.zh-TW.md)。固定 R1 樣本與核心契約不變；相鄰 draft 不實作。

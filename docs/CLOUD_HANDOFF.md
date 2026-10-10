@@ -2,7 +2,7 @@
 
 ## 下一項已核准工作（2026-10-10）
 
-使用者已選定方案 A；[R7 修訂 1](proposals/R7-workspace-reading.zh-TW.md) 為 approved，尚未開工。同一工作區整合 migration 清單、ERD、表明細；統一步驟／側別、前一份／下一份、選表與持續查看，以及 PHP 預覽返回。雲端開發 session 可依 R7.1～R7.3 核對前置條件後執行，不重問同一方案；研究 session 不實作。
+使用者已選定方案 A；[R7 修訂 1](proposals/R7-workspace-reading.zh-TW.md) 為 in_progress，issue #135／milestone 42，工作區與相關回歸已完成、交付檢查進行中。同一工作區整合 migration 清單、ERD、表明細；統一步驟／側別、前一份／下一份、選表與持續查看，以及 PHP 預覽返回。雲端開發 session 可依 R7.1～R7.3 核對前置條件後執行，不重問同一方案；研究 session 不實作。
 
 文件保存於 `docs/r7-workspace-a`，尚未合併 main／建立文件 PR（本輪 GitHub API Forbidden）。接手先取得此分支文件，再核對實際最新 main；本輪 main 起點為 `2fe510870c4d41d7c24459173d7e32f2f625968c`，不得當成永久最新 SHA。另一研究分支的 A-04／A-05 仍為 draft，不把全部候選納入。
 
@@ -194,3 +194,7 @@ main 28c1d59 是本輪 R6 驗收起點，接手仍查實際最新 origin/main。
 環境 start_skill 草稿已保存，更新至 npm run verify、660 tests／12 demos、分工與資料可信度規則；保存不等於發布。要使設定在後續環境生效，使用者需於環境設定檢閱、保存再發布；沒有替使用者發布。
 
 R1～R6 修訂 2 本輪已完成；R6 PR #132 merge ce403562788959039baee1bdebe59ed7b2302029；head b974995d2c07b6be4f851758c750081381327360／validate run 37903282365 success。issue #131／milestone 40 closed。 接手先讀提案入口，沒有新的具體 approved 功能時不自行擴增。未提交工作為空；舊功能／WIP 分支仍保留，最新 main 以實際 remote 為準。
+
+## 2026-10-10 IR／R7 接續
+
+IR-01～04 已由 #136 合併 d159cbe1dbcba347858eab266109abbfdb094d20，660 tests／15 verify 步驟／12 demos，latest head CI success。R7 基於此 main，UI-only；實際狀態及驗收見 milestone-42.zh-TW.md，不把舊草稿或舊 660 基準當本批證據。

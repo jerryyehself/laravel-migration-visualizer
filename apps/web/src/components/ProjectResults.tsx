@@ -1,3 +1,5 @@
+import { workspaceReading, type ReadingLocation, type ReadingSide } from '../workspace-reading';
+import { WorkspaceDetails } from './WorkspaceDetails';
 import { restoreSourceFocus } from '../source-return';
 import { MigrationReading } from './MigrationReading';
 import { OperationSourcePanel } from './OperationSources';
@@ -5,7 +7,7 @@ import type { OperationSource, SourceNavigation, StructureQuery } from '../opera
 import { useState, useRef, useEffect } from 'react';
 import { diagnosticTarget } from '../diagnostic-location';
 import { DiagnosticSource } from './DiagnosticSource';
-import { filterMigrationResults, visibleSelection, type ResultStatusFilter } from '../filter-results';
+import { filterMigrationResults, type ResultStatusFilter } from '../filter-results';
 import { ProjectExports } from './ProjectExports';
 import { SchemaSnapshots } from './SchemaSnapshots';
 import type { MigrationFile, ProjectAnalysis, ProjectDiagnostic, SchemaState } from '@lmv/migration-core';
@@ -57,10 +59,12 @@ function SchemaView({ title, schema, unavailable }: { title: string; schema: Sch
 }
 
 // Props are data and callbacks from the parent; this component never replays migrations.
-export function ProjectResults({ result, files, selected, onSelect, onEdit }: {
+export function ProjectResults({ result, files, onSelect, onEdit }: {
   result: ProjectAnalysis; files: readonly MigrationFile[]; selected: number; onSelect: (index: number) => void; onEdit: (item: ProjectDiagnostic) => void;
 }) {
-  const [snapshotId,setSnapshotId] = useState('final');
+  const [location,setLocation] = useState<ReadingLocation>({kind:'final'});
+  const [selectedObject,setSelectedObject] = useState<StructureQuery>();
+  const [objectRequest,setObjectRequest] = useState(0);
   const [focusTarget,setFocusTarget] = useState<{query:StructureQuery;request:number}>();
   const focusRequest = useRef(0);
   const [operationSource, setOperationSource] = useState<OperationSource | null>(null);
@@ -70,7 +74,7 @@ export function ProjectResults({ result, files, selected, onSelect, onEdit }: {
   useEffect(() => { if (sourceReturnNotice) returnNotice.current?.focus(); }, [sourceReturnNotice]);
   const clearSource = () => { setOperationSource(null); sourceOrigin.current = null; setSourceReturnNotice(null); };
   const openSource: SourceNavigation = (hit,origin) => {
-    sourceOrigin.current = origin; setLocated(null); setSourceReturnNotice(null); setQuery(''); setStatus('all'); onSelect(hit.migrationIndex); setOperationSource(hit);
+    sourceOrigin.current = origin; setLocated(null); setSourceReturnNotice(null); setOperationSource(hit);
   };
   function returnSource() {
     const origin = sourceOrigin.current; clearSource();
@@ -83,14 +87,35 @@ export function ProjectResults({ result, files, selected, onSelect, onEdit }: {
     clearSource();
     const next = diagnosticTarget(files, result, item);
     if (!next) return;
-    setQuery(''); setStatus('all'); setLocated({ ...item });
-    if (next.resultIndex !== null) onSelect(next.resultIndex);
+    setQuery(''); setStatus('all');
+    if (next.resultIndex !== null) selectMigration(next.resultIndex);
+    setLocated({ ...item });
   }
   const [query, setQuery] = useState('');
   const [status, setStatus] = useState<ResultStatusFilter>('all');
   const visible = filterMigrationResults(result.migrations, query, status);
-  const activeIndex = visibleSelection(visible, selected);
-  const step = activeIndex === null ? undefined : result.migrations[activeIndex];
+  const reading = workspaceReading(result,location);
+  const activeIndex = reading.index;
+  const step = reading.step;
+  function selectMigration(index:number) {
+    if (index < 0 || index >= result.migrations.length) return;
+    clearSource(); setLocated(null); setFocusTarget(undefined);
+    setSelectedObject(current=>current ? {table:current.table} : undefined);
+    setLocation({kind:'migration',index,side:location.kind === 'migration' ? location.side : 'after'}); onSelect(index);
+  }
+  function selectSide(side:ReadingSide) {
+    if (activeIndex === null) return;
+    clearSource(); setFocusTarget(undefined);
+    setSelectedObject(current=>current ? {table:current.table} : undefined);
+    setLocation({kind:'migration',index:activeIndex,side});
+  }
+  function selectObject(query:StructureQuery|undefined) {
+    clearSource(); setSelectedObject(query); setObjectRequest(current=>current+1);
+  }
+  function selectBoundary(kind:'initial'|'final') {
+    clearSource(); setLocated(null); setFocusTarget(undefined);
+    setSelectedObject(current=>current ? {table:current.table} : undefined); setLocation({kind});
+  }
   return <section className="project-results">
     <div role="status" className={`summary-card ${result.complete ? 'success' : 'warning'}`}>
       <h2>{result.complete ? '專案分析完成' : '專案分析未完成'}</h2>
@@ -98,9 +123,7 @@ export function ProjectResults({ result, files, selected, onSelect, onEdit }: {
       <p>{result.complete ? '以下為支援範圍內的靜態分析結果，不代表實際資料庫執行結果。' : '最終 schema 未知。最後可信 schema 只包含成功前綴，不能當成專案最終狀態。'}</p>
     </div>
     <ProjectExports result={result} />
-    <SchemaSnapshots selectedId={snapshotId} onSelectSnapshot={id=>{setSnapshotId(id);setFocusTarget(undefined);}} focusTarget={focusTarget} result={result} onSource={openSource} onSelectionChange={clearSource} />
     {sourceReturnNotice && <p ref={returnNotice} tabIndex={-1} role="status" className="unavailable">{sourceReturnNotice}</p>}
-    {operationSource && <OperationSourcePanel hit={operationSource} files={files} onBack={returnSource} />}
     <h3>專案診斷</h3><Diagnostics items={result.diagnostics} onLocate={locate} canLocate={canLocate} />
     {located && target && <DiagnosticSource file={target.file} diagnostic={located} onEdit={onEdit} />}
     <fieldset className="result-filters">
@@ -119,21 +142,36 @@ export function ProjectResults({ result, files, selected, onSelect, onEdit }: {
       </div>
       <p className="muted" role="status">顯示 {visible.length} / {result.migrations.length} 份；篩選只影響逐檔檢視，專案摘要、診斷與 JSON 匯出仍包含完整結果。</p>
     </fieldset>
-    <div className="project-layout">
+    <section className="reading-workspace" aria-label="Migration 閱讀工作區">
+      <header className="workspace-controls">
+        <h2>{step ? `目前：第 ${activeIndex!+1}／${result.migrations.length} 份 · ${step.filename}` : reading.choice.label}</h2>
+        {step && <p role="status">{statusLabels[step.status]} · {location.kind === 'migration' ? ({before:'套用前',after:'套用後',diff:'前後比較'} as const)[location.side] : ''}</p>}
+        <div className="toolbar">
+          <button type="button" className="secondary" onClick={()=>selectBoundary('initial')} aria-pressed={location.kind==='initial'}>初始結構</button>
+          <button type="button" className="secondary" onClick={()=>selectBoundary('final')} aria-pressed={location.kind==='final'}>最終結構</button>
+          <button type="button" disabled={reading.previous===null} onClick={()=>selectMigration(reading.previous!)}>前一份 migration</button>
+          <button type="button" disabled={reading.next===null} onClick={()=>selectMigration(reading.next!)}>下一份 migration</button>
+          {(['before','after','diff'] as const).map(side=><button key={side} type="button" className="secondary" disabled={!step} aria-pressed={location.kind==='migration' && location.side===side} onClick={()=>selectSide(side)}>{({before:'套用前',after:'套用後',diff:'前後比較'} as const)[side]}</button>)}
+        </div>
+        {step && !visible.some(item=>item.index===activeIndex) && <p role="status">目前閱讀步驟不在篩選清單，時點保持不變；前後份仍依完整 core 順序。</p>}
+        {!step && <p className="muted">選一份 migration 進入逐份閱讀；初始與最終結構保留獨立入口。</p>}
+      </header>
+      <div className="workspace-grid">
       <nav className="migration-list" aria-label="依 core 排序的分析結果">
         <h3>分析順序</h3>
         {visible.map(({migration, index}) => <button type="button" className="migration-item" key={index}
-          aria-pressed={activeIndex === index} onClick={() => onSelect(index)}>
+          aria-pressed={activeIndex === index} onClick={() => selectMigration(index)}>
           <span>{index + 1}. {migration.filename}</span>
           <span className={`badge ${migration.status}`}>{statusLabels[migration.status]}</span>
         </button>)}
         {visible.length === 0 && <p className="muted">沒有符合條件的 migration。</p>}
       </nav>
-      {!step && <p className="muted">請清除或調整篩選條件，以檢視逐檔結果。</p>}
+      <div className="workspace-center">
+        <SchemaSnapshots showSelector={false} hideDetails selection={selectedObject} onSelectObject={selectObject} selectedId={reading.choice.id} focusTarget={focusTarget} result={result} onSource={openSource} onSelectionChange={clearSource} />
       {step && <div className="step-detail">
         <h2>{step.filename}</h2>
         <p>{statusLabels[step.status]} · {step.analysis.operations.length} 個已識別操作</p>
-        <MigrationReading step={step} index={activeIndex!} diagnostics={<Diagnostics items={step.diagnostics} onLocate={locate} canLocate={canLocate} />} onSource={openSource} onObject={(side,query)=>{ clearSource(); setLocated(null); setSnapshotId(`${side}-${activeIndex}`); setFocusTarget({query,request:++focusRequest.current}); }} />
+        <MigrationReading step={step} index={activeIndex!} diagnostics={<Diagnostics items={step.diagnostics} onLocate={locate} canLocate={canLocate} />} onSource={openSource} onObject={(side,query)=>{ clearSource(); setLocated(null); setSelectedObject(query); setObjectRequest(current=>current+1); setLocation({kind:'migration',index:activeIndex!,side}); setFocusTarget({query,request:++focusRequest.current}); }} />
         {step.status !== 'applied' && <p className="unavailable">此檔的 operations 僅供檢視，沒有套用；不顯示推測的 schema 或 diff。</p>}
         <details><summary>完整快照、diff 與 operations</summary><div className="results">
           <SchemaView title="Schema Before" schema={step.schemaBefore} unavailable="前序狀態未知，沒有可信的分析前快照。" />
@@ -150,7 +188,12 @@ export function ProjectResults({ result, files, selected, onSelect, onEdit }: {
         </article>
         <details><summary>AtomicOperation JSON</summary><pre>{JSON.stringify(step.analysis.operations, null, 2)}</pre></details></details>
       </div>}
-    </div>
+      </div>
+      <WorkspaceDetails choice={reading.choice} selection={selectedObject} request={objectRequest} analysis={result} step={step} onSource={openSource}>
+        {operationSource && <OperationSourcePanel hit={operationSource} files={files} onBack={returnSource} />}
+      </WorkspaceDetails>
+      </div>
+    </section>
     <SchemaView title={result.complete ? '專案最終 Schema' : '最後可信 Schema（僅成功前綴）'}
       schema={result.complete ? result.finalSchema : result.lastValidSchema} unavailable="最終 schema 未知。" />
     <details><summary>完整 ProjectAnalysis JSON</summary><pre>{JSON.stringify(result, null, 2)}</pre></details>

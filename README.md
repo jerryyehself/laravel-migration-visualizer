@@ -54,7 +54,7 @@ npm run preview -- --host 127.0.0.1 --port 5202 --strictPort
 
 1. 在「多檔專案」按 **載入訂單系統範例（12 檔）**，再按 **分析專案**。預期 12／12 套用成功、零診斷、五張表與三個外鍵。
 2. 分析自己的專案時，選取 UTF-8 `.php` 檔或 `database/migrations` 資料夾。匯入會取代目前清單；資料夾包含子目錄，非 PHP 檔案會略過並列出。
-3. 從 ERD 快照選單查看最終結構或逐檔前後比較，聚焦資料表查看完整屬性；也可搜尋目前快照的欄位，點結果直接展開並定位明細。
+3. 從閱讀工作區選 migration，用前一份／下一份與套用前／後／比較閱讀；單擊圖中表或用鍵盤選取固定明細；也可搜尋目前快照的欄位，點結果直接展開並定位明細。
 4. 若有診斷，按「定位原始碼」再跳到輸入區修改副本。修改會清除舊結果，需重新分析；不會改動磁碟上的 migration。
 
 檔名須符合 `YYYY_MM_DD_HHMMSS_description.php`。Core 依 basename 字串排序，保留來源路徑；不驗證日曆日期。格式錯誤或重複名稱會阻止專案 replay，匯入順序不影響分析順序。
@@ -191,8 +191,10 @@ npm run release:bundle
 
 `nullableTimestamps()` 與單一靜態非負整數 precision 已支援，展開兩個 nullable timestamp 欄位。明確 null、動態參數、修飾鏈與 change 拒絕；不含 nullableTimestampsTz。core 0.15.0，JSON 形狀不變；來源與樣本限制見 [M37 教學](docs/milestone-37.zh-TW.md)。
 
-表／欄位明細可列出名稱直接涉及的 migration 操作，跳到唯讀 PHP 來源並返回原快照選取；不推測 rename 身分或把 failed／blocked 語法操作當成生效。實作與交付狀態見 [R4 說明](docs/r4-operation-sources.zh-TW.md)。
+表／欄位明細可列出名稱直接涉及的 migration 操作，在目前工作區預覽唯讀 PHP 來源並返回原選取；不推測 rename 身分或把 failed／blocked 語法操作當成生效。實作與交付狀態見 [R4 說明](docs/r4-operation-sources.zh-TW.md)。
 
 單次 migration 的狀態、來源、結構 diff 及 Before／After 明細跳轉，見 [R5 教學](docs/r5-migration-reading.zh-TW.md)。未知和已知無變更分開；rename 操作不合併結構移除／新增。
 
 本輪雙目標整合驗收、固定樣本結果與交付限制，見 [R6 驗收](docs/r6-integration-acceptance.zh-TW.md)。
+
+同一閱讀工作區整合 migration 清單、ERD 與固定表明細。換步驟保留選定表名，缺表與未知分開；篩選不改時點，來源預覽不切換步驟。設計與驗收見 [M42／R7 教學](docs/milestone-42.zh-TW.md)。
