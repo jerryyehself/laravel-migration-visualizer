@@ -53,7 +53,7 @@
 | R4 | [結構與 migration 來源串接](R4-source-navigation.zh-TW.md) | done（#128） | R1、R3；來源查詢契約記錄 |
 | R5 | [單次變更閱讀流程](R5-change-reading.zh-TW.md) | done（#130） | R1、R4 |
 | R6 | [整合驗收與交付](R6-acceptance.zh-TW.md) | done（#132） | 已核准且完成的前序範圍 |
-| R7 | [方案 A：同一工作區閱讀變更](R7-workspace-reading.zh-TW.md) | approved（2026-10-10 使用者選 A；尚未開發） | 已交付 R3／R4／R5／R6 |
+| R7 | [方案 A：同一工作區閱讀變更](R7-workspace-reading.zh-TW.md) | in_progress（issue #135／milestone 42；R7.3 交付中） | 已交付 R3／R4／R5／R6 |
 
 R 編號是研究提案 ID，不是已建立的 GitHub milestone。順序可依證據修訂；R2 不必為湊 milestone 而實作。
 

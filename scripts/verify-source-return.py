@@ -17,7 +17,7 @@ with sync_playwright() as p:
     page.goto(base)
     page.get_by_role('button', name='載入成功範例', exact=True).click()
     page.get_by_role('button', name='分析專案', exact=True).click()
-    page.locator('[aria-label="Schema 快照檢視"] select').select_option('after-1')
+    page.locator('.reading-workspace .migration-list button').nth(1).click()
     page.get_by_label('搜尋目前快照欄位', exact=True).fill('display_name')
     page.get_by_role('button', name='查看欄位 users.display_name', exact=True).click()
     origin = page.locator('[aria-label="操作來源 users.display_name"] button').first.element_handle()
@@ -27,7 +27,7 @@ with sync_playwright() as p:
             page.locator('.table-inspector details').evaluate('(e) => e.open = false')
         page.get_by_role('button', name='返回原結構選取', exact=True).click()
         assert origin.is_visible() and origin.evaluate('(e) => e === document.activeElement')
-        assert page.locator('[aria-label="Schema 快照檢視"] select').input_value() == 'after-1'
+        assert '第 2／3 份' in page.locator('.workspace-controls').inner_text()
         checks.append('collapsed details restored with focus' if collapse else 'normal source return retains focus and snapshot')
     Path('artifacts').mkdir(exist_ok=True)
     page.screenshot(path='artifacts/source-return-restored.png')

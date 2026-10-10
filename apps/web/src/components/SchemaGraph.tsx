@@ -8,7 +8,7 @@ import { initialGraphView, type GraphLayout, type GraphView } from '../compariso
 import { graphDiffMarks, memberKey, markLabels } from '../graph-diff';
 import { schemaGraph, NODE_WIDTH, clampZoom, edgePath, type Point } from '../schema-graph';
 
-export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 'after', layout, view, onViewChange, analysis, onSource, onSelectionChange, initialSelection }: { initialSelection?:StructureQuery; schema: SchemaState; title?: string; diff?: SchemaDiff; side?: 'before' | 'after'; layout?: GraphLayout; view?: GraphView; onViewChange?: Dispatch<SetStateAction<GraphView>>; analysis?: ProjectAnalysis; onSource?: SourceNavigation; onSelectionChange?: () => void }) {
+export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 'after', layout, view, onViewChange, analysis, onSource, onSelectionChange, initialSelection, selection, onSelectObject, hideDetails }: { selection?:StructureQuery; onSelectObject?:(query:StructureQuery | undefined)=>void; hideDetails?:boolean; initialSelection?:StructureQuery; schema: SchemaState; title?: string; diff?: SchemaDiff; side?: 'before' | 'after'; layout?: GraphLayout; view?: GraphView; onViewChange?: Dispatch<SetStateAction<GraphView>>; analysis?: ProjectAnalysis; onSource?: SourceNavigation; onSelectionChange?: () => void }) {
   const graph = useMemo(() => schemaGraph(schema), [schema]);
   const marks = useMemo(() => graphDiffMarks(diff ?? { changes: [] }, side), [diff, side]);
   const marker = useId().replace(/:/g, '');
@@ -24,18 +24,20 @@ export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 
   const matches = matchingTables(graph.nodes.map(node => node.name), query);
   const bounds = layout ?? graph;
   const [localView, setLocalView] = useState(() => { const initial = initialGraphView(bounds); const node = graph.nodes.find(node=>node.name === initialSelection?.table); return node ? focusGraphTable(initial,node,layout?.positions.get(node.name) ?? node) : initial; });
-  const { zoom, pan, positions, focused } = view ?? localView;
+  const { zoom, pan, positions, focused: viewFocused } = view ?? localView;
+  const focused = selection?.table ?? viewFocused;
   const setView = onViewChange ?? setLocalView;
   const setZoom = (update: (value: number) => number) => setView(current => ({ ...current, zoom: update(current.zoom) }));
   const setPan = (value: Point) => setView(current => ({ ...current, pan: value }));
   const setPositions = (update: (value: Map<string, Point>) => Map<string, Point>) => setView(current => ({ ...current, positions: update(current.positions) }));
-  const drag = useRef<{ pointer: number; name: string | null; start: Point; origin: Point } | null>(null);
+  const drag = useRef<{ pointer: number; name: string | null; start: Point; origin: Point; client:Point; moved:boolean } | null>(null);
   const position = (node: { name: string } & Point) => positions.get(node.name) ?? layout?.positions.get(node.name) ?? node;
   function focusTable(name: string) {
     const node = graph.nodes.find(node => node.name === name);
     if (!node) return;
     onSelectionChange?.();
     setSelectedColumn(undefined);
+    onSelectObject?.({table:name});
     setView(current => focusGraphTable(current, node, current.positions.get(name) ?? layout?.positions.get(name) ?? node));
     svg.current?.scrollIntoView({ block: 'center' });
     nodeRefs.current.get(name)?.focus({ preventScroll: true });
@@ -50,21 +52,29 @@ export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 
     if (event.button !== 0 || drag.current) return;
     event.stopPropagation(); event.preventDefault();
     event.currentTarget.setPointerCapture(event.pointerId);
-    drag.current = { pointer: event.pointerId, name, start: point(event), origin };
+    drag.current = { pointer: event.pointerId, name, start: point(event), origin, client:{x:event.clientX,y:event.clientY}, moved:false };
   }
   function move(event: PointerEvent<SVGSVGElement>) {
     const active = drag.current;
     if (!active || active.pointer !== event.pointerId) return;
+    if (!active.moved && Math.hypot(event.clientX-active.client.x,event.clientY-active.client.y) < 5) return;
+    active.moved = true;
     const next = point(event); const scale = active.name === null ? 1 : zoom;
     const value = { x: active.origin.x + (next.x - active.start.x) / scale, y: active.origin.y + (next.y - active.start.y) / scale };
     if (active.name === null) setPan(value);
     else setPositions(current => new Map(current).set(active.name!, value));
   }
-  function reset() { onSelectionChange?.(); drag.current = null; setSelectedColumn(undefined); setView(initialGraphView(bounds)); }
+  function finish(event: PointerEvent<SVGSVGElement>) {
+    const active = drag.current;
+    if (!active || active.pointer !== event.pointerId) return;
+    drag.current = null;
+    if (active.name !== null && !active.moved) focusTable(active.name);
+  }
+  function reset() { onSelectionChange?.(); drag.current = null; setSelectedColumn(undefined); onSelectObject?.(selection ? {table:selection.table} : undefined); setView({...initialGraphView(bounds),...(selection ? {focused:selection.table} : {})}); }
   return <section className="schema-graph" aria-label={title}>
     <h2>{title}</h2>
     <p>{graph.nodes.length} 張資料表 · {graph.edges.length} 個外鍵關係。箭頭從本表指向引用表；不推測關聯基數。</p>
-    <p className="muted">拖移資料表可調整位置，拖移空白可平移。聚焦資料表後可用方向鍵移動；PK 為主鍵，FK 為外鍵欄位，? 表示 nullable。</p>
+    <p className="muted">單擊資料表或按 Enter／Space 可選取明細；拖移資料表可調整位置，拖移空白可平移。聚焦後可用方向鍵移動；PK 為主鍵，FK 為外鍵欄位，? 表示 nullable。</p>
     <div className="toolbar">
       <button type="button" className="secondary" aria-label="縮小 ERD" disabled={zoom <= 0.15} onClick={() => setZoom(current => clampZoom(current / 1.2))}>−</button>
       <span role="status">縮放 {Math.round(zoom * 100)}%</span>
@@ -87,7 +97,7 @@ export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 
       <p className="muted" role="status">{columnQuery.trim() === '' ? '輸入欄位名稱開始搜尋。' : `找到 ${columnMatches.length} 個欄位。`}只搜尋此圖快照；圖形與外鍵仍完整顯示。</p>
       <div className="table-focus-list">{columnMatches.map(match => <button type="button" className="secondary" key={JSON.stringify([match.table, match.column])}
         aria-pressed={focused === match.table && selectedColumn?.table === match.table && selectedColumn.column === match.column}
-        onClick={() => { focusTable(match.table); setSelectedColumn({ ...match, request: ++columnRequest.current }); }}>查看欄位 {match.table}.{match.column}</button>)}</div>
+        onClick={() => { focusTable(match.table); setSelectedColumn({ ...match, request: ++columnRequest.current }); onSelectObject?.(match); }}>查看欄位 {match.table}.{match.column}</button>)}</div>
       {columnQuery.trim() !== '' && columnMatches.length === 0 && <p className="muted">沒有符合的欄位。</p>}
       <button type="button" className="secondary" disabled={columnQuery === ''} onClick={() => setColumnQuery('')}>清除欄位搜尋</button>
     </fieldset>
@@ -95,7 +105,7 @@ export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 
     {graph.nodes.length === 0 ? <p>已知的空白 schema：沒有資料表可繪製。</p> : <>
       <svg ref={svg} viewBox="0 0 1200 560" className="erd-canvas" role="group" aria-label="ERD 畫布"
         onPointerDown={event => start(event, null, pan)} onPointerMove={move}
-        onLostPointerCapture={() => { drag.current = null; }} onPointerUp={() => { drag.current = null; }} onPointerCancel={() => { drag.current = null; }}>
+        onLostPointerCapture={() => { drag.current = null; }} onPointerUp={finish} onPointerCancel={() => { drag.current = null; }}>
         <defs><marker id={marker} markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="context-stroke" /></marker></defs>
         <g transform={`translate(${pan.x} ${pan.y}) scale(${zoom})`}>
           {graph.edges.map(edge => {
@@ -107,8 +117,9 @@ export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 
           {graph.nodes.map(node => {
             const at = position(node);
             const mark = marks.tables.get(node.name);
-            return <g key={node.name} ref={element => { if (element) nodeRefs.current.set(node.name, element); else nodeRefs.current.delete(node.name); }} data-focused={focused === node.name} transform={`translate(${at.x} ${at.y})`} className={`erd-node ${mark ?? ''}`} role="button" tabIndex={0} aria-label={`移動資料表 ${node.name}`}
+            return <g key={node.name} ref={element => { if (element) nodeRefs.current.set(node.name, element); else nodeRefs.current.delete(node.name); }} data-focused={focused === node.name} transform={`translate(${at.x} ${at.y})`} className={`erd-node ${mark ?? ''}`} role="button" tabIndex={0} aria-label={`選取或移動資料表 ${node.name}`} aria-pressed={focused === node.name}
               onPointerDown={event => start(event, node.name, at)} onKeyDown={event => {
+                if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); focusTable(node.name); return; }
                 const directions: Record<string, Point> = { ArrowLeft: { x: -20, y: 0 }, ArrowRight: { x: 20, y: 0 }, ArrowUp: { x: 0, y: -20 }, ArrowDown: { x: 0, y: 20 } };
                 const delta = directions[event.key]; if (!delta) return;
                 event.preventDefault(); setPositions(current => new Map(current).set(node.name, { x: at.x + delta.x, y: at.y + delta.y }));
@@ -130,6 +141,6 @@ export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 
       </svg>
       <details><summary>外鍵連線明細</summary><ul>{graph.edges.map(edge => <li key={edge.id}>{marks.edges.has(edge.id) ? markLabels[marks.edges.get(edge.id)!] + ' · ' : ''}{edge.from} → {edge.to} · {edge.label}</li>)}</ul></details>
     </>}
-    <TableDetails openOnSelection={initialSelection?.table === focused} schema={schema} selected={focused} selectedColumn={selectedColumn && selectedColumn.table === focused ? selectedColumn.column : undefined} selectionRequest={selectedColumn?.request} analysis={analysis} onSource={onSource} />
+    {!hideDetails && <TableDetails openOnSelection={initialSelection?.table === focused} schema={schema} selected={focused} selectedColumn={selectedColumn && selectedColumn.table === focused ? selectedColumn.column : undefined} selectionRequest={selectedColumn?.request} analysis={analysis} onSource={onSource} />}
   </section>;
 }

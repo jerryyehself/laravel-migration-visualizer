@@ -17,12 +17,13 @@ export function TableDetails({ schema, selected, selectedColumn, selectionReques
   }, [schema, selected, activeColumn, selectionRequest]);
   return <section ref={tableRef} tabIndex={-1} className="table-inspector" aria-label="資料表詳細檢視">
     <h3>資料表詳細檢視</h3>
-    {selected === undefined ? <p className="muted">請先聚焦資料表，以查看完整欄位、索引與外鍵。</p> : !table ?
+    {selected === undefined ? <p className="muted">請先聚焦資料表或單擊圖中的表，以查看完整欄位、索引與外鍵。</p> : !table ?
       <p className="unavailable">此快照沒有資料表 {selected}；不補畫或複製另一側的資料。</p> :
       <details key={JSON.stringify([selected, activeColumn, selectionRequest])} open={activeColumn !== undefined || openOnSelection ? true : undefined}><summary>查看 {selected} 的欄位、索引與外鍵</summary>
         <p>以下為目前快照的完整資料；未出現的選用屬性表示未指定，不代表資料庫預設值。</p>
         {analysis && onSource && <OperationSources result={analysis} query={{table:table.name}} onSource={onSource} />}
         {analysis && onSource && activeColumn !== undefined && <OperationSources result={analysis} query={{table:table.name,column:activeColumn}} onSource={onSource} />}
+        {selectedColumn !== undefined && activeColumn === undefined && <p className="unavailable">此側沒有欄位 {selectedColumn}；不複製另一側欄位。</p>}
         <h4>欄位 · {Object.keys(table.columns).length}</h4>
         {Object.keys(table.columns).length === 0 && <p>沒有欄位。</p>}
         {Object.values(table.columns).map(column => <article key={column.name} className="column-detail" data-selected={column.name === activeColumn} ref={column.name === activeColumn ? columnRef : undefined} tabIndex={column.name === activeColumn ? -1 : undefined}>
