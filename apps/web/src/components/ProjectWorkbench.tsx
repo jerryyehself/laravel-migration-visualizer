@@ -76,7 +76,32 @@ function helperFiles(failing = false): MigrationFile[] {
   ];
 }
 
+
+const examples = [
+    {id:"0",label:"載入 Laravel 12 官方範例",files:()=>([
+          { filename: '0001_01_01_000002_create_jobs_table.php', source: laravelJobs },
+          { filename: '0001_01_01_000000_create_users_table.php', source: laravelUsers },
+          { filename: '0001_01_01_000001_create_cache_table.php', source: laravelCache },
+        ])},
+    {id:"1",label:"載入成功範例",files:()=>(sampleFiles())},
+    {id:"2",label:"載入訂單系統範例（12 檔）",files:()=>(commerceFiles())},
+    {id:"3",label:"載入失敗範例",files:()=>(sampleFiles(true))},
+    {id:"4",label:"載入索引範例",files:()=>([
+          { filename: '2026_02_03_000000_primary_accounts.php', source: indexedPrimary },
+          { filename: '2026_02_01_000000_create_accounts.php', source: indexedCreate },
+          { filename: '2026_02_02_000000_update_accounts.php', source: indexedUpdate },
+        ])},
+    {id:"5",label:"載入外鍵範例",files:()=>(foreignFiles())},
+    {id:"6",label:"載入外鍵失敗範例",files:()=>(foreignFiles(true))},
+    {id:"7",label:"載入資料表生命週期範例",files:()=>(lifecycleFiles())},
+    {id:"8",label:"載入刪表失敗範例",files:()=>(lifecycleFiles(true))},
+    {id:"9",label:"載入欄位 helper 範例",files:()=>(helperFiles())},
+    {id:"10",label:"載入 helper 失敗範例",files:()=>(helperFiles(true))},
+];
+
 export function ProjectWorkbench() {
+  const [manageOpen, setManageOpen] = useState(false);
+  const [inputOrigin, setInputOrigin] = useState('示範');
   const [drafts, setDrafts] = useState(() => createDrafts(sampleFiles()));
   const files = drafts.map(draft => draft.current);
   const modifiedCount = drafts.filter(isDraftModified).length;
@@ -86,7 +111,7 @@ export function ProjectWorkbench() {
   const [reading, setReading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [folderImport, setFolderImport] = useState<{ importedCount: number; ignoredFiles: string[] } | null>(null);
-  const [folderSupported] = useState(() => 'webkitdirectory' in document.createElement('input'));
+  const [folderSupported] = useState(() => typeof document !== 'undefined' && 'webkitdirectory' in document.createElement('input'));
   const editor = useRef<HTMLTextAreaElement>(null);
   const [editRequest, setEditRequest] = useState<{ file: MigrationFile; line: number | null } | null>(null);
   const [editNotice, setEditNotice] = useState<string | null>(null);
@@ -104,12 +129,14 @@ export function ProjectWorkbench() {
     const target = diagnosticTarget(files, result, item);
     if (!target) return;
     const line = diagnosticExcerpt(target.file.source, item).line;
+    setManageOpen(true);
     setSelectedInput(files.indexOf(target.file));
     setEditRequest({ file: target.file, line });
     setEditNotice(line === null ? '已開啟對應輸入檔；此診斷沒有可定位的 PHP 行。' : `已選取第 ${line} 行；修改後請重新分析專案。`);
   }
 
-  function replaceFiles(next: MigrationFile[]) {
+  function replaceFiles(next: MigrationFile[], origin = '示範') {
+    setInputOrigin(origin);
     setDrafts(createDrafts(next)); setSelectedInput(0); setResult(null); setError(null); setFolderImport(null); setEditRequest(null); setEditNotice(null);
   }
   function updateFile(patch: Partial<MigrationFile>) {
@@ -130,15 +157,15 @@ export function ProjectWorkbench() {
     try {
       if (folder) {
         const imported = await readMigrationFolder(chosen);
-        replaceFiles(imported.files); setFolderImport({ importedCount: imported.files.length, ignoredFiles: imported.ignoredFiles });
-      } else replaceFiles(await readMigrationFiles(chosen));
+        replaceFiles(imported.files, '匯入'); setFolderImport({ importedCount: imported.files.length, ignoredFiles: imported.ignoredFiles });
+      } else replaceFiles(await readMigrationFiles(chosen), '匯入');
     }
     catch (cause) { setError(cause instanceof Error ? cause.message : '匯入失敗。'); }
     finally { setReading(false); }
   }
   function analyze() {
     setError(null); setResult(null); setSelectedResult(0); setEditRequest(null); setEditNotice(null);
-    try { setResult(analyzeProject(files)); }
+    try { setResult(analyzeProject(files)); setManageOpen(false); }
     catch (cause) { setError(`分析發生非預期錯誤：${cause instanceof Error ? cause.message : String(cause)}`); }
   }
 
@@ -161,25 +188,17 @@ export function ProjectWorkbench() {
           }} />
           {!folderSupported && <p className="muted">此瀏覽器不支援資料夾選取，請使用 PHP 多檔匯入。</p>}
         </div>
-        <button type="button" className="secondary" onClick={() => replaceFiles([
-          { filename: '0001_01_01_000002_create_jobs_table.php', source: laravelJobs },
-          { filename: '0001_01_01_000000_create_users_table.php', source: laravelUsers },
-          { filename: '0001_01_01_000001_create_cache_table.php', source: laravelCache },
-        ])}>載入 Laravel 12 官方範例</button>
-        <button type="button" className="secondary" onClick={() => replaceFiles(sampleFiles())}>載入成功範例</button>
-        <button type="button" className="secondary" onClick={() => replaceFiles(commerceFiles())}>載入訂單系統範例（12 檔）</button>
-        <button type="button" className="secondary" onClick={() => replaceFiles(sampleFiles(true))}>載入失敗範例</button>
-        <button type="button" className="secondary" onClick={() => replaceFiles([
-          { filename: '2026_02_03_000000_primary_accounts.php', source: indexedPrimary },
-          { filename: '2026_02_01_000000_create_accounts.php', source: indexedCreate },
-          { filename: '2026_02_02_000000_update_accounts.php', source: indexedUpdate },
-        ])}>載入索引範例</button>
-        <button type="button" className="secondary" onClick={() => replaceFiles(foreignFiles())}>載入外鍵範例</button>
-        <button type="button" className="secondary" onClick={() => replaceFiles(foreignFiles(true))}>載入外鍵失敗範例</button>
-        <button type="button" className="secondary" onClick={() => replaceFiles(lifecycleFiles())}>載入資料表生命週期範例</button>
-        <button type="button" className="secondary" onClick={() => replaceFiles(lifecycleFiles(true))}>載入刪表失敗範例</button>
-        <button type="button" className="secondary" onClick={() => replaceFiles(helperFiles())}>載入欄位 helper 範例</button>
-        <button type="button" className="secondary" onClick={() => replaceFiles(helperFiles(true))}>載入 helper 失敗範例</button>
+        <details className="sample-menu"><summary>範例</summary>
+          <label htmlFor="project-example">選取示範（取代清單，不自動分析）</label>
+          <select id="project-example" defaultValue="" onChange={event => {
+            const sample = examples.find(item=>item.id===event.target.value);
+            if (sample) replaceFiles(sample.files());
+            event.target.value='';
+          }}>
+            <option value="" disabled>選擇範例…</option>
+            {examples.map(item=><option key={item.id} value={item.id}>{item.label}{item.label.includes('失敗') ? '（失敗示範）' : '（示範）'}</option>)}
+          </select>
+        </details>
       </div>
       <p className="muted">資料夾匯入包含子資料夾中的 .php，保留相對路徑；非 PHP 檔案會略過並列出。請選 migrations 資料夾。</p>
       {folderImport && <div role="status">
@@ -189,6 +208,10 @@ export function ProjectWorkbench() {
         </details>}
       </div>}
       <p className="muted">檔名格式：YYYY_MM_DD_HHMMSS_description.php。匯入順序不影響分析順序；重複名稱由 core 診斷。</p>
+      <p role="status">{inputOrigin}輸入 · {files.length} 份 · {modifiedCount ? `${modifiedCount} 份已修改` : '未修改'}；{result ? '可閱讀分析結果' : '尚無有效結果，請分析專案'}。</p>
+      <button type="button" disabled={files.length === 0} onClick={analyze}>分析專案</button>
+      <details open={manageOpen} onToggle={event=>setManageOpen(event.currentTarget.open)} className="input-management">
+        <summary>管理輸入副本</summary>
       <div className="project-layout">
         <nav className="migration-list" aria-label="待分析檔案（輸入順序）">
           <h3>輸入清單 · {files.length} 份</h3>
@@ -210,7 +233,7 @@ export function ProjectWorkbench() {
           </div>
         </div>}
       </div>
-      <button type="button" disabled={files.length === 0} onClick={analyze}>分析專案</button>
+      </details>
     </fieldset>
     {reading && <p role="status">讀取檔案中…</p>}
     {error && <p role="alert" className="diagnostic">{error} 原始檔案不會被修改。</p>}

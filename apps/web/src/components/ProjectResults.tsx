@@ -1,3 +1,4 @@
+import { primaryDiagnostic } from '../primary-diagnostic';
 import { workspaceReading, type ReadingLocation, type ReadingSide } from '../workspace-reading';
 import { WorkspaceDetails } from './WorkspaceDetails';
 import { restoreSourceFocus } from '../source-return';
@@ -94,6 +95,7 @@ export function ProjectResults({ result, files, onSelect, onEdit }: {
   const [query, setQuery] = useState('');
   const [status, setStatus] = useState<ResultStatusFilter>('all');
   const visible = filterMigrationResults(result.migrations, query, status);
+  const firstProblem = primaryDiagnostic(result);
   const reading = workspaceReading(result,location);
   const activeIndex = reading.index;
   const step = reading.step;
@@ -122,9 +124,14 @@ export function ProjectResults({ result, files, onSelect, onEdit }: {
       <p>{result.appliedCount} / {result.migrations.length} 份已套用 · {result.diagnostics.length} 筆診斷</p>
       <p>{result.complete ? '以下為支援範圍內的靜態分析結果，不代表實際資料庫執行結果。' : '最終 schema 未知。最後可信 schema 只包含成功前綴，不能當成專案最終狀態。'}</p>
     </div>
-    <ProjectExports result={result} />
+
     {sourceReturnNotice && <p ref={returnNotice} tabIndex={-1} role="status" className="unavailable">{sourceReturnNotice}</p>}
-    <h3>專案診斷</h3><Diagnostics items={result.diagnostics} onLocate={locate} canLocate={canLocate} />
+    {result.diagnostics.length > 0 && <section aria-label="首要問題">
+      <h3>首要問題</h3><Diagnostics items={firstProblem ? [firstProblem] : []} onLocate={locate} canLocate={canLocate} />
+    </section>}
+    <details className="all-diagnostics"><summary>完整專案診斷 · {result.diagnostics.length}</summary>
+      <Diagnostics items={result.diagnostics} onLocate={locate} canLocate={canLocate} />
+    </details>
     {located && target && <DiagnosticSource file={target.file} diagnostic={located} onEdit={onEdit} />}
     <fieldset className="result-filters">
       <legend>篩選分析結果</legend>
@@ -194,6 +201,7 @@ export function ProjectResults({ result, files, onSelect, onEdit }: {
       </WorkspaceDetails>
       </div>
     </section>
+    <details><summary>分析工具：JSON 匯出</summary><ProjectExports result={result} /></details>
     <SchemaView title={result.complete ? '專案最終 Schema' : '最後可信 Schema（僅成功前綴）'}
       schema={result.complete ? result.finalSchema : result.lastValidSchema} unavailable="最終 schema 未知。" />
     <details><summary>完整 ProjectAnalysis JSON</summary><pre>{JSON.stringify(result, null, 2)}</pre></details>
