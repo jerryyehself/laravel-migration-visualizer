@@ -34,3 +34,7 @@
 ## 排除與停止點
 
 不增加 PHP／ERD 匯出、下載落盤、持久化、core／公開 JSON、新依賴／workflow。必要回歸通過後交給 R8.6 整合，不能以收合藏掉主摘要或未完成狀態。
+
+## 實際追蹤
+
+GitHub [#143](https://github.com/jerryyehself/laravel-migration-visualizer/issues/143)；milestone [#43](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/43)。依賴：#140、#141、#142。approved，尚未開工。

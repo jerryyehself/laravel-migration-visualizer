@@ -34,3 +34,7 @@
 ## 排除與停止點
 
 不刪範例／匯出／副本能力，不改 core／JSON、持久化、單檔 ERD、動畫、依賴／workflow。完成此批相關檢查與 commit／PR 紀錄後，下一批須滿足 R8.2 前置條件；未驗收不標 done。
+
+## 實際追蹤
+
+GitHub [#139](https://github.com/jerryyehself/laravel-migration-visualizer/issues/139)；milestone [#43](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/43)。依賴：R7 #137／#138 已交付。本輪 R8.1 in_progress；完成檢查後 ready for review，未合併不標 done。

@@ -1,6 +1,6 @@
 # R8：結構與 migration 變化閱讀修正
 
-- 狀態：approved；尚未實作、尚未完成 GitHub 工作項目建立
+- 狀態：in_progress（僅 R8.1）；milestone #43／issues #139～144 已建立，整批未完成
 - 日期／修訂：2026-10-11（Asia/Taipei）／1
 - 核准來源：使用者在 A-06 修訂 2 審查與優先序後明確要求「提出詳細修改步驟 建立milestone 跟issue 告訴實作session如何做修正」
 - 核准範圍：A-06 已列的變更摘要、主流程收斂、同名物件相關步驟、連續查看；本文件具體化其必要 UI／驗收契約。不是整份 A-06 或全部早期候選功能核准
@@ -116,7 +116,7 @@ Laravel Migration Visualizer：看結構、讀變更、追查來源
 
 | 批次／狀態 | 前置條件 | 詳細修改與交付物 | 預計 web 邊界 | 驗證／停止點 |
 |---|---|---|---|---|
-| R8.1 approved | 最新 main／R7 done；本文件及工作項目可取得 | 依草圖調整入口／結果順序、收合輸入管理、11 範例整合、工具入口及同頁返回；診斷編輯能展開正確檔 | main、ProjectWorkbench、ProjectResults、ProjectExports、style | 匯入與副本失效／還原、工具返回、鍵盤／窄屏；不刪既有功能、不改分析器 |
+| R8.1 in_progress | 最新 main／R7 done；本文件及工作項目可取得 | 依草圖調整入口／結果順序、收合輸入管理、11 範例整合、工具入口及同頁返回；診斷編輯能展開正確檔 | main、ProjectWorkbench、ProjectResults、ProjectExports、style | 匯入與副本失效／還原、工具返回、鍵盤／窄屏；不刪既有功能、不改分析器 |
 | R8.2 approved | R8.1 工作區容納摘要；確認 SchemaChange 既有欄位 | 純 DTO 顯示 adapter、每表分組、屬性前→後、index／FK 與來源導航；摘要在 ERD 前 | migration-reading、MigrationReading、WorkspaceDetails；可新增 web 純 adapter | commerce 價格、跨表 FK、false／0／null／缺省、rename 與 drop/add、failed；不改 core／JSON |
 | R8.3 approved | R8.2 摘要與相關物件導航可用 | literal 名稱相關步驟視圖、刪除名稱查詢、實際差異與語法上下文、跳步與來源 | operation-sources、WorkspaceDetails、ProjectResults；可新增 web 相關變更 adapter／component | nickname 新增移除、tableAdded/Removed 含欄位、同名重建、failed／blocked、特殊名稱；不做 history identity |
 | R8.4 approved | R8.3 查詢／導航邊界已明確 | 將閱讀／查詢／GraphView 提升到適當父層，保留欄位與視野，搜尋側別與共享工具；未知側不補畫 | SchemaSnapshots、SchemaGraph、SchemaComparison、comparison-layout、ProjectResults | step／side／filter、未知／缺欄、幾何布局不混資料、來源返回；不持久化／自動播放 |
@@ -155,3 +155,5 @@ main push 會觸發既有 Pages，開發端合併前依其 session 的既有授�
 使用者本次直接要求建立工作項目並交代修正，核准上述已有建議的修正方向與必要具體化；狀態 approved。這不是研究端寫程式的授權；也不核准排除項目。
 
 研究端交付本文件、六張 issue 全文、milestone 全文與 [接手入口](R8-work-items/README.md)、提案索引／決策／CLOUD_HANDOFF。只做文件與連結／差異檢查。GitHub API Forbidden，真實工作項目未建立，無編號可報；由具備 API 權限的實作 session 先查重再建立並回填實際 URLs，無需重問這次建立／修正授權。
+
+COORD-20261011-04 只派 R8.1，R8.2～6 不開工；milestone #43 保持 open，停止於分支／PR，不合併 main。研究端 API 限制是歷史，開發端本輪查重與建立成功，真實 URLs／依賴見工作項目包。

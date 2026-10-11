@@ -35,3 +35,7 @@
 ## 排除與停止點
 
 不改 parser／replay／SchemaDiff／JSON／golden，不新增 DB 安全判定、自動 rename、任意時點 diff。摘要與必要回歸完成後再開始 R8.3；資料缺口回報，不能以猜值補足。
+
+## 實際追蹤
+
+GitHub [#140](https://github.com/jerryyehself/laravel-migration-visualizer/issues/140)；milestone [#43](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/43)。依賴：#139。approved，尚未開工。

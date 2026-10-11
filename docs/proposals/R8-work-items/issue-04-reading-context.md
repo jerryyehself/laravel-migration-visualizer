@@ -35,3 +35,7 @@
 ## 排除與停止點
 
 不持久化／URL state、不自動播放、不 semantic rename、不新增 core model／布局演算法研究。完成相關回歸後再進 R8.5；不能為保留位置而混合各側資料。
+
+## 實際追蹤
+
+GitHub [#142](https://github.com/jerryyehself/laravel-migration-visualizer/issues/142)；milestone [#43](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/43)。依賴：#141。approved，尚未開工。

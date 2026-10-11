@@ -2,7 +2,7 @@
 
 2026-10-11。R8 修訂 1 為 approved，使用者直接要求建立 milestone／issues 並交代修正；研究 session 不實作。完整規格：[R8](../R8-reading-corrections.zh-TW.md)。
 
-## 實際狀態
+## 研究端最初狀態（歷史）
 
 本研究環境的正常 `gh api` 唯讀 milestones 請求回傳 Forbidden，當前設定未允許 api.github.com。未取得 live 工作項目清單，也未成功建立 milestone／issues／PR；不得把下面的 R8.* 說成 GitHub 編號。本包保存已完成的建立內容與派工規格，可由具備 GitHub API 權限的實作 session 接續，不需重問本次建立授權。
 
@@ -57,14 +57,18 @@ gh issue create --repo jerryyehself/laravel-migration-visualizer --milestone 'R8
 
 | 項目 | 內容／依賴 | 實際 GitHub 記錄 |
 |---|---|---|
-| milestone | [全文](milestone.md) | 未建立 |
-| R8.1 | [主流程](issue-01-main-flow.md)；R7 done | 未建立 |
-| R8.2 | [摘要](issue-02-change-summary.md)；R8.1 | 未建立 |
-| R8.3 | [縱深](issue-03-related-changes.md)；R8.2 | 未建立 |
-| R8.4 | [上下文](issue-04-reading-context.md)；R8.3 | 未建立 |
-| R8.5 | [明細／進階](issue-05-details-and-tools.md)；R8.2～4 | 未建立 |
-| R8.6 | [驗收](issue-06-acceptance.md)；R8.1～5 | 未建立 |
+| milestone | [全文](milestone.md) | [#43](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/43)，open |
+| R8.1 | [主流程](issue-01-main-flow.md)；R7 done | [#139](https://github.com/jerryyehself/laravel-migration-visualizer/issues/139)，open |
+| R8.2 | [摘要](issue-02-change-summary.md)；R8.1 | [#140](https://github.com/jerryyehself/laravel-migration-visualizer/issues/140)，open |
+| R8.3 | [縱深](issue-03-related-changes.md)；R8.2 | [#141](https://github.com/jerryyehself/laravel-migration-visualizer/issues/141)，open |
+| R8.4 | [上下文](issue-04-reading-context.md)；R8.3 | [#142](https://github.com/jerryyehself/laravel-migration-visualizer/issues/142)，open |
+| R8.5 | [明細／進階](issue-05-details-and-tools.md)；R8.2～4 | [#143](https://github.com/jerryyehself/laravel-migration-visualizer/issues/143)，open |
+| R8.6 | [驗收](issue-06-acceptance.md)；R8.1～5 | [#144](https://github.com/jerryyehself/laravel-migration-visualizer/issues/144)，open |
 
 ## 本研究批次的交付與停止點
 
 前置條件是使用者的建立／修正指令與 A-06 問題證據。本次交付 R8 規格、milestone 全文、六張 issue 全文、上述建立與接手步驟、提案／決策／雲端交接更新。檢查文件連結與 diff，核對分支只有 docs。沒有執行專案、修改程式／測試／設定／scripts／workflow、安裝或部署；沒有成功建立 GitHub records，也沒有跨對話傳送工具可用，因此由使用者把此接手入口提供給實作 session。停止於可審查文件分支；不把待 API 接續說成已完成。
+
+## COORD-20261011-04 開發接手
+
+已查重建立上述 milestone／六張 issues，僅派 R8.1；R8.2～6 未開工。產品輸入 main 2b8030a7d19963980190ba860888f243883b6d7b，規格輸入 5eec41476ef22b85d3165d3be3f681f1a20c8f9d，規格保存在 feat/r8-1-main-flow 的 merge commit。停止於可審查 PR，等待協調端安排新 head 獨立驗收，不合併 main。

@@ -34,3 +34,7 @@
 ## 排除與停止點
 
 不追加相容性、AI、動畫／history identity、下載落盤、大型性能保證、新 release／workflow／部署設定。完成必要驗收及實際 merge 證據即停止，沒有下一個 approved 任務不做相鄰 draft。
+
+## 實際追蹤
+
+GitHub [#144](https://github.com/jerryyehself/laravel-migration-visualizer/issues/144)；milestone [#43](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/43)。依賴：#139～#143。approved，尚未開工。

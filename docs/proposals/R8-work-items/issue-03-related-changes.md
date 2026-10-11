@@ -35,3 +35,7 @@
 ## 排除與停止點
 
 不新增 core History DTO、穩定 ID、跨 rename 自動追蹤、任意時點比較、時間軸／動畫、PHP／DB runtime。已知相關步驟與未知提示驗證完成再進 R8.4，不以功能名「歷程」擴大責任。
+
+## 實際追蹤
+
+GitHub [#141](https://github.com/jerryyehself/laravel-migration-visualizer/issues/141)；milestone [#43](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/43)。依賴：#140。approved，尚未開工。
