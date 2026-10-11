@@ -1,0 +1,49 @@
+{
+  "task": "COORD-20261011-28",
+  "scope": "R8.1 short batch A, one representative main-flow group",
+  "productSHA": "f9b42c8c220841d40978db48969feaba8c52dc43",
+  "productCheckout": "/workspace/scratch/coord28-r81-product",
+  "cleanBefore": true,
+  "cleanAfter": true,
+  "preservedPreviousReportSHA": "c8dabc488b1db95edb65a011d033a685c25ac133",
+  "reportBranch": "docs/independent-r81-a-coord28",
+  "reportBase": "2b8030a7d19963980190ba860888f243883b6d7b",
+  "tools": {
+    "node": "22.23.3",
+    "npm": "10.9.9",
+    "playwright": "1.62.0",
+    "chromium": "154.0.8037.57",
+    "vite": "7.3.6"
+  },
+  "setupCommands": [
+    "git clone --shared --no-checkout /workspace/laravel-migration-visualizer /workspace/scratch/coord28-r81-product",
+    "git checkout --detach f9b42c8c220841d40978db48969feaba8c52dc43",
+    "git remote set-url origin https://github.com/jerryyehself/laravel-migration-visualizer.git",
+    "export PATH=/workspace/.tools/node-v22.23.3-linux-x64/bin:$PATH npm_config_cache=/workspace/.cache/npm",
+    "npm ci",
+    "npm run dev -- --host 127.0.0.1 --port 5204 --strictPort",
+    "python artifacts/coord28-r81-a/browser.py"
+  ],
+  "install": "46 packages, exit 0; lockfile unchanged",
+  "build": "not run; Vite source workflow required no build",
+  "verify": "not run; pending later batch",
+  "usage": {
+    "toolAvailable": false,
+    "coordinatorProvidedRemainingPercent": 56,
+    "coordinatorProvidedResetEpoch": 1791732307,
+    "observedLocalRemaining": null,
+    "budgetBoundary": "One group then save and stop; no model change or reset credit"
+  },
+  "pr": {
+    "attemptedThisBatch": false,
+    "reason": "Prior API Forbidden retained; user explicitly instructed not to retry",
+    "priorError": "Post \"https://api.github.com/graphql\": Forbidden"
+  },
+  "headCI": {
+    "coordinatorReportedRun": "38112821394",
+    "coordinatorReportedStatus": "success",
+    "independentlyCheckedThisBatch": false
+  },
+  "environmentConfig": "Existing setup draft unchanged; not published",
+  "browserPermission": "Current shell/Playwright navigation succeeded, no current denial; historical Work Cloud Browser block retained, no permission changes"
+}

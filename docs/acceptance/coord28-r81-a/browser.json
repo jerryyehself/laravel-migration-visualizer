@@ -1,0 +1,134 @@
+{
+  "task": "COORD28 / R8.1 short batch A",
+  "productSHA": "f9b42c8c220841d40978db48969feaba8c52dc43",
+  "cleanBefore": true,
+  "browser": "154.0.8037.57",
+  "playwright": "1.62.0",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "url": "http://127.0.0.1:5204/",
+  "finishedAtTaipei": "2026-10-11T19:23:33.968911+08:00",
+  "taskGroups": 1,
+  "checks": [
+    {
+      "id": "A-entry",
+      "expected": "Single sample entry; 11 existing options remain discoverable; default editor collapsed",
+      "actual": {
+        "entryCount": 1,
+        "optionLabels": [
+          {
+            "value": "0",
+            "label": "載入 Laravel 12 官方範例（示範）"
+          },
+          {
+            "value": "1",
+            "label": "載入成功範例（示範）"
+          },
+          {
+            "value": "2",
+            "label": "載入訂單系統範例（12 檔）（示範）"
+          },
+          {
+            "value": "3",
+            "label": "載入失敗範例（失敗示範）"
+          },
+          {
+            "value": "4",
+            "label": "載入索引範例（示範）"
+          },
+          {
+            "value": "5",
+            "label": "載入外鍵範例（示範）"
+          },
+          {
+            "value": "6",
+            "label": "載入外鍵失敗範例（失敗示範）"
+          },
+          {
+            "value": "7",
+            "label": "載入資料表生命週期範例（示範）"
+          },
+          {
+            "value": "8",
+            "label": "載入刪表失敗範例（失敗示範）"
+          },
+          {
+            "value": "9",
+            "label": "載入欄位 helper 範例（示範）"
+          },
+          {
+            "value": "10",
+            "label": "載入 helper 失敗範例（失敗示範）"
+          }
+        ],
+        "editorOpen": false
+      },
+      "status": "passed"
+    },
+    {
+      "id": "A-load",
+      "expected": "Selecting commerce replaces inputs with 12 files without automatic analysis or opening editor",
+      "actual": {
+        "selected": {
+          "value": "2",
+          "label": "載入訂單系統範例（12 檔）（示範）"
+        },
+        "inputCount": 12,
+        "hasResult": false,
+        "editorOpen": false
+      },
+      "status": "passed"
+    },
+    {
+      "id": "A-analyze",
+      "expected": "Analyze directly while editor remains collapsed; focus moves to completed reading result; inputs retained",
+      "actual": {
+        "summary": "專案分析完成\n\n12 / 12 份已套用 · 0 筆診斷\n\n以下為支援範圍內的靜態分析結果，不代表實際資料庫執行結果。",
+        "focus": {
+          "tag": "SECTION",
+          "label": "專案閱讀結果",
+          "tabindex": "-1"
+        },
+        "inputCount": 12,
+        "filenamesPreserved": true,
+        "selectedSourceSHA256": "7b0e782f13cfffcd603856e554a8fdb1eaa5abd58c488ad62bf93dbe603bc82e",
+        "sourcePreserved": true,
+        "editorOpen": false,
+        "graph": "5 tables / 3 foreign keys"
+      },
+      "status": "passed"
+    },
+    {
+      "id": "A-result",
+      "expected": "Browser-provided DTO confirms 12 applied, zero diagnostics, 5 final tables and 3 FK",
+      "actual": {
+        "appliedCount": 12,
+        "diagnostics": 0,
+        "tables": [
+          "attachments",
+          "order_items",
+          "orders",
+          "products",
+          "users"
+        ],
+        "foreignKeys": 3
+      },
+      "status": "passed"
+    },
+    {
+      "id": "A-console",
+      "expected": "Fresh Chromium has no console warning/error, pageerror or HTTP >=400",
+      "actual": {
+        "console": [],
+        "pageerrors": [],
+        "http": []
+      },
+      "status": "passed"
+    }
+  ],
+  "result": "passed",
+  "scope": "Only commerce load -> no automatic analysis -> direct analysis -> reading result",
+  "note": "DTO observed using DOM textContent; no download or JSON-summary navigation; other tasks unrun."
+}

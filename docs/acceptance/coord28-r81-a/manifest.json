@@ -1,0 +1,48 @@
+{
+  "task": "COORD28 / R8.1 short batch A",
+  "productSHA": "f9b42c8c220841d40978db48969feaba8c52dc43",
+  "taskGroups": 1,
+  "files": [
+    {
+      "path": "analysis-completed.png",
+      "sha256": "8646d93948bc56fb69b1d4b73f65c44f871930af794b0acd5995441d6968ab53",
+      "bytes": 176725
+    },
+    {
+      "path": "browser.json",
+      "sha256": "6eb504f2bd499bb2d976308f018d819ba719720cc5588c081a1d2975082c735d",
+      "bytes": 3992
+    },
+    {
+      "path": "browser.log",
+      "sha256": "ed5b979c39218986f7f03caac7de5a5586ce663328b7573fb4798e19ed7d5d70",
+      "bytes": 2916
+    },
+    {
+      "path": "browser.py",
+      "sha256": "97e3efe36f89c963e758a86fb30c6dcc05f79f8b790ddd76772cc6194150fdc7",
+      "bytes": 5633
+    },
+    {
+      "path": "environment.json",
+      "sha256": "b6a4c8cc51796cfd00888fd0ddc1d589d0f0fbd43cce46f5bedb3eae09704a37",
+      "bytes": 2166
+    },
+    {
+      "path": "loaded-not-analyzed.png",
+      "sha256": "6c5983ca14f16a4789bf6e4499d364bd42ab0775d0ba8f34b62c3667cb3e2a38",
+      "bytes": 130636
+    },
+    {
+      "path": "reading-result.png",
+      "sha256": "7c2d0f2da54920ed12b9441bfd14ebc8b1c4298ca64d66d467bf5705314990fd",
+      "bytes": 564138
+    },
+    {
+      "path": "report.zh-TW.md",
+      "sha256": "4aac501229cc14fff911f4c98ebaa8748cf3718f2f1b4941e0d58ad5b3390863",
+      "bytes": 5573
+    }
+  ],
+  "note": "This batch only; manifest excludes itself; other R8.1 acceptance pending"
+}
