@@ -1,0 +1,70 @@
+{
+  "productVersion": "1.0.0",
+  "commit": "c32b52260b6057b2b0f49d223e1c9f68b397f7c8",
+  "clean": true,
+  "node": "v24.19.0",
+  "platform": "linux",
+  "startedAt": "2026-10-11T05:36:00.147Z",
+  "commands": [
+    {
+      "command": "test",
+      "exitCode": 0
+    },
+    {
+      "command": "typecheck",
+      "exitCode": 0
+    },
+    {
+      "command": "build",
+      "exitCode": 0
+    },
+    {
+      "command": "demo:project",
+      "exitCode": 0
+    },
+    {
+      "command": "demo:tables",
+      "exitCode": 0
+    },
+    {
+      "command": "demo:helpers",
+      "exitCode": 0
+    },
+    {
+      "command": "demo:changes",
+      "exitCode": 0
+    },
+    {
+      "command": "demo:laravel",
+      "exitCode": 0
+    },
+    {
+      "command": "demo:index-rename",
+      "exitCode": 0
+    },
+    {
+      "command": "demo:current-update",
+      "exitCode": 0
+    },
+    {
+      "command": "demo:drop-columns",
+      "exitCode": 0
+    },
+    {
+      "command": "demo:drop-constrained-id",
+      "exitCode": 0
+    },
+    {
+      "command": "demo:morphs",
+      "exitCode": 0
+    },
+    {
+      "command": "demo:acceptance",
+      "exitCode": 0
+    },
+    {
+      "command": "demo:nullable-timestamps",
+      "exitCode": 0
+    }
+  ]
+}

@@ -15,7 +15,7 @@ Select cases that exercise the changed behavior rather than repeating every hist
 
 - Known empty schema and unknown null snapshots need different UI. A failed project must not display lastValidSchema as its final schema; a missing comparison side must not be copied from the other side.
 - Before/after graphs each read their own schema. Shared layout and GraphView synchronize interaction only; do not combine the two schemas or infer semantic rename. Diff labels follow core changes, including removed items that exist only before.
-- Filtering preserves core order and original selection identity. Table search filters the focus list, not the schema or edges. Changing snapshot resets the appropriate view; test that focus and details follow the active snapshot.
+- Filtering preserves core order and original selection identity. Table search filters the focus list, not the schema or edges. Under R8.4, normal workspace step/side navigation preserves literal column selection, search and the shared view. Test missing versus unknown against each own snapshot; reset only on explicit reset or a new analysis, never infer rename identity.
 - Details read the selected table from the current side. Preserve explicit false, 0 and null; absent optional properties remain unspecified. A table missing on one side needs an absence message. Use safe own-property checks and React text escaping for names and comments.
 - Editing input invalidates analysis and exports. Draft edits and restore affect browser copies only. Export the core result rather than UI labels, filtered subsets or layout metadata; never enable final-schema download for unknown final state.
 
