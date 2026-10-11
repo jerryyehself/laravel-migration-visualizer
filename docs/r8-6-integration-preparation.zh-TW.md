@@ -57,3 +57,5 @@ failed快照不是空schema，lastValidSchema只是成功前綴；tablelifecycle
 剩餘門檻是協調回收各固定版本獨立報告、必要缺陷修正／複驗、依授權安排依賴整合與全部必要merge、再核對交付證據；完整R8.6 done由後續派工決定。本輪不越過合併門檻，不autoMerge、不部署／release，不做下載互動或落盤、真人試用或大型效能保證，不新增相容性／identity／持久化／動畫／runtime或其他draft。
 
 [manifest.json](acceptance/r8-6-evidence/manifest.json)列16份JSON／真browser截圖／首次失敗原文的SHA256；截圖已實際檢視。文件／PR head與本輪CI於真正建立後補登，僅文件head變更不當新產品SHA。
+
+可審查stacked PR：[R8.6整合準備 #150](https://github.com/jerryyehself/laravel-migration-visualizer/pull/150)，base feat/r8-5-details-and-tools，head feat/r8-6-integration-preparation；runner／教學／證據commit ff1d8a5b973a4df8c58b3931ff7d229e53a57202。最後產品改動ce16e471573cbf0762ad13293f715eefb61b28f7、本輪實際verify9010b873cd2bfbf5647406c41935a8dfa718a5f0與後續文件head分開。current headCI按GitHub當前結果補登；獨立驗收pending，不合併／automerge／標done。
