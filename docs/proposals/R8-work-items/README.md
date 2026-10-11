@@ -72,3 +72,5 @@ gh issue create --repo jerryyehself/laravel-migration-visualizer --milestone 'R8
 ## COORD-20261011-04 開發接手
 
 已查重建立上述 milestone／六張 issues，僅派 R8.1；R8.2～6 未開工。產品輸入 main 2b8030a7d19963980190ba860888f243883b6d7b，規格輸入 5eec41476ef22b85d3165d3be3f681f1a20c8f9d，規格保存在 feat/r8-1-main-flow 的 merge commit。停止於可審查 PR，等待協調端安排新 head 獨立驗收，不合併 main。
+
+可審查 PR：[R8.1 #145](https://github.com/jerryyehself/laravel-migration-visualizer/pull/145)，head／CI 以 GitHub 當前紀錄為準；本輪不合併，獨立複驗待協調端安排。

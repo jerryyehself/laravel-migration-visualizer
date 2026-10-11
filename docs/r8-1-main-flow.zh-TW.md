@@ -35,3 +35,5 @@ R8.2 摘要、R8.3 相關步驟、R8.4 跨步欄位／query／view 保留、R8.5
 產品 head d849b4e8a0ea79e65b8d459a975476b57fe75538。乾淨 commit 上執行 npm run verify：673 tests（540 core／133 web）、typecheck、build、12 demos／15 commands 全通過。R8.1 14 組、R7 16 項、IR 9 項 browser 回歸，共 39 項／組全部通過；11 個範例逐一載入／分析包含在一組任務內，不把它當額外 tests。console warning/error 為空。
 
 可攜證據在 [驗證 manifest](acceptance/r8-1-evidence/manifest.json)、[verify](acceptance/r8-1-evidence/verification.json)、[R8.1 browser](acceptance/r8-1-evidence/browser.json)、[R7](acceptance/r8-1-evidence/r7-regression.json)、[來源返回](acceptance/r8-1-evidence/source-return.json)、[桌面](acceptance/r8-1-evidence/desktop.png)、[390px](acceptance/r8-1-evidence/narrow.png)、[修正前焦點](acceptance/r8-1-evidence/focus-before.json)。verify metadata clean=true 且 commit 對應上述產品 head；最後文件 commit 不改產品。PR 最新 head CI 以 GitHub 真實紀錄與本對話回報為準，文件不預填未發生的 CI／merge。
+
+可審查 PR：[R8.1 #145](https://github.com/jerryyehself/laravel-migration-visualizer/pull/145)，head／CI 以 GitHub 當前紀錄為準；本輪不合併，獨立複驗待協調端安排。

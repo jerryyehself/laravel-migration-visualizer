@@ -210,3 +210,5 @@ R7.1～R7.3 done：PR #137 merge 96f13b0c2f8fba1389f5f5e915bcec346229747b；head
 ## COORD-20261011-04 停止點
 
 只開工 R8.1，產品 head d849b4e8a0ea79e65b8d459a975476b57fe75538；673 tests／15 verify 步驟／12 demos、14+16+9 browser 任務／回歸通過。ready for review、未合併，R8.2～6 未開工，milestone #43 保持 open。等待協調端新 head 獨立驗收，不因舊 R7 驗收或既有 merge 授權跳過。可攜證據／教學 r8-1-main-flow.zh-TW.md。
+
+可審查 PR：[R8.1 #145](https://github.com/jerryyehself/laravel-migration-visualizer/pull/145)，head／CI 以 GitHub 當前紀錄為準；本輪不合併，獨立複驗待協調端安排。
