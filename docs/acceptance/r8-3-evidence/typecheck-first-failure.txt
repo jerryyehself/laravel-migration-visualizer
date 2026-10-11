@@ -1,0 +1,6 @@
+
+> laravel-migration-visualizer@1.0.0 typecheck
+> tsc --noEmit -p packages/migration-core/tsconfig.json && tsc --noEmit -p apps/web/tsconfig.json
+
+apps/web/src/related-changes.ts(14,61): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'PropertyKey'.
+  Type 'undefined' is not assignable to type 'PropertyKey'.

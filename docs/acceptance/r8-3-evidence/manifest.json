@@ -1,0 +1,30 @@
+{
+  "inputCommit": "3e8ee581eee16a80940c7490b491001dc2bd25eb",
+  "productCommit": "763f71d5089e45781e34ba30e55028916b065a15",
+  "tests": 698,
+  "coreTests": 540,
+  "webTests": 158,
+  "verifyCommands": 15,
+  "demos": 12,
+  "browserGroups": {
+    "r8_3": 12,
+    "r8_2": 12,
+    "r8_1": 14,
+    "r7": 16,
+    "sourceReturn": 9
+  },
+  "consoleErrors": [],
+  "scope": "R8.3 only; stacked on unmerged R8.2 and R8.1; independent acceptance pending; no merge",
+  "files": {
+    "adapter-first-failure.txt": "784b44aabd38b256a79006f0ca15f059b847abdbc90da50defa9534872945c2e",
+    "browser.json": "a5f608ffd0e45fc91ab4585b888e6da9d7e368c463af9621b0c11a1df9a5ca2a",
+    "desktop.png": "c6e5f8afb25b48dc47901fcb388ffabd75ac12e578bef3fe8418d188967da853",
+    "narrow.png": "77342ab7c476126a42eb91bd83e751ab095c69b5d8ca4e3bc2e12d81c140c19d",
+    "r7-regression.json": "59d68ae38df73fc9eeeba8f606000882854add05a8cb2bc09171d010bb8dba39",
+    "r8-1-regression.json": "44a0e8f042ca7071c6729ae51278e619aff7ce48512583f17995818803ff8ff4",
+    "r8-2-regression.json": "af1d8bc382de2f847985234337bbcac81d8138337daca6de77bb443f322413fa",
+    "source-return.json": "c691acd55b71f013586c19a69016dd1309add05016c32c77487501ee0945ceb2",
+    "typecheck-first-failure.txt": "f6e16ca00ef26713687eadc365b140410bb02618e9ea02a5d3a91b7e5db69a25",
+    "verification.json": "f3c9c55b9180891886747f45a86026e40361f0107f9a0abad74a2ebcf6b6f518"
+  }
+}

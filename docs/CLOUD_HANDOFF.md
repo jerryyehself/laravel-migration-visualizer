@@ -218,3 +218,7 @@ R7.1～R7.3 done：PR #137 merge 96f13b0c2f8fba1389f5f5e915bcec346229747b；head
 只接續 #140／R8.2，輸入 f9b42c8c220841d40978db48969feaba8c52dc43，產品 444fc9c99f7acf99f2824730ee32c0ca3e56b08d；684 tests／12 demos／15 verify 步驟及 12+14+16+9 browser 自測通過。R8.1 #145 保持固定 head／OPEN，獨立驗收仍 pending；R8.2 ready for review，stacked PR 待前批驗收／合併，不合併 main、不開始 R8.3～6。milestone #43／所有工作項目保持未完成。教學與可攜 manifest 見 docs/r8-2-change-summary.zh-TW.md、docs/acceptance/r8-2-evidence/manifest.json。
 
 可審查 stacked PR：[R8.2 #146](https://github.com/jerryyehself/laravel-migration-visualizer/pull/146)，base feat/r8-1-main-flow，head feat/r8-2-change-summary。current head／CI 以 GitHub 紀錄為準，依賴 #145 未合併，獨立驗收 pending。
+
+## COORD-20261011-11：R8.3 交付停點
+
+協調端按既有使用者核准（R8修訂1@5eec414）只派 #141／R8.3。輸入3e8ee581eee16a80940c7490b491001dc2bd25eb，產品763f71d5089e45781e34ba30e55028916b065a15；698 tests、12 demos、15 verify步驟、12+12+14+16+9 browser自測通過。R8.1 #145／R8.2 #146 固定 head 不改，三批独立驗收均 pending。R8.3 in_progress／ready for review，milestone #43 open，R8.4～6未開工，不合併 main、不automerge。教學 docs/r8-3-related-changes.zh-TW.md，可攜證據 docs/acceptance/r8-3-evidence/manifest.json。規劃8c326339ff5b7656b7e73a3842029a6dfbc24eae只參考，不混產品base。
