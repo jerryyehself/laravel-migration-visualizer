@@ -43,3 +43,5 @@ R8.4明確更新R7允許換步重設view／清欄位的舊限制；相關UI-revi
 ## 停止點與限制
 
 #142 in_progress／ready for review但OPEN，R8整批未done、milestone43 OPEN；等待協調端回收、本新固定head獨立複驗及前批依賴整合。main核對仍2b8030a7d19963980190ba860888f243883b6d7b。共享幾何不是新布局研究；沒有持久化／URL state／播放／stable identity／自動rename／任意時點比較／新core模型／runtime／下載落盤／部署／release。
+
+可審查stacked PR：[R8.4 #148](https://github.com/jerryyehself/laravel-migration-visualizer/pull/148)，base feat/r8-3-related-changes，head feat/r8-4-reading-context。current head／CI以GitHub紀錄為準；獨立驗收pending、未合併、沒有automerge。

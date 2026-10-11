@@ -228,3 +228,5 @@ R7.1～R7.3 done：PR #137 merge 96f13b0c2f8fba1389f5f5e915bcec346229747b；head
 ## COORD-20261011-14：R8.4交付停點
 
 協調端按原人類核准（R8修訂1@5eec414）只派#142／R8.4。輸入8ed11ea960c7e0a046b72e3c78011c4cb744896b，產品c32b52260b6057b2b0f49d223e1c9f68b397f7c8；706tests／12demos／15verifycommands、14+12+12+14+16+9browser自測通過。R8.4父層保literal/query/view與集中側別搜尋，更新R7切步重設view舊限制；core/JSON不改。#145～147固定heads不改、R8.1～4独立驗收pending，#142 ready for review但OPEN／milestone43 OPEN，R8.5～6未開始。規劃8ea8ece98073542eaafc4b6d19f5e7ce639f074c只参考不混base。教學docs/r8-4-reading-context.zh-TW.md，證據docs/acceptance/r8-4-evidence/manifest.json。
+
+可審查stacked PR：[R8.4 #148](https://github.com/jerryyehself/laravel-migration-visualizer/pull/148)，base feat/r8-3-related-changes，head feat/r8-4-reading-context。current head／CI以GitHub紀錄為準；獨立驗收pending、未合併、沒有automerge。
