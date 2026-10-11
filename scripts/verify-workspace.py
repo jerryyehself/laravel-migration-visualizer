@@ -12,7 +12,9 @@ with sync_playwright() as p:
  page.on('console',lambda msg:errors.append(msg.text) if msg.type in ['error','warning'] else None)
  page.on('pageerror',lambda error:errors.append(str(error)))
  def load(name):
-  page.get_by_role('button',name=name,exact=True).click()
+  if not page.locator('.sample-menu').evaluate('(e)=>e.open'): page.locator('.sample-menu > summary').click()
+  value=page.locator('#project-example').evaluate('(e,name)=>[...e.options].find(o=>o.text.startsWith(name)).value',name)
+  page.locator('#project-example').select_option(value)
   page.get_by_role('button',name='分析專案',exact=True).click()
   expect(page.get_by_label('Migration 閱讀工作區',exact=True)).to_be_visible()
  def select(index):
@@ -110,7 +112,7 @@ with sync_playwright() as p:
  control('下一份 migration').click()
  expect(header()).to_contain_text('已阻擋');expect(details()).to_contain_text('此側快照未知')
  control('最終結構').click();assert page.locator('.schema-graph').count()==0
- page.locator('.project-results > .diagnostics').get_by_role('button').first.click()
+ page.get_by_label('首要問題',exact=True).get_by_role('button').first.click()
  expect(page.get_by_label('診斷原始碼定位',exact=True)).to_be_visible()
  expect(header()).to_contain_text('第 2／3 份')
  checks.append('diagnostic locate synchronizes failed step and retains source panel')
@@ -145,6 +147,7 @@ with sync_playwright() as p:
  page.set_viewport_size({'width':1440,'height':1000})
  header().scroll_into_view_if_needed();page.screenshot(path='artifacts/r7-workspace.png')
  # Editing a browser copy invalidates the entire result/workspace.
+ page.locator('.input-management > summary').click()
  page.locator('#project-source').fill(page.locator('#project-source').input_value()+'\n// copy changed')
  expect(page.locator('.reading-workspace')).to_have_count(0)
  checks.append('input edit invalidates workspace and source')
