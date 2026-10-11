@@ -1,3 +1,4 @@
+import { RelatedChanges } from './RelatedChanges';
 import { primaryDiagnostic } from '../primary-diagnostic';
 import { workspaceReading, type ReadingLocation, type ReadingSide } from '../workspace-reading';
 import { WorkspaceDetails } from './WorkspaceDetails';
@@ -65,6 +66,7 @@ export function ProjectResults({ result, files, onSelect, onEdit }: {
 }) {
   const [location,setLocation] = useState<ReadingLocation>({kind:'final'});
   const [selectedObject,setSelectedObject] = useState<StructureQuery>();
+  const [relatedQuery,setRelatedQuery] = useState<StructureQuery>();
   const [objectRequest,setObjectRequest] = useState(0);
   const [focusTarget,setFocusTarget] = useState<{query:StructureQuery;request:number}>();
   const focusRequest = useRef(0);
@@ -113,6 +115,13 @@ export function ProjectResults({ result, files, onSelect, onEdit }: {
   }
   function selectObject(query:StructureQuery|undefined) {
     clearSource(); setSelectedObject(query); setObjectRequest(current=>current+1);
+  }
+  function queryRelated(query:StructureQuery) {
+    clearSource(); setRelatedQuery(query); setSelectedObject(query); setObjectRequest(current=>current+1);
+  }
+  function relatedStep(index:number,side:ReadingSide,query:StructureQuery) {
+    clearSource(); setLocated(null); setFocusTarget(undefined); setRelatedQuery(query); setSelectedObject(query); setObjectRequest(current=>current+1);
+    setLocation({kind:'migration',index,side}); onSelect(index);
   }
   function selectBoundary(kind:'initial'|'final') {
     clearSource(); setLocated(null); setFocusTarget(undefined);
@@ -199,7 +208,8 @@ export function ProjectResults({ result, files, onSelect, onEdit }: {
         <details><summary>AtomicOperation JSON</summary><pre>{JSON.stringify(step.analysis.operations, null, 2)}</pre></details></details>
       </div>}
       </div>
-      <WorkspaceDetails choice={reading.choice} selection={selectedObject} request={objectRequest} analysis={result} step={step} onSource={openSource}>
+      <WorkspaceDetails choice={reading.choice} selection={selectedObject} request={objectRequest} analysis={result} step={step} onSource={openSource} onRelated={queryRelated}>
+        <RelatedChanges result={result} query={relatedQuery} onQuery={queryRelated} onStep={relatedStep} onSource={openSource}/>
         {operationSource && <OperationSourcePanel hit={operationSource} files={files} onBack={returnSource} />}
       </WorkspaceDetails>
       </div>

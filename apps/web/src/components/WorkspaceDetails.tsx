@@ -4,9 +4,9 @@ import type { SchemaSnapshotChoice } from '../schema-snapshots';
 import type { StructureQuery, SourceNavigation } from '../operation-sources';
 import type { ProjectAnalysis } from '@lmv/migration-core';
 import { TableDetails } from './TableDetails';
-export function WorkspaceDetails({choice, selection, request, analysis, step, onSource, children}: {
+export function WorkspaceDetails({choice, selection, request, analysis, step, onSource, onRelated, children}: {
   choice:SchemaSnapshotChoice; selection?:StructureQuery; request:number; analysis:ProjectAnalysis;
-  step:MigrationSnapshot|null; onSource:SourceNavigation; children?:ReactNode;
+  step:MigrationSnapshot|null; onSource:SourceNavigation; onRelated?:(query:StructureQuery)=>void; children?:ReactNode;
 }) {
   const sides = choice.comparison ? [
     {label:'套用前',schema:choice.comparison.schemaBefore},
@@ -14,6 +14,8 @@ export function WorkspaceDetails({choice, selection, request, analysis, step, on
   ] : [{label:choice.label,schema:choice.schema}];
   return <aside className="workspace-details" aria-label="目前表明細與來源">
     <h2>目前表：{selection?.table ?? '尚未選取'}</h2>
+    {selection && onRelated && <button type="button" className="secondary" onClick={()=>onRelated(selection)}>查看此名稱相關步驟 {selection.table}{selection.column===undefined?'':'.'+selection.column}</button>}
+    {selection?.column !== undefined && <p>目前欄位名稱：{selection.column}（literal，缺少也保留）</p>}
     {sides.map(side => <section key={side.label} aria-label={`${side.label}資料表明細`}>
       <h3>{side.label}</h3>
       {side.schema === null ? <p className="unavailable">此側快照未知，無法確認{selection ? `資料表 ${selection.table}` : '表結構'}；不補畫成功前綴。</p> :
