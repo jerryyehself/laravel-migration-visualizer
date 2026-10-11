@@ -20,8 +20,8 @@ function KnownComparison({ step, before, after, diff, analysis, onSource, onSele
     <p role="status">{diff.changes.length} 個結構變化{diff.changes.length === 0 ? '；沒有結構變化。' : '。'}</p>
     <SchemaGraph schema={before} title="套用前 ERD · 移除與變更" diff={diff} side="before" layout={layout} view={view} onViewChange={setView} analysis={analysis} onSource={onSource} selection={selection} onSelectObject={onSelectObject} hideDetails={hideDetails} onSelectionChange={onSelectionChange} hideControls={hideControls} />
     <SchemaGraph schema={after} title="套用後 ERD · 新增與變更" diff={diff} side="after" layout={layout} view={view} onViewChange={setView} analysis={analysis} onSource={onSource} selection={selection} onSelectObject={onSelectObject} hideDetails={hideDetails} onSelectionChange={onSelectionChange} hideControls={hideControls} />
-    <details><summary>ERD 變更明細（包含索引與完整前後屬性）</summary>
+    {!hideDetails && <details><summary>ERD 變更明細（包含索引與完整前後屬性）</summary>
       <ul>{diff.changes.map((change, index) => <li key={index}><strong>{change.kind} · {change.table}{'column' in change ? `.${change.column}` : 'index' in change ? ` / ${change.index}` : 'foreignKey' in change ? ` / ${change.foreignKey}` : ''}</strong><pre>{JSON.stringify(change, null, 2)}</pre></li>)}</ul>
-    </details>
+    </details>}
   </section>;
 }

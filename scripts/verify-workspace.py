@@ -57,14 +57,14 @@ with sync_playwright() as p:
  page.locator('#result-query').fill('')
  checks.append('filter retains reading point and previous uses complete core order')
  # Select a source whose migration differs from the currently displayed step.
- origin=details().locator('[aria-label="操作來源 users"] button').first.element_handle()
+ page.locator('.workspace-sources').evaluate('(e)=>e.open=true');page.get_by_role('button',name='查看資料表名稱來源 users',exact=True).click();origin=details().locator('[aria-label="操作來源 users"] button').first.element_handle()
  original_header=header().inner_text()
  original_graph=page.locator('.erd-canvas > g').get_attribute('transform')
  origin.click()
  expect(page.get_by_label('結構操作原始碼',exact=True)).to_be_visible()
  assert header().inner_text()==original_header
  assert 'create_users' in page.get_by_label('結構操作原始碼',exact=True).inner_text()
- details().locator('.table-inspector details').evaluate('(e)=>e.open=false')
+ details().locator('.workspace-sources').evaluate('(e)=>e.open=false')
  page.get_by_role('button',name='返回原結構選取',exact=True).click()
  assert origin.is_visible() and origin.evaluate('(e)=>e===document.activeElement')
  assert header().inner_text()==original_header
@@ -138,7 +138,7 @@ with sync_playwright() as p:
  page.set_viewport_size({'width':390,'height':844})
  control('下一份 migration').click();expect(header()).to_contain_text('第 3／3 份')
  expect(details()).to_contain_text('目前表：users')
- origin=details().locator('[aria-label="操作來源 users"] button').first.element_handle();origin.click()
+ page.locator('.workspace-sources').evaluate('(e)=>e.open=true');page.get_by_role('button',name='查看資料表名稱來源 users',exact=True).click();origin=details().locator('[aria-label="操作來源 users"] button').first.element_handle();origin.click()
  page.get_by_role('button',name='返回原結構選取',exact=True).click()
  assert origin.evaluate('(e)=>e===document.activeElement')
  assert page.evaluate('document.documentElement.scrollWidth <= window.innerWidth')

@@ -133,3 +133,7 @@ summary { cursor: pointer; padding: 10px 0; color: #176d62; }
 .related-changes input { width: 100%; min-width: 0; box-sizing: border-box; }
 .related-changes li { overflow-wrap: anywhere; }
 .related-changes > ol { padding-inline-start: 1.25rem; }
+
+/* R8.5: visible entry boundaries, including keyboard focus. */
+.workspace-sources, .advanced-analysis { border-block-start: 2px solid #ccd5de; padding-block: .6rem; margin-block-start: 1rem; overflow-wrap: anywhere; }
+.workspace-sources > summary, .advanced-analysis > summary { font-weight: 700; }

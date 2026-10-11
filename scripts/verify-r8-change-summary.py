@@ -27,11 +27,11 @@ with sync_playwright() as p:
   expect(page.locator('.workspace-controls')).to_contain_text('套用前' if side=='Before' else '套用後')
   expect(page.locator('.workspace-details')).to_contain_text('price')
  record('keyboard changed-column navigation uses each trusted snapshot')
- s.locator('details > summary').first.click()
- origin=s.get_by_role('button',name='查看 PHP 來源',exact=False).last
+ s.get_by_role('button',name='查看涉及此名稱的 PHP 操作',exact=True).first.click()
+ origin=page.locator('.workspace-sources').get_by_role('button',name='查看 PHP 來源',exact=False).last
  origin.click();expect(page.get_by_label('結構操作原始碼',exact=True)).to_be_visible()
  page.get_by_role('button',name='返回原結構選取',exact=True).click();expect(origin).to_be_focused()
- record('name-indexed source navigation returns focus to summary without identity inference')
+ record('name-indexed source navigation returns focus to the single source list without identity inference')
  page.locator('.workspace-controls').get_by_role('button',name='前後比較',exact=True).click();assert summary().count()==1
  assert s.evaluate("s=>!!(s.compareDocumentPosition([...document.querySelectorAll('section')].find(e=>e.getAttribute('aria-label')==='Schema 快照檢視'))&Node.DOCUMENT_POSITION_FOLLOWING)")
  record('comparison shows one primary summary before graphs')
