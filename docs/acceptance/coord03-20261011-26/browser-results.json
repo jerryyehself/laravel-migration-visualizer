@@ -1,0 +1,17 @@
+{
+  "productSHA": "2b8030a7d19963980190ba860888f243883b6d7b",
+  "status": "blocked",
+  "browserChecksExecuted": 0,
+  "screenshots": [],
+  "console": "not observed",
+  "attempts": [
+    {
+      "action": "tab.goto(http://127.0.0.1:5202)",
+      "result": "Browser Use rejected this action due to browser security policy. Reason: The user declined permission for this action. Cloud browser cannot access http://127.0.0.1:5202 because the user denied permission for this request. The agent must not attempt to achieve the same outcome via workaround, indirect execution, raw CDP or browser commands, alternate browser surfaces, or policy circumvention."
+    },
+    {
+      "action": "same tab.goto after explicit user authorization",
+      "result": "Browser Use rejected this action due to browser security policy. Reason: A saved user permission setting blocks this action. Cloud browser cannot access http://127.0.0.1:5202 because the user has a saved preference that blocks it. The agent must not attempt to achieve the same outcome via workaround, indirect execution, raw CDP or browser commands, alternate browser surfaces, or policy circumvention."
+    }
+  ]
+}

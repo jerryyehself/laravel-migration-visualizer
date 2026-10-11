@@ -1,0 +1,51 @@
+Selected original runner lines; complete raw log retained in scratch, not versioned.
+[verify] npm run test
+ Test Files  40 passed (40)
+      Tests  670 passed (670)
+   Duration  11.64s (tests 55%, import 23%, transform 20%, worker 2%)
+[verify] npm run typecheck
+> laravel-migration-visualizer@1.0.0 typecheck
+[verify] npm run build
+[verify] npm run demo:project
+[verify] npm run demo:tables
+            "severity": "error",
+            "code": "SCHEMA_REPLAY_ERROR",
+            "severity": "error",
+        "severity": "error",
+        "code": "SCHEMA_REPLAY_ERROR",
+        "severity": "error",
+[verify] npm run demo:helpers
+            "severity": "error",
+            "code": "SCHEMA_REPLAY_ERROR",
+            "severity": "error",
+        "severity": "error",
+        "code": "SCHEMA_REPLAY_ERROR",
+        "severity": "error",
+[verify] npm run demo:changes
+[verify] npm run demo:laravel
+[verify] npm run demo:index-rename
+[verify] npm run demo:current-update
+[verify] npm run demo:drop-columns
+            "severity": "error",
+            "code": "SCHEMA_REPLAY_ERROR",
+            "severity": "error",
+        "severity": "error",
+        "code": "SCHEMA_REPLAY_ERROR",
+        "severity": "error",
+[verify] npm run demo:drop-constrained-id
+            "severity": "error",
+            "code": "SCHEMA_REPLAY_ERROR",
+            "severity": "error",
+        "severity": "error",
+        "code": "SCHEMA_REPLAY_ERROR",
+        "severity": "error",
+[verify] npm run demo:morphs
+            "severity": "error",
+            "code": "SCHEMA_REPLAY_ERROR",
+            "severity": "error",
+        "severity": "error",
+        "code": "SCHEMA_REPLAY_ERROR",
+        "severity": "error",
+[verify] npm run demo:acceptance
+[verify] npm run demo:nullable-timestamps
+[verify] 15 commands passed; evidence: artifacts/verification.json

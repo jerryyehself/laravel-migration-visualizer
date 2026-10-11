@@ -1,0 +1,38 @@
+{
+  "coreVersion": "0.15.0",
+  "results": [
+    {
+      "id": "laravelio",
+      "repo": "laravelio/laravel.io",
+      "commit": "d056c6493dd7bf905e471f2ad6fe716c35642ae4",
+      "lockedLaravel": "v11.55.0",
+      "counts": {
+        "applied": 2,
+        "failed": 1,
+        "blocked": 6
+      },
+      "complete": false,
+      "finalSchemaKnown": false,
+      "lastValidTables": [
+        "job_batches",
+        "jobs"
+      ],
+      "inputScope": "Unmodified checked-in PHP migrations only; schema dumps are not parsed. Empty initial schema."
+    },
+    {
+      "id": "bookstack",
+      "repo": "BookStackApp/BookStack",
+      "commit": "ff661b59f6f605bf768fe850c0d0a8a2dc09d203",
+      "lockedLaravel": "v12.69.3",
+      "counts": {
+        "applied": 0,
+        "failed": 1,
+        "blocked": 102
+      },
+      "complete": false,
+      "finalSchemaKnown": false,
+      "lastValidTables": [],
+      "inputScope": "Unmodified checked-in PHP migrations only; schema dumps are not parsed. Empty initial schema."
+    }
+  ]
+}

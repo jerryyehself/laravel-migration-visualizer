@@ -1,0 +1,63 @@
+{
+  "productSHA": "2b8030a7d19963980190ba860888f243883b6d7b",
+  "commands": [
+    {
+      "command": [
+        "pwd"
+      ],
+      "exitCode": 0,
+      "stdout": "/workspace/scratch/a9e600a95185/coord03-review\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exitCode": 0,
+      "stdout": "2b8030a7d19963980190ba860888f243883b6d7b\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "status",
+        "--porcelain=v1"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "--version"
+      ],
+      "exitCode": 0,
+      "stdout": "git version 2.51.1\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "--version"
+      ],
+      "exitCode": 0,
+      "stdout": "v24.19.0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "npm",
+        "--version"
+      ],
+      "exitCode": 0,
+      "stdout": "11.9.0\n",
+      "stderr": "npm warn Unknown env config \"http-proxy\". This will stop working in the next major version of npm.\n"
+    }
+  ],
+  "browserInventory": "Chrome cdp id=1, about:blank",
+  "browserControlDocumentationRetrieved": true,
+  "fullyUsableForAcceptance": false
+}

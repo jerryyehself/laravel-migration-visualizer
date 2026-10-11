@@ -1,0 +1,54 @@
+{
+  "IR-01": {
+    "status": "browser pending",
+    "expected": "展開收合 ancestors，返回原按鈕焦點；失效時明示並聚焦 fallback",
+    "actual": "未執行 browser。僅讀 source-return.ts；不能由程式碼判定修正通過。"
+  },
+  "IR-02": {
+    "status": "browser pending",
+    "expected": "fresh browser favicon 無404/console error",
+    "actual": "index.html 已宣告 /favicon.svg 且檔案存在；未驗 browser/network/console。"
+  },
+  "IR-03": {
+    "status": "document check passed",
+    "expected": "現行core 0.15.0，舊release 0.14.0明標歷史",
+    "actual": "Laravel Migration Visualizer 1.0.0 是瀏覽器中的靜態分析工作台。它讀取 migration 的 up()，用支援的 Schema／Blueprint 操作推導 schema 與變化，不執行 PHP、資料庫或 SQL。目前 main 的 core 版本為 0.15.0（10/4 的 v1.0.0 release 為 0.14.0）；完整支援邊界見 source/docs/compatibility.zh-TW.md（repo 內為 docs/compatibility.zh-TW.md）。",
+    "coreVersion": "0.15.0"
+  },
+  "IR-04": {
+    "status": "document check passed",
+    "expected": "R2/4/5/6舊approved/開工紀錄明標歷史，當前done保留",
+    "actual": {
+      "R2-compatibility": {
+        "status": "- 狀態：done（修訂 2；單項 nullableTimestamps）",
+        "historyLines": [
+          "## 開工前／當時進度紀錄（歷史）"
+        ]
+      },
+      "R4-source-navigation": {
+        "status": "- 狀態：done（修訂 2；名稱直接涉及的 operation 查詢與來源往返）",
+        "historyLines": [
+          "先 A；明確 rename 可顯示 operation 的前後名稱，但不等於全歷史身分追蹤。",
+          "2. 設計純查詢 service 與來源 DTO，決定是否公開 core export；不得由 hooks 推斷歷史。",
+          "| R4.2 純查詢 service | 來源契約已記錄且符合核准路線 | 只從既有 ProjectAnalysis／operations／SourceLocation 建來源查詢；區分語法涉及與可信已套用效果，依規格安排 core 或純 web adapter | service／DTO diff、涉及／未涉及與同名重建／rename／失敗回歸；若公開 export 則 built-package 驗證 | 不重跑 parser／replay，不改 SchemaDiff；不延伸為全歷史追蹤 |",
+          "## 開工前／當時進度紀錄（歷史）",
+          "核准 PR #119；前置 R1 #121／R3 #123 已合併。開工時曾因 GitHub 401 先保存本地分支 feat/r4-operation-sources，之後認證恢復，已補 issue #127／milestone 38／PR #128 並合併；該阻礙是歷史紀錄。"
+        ]
+      },
+      "R5-change-reading": {
+        "status": "- 狀態：done（修訂 2；PR #130 已合併）",
+        "historyLines": [
+          "[定位比對報告 A-01](A-01-positioning-report.zh-TW.md)：A-01：Atlas／Guard 的安全分析與本提案分工不同；dbdiagram 版本歷史亦不等於 replay。",
+          "## 開工前／當時進度紀錄（歷史）"
+        ]
+      },
+      "R6-acceptance": {
+        "status": "- 狀態：done（修訂 2；PR #132 已合併）",
+        "historyLines": [
+          "兩種任務答案可從來源驗證；驗收記錄區分實測與歷史；必要 checks 通過；有已合併功能 PR 與 commit 才標 done，未涵蓋項目明列。",
+          "## 開工前／當時進度紀錄（歷史）"
+        ]
+      }
+    }
+  }
+}
