@@ -85,4 +85,4 @@ R7 開發端最終交付：PR #137 merge 96f13b0c2f8fba1389f5f5e915bcec346229747
 
 ## 2026-10-11 閱讀目標審查
 
-[A-06：演變閱讀目標與 R7 交付落差](A-06-design-goal-audit.zh-TW.md) 為 draft，核對起點 main 2b8030a。區分單表沿 migration 演變、同檔跨表差異、現行能力與呈現限制；不把 R7 done 視為全部產品目標完成。沒有新增 approved 功能，R7 的已交付狀態保留。
+[A-06：演變閱讀目標與 R7 交付落差](A-06-design-goal-audit.zh-TW.md) 修訂 2 為 draft，核對起點 main 2b8030a。含 20 類 UI 能力的原始／後續來源、8 類產品缺口與候選優先序；區分單表沿 migration 演變、同檔跨表差異、現行能力與呈現限制，不把 R7 done 視為全部產品目標完成。沒有新增 approved 功能，R7 的已交付狀態保留。
