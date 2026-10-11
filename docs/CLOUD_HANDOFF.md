@@ -1,8 +1,14 @@
 # Codex Cloud 交接
 
-## 下一項已核准工作（2026-10-10）
+## 下一項已核准工作：R8（2026-10-11）
 
-使用者已選定方案 A；[R7 修訂 1](proposals/R7-workspace-reading.zh-TW.md) 為 done，PR #137／96f13b0，issue #135／milestone 42 closed。同一工作區整合 migration 清單、ERD、表明細；統一步驟／側別、前一份／下一份、選表與持續查看，以及 PHP 預覽返回。雲端開發 session 可依 R7.1～R7.3 核對前置條件後執行，不重問同一方案；研究 session 不實作。
+使用者要求依 A-06 審查提出修改步驟、建立 milestone／issues、告訴實作 session 如何修正，並列出驗收／依賴／排除。[R8 修訂 1](proposals/R8-reading-corrections.zh-TW.md) approved、尚未開工；研究端不實作。取得 `docs/r8-reading-corrections`，讀 [工作項目包與接手入口](proposals/R8-work-items/README.md)，依 R8.1→R8.6 執行主流程、摘要、literal 相關步驟、連續上下文、明細／來源／進階及整合交付。起點 main 2b8030a，接手重新查 latest main。
+
+本研究端 API Forbidden，milestone／六張 issues／PR 尚未建立；全文與去重／建立命令已保存。實作 session 先在具 API 權限環境查重建立並回填真正編號，無需重問本次授權。不要把 R8.* 當 GitHub number，不指定一定是 M43，不把文件 merge 當功能 done。core／公開 JSON／golden、history identity、動畫／Timeline／Semantic Zoom、相容性、持久化、runtime、新依賴／workflow／新部署／release、下載落盤均排除；A-06 其他構想仍 draft。
+
+## 最近已交付工作：R7（歷史，2026-10-10）
+
+使用者已選定方案 A；[R7 修訂 1](proposals/R7-workspace-reading.zh-TW.md) 為 done，PR #137／96f13b0，issue #135／milestone 42 closed。同一工作區整合 migration 清單、ERD、表明細；統一步驟／側別、前一份／下一份、選表與持續查看，以及 PHP 預覽返回。不要重做已完成 R7；後續修正按 R8，不重問同一方案；研究 session 不實作。
 
 最初研究文件來源為 `docs/r7-workspace-a`（當時研究端 API Forbidden），開發端已取得並隨 #136 合併進 main。接手先讀 main 內文件，再核對實際最新 main；本輪 main 起點為 `2fe510870c4d41d7c24459173d7e32f2f625968c`，不得當成永久最新 SHA。另一研究分支的 A-04／A-05 仍為 draft，不把全部候選納入。
 
