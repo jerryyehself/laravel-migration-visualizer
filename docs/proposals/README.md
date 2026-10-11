@@ -82,3 +82,7 @@ R1～R6 修訂 2 已依上表實際交付；R3.3 按證據跳過，其他限制�
 R7 修訂 1 已核准，功能尚未開工；文件分支 `docs/r7-workspace-a`。GitHub API 本輪仍 Forbidden，文件 PR 尚未建立；未合併 main。開發端須明確取回此分支／文件並核對核准內容，不假裝 main 已包含 R7，也不把另一文件分支 `docs/a02-discovery-evidence` 的全部 draft 轉成開發需求。main 文件合併可能觸發 Pages，本研究 session 未擴張部署授權。
 
 R7 開發端最終交付：PR #137 merge 96f13b0c2f8fba1389f5f5e915bcec346229747b；head 4080690468227623340747561111791695123890／validate run 38040663529 success。issue #135／milestone 42 closed。 雲端 verify 670 tests／12 demos，16 項工作區與九項來源返回 browser checks 通過。最新現行 main 依 Git 核對，不把上述歷史的未開工／Forbidden 當現在狀態。
+
+## 2026-10-11 閱讀目標審查
+
+[A-06：演變閱讀目標與 R7 交付落差](A-06-design-goal-audit.zh-TW.md) 為 draft，核對起點 main 2b8030a。區分單表沿 migration 演變、同檔跨表差異、現行能力與呈現限制；不把 R7 done 視為全部產品目標完成。沒有新增 approved 功能，R7 的已交付狀態保留。
