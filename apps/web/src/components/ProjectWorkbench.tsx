@@ -107,6 +107,7 @@ export function ProjectWorkbench() {
   const modifiedCount = drafts.filter(isDraftModified).length;
   const [selectedInput, setSelectedInput] = useState(0);
   const [selectedResult, setSelectedResult] = useState(0);
+  const [analysisGeneration,setAnalysisGeneration]=useState(0);
   const [result, setResult] = useState<ProjectAnalysis | null>(null);
   const [reading, setReading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -170,6 +171,7 @@ export function ProjectWorkbench() {
     finally { setReading(false); }
   }
   function analyze() {
+    setAnalysisGeneration(value=>value+1);
     setError(null); setResult(null); setSelectedResult(0); setEditRequest(null); setEditNotice(null);
     try { setResult(analyzeProject(files)); setManageOpen(false); }
     catch (cause) { setError(`分析發生非預期錯誤：${cause instanceof Error ? cause.message : String(cause)}`); }
@@ -244,6 +246,6 @@ export function ProjectWorkbench() {
     {reading && <p role="status">讀取檔案中…</p>}
     {error && <p role="alert" className="diagnostic">{error} 原始檔案不會被修改。</p>}
     {!result && !reading && <p className="muted">目前尚無分析結果。修改檔名或內容後，請重新分析專案。</p>}
-    {result && <section ref={resultsPanel} tabIndex={-1} aria-label="專案閱讀結果"><ProjectResults result={result} files={files} selected={selectedResult} onSelect={setSelectedResult} onEdit={editDiagnostic} /></section>}
+    {result && <section ref={resultsPanel} tabIndex={-1} aria-label="專案閱讀結果"><ProjectResults key={analysisGeneration} result={result} files={files} selected={selectedResult} onSelect={setSelectedResult} onEdit={editDiagnostic} /></section>}
   </>;
 }

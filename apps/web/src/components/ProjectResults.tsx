@@ -1,3 +1,8 @@
+import { ReadingGraphTools } from './ReadingGraphTools';
+import { analysisLayout,resetVisibleView } from '../reading-view';
+import { focusGraphTable } from '../graph-focus';
+import { schemaGraph } from '../schema-graph';
+import { objectAvailability } from '../migration-reading';
 import { RelatedChanges } from './RelatedChanges';
 import { primaryDiagnostic } from '../primary-diagnostic';
 import { workspaceReading, type ReadingLocation, type ReadingSide } from '../workspace-reading';
@@ -6,7 +11,7 @@ import { restoreSourceFocus } from '../source-return';
 import { MigrationReading } from './MigrationReading';
 import { OperationSourcePanel } from './OperationSources';
 import type { OperationSource, SourceNavigation, StructureQuery } from '../operation-sources';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import { diagnosticTarget } from '../diagnostic-location';
 import { DiagnosticSource } from './DiagnosticSource';
 import { filterMigrationResults, type ResultStatusFilter } from '../filter-results';
@@ -67,6 +72,11 @@ export function ProjectResults({ result, files, onSelect, onEdit }: {
   const [location,setLocation] = useState<ReadingLocation>({kind:'final'});
   const [selectedObject,setSelectedObject] = useState<StructureQuery>();
   const [relatedQuery,setRelatedQuery] = useState<StructureQuery>();
+  const layout=useMemo(()=>analysisLayout(result),[result]);
+  const [view,setView]=useState(()=>resetVisibleView(layout,[result.complete?result.finalSchema:null]));
+  const [tableSearch,setTableSearch]=useState('');
+  const [columnSearch,setColumnSearch]=useState('');
+  const [searchSide,setSearchSide]=useState<'before'|'after'>('after');
   const [objectRequest,setObjectRequest] = useState(0);
   const [focusTarget,setFocusTarget] = useState<{query:StructureQuery;request:number}>();
   const focusRequest = useRef(0);
@@ -101,16 +111,26 @@ export function ProjectResults({ result, files, onSelect, onEdit }: {
   const reading = workspaceReading(result,location);
   const activeIndex = reading.index;
   const step = reading.step;
+  const searchSchema=reading.choice.comparison ? (searchSide==='before'?reading.choice.comparison.schemaBefore:reading.choice.comparison.schemaAfter) : reading.choice.schema;
+  const searchLabel=reading.choice.comparison ? (searchSide==='before'?'Before · 套用前':'After · 套用後') : location.kind==='migration' ? (location.side==='before'?'Before · 套用前':'After · 套用後') : location.kind==='initial'?'初始':'最終';
+  function locateGraph(query:StructureQuery,schema:SchemaState|null=searchSchema) {
+    if(objectAvailability(schema,query)!=='available')return;
+    clearSource(); setSelectedObject(query);setObjectRequest(current=>current+1);
+    const node=schemaGraph(schema!).nodes.find(node=>node.name===query.table)!;
+    setView(current=>focusGraphTable(current,node,current.positions.get(node.name)??layout.positions.get(node.name)??node));
+  }
+  useEffect(()=>{if(focusTarget)locateGraph(focusTarget.query,reading.choice.schema);},[focusTarget]);
+  function resetView() {
+    clearSource();setView(current=>resetVisibleView(layout,reading.choice.comparison?[reading.choice.comparison.schemaBefore,reading.choice.comparison.schemaAfter]:[reading.choice.schema],current));
+  }
   function selectMigration(index:number) {
     if (index < 0 || index >= result.migrations.length) return;
     clearSource(); setLocated(null); setFocusTarget(undefined);
-    setSelectedObject(current=>current ? {table:current.table} : undefined);
     setLocation({kind:'migration',index,side:location.kind === 'migration' ? location.side : 'after'}); onSelect(index);
   }
   function selectSide(side:ReadingSide) {
     if (activeIndex === null) return;
     clearSource(); setFocusTarget(undefined);
-    setSelectedObject(current=>current ? {table:current.table} : undefined);
     setLocation({kind:'migration',index:activeIndex,side});
   }
   function selectObject(query:StructureQuery|undefined) {
@@ -125,7 +145,7 @@ export function ProjectResults({ result, files, onSelect, onEdit }: {
   }
   function selectBoundary(kind:'initial'|'final') {
     clearSource(); setLocated(null); setFocusTarget(undefined);
-    setSelectedObject(current=>current ? {table:current.table} : undefined); setLocation({kind});
+    setLocation({kind});
   }
   return <section className="project-results">
     <div role="status" className={`summary-card ${result.complete ? 'success' : 'warning'}`}>
@@ -172,6 +192,7 @@ export function ProjectResults({ result, files, onSelect, onEdit }: {
         {step && !visible.some(item=>item.index===activeIndex) && <p role="status">目前閱讀步驟不在篩選清單，時點保持不變；前後份仍依完整 core 順序。</p>}
         {!step && <p className="muted">選一份 migration 進入逐份閱讀；初始與最終結構保留獨立入口。</p>}
       </header>
+      <ReadingGraphTools schema={searchSchema} side={searchLabel} comparison={reading.choice.comparison!==undefined} searchSide={searchSide} onSearchSide={setSearchSide} tableQuery={tableSearch} onTableQuery={setTableSearch} columnQuery={columnSearch} onColumnQuery={setColumnSearch} selection={selectedObject} layout={layout} view={view} onViewChange={setView} onLocate={locateGraph} onReset={resetView} visible={reading.choice.schema!==null}/>
       <div className="workspace-grid">
       <nav className="migration-list" aria-label="依 core 排序的分析結果">
         <h3>分析順序</h3>
@@ -189,7 +210,7 @@ export function ProjectResults({ result, files, onSelect, onEdit }: {
         <p>{statusLabels[step.status]} · {step.analysis.operations.length} 個已識別操作</p>
         <MigrationReading analysis={result} step={step} index={activeIndex!} diagnostics={<Diagnostics items={step.diagnostics} onLocate={locate} canLocate={canLocate} />} onSource={openSource} onObject={(side,query)=>{ clearSource(); setLocated(null); setSelectedObject(query); setObjectRequest(current=>current+1); setLocation({kind:'migration',index:activeIndex!,side}); setFocusTarget({query,request:++focusRequest.current}); }} />
       </>}
-        <SchemaSnapshots showSelector={false} hideDetails selection={selectedObject} onSelectObject={selectObject} selectedId={reading.choice.id} focusTarget={focusTarget} result={result} onSource={openSource} onSelectionChange={clearSource} />
+        <SchemaSnapshots layout={layout} view={view} onViewChange={setView} hideControls showSelector={false} hideDetails selection={selectedObject} onSelectObject={selectObject} selectedId={reading.choice.id} focusTarget={focusTarget} result={result} onSource={openSource} onSelectionChange={clearSource} />
       {step && <div className="step-detail">
         {step.status !== 'applied' && <p className="unavailable">此檔的 operations 僅供檢視，沒有套用；不顯示推測的 schema 或 diff。</p>}
         <details><summary>完整快照、diff 與 operations</summary><div className="results">
