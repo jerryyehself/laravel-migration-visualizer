@@ -112,6 +112,12 @@ export function ProjectWorkbench() {
   const [error, setError] = useState<string | null>(null);
   const [folderImport, setFolderImport] = useState<{ importedCount: number; ignoredFiles: string[] } | null>(null);
   const [folderSupported] = useState(() => typeof document !== 'undefined' && 'webkitdirectory' in document.createElement('input'));
+  const resultsPanel = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (!result) return;
+    resultsPanel.current?.focus({preventScroll:true});
+    resultsPanel.current?.scrollIntoView({block:'start'});
+  }, [result]);
   const editor = useRef<HTMLTextAreaElement>(null);
   const [editRequest, setEditRequest] = useState<{ file: MigrationFile; line: number | null } | null>(null);
   const [editNotice, setEditNotice] = useState<string | null>(null);
@@ -238,6 +244,6 @@ export function ProjectWorkbench() {
     {reading && <p role="status">讀取檔案中…</p>}
     {error && <p role="alert" className="diagnostic">{error} 原始檔案不會被修改。</p>}
     {!result && !reading && <p className="muted">目前尚無分析結果。修改檔名或內容後，請重新分析專案。</p>}
-    {result && <ProjectResults result={result} files={files} selected={selectedResult} onSelect={setSelectedResult} onEdit={editDiagnostic} />}
+    {result && <section ref={resultsPanel} tabIndex={-1} aria-label="專案閱讀結果"><ProjectResults result={result} files={files} selected={selectedResult} onSelect={setSelectedResult} onEdit={editDiagnostic} /></section>}
   </>;
 }

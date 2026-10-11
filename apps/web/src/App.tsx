@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { ProjectWorkbench } from './components/ProjectWorkbench';
 import { SingleWorkbench } from './components/SingleWorkbench';
 import { version } from '../package.json';
 
 export function App() {
+  const tools = useRef<HTMLElement>(null);
   const [mode, setMode] = useState<'project' | 'single'>('project');
   return <main>
     <p className="eyebrow">VERSION {version} / STATIC ANALYSIS</p>
@@ -16,8 +17,8 @@ export function App() {
       <p>輸入、修改與分析結果只保留在目前頁面；重新整理會清除。大型專案的完整快照可能使用較多記憶體，建議先用少量檔案確認相容性。JSON 下載不包含修改後的 PHP 原始檔。</p>
     </details>
     <nav className="mode-switch" aria-label="工作台工具">
-      {mode === 'single' && <button type="button" onClick={() => setMode('project')}>返回多檔閱讀</button>}
-      <details><summary>工具</summary>
+      {mode === 'single' && <button type="button" onClick={() => { setMode('project'); tools.current?.focus({preventScroll:true}); }}>返回多檔閱讀</button>}
+      <details><summary ref={tools}>工具</summary>
         <button type="button" aria-pressed={mode === 'single'} onClick={() => setMode('single')}>單檔練習</button>
       </details>
     </nav>

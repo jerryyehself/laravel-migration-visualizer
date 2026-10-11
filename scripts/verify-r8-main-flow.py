@@ -13,6 +13,7 @@ with sync_playwright() as p:
  def analyze():
   page.get_by_role('button',name='分析專案',exact=True).click()
   expect(page.locator('.reading-workspace')).to_be_visible()
+  expect(page.get_by_label('專案閱讀結果',exact=True)).to_be_focused()
   expect(page.locator('.input-management')).not_to_have_attribute('open','')
  def manage():
   if not page.locator('.input-management').evaluate('(e)=>e.open'):
@@ -43,7 +44,9 @@ with sync_playwright() as p:
  page.locator('nav[aria-label="工作台工具"] summary').press('Enter')
  page.get_by_role('button',name='單檔練習',exact=True).click()
  expect(page.locator('.reading-workspace')).not_to_be_visible()
- page.get_by_role('button',name='返回多檔閱讀',exact=True).click()
+ page.get_by_role('button',name='返回多檔閱讀',exact=True).focus()
+ page.get_by_role('button',name='返回多檔閱讀',exact=True).press('Enter')
+ expect(page.locator('nav[aria-label="工作台工具"] summary')).to_be_focused()
  assert page.locator('.workspace-controls').inner_text()==header
  expect(page.locator('.workspace-details')).to_contain_text('目前表：users')
  manage();assert page.locator('#project-source').input_value()==original
@@ -52,7 +55,9 @@ with sync_playwright() as p:
  expect(page.locator('.reading-workspace')).to_have_count(0)
  assert page.locator('.input-panel').inner_text().find('1 份已修改')>=0
  page.get_by_role('button',name='單檔練習',exact=True).click()
- page.get_by_role('button',name='返回多檔閱讀',exact=True).click()
+ page.get_by_role('button',name='返回多檔閱讀',exact=True).focus()
+ page.get_by_role('button',name='返回多檔閱讀',exact=True).press('Enter')
+ expect(page.locator('nav[aria-label="工作台工具"] summary')).to_be_focused()
  assert page.locator('#project-source').input_value()==original+'\n// browser copy'
  expect(page.locator('.reading-workspace')).to_have_count(0)
  page.get_by_role('button',name='還原此檔至載入版本',exact=True).click()
