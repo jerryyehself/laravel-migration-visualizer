@@ -1,5 +1,9 @@
 # GitHub 里程碑與交付紀錄
 
+## R8 核准工作，GitHub records 尚待建立（2026-10-11）
+
+[R8 修訂 1](proposals/R8-reading-corrections.zh-TW.md) approved、尚未實作。使用者要求建立 milestone／六張 issues 並交代修正；[全文與接手步驟](proposals/R8-work-items/README.md) 已保存。研究端 API Forbidden，實際 milestone／issue／PR 尚未建立，不標 M43 或編造編號；具 API 權限的實作 session 先查重建立、回填真正 URLs，再按 R8.1～R8.6 交付。文件保存不代表功能完成。下列歷史已交付紀錄保持。
+
 Milestone 1～3 的 GitHub 紀錄為事後補登，實作日期與驗證以各 commit / 文件為準。前三階段直接提交 main，沒有歷史 PR；完成 issues 連結原 commit，不重新合併既有變更。
 
 | 階段 | GitHub Milestone | 工作項目 | 交付 |

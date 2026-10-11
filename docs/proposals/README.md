@@ -54,6 +54,7 @@
 | R5 | [單次變更閱讀流程](R5-change-reading.zh-TW.md) | done（#130） | R1、R4 |
 | R6 | [整合驗收與交付](R6-acceptance.zh-TW.md) | done（#132） | 已核准且完成的前序範圍 |
 | R7 | [方案 A：同一工作區閱讀變更](R7-workspace-reading.zh-TW.md) | done（#137／96f13b0；R7.1～R7.3） | 已交付 R3／R4／R5／R6 |
+| R8 | [結構與 migration 變化閱讀修正](R8-reading-corrections.zh-TW.md) | approved（2026-10-11 使用者要求修正／建立工作項目；尚未實作） | R7 done；[工作項目／接手入口](R8-work-items/README.md)，API Forbidden，GitHub records 未建立 |
 
 R 編號是研究提案 ID，不是已建立的 GitHub milestone。順序可依證據修訂；R2 不必為湊 milestone 而實作。
 
@@ -70,6 +71,7 @@ R 編號是研究提案 ID，不是已建立的 GitHub milestone。順序可依�
 - 必要規格及有限 API 依 R1 證據具體化並記錄；條件式步驟保留條件，超出排除或可信度契約的需求仍另立 draft。
 - 使用者已授權確定決策文件檢查後合併 main；研究 session 只更新文件，不做程式實作。
 - 2026-10-10：使用者對 A／B 具體草圖與操作規則回覆「A」，核准 R7 修訂 1 的同工作區閱讀範圍及必要實作／驗收步驟；其他顯示整理仍 draft。研究端只保存文件，雲端開發 session 實作，不重問同一選擇。
+- 2026-10-11：使用者在 A-06 修訂 2 與優先序後直接要求「提出詳細修改步驟 建立milestone 跟issue 告訴實作session如何做修正」，並要求列出驗收、依賴、排除。R8 修訂 1 為 approved，限已提出的摘要／主流程／literal 相關步驟／連續查看及必要交付；A-06 審查與其他候選不整份轉 approved。milestone 與六張 issues 的全文已保存，API Forbidden 尚未建立，不能把規格 ID 當 GitHub number。
 
 初始文件階段（歷史）：尚未建立功能 issue。文件 PR：[保存提案與派工流程 #117](https://github.com/jerryyehself/laravel-migration-visualizer/pull/117)，已合併。R1.1 核准補登 [#118](https://github.com/jerryyehself/laravel-migration-visualizer/pull/118) 已合併；全路線核准由 docs/approve-research-roadmap 分支交付；當時尚無功能 PR。目前功能交付見上表與各提案。
 

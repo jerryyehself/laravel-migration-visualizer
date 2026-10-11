@@ -81,3 +81,11 @@ R6 #132／ce403562 已交付，R1～R6 修訂 2 狀態均 done，R3.3 依證據�
 已核准 A：ProjectResults 擁有目前步驟／側別與 literal 表名 state，workspaceReading 只選既有 DTO，WorkspaceDetails 固定顯示各側自己的資料；SchemaGraph 的 click／Enter／Space 選表，5px 以上移動才拖曳。來源唯讀預覽不更動閱讀 state；篩選不更動 core 序列。没有新增 core／JSON／history 身分契約。issue #135／milestone 42，交付證據見 milestone-42.zh-TW.md。
 
 R7 已交付：PR #137 merge 96f13b0c2f8fba1389f5f5e915bcec346229747b；head 4080690468227623340747561111791695123890／validate run 38040663529 success。issue #135／milestone 42 closed。 core／JSON 不變，雲端 verify 670 tests／12 demos 與 browser 回歸通過；後續範圍依提案核准流程，不擴大 A-04／A-05 draft。
+
+## 2026-10-11：R8 閱讀修正派工
+
+使用者在 A-06 修訂 2 審查／優先序後直接要求詳細修改步驟、建立 milestone／issues、交代實作 session，並列驗收／依賴／排除。[R8 修訂 1](proposals/R8-reading-corrections.zh-TW.md) approved、尚未開工。涵蓋主流程收斂、單次跨表／屬性摘要、literal 表／欄位相關步驟、同頁連續查看、來源／進階面板整理與必要整合交付；不重問同一建立／修正授權。
+
+R8 更新 R7 的 view 重設／欄位清除及相鄰顯示整理範圍，但不回退 R7 done。使用既有 core DTO，沒有 History identity、自動 rename 接續、動畫／Timeline／Semantic Zoom、新 parser／相容性、公開 JSON、持久化或 runtime 授權。A-04／A-05／A-06 整份保持 draft。
+
+[milestone／六項 issue 全文與接手入口](proposals/R8-work-items/README.md) 已保存；研究端 gh api 唯讀請求 Forbidden、當前網路未允許 api.github.com，實際 GitHub records 未建立，沒有編號可報。研究端只做文件，具 API 權限的實作 session 先查重再建立，回填真正 URL。文件保存不代表實作或交付。
