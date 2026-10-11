@@ -187,3 +187,7 @@ issue #135／milestone 42。R7.1～R7.3 全部 done。雲端 verify 670 tests／
 已查重建立 issues #139～144；只開工 #139／R8.1。產品 head d849b4e8a0ea79e65b8d459a975476b57fe75538，673 tests／12 demos、39 項／組 browser checks 通過。分支 feat/r8-1-main-flow ready for review，未合併；R8.2～6 未開工，獨立驗收待協調端安排，CI／PR 以實際回報為準。
 
 可審查 PR：[R8.1 #145](https://github.com/jerryyehself/laravel-migration-visualizer/pull/145)，head／CI 以 GitHub 當前紀錄為準；本輪不合併，獨立複驗待協調端安排。
+
+## COORD-20261011-08：R8.2 交付停點
+
+只接續 #140／R8.2，輸入 f9b42c8c220841d40978db48969feaba8c52dc43，產品 444fc9c99f7acf99f2824730ee32c0ca3e56b08d；684 tests／12 demos／15 verify 步驟及 12+14+16+9 browser 自測通過。R8.1 #145 保持固定 head／OPEN，獨立驗收仍 pending；R8.2 ready for review，stacked PR 待前批驗收／合併，不合併 main、不開始 R8.3～6。milestone #43／所有工作項目保持未完成。教學與可攜 manifest 見 docs/r8-2-change-summary.zh-TW.md、docs/acceptance/r8-2-evidence/manifest.json。

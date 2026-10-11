@@ -105,3 +105,5 @@ M33 已由 PR #107 合併（db15e35），issue #106／milestone 33 已關閉；h
 R3／milestone 36 新增當前已知快照欄位搜尋與明細定位；core／JSON 不變。教學見 docs/milestone-36.zh-TW.md，交付以最新 PR／CI／merge 記錄為準。
 
 R2／milestone 37 的 nullableTimestamps 單項靜態別名，core 0.15.0；JSON 形狀不變，拒絕範圍與樣本限制見 milestone-37.zh-TW.md。新增 demo:nullable-timestamps，統一 verify 包含 12 個 demos。
+
+R8.2 web 摘要：684 tests（540 core／144 web）；產品／範圍／證據見 docs/r8-2-change-summary.zh-TW.md。R8.1／R8.2 均未合併，獨立驗收 pending；R8.3～6 不在本輪範圍。

@@ -4,7 +4,7 @@
 
 主要摘要只有 change kind／物件名，讀者要另外對照屬性。以既有 SchemaChange DTO 顯示每表分組、屬性前→後及明確 FK 上下文；摘要置於 ERD 之前。
 
-核准／契約：R8 修訂 1，2026-10-11 使用者的修正指令；approved，尚未開工。
+核准／契約：R8 修訂 1，2026-10-11 使用者的修正指令；approved，in_progress／ready for review（COORD-20261011-08；獨立驗收 pending）。
 
 ## 依賴與前置條件
 
@@ -38,4 +38,8 @@
 
 ## 實際追蹤
 
-GitHub [#140](https://github.com/jerryyehself/laravel-migration-visualizer/issues/140)；milestone [#43](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/43)。依賴：#139。approved，尚未開工。
+GitHub [#140](https://github.com/jerryyehself/laravel-migration-visualizer/issues/140)；milestone [#43](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/43)。依賴：#139。approved，in_progress／ready for review（COORD-20261011-08；獨立驗收 pending）。
+
+## COORD-20261011-08：R8.2 交付停點
+
+只接續 #140／R8.2，輸入 f9b42c8c220841d40978db48969feaba8c52dc43，產品 444fc9c99f7acf99f2824730ee32c0ca3e56b08d；684 tests／12 demos／15 verify 步驟及 12+14+16+9 browser 自測通過。R8.1 #145 保持固定 head／OPEN，獨立驗收仍 pending；R8.2 ready for review，stacked PR 待前批驗收／合併，不合併 main、不開始 R8.3～6。milestone #43／所有工作項目保持未完成。教學與可攜 manifest 見 docs/r8-2-change-summary.zh-TW.md、docs/acceptance/r8-2-evidence/manifest.json。
