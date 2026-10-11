@@ -1,0 +1,25 @@
+{
+  "productSHA": "f9b42c8c220841d40978db48969feaba8c52dc43",
+  "productCheckout": "/workspace/scratch/coord28-r81-product",
+  "cleanBefore": true,
+  "cleanAfter": true,
+  "reportBranch": "docs/independent-r81-b-coord29",
+  "reportBase": "2b8030a7d19963980190ba860888f243883b6d7b",
+  "commands": [
+    "git rev-parse HEAD",
+    "git status --short",
+    "npm run dev -- --host 127.0.0.1 --port 5205 --strictPort",
+    "python artifacts/coord29-r81-b/browser.py"
+  ],
+  "setup": "No install/build/full verify; reused existing dependencies",
+  "serverProvenance": "Started by current exec tool in fixed product checkout; Vite 7.3.6 reported ready on 5205. Prior 5204 owner could not be established; startup on 5204 failed Port already in use, no unknown process terminated. No access denial encountered.",
+  "usageToolAvailable": false,
+  "usageFromCoordinatorOnly": {
+    "remainingPercentBefore": 39,
+    "resetEpoch": 1791732307,
+    "exceptionFloorPercent": 30
+  },
+  "pr": "Not created; prior GraphQL Forbidden retained, not retried; report CI unverified",
+  "priorReportA": "89f0254ceca1826c94f2f5ca6918e6ba655a152a",
+  "priorReport03": "c8dabc488b1db95edb65a011d033a685c25ac133"
+}

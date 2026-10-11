@@ -1,0 +1,45 @@
+{
+  "task": "COORD29 / R8.1 short batch B",
+  "taskGroups": 1,
+  "productSHA": "f9b42c8c220841d40978db48969feaba8c52dc43",
+  "cleanBefore": true,
+  "expected": "Analyzed commerce project -> single-file tool -> direct return retains same-page multi-file inputs and analyzed result, without editing single-file input",
+  "actual": {
+    "inputCount": 12,
+    "filenames": [
+      "2026_10_04_000012_rename_index.php",
+      "2026_10_04_000011_drop_uuid.php",
+      "2026_10_04_000010_drop_numeric.php",
+      "2026_10_04_000009_uuid_owner.php",
+      "2026_10_04_000008_rename_sku.php",
+      "2026_10_04_000007_price_change.php",
+      "2026_10_04_000006_place_orders.php",
+      "2026_10_04_000005_create_attachments.php",
+      "2026_10_04_000004_create_items.php",
+      "2026_10_04_000003_create_orders.php",
+      "2026_10_04_000002_create_products.php",
+      "2026_10_04_000001_create_users.php"
+    ],
+    "inputPreserved": true,
+    "selectedPHPSHA256": "7b0e782f13cfffcd603856e554a8fdb1eaa5abd58c488ad62bf93dbe603bc82e",
+    "dtoPreserved": true,
+    "dtoSHA256Before": "6a291925e59dedc6913201303c60adba44368a1be2d74c02871f804a46087033",
+    "dtoSHA256After": "6a291925e59dedc6913201303c60adba44368a1be2d74c02871f804a46087033",
+    "sameResultDOMRetained": true,
+    "projectHiddenInSingleMode": true,
+    "returnedResult": "12/12 applied, 0 diagnostics, 5 tables, 3 foreign keys"
+  },
+  "result": "passed",
+  "consoleWarningsErrors": [],
+  "pageerrors": [],
+  "httpErrors": [],
+  "browser": "154.0.8037.57",
+  "playwright": "1.62.0",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "url": "http://127.0.0.1:5205/",
+  "finishedAtTaipei": "2026-10-11T20:12:12.871214+08:00",
+  "otherChecks": "Unrun: other examples, imports, diagnostics, input invalidation, narrow/keyboard, R7/IR, full verify, R8.2-6; no downloads"
+}

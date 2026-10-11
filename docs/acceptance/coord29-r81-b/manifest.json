@@ -1,0 +1,47 @@
+{
+  "task": "COORD29 / R8.1 short batch B",
+  "productSHA": "f9b42c8c220841d40978db48969feaba8c52dc43",
+  "taskGroups": 1,
+  "files": [
+    {
+      "path": "after-project.png",
+      "sha256": "68134773ed3802fbf870ed52dc7a85d417289fc8cca74b7cc509d38bdbe0cab0",
+      "bytes": 261704
+    },
+    {
+      "path": "before-project.png",
+      "sha256": "b8257ce647b57a3a3efa8d5df8b96dda6df725021d309321ea772133c8994220",
+      "bytes": 261757
+    },
+    {
+      "path": "browser.json",
+      "sha256": "b730678c87c342d472ae95222f71bef969c9f68f4b490f4f3b48d4d11ddec6f3",
+      "bytes": 1840
+    },
+    {
+      "path": "browser.log",
+      "sha256": "dcb257ea646871e3b84c980fcc6a0ddc8e85319d8f93d1d2b13b171a18ed111f",
+      "bytes": 1672
+    },
+    {
+      "path": "browser.py",
+      "sha256": "093e0c56749a11e3e1a7d6146fc51562951277940f8077a6490f76675be74709",
+      "bytes": 4215
+    },
+    {
+      "path": "environment.json",
+      "sha256": "7844e3d126f6e4878640e80289152f2a7054804a11f73a903a03c6c8cf5d657a",
+      "bytes": 1186
+    },
+    {
+      "path": "report.zh-TW.md",
+      "sha256": "8be2f4c825dab77589cae3c9a38922b3848fe15b2f653357d9d193a4915080bb",
+      "bytes": 3918
+    },
+    {
+      "path": "single-tool.png",
+      "sha256": "1a6239415d4af58ed03994bf80654a5938531a124723b5210dbff20257b8aa26",
+      "bytes": 113885
+    }
+  ]
+}
