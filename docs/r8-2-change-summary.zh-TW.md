@@ -1,6 +1,6 @@
 # R8.2：跨表與屬性前後變更摘要
 
-COORD-20261011-08 明確核准只接續 R8.2／issue #140，milestone #43 保持 open。輸入產品／文件 head f9b42c8c220841d40978db48969feaba8c52dc43（R8.1 產品 d849b4e8a0ea79e65b8d459a975476b57fe75538）；核准規格 5eec41476ef22b85d3165d3be3f681f1a20c8f9d 已由前批保存。07842cca988c17f6cfa21f8f0665114f9a0eec3a 的規劃交接只作參考，沒有混進產品 base。核對時規劃分支遠端已到 8c326339ff5b7656b7e73a3842029a6dfbc24eae，這不改變本輪指定輸入。
+COORD-20261011-08 是協調端按既有使用者核准派工，只接續 R8.2／issue #140，milestone #43 保持 open。輸入產品／文件 head f9b42c8c220841d40978db48969feaba8c52dc43（R8.1 產品 d849b4e8a0ea79e65b8d459a975476b57fe75538）；核准規格 5eec41476ef22b85d3165d3be3f681f1a20c8f9d 已由前批保存。07842cca988c17f6cfa21f8f0665114f9a0eec3a 的規劃交接只作參考，沒有混進產品 base。核對時規劃分支遠端已到 8c326339ff5b7656b7e73a3842029a6dfbc24eae，這不改變本輪指定輸入。
 
 R8.1 PR #145 仍 OPEN、固定 f9b42c8…；COORD-07 comment：https://github.com/jerryyehself/laravel-migration-visualizer/pull/145#issuecomment-6105604142 。R7/IR COORD-03 與 R8.1 COORD-06 獨立驗收仍 pending，環境 offline 不等於通過。本批只交付 stacked PR，不合併 main、不開 R8.3～6。
 

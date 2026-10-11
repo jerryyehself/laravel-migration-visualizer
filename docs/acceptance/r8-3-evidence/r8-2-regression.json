@@ -1,0 +1,18 @@
+{
+  "commit": "763f71d5089e45781e34ba30e55028916b065a15",
+  "passed": [
+    "commerce decimal dimensions, nullable and absent default to zero visible without raw JSON",
+    "keyboard changed-column navigation uses each trusted snapshot",
+    "name-indexed source navigation returns focus to summary without identity inference",
+    "comparison shows one primary summary before graphs",
+    "foreign-key old/new names and reference columns navigate on correct sides",
+    "users/posts explicit rename operations remain separate from removed/added net diff",
+    "same-name drop/add syntax remains separate from net columnChanged",
+    "whole-table addition exposes known contents without manufacturing extra changes",
+    "whole-table removal exposes only trusted before contents",
+    "failed and blocked have distinct status and unknown snapshots, never empty diff",
+    "390px attributes and keyboard navigation have no horizontal overflow",
+    "known empty net diff remains distinct from unknown failure"
+  ],
+  "consoleErrors": []
+}

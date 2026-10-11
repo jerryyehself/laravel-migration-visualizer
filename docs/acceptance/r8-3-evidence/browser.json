@@ -1,0 +1,18 @@
+{
+  "commit": "763f71d5089e45781e34ba30e55028916b065a15",
+  "passed": [
+    "search/details entry lists only nickname add/remove at original indices",
+    "keyboard PHP preview preserves original step/query and return focus",
+    "related-step comparison retains deleted column literal and own-side absence",
+    "display_name explicit rename remains separate from later rebuild net change",
+    "rename new literal query occurs only after explicit user click",
+    "initial whole-table column evidence is visible without invented column diff",
+    "exact no-match query preserves complete migration list and reading step",
+    "table rename literals remain separate and dropped-table columns are searchable",
+    "foreign-key reference evidence is explicitly relationship context",
+    "failed before and blocked diagnostics navigation keeps unknown boundary",
+    "no evidence in incomplete project never claims no future changes",
+    "390px keyboard related-step navigation has no horizontal overflow"
+  ],
+  "consoleErrors": []
+}

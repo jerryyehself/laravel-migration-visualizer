@@ -54,7 +54,7 @@
 | R5 | [單次變更閱讀流程](R5-change-reading.zh-TW.md) | done（#130） | R1、R4 |
 | R6 | [整合驗收與交付](R6-acceptance.zh-TW.md) | done（#132） | 已核准且完成的前序範圍 |
 | R7 | [方案 A：同一工作區閱讀變更](R7-workspace-reading.zh-TW.md) | done（#137／96f13b0；R7.1～R7.3） | 已交付 R3／R4／R5／R6 |
-| R8 | [結構與 migration 變化閱讀修正](R8-reading-corrections.zh-TW.md) | in_progress（R8.1／R8.2 ready for review；獨立驗收 pending） | R7 done；[工作項目／接手入口](R8-work-items/README.md)；milestone #43／issues #139～144 已建立 |
+| R8 | [結構與 migration 變化閱讀修正](R8-reading-corrections.zh-TW.md) | in_progress（R8.1～3 ready for review；獨立驗收 pending） | R7 done；[工作項目／接手入口](R8-work-items/README.md)；milestone #43／issues #139～144 已建立 |
 
 R 編號是研究提案 ID，不是已建立的 GitHub milestone。順序可依證據修訂；R2 不必為湊 milestone 而實作。
 
@@ -94,3 +94,7 @@ COORD-20261011-04：僅 R8.1 in_progress／ready for review，其他 R8 批次�
 ## COORD-20261011-08：R8.2 交付停點
 
 只接續 #140／R8.2，輸入 f9b42c8c220841d40978db48969feaba8c52dc43，產品 444fc9c99f7acf99f2824730ee32c0ca3e56b08d；684 tests／12 demos／15 verify 步驟及 12+14+16+9 browser 自測通過。R8.1 #145 保持固定 head／OPEN，獨立驗收仍 pending；R8.2 ready for review，stacked PR 待前批驗收／合併，不合併 main、不開始 R8.3～6。milestone #43／所有工作項目保持未完成。教學與可攜 manifest 見 docs/r8-2-change-summary.zh-TW.md、docs/acceptance/r8-2-evidence/manifest.json。
+
+## COORD-20261011-11：R8.3 交付停點
+
+協調端按既有使用者核准（R8修訂1@5eec414）只派 #141／R8.3。輸入3e8ee581eee16a80940c7490b491001dc2bd25eb，產品763f71d5089e45781e34ba30e55028916b065a15；698 tests、12 demos、15 verify步驟、12+12+14+16+9 browser自測通過。R8.1 #145／R8.2 #146 固定 head 不改，三批独立驗收均 pending。R8.3 in_progress／ready for review，milestone #43 open，R8.4～6未開工，不合併 main、不automerge。教學 docs/r8-3-related-changes.zh-TW.md，可攜證據 docs/acceptance/r8-3-evidence/manifest.json。規劃8c326339ff5b7656b7e73a3842029a6dfbc24eae只參考，不混產品base。

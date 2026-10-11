@@ -26,7 +26,7 @@
 ## 開發與驗證
 - 使用者於 2026-10-04 要求暫緩下載測試；不做下載互動／落盤驗收，直到使用者另行恢復。既有匯出功能與序列化契約保留。
 - Node.js 22.12+，npm。安裝使用 npm ci，保留 package-lock.json。
-- npm test：目前本分支 673 tests（540 core + 133 web）；R7 main 基準 670 tests；M1 baseline 為 42 tests。M33 產品／web 版本 1.0.0，core 0.14.0 契約不變。統一驗證用 npm run verify；實際交付狀態見 github-milestones.md。
+- npm test：目前本分支 698 tests（540 core + 158 web）；R7 main 基準 670 tests；M1 baseline 為 42 tests。M33 產品／web 版本 1.0.0，core 0.14.0 契約不變。統一驗證用 npm run verify；實際交付狀態見 github-milestones.md。
 - npm run typecheck
 - npm run build
 - npm run demo:project
@@ -107,3 +107,5 @@ R3／milestone 36 新增當前已知快照欄位搜尋與明細定位；core／J
 R2／milestone 37 的 nullableTimestamps 單項靜態別名，core 0.15.0；JSON 形狀不變，拒絕範圍與樣本限制見 milestone-37.zh-TW.md。新增 demo:nullable-timestamps，統一 verify 包含 12 個 demos。
 
 R8.2 web 摘要：684 tests（540 core／144 web）；產品／範圍／證據見 docs/r8-2-change-summary.zh-TW.md。R8.1／R8.2 均未合併，獨立驗收 pending；R8.3～6 不在本輪範圍。
+
+R8.3 literal 名稱相關步驟：698 tests／63 browser 項或組自測，教學／證據見 docs/r8-3-related-changes.zh-TW.md。只交分支／PR，獨立驗收 pending，R8.4～6未開工。

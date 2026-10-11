@@ -128,3 +128,8 @@ summary { cursor: pointer; padding: 10px 0; color: #176d62; }
 .summary-attributes dd { margin: 0; overflow-wrap: anywhere; }
 .reference-context { padding: .5rem; border-inline-start: 3px solid #6b7280; }
 @media (max-width: 600px) { .summary-attributes > div { grid-template-columns: 1fr; gap: .1rem; } }
+
+.related-changes form { display: grid; gap: .5rem; }
+.related-changes input { width: 100%; min-width: 0; box-sizing: border-box; }
+.related-changes li { overflow-wrap: anywhere; }
+.related-changes > ol { padding-inline-start: 1.25rem; }

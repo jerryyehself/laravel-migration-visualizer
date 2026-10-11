@@ -1,0 +1,20 @@
+
+ RUN  v5.0.2 /workspace/laravel-migration-visualizer
+
+ ❯ apps/web/tests/related-changes.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/tests/related-changes.test.ts [ apps/web/tests/related-changes.test.ts ]
+Error: Cannot find module '../src/related-changes' imported from /workspace/laravel-migration-visualizer/apps/web/tests/related-changes.test.ts
+ ❯ apps/web/tests/related-changes.test.ts:3:1
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  05:13:47
+   Duration  452ms (worker 98%, environment 2%)
+
