@@ -35,3 +35,5 @@ core 是 domain service，ProjectAnalysis 是已有回應 DTO。ProjectResults �
 首輪 npm test：705 passed／1 failed，舊 table-details 測試仍期待英文 default／小寫 null，依核准的中文顯示契約更新，沒有放寬值與own-property規則。新增來源邊界 browser probe 首輪讀 Vite CJS named export 時 createRoot 不是函式，改讀 default export 後通過；這是腳本裝載錯誤，不是產品錯誤。兩份原始失敗 transcript 保存。前批 browser 只更新來源收合入口、summary 導向單一清單、進階入口的 ancestor 操作；原語意、順序、DTO、focus、unknown断言保持。
 
 可攜證據：[manifest](acceptance/r8-5-evidence/manifest.json) 列12份 report／截圖／首次失敗 SHA256。產品 commit 上重新執行全部必要驗證與瀏覽器；截圖實際檢視。這些是開發端自測，不是獨立驗收通過。COORD16 與 R7/IR、R8各批獨立驗收仍 pending／驗收環境 offline 阻礙；協調直接核對與 CI 不能代替。#143 in_progress／ready for review但 OPEN，整批R8／milestone43未完成；等待協調回收安排新固定 head 驗收。沒有部署、release、下載落盤、新 PHP／ERD 匯出、持久化、identity、runtime 或相鄰 draft。
+
+可審查 stacked PR：[R8.5 #149](https://github.com/jerryyehself/laravel-migration-visualizer/pull/149)，base feat/r8-4-reading-context，head feat/r8-5-details-and-tools；證據／教學commit 59f6de87c65df65f65820dc6979fb43d9d99e780。current head CI以GitHub當前紀錄為準；独立驗收pending，不合併／automerge。
