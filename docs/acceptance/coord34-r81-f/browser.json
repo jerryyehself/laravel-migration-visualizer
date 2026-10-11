@@ -1,0 +1,48 @@
+{
+  "task": "COORD34 / R8.1 short batch F",
+  "taskGroups": 1,
+  "productSHA": "f9b42c8c220841d40978db48969feaba8c52dc43",
+  "cleanBefore": true,
+  "expected": "Existing multi-file import replaces analyzed 12-file commerce with exactly two selected valid UTF-8 fixtures and their original contents; prior results/workspace removed; reanalysis required",
+  "actual": {
+    "precondition": "12/12 applied, 0 diagnostics",
+    "importCount": 1,
+    "contract": "replace, not append",
+    "inputCountAfter": 2,
+    "filenames": [
+      "2026_10_04_000001_create_users.php",
+      "2026_10_04_000002_create_products.php"
+    ],
+    "browserPHPMatchesSelectedFiles": true,
+    "browserPHPSHA256": {
+      "2026_10_04_000001_create_users.php": "5c7968aa9fb39fc2c781fe55522d205407f8d49900fead34e737bf19edc241a2",
+      "2026_10_04_000002_create_products.php": "d927479c10f65cbb8d68bc7b8e7a5c1f7d98126353615379ba6ce7a86ca2bda1"
+    },
+    "oldResultDOMCount": 0,
+    "oldWorkspaceDOMCount": 0,
+    "oldSummaryDOMCount": 0,
+    "requiresReanalysis": true,
+    "diskUnchanged": true
+  },
+  "sourceFiles": [
+    {
+      "path": "packages/migration-core/tests/fixtures/commerce/2026_10_04_000001_create_users.php",
+      "sha256": "5c7968aa9fb39fc2c781fe55522d205407f8d49900fead34e737bf19edc241a2",
+      "bytes": 190
+    },
+    {
+      "path": "packages/migration-core/tests/fixtures/commerce/2026_10_04_000002_create_products.php",
+      "sha256": "d927479c10f65cbb8d68bc7b8e7a5c1f7d98126353615379ba6ce7a86ca2bda1",
+      "bytes": 217
+    }
+  ],
+  "result": "passed",
+  "consoleWarningsErrors": [],
+  "pageerrors": [],
+  "httpErrors": [],
+  "browser": "154.0.8037.57",
+  "playwright": "1.62.0",
+  "url": "http://127.0.0.1:5205/",
+  "finishedAtTaipei": "2026-10-11T23:59:18.203536+08:00",
+  "scope": "One reimport only; normal UTF-8 files are prerequisites, not full UTF-8/folder/path validation; no analysis after reimport"
+}

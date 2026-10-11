@@ -1,0 +1,42 @@
+{
+  "task": "COORD34 / R8.1 short batch F",
+  "productSHA": "f9b42c8c220841d40978db48969feaba8c52dc43",
+  "taskGroups": 1,
+  "files": [
+    {
+      "path": "after-reimport-invalidated.png",
+      "sha256": "f2e677a0b2d0052def6b8cec8b6ce347e6290550b98966610d4397e542427b12",
+      "bytes": 125855
+    },
+    {
+      "path": "before-reimport.png",
+      "sha256": "8646d93948bc56fb69b1d4b73f65c44f871930af794b0acd5995441d6968ab53",
+      "bytes": 176725
+    },
+    {
+      "path": "browser.json",
+      "sha256": "68b0d84cd26c6cac28a162b4e75634cee8756760581a2428b88b3ba6c47ab1ec",
+      "bytes": 1915
+    },
+    {
+      "path": "browser.log",
+      "sha256": "152373802b5f3ea1bcfb68a0dc6140e0d533b351aab53d476bcdaa4807804924",
+      "bytes": 104
+    },
+    {
+      "path": "browser.py",
+      "sha256": "3c4bfdf555d9a74fe0ee784975bba9f1dad99498d66ed07cb0f180a4382d33e4",
+      "bytes": 4350
+    },
+    {
+      "path": "environment.json",
+      "sha256": "1bd44e3d61219a7035f440f6417077977f4ff56b2af13a76757924539d39211d",
+      "bytes": 902
+    },
+    {
+      "path": "report.zh-TW.md",
+      "sha256": "cc88fb945badf3b3e8c6fdc46c6717e4a830ca5c4339777595740cc5b925698d",
+      "bytes": 3834
+    }
+  ]
+}

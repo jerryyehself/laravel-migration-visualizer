@@ -1,0 +1,18 @@
+{
+  "productSHA": "f9b42c8c220841d40978db48969feaba8c52dc43",
+  "checkout": "/workspace/scratch/coord28-r81-product",
+  "cleanBefore": true,
+  "cleanAfter": true,
+  "reportBranch": "docs/independent-r81-f-coord34",
+  "reportBase": "2b8030a7d19963980190ba860888f243883b6d7b",
+  "command": "python artifacts/coord34-r81-f/browser.py",
+  "server": "Existing 5205 Vite started from fixed checkout in COORD29; current /@fs/workspace/scratch/coord28-r81-product/apps/web/package.json matched disk; fresh navigation200",
+  "setup": "No install/build/fullverify/restart",
+  "network": "Runtime connected/current, policy state unknown; snapshot v1 restricted, vpn_configured=false; no changes",
+  "usageToolAvailable": false,
+  "coordinatorUsageBefore": {
+    "remainingPercent": 87,
+    "resetEpoch": 1791750426
+  },
+  "pr": "Prior GraphQL Forbidden not retried; report PR not created; report CI unverified"
+}
