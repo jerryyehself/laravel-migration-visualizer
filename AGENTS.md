@@ -113,3 +113,5 @@ R8.3 literal 名稱相關步驟：698 tests／63 browser 項或組自測，教�
 R8.4正常工作區導航保留literal欄位、搜尋與共享pan/zoom/位置，明確更新R7重設view舊限制；新分析generation才清舊上下文。706tests／77browser項或組；教學見docs/r8-4-reading-context.zh-TW.md，未合併、獨立驗收pending，R8.5～6未開工。
 
 R8.5僅web明細／單一來源／進階入口整理：713tests／90browser自測；教學docs/r8-5-details-and-tools.zh-TW.md。#143 ready for review但OPEN、R8整批／milestone43 OPEN；COORD16及各批独立驗收pending，R8.6未開始，不合併／automerge。
+
+R8.6 COORD20只做開發端整合自測與交付準備：程式最後改動ce16e471、實際clean verify基準9010b873，713tests／12demos／10整合任務＋90browser回歸通過。沒有新產品修正；#144／整R8／milestone43 OPEN未done，獨立03/06/10/13/16/19與本批pending，不合併／automerge。報告docs/r8-6-integration-preparation.zh-TW.md；R8.6狀態以本最新派工為準。

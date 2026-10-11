@@ -1,0 +1,20 @@
+{
+  "commit": "9010b873cd2bfbf5647406c41935a8dfa718a5f0",
+  "passed": [
+    "default demonstration -> analyze -> reading without editor",
+    "management expand/collapse retains result and reading selection",
+    "keyboard tool entry and return retain project copies/result/step/table",
+    "PHP edit invalidates result; restore keeps loaded bytes and requires analysis",
+    "filename edit invalidates; ordering problem is visible and final remains unknown",
+    "all 11 demonstrations retain file counts and manual analysis",
+    "full diagnostics retained; edit opens correct file and focuses core source line without invalidating",
+    "secondary export entry remains discoverable and unknown final stays disabled",
+    "known-empty final is distinct from unknown",
+    "PHP upload replaces list; copy edit/restore leaves original file intact",
+    "remove invalidates result and empty input disables analysis",
+    "folder import preserves nested paths and reports ignored non-PHP file",
+    "invalid UTF-8 is rejected without retaining old analysis",
+    "390px keyboard analysis and sequential reading have no horizontal overflow"
+  ],
+  "consoleErrors": []
+}

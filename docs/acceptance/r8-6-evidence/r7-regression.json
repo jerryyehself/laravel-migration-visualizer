@@ -1,0 +1,21 @@
+{
+  "passed": [
+    "final entry and fixed controls replace long primary selector",
+    "click selects fixed details and next step preserves table with own metadata",
+    "comparison details use separate sides and removed column only before",
+    "filter retains reading point and previous uses complete core order",
+    "other-migration preview and collapsed return preserve step/side/table/focus",
+    "Space/Enter select and arrow key moves graph node",
+    "initial/final entry retains literal selection without substituting tables",
+    "drag changes position without selecting another table",
+    "rename preserves old literal query and absent side is explicit",
+    "diagnostic locate synchronizes failed step and retains source panel",
+    "failed/blocked traversal and unknown final never use successful prefix",
+    "column search/reselection and summary jump share fixed details; comparison reads own columns",
+    "390px reading and source return without horizontal overflow",
+    "input edit invalidates workspace and source",
+    "laravelio: 9 original files retain failed/blocked and unknown final",
+    "bookstack: 103 original files retain failed/blocked and unknown final"
+  ],
+  "consoleErrors": []
+}

@@ -1,0 +1,166 @@
+{
+  "batch": "COORD-20261011-20 / R8.6 development self-check only",
+  "commit": "9010b873cd2bfbf5647406c41935a8dfa718a5f0",
+  "clean": true,
+  "lastProductChange": "ce16e471573cbf0762ad13293f715eefb61b28f7",
+  "startedAt": "2026-10-11T06:06:55.706292+00:00",
+  "tasks": [
+    {
+      "id": "主流程",
+      "expected": "11示範單入口／不用先編PHP；工具返回保多檔副本與結果",
+      "observed": {
+        "exampleOptions": 11,
+        "files": 3,
+        "reading": "目前：第 2／3 份 · 2026_01_02_000000_update_users.php\n\n已套用 · 套用後\n\n進階分析\n初始結構\n最終結構\n前一份 migration\n下一份 migration\n套用前\n套用後\n前後比較",
+        "sourceBytesSHA256": "0165be0d49a06a960317e677668e67f2323d8fefe8855c029c578f1369e2312c",
+        "inputNames": "輸入清單 · 3 份\n\n0 份已修改；僅保存於此工作台。\n\n2026_01_03_000000_revise_users.php\n2026_01_01_000000_create_users.php\n2026_01_02_000000_update_users.php",
+        "toolReturnFocus": true,
+        "readingAndViewPreserved": true
+      },
+      "screenshots": []
+    },
+    {
+      "id": "屬性變更",
+      "expected": "price 8,2→10,2／nullable false→true／default未指定→0，來源返回保欄位與view",
+      "observed": {
+        "summary": "真實結構差異\n\n依所屬表分組；這是前後快照的淨差異，不推定 rename 身分或資料庫影響。\n\n所屬表 · products\n欄位 · price · 變更 columnChanged\n欄位定義\nBefore \"decimal(8,2)\" → After \"decimal(10,2)\"\n允許 NULL\nBefore false → After true\n精度\nBefore 8 → After 10\n預設值\nBefore 未指定 → After 0\nBefore · price · 查看明細\nAfter · price · 查看明細\n\n依 R4 名稱操作索引列出，不將差異猜成一對一來源。\n\n查看涉及此名稱的 PHP 操作",
+        "advancedWasClosed": true,
+        "returnedReading": "目前：第 7／12 份 · 2026_10_04_000007_price_change.php\n\n已套用 · 套用後\n\n進階分析\n初始結構\n最終結構\n前一份 migration\n下一份 migration\n套用前\n套用後\n前後比較",
+        "returnedView": [
+          "translate(-90 -121.5) scale(1.2)"
+        ],
+        "sourceFocusRestored": true
+      },
+      "screenshots": [
+        "desktop-price.png"
+      ]
+    },
+    {
+      "id": "橫向",
+      "expected": "同檔users/posts名稱操作、舊新FK與ordered關係欄位，各側可信導航",
+      "observed": {
+        "summary": "真實結構差異\n\n依所屬表分組；這是前後快照的淨差異，不推定 rename 身分或資料庫影響。\n\n所屬表 · posts\n欄位 · author_id · 新增 columnAdded\n名稱\nAfter \"author_id\"\n型別\nAfter \"bigInteger\"\n允許 NULL\nAfter true\n無號\nAfter true\n自增\nAfter false\nAfter · author_id · 查看明細\n\n依 R4 名稱操作索引列出，不將差異猜成一對一來源。\n\n查看涉及此名稱的 PHP 操作\n欄位 · user_id · 移除 columnRemoved\n名稱\nBefore \"user_id\"\n型別\nBefore \"bigInteger\"\n允許 NULL\nBefore true\n無號\nBefore true\n自增\nBefore false\nBefore · user_id · 查看明細\n\n依 R4 名稱操作索引列出，不將差異猜成一對一來源。\n\n查看涉及此名稱的 PHP 操作\n外鍵 · posts_author_fk · 新增 foreignKeyAdded\n名稱\nAfter \"posts_author_fk\"\n所屬欄位（依序）\nAfter \"author_id\"\n引用資料表\nAfter \"users\"\n引用欄位（依序）\nAfter \"user_key\"\n刪除動作\nAfter \"cascade\"\nAfter · posts_author_fk · 查看明細\n\nAfter 關係上下文：posts (author_id) → users (user_key)；引用表不代表被修改。\n\nAfter · 引用表 users · 查看明細After · 引用欄位 users.user_key · 查看明細\n\n依 R4 名稱操作索引列出，不將差異猜成一對一來源。\n\n查看涉及此名稱的 PHP 操作\n外鍵 · posts_user_id_foreign · 移除 foreignKeyRemoved\n名稱\nBefore \"posts_user_id_foreign\"\n所屬欄位（依序）\nBefore \"user_id\"\n引用資料表\nBefore \"users\"\n引用欄位（依序）\nBefore \"id\"\n刪除動作\nBefore \"set null\"\n更新動作\nBefore \"cascade\"\nBefore · posts_user_id_foreign · 查看明細\n\nBefore 關係上下文：posts (user_id) → users (id)；引用表不代表被修改。\n\nBefore · 引用表 users · 查看明細Before · 引用欄位 users.id · 查看明細\n\n依 R4 名稱操作索引列出，不將差異猜成一對一來源。\n\n查看涉及此名稱的 PHP 操作\n所屬表 · users\n欄位 · id · 移除 columnRemoved\n名稱\nBefore \"id\"\n型別\nBefore \"bigInteger\"\n允許 NULL\nBefore false\n無號\nBefore true\n自增\nBefore true\n欄位 primary metadata\nBefore true\nBefore · id · 查看明細\n\n依 R4 名稱操作索引列出，不將差異猜成一對一來源。\n\n查看涉及此名稱的 PHP 操作\n欄位 · user_key · 新增 columnAdded\n名稱\nAfter \"user_key\"\n型別\nAfter \"bigInteger\"\n允許 NULL\nAfter false\n無號\nAfter true\n自增\nAfter true\n欄位 primary metadata\nAfter true\nAfter · user_key · 查看明細\n\n依 R4 名稱操作索引列出，不將差異猜成一對一來源。\n\n查看涉及此名稱的 PHP 操作\n索引 · users_id_primary · 變更 indexChanged\n所屬欄位（依序）\nBefore \"id\" → After \"user_key\"\nBefore · users_id_primary · 查看明細\nAfter · users_id_primary · 查看明細\n\n依 R4 名稱操作索引列出，不將差異猜成一對一來源。\n\n查看涉及此名稱的 PHP 操作",
+        "syntaxOperations": "renameColumn · users.id → user_key 查看操作 PHP · 第 8 行\nrenameColumn · posts.user_id → author_id 查看操作 PHP · 第 11 行\ndropForeignKey · posts / posts_user_id_foreign 查看操作 PHP · 第 12 行\naddForeignKey · posts / posts_author_fk → users 查看操作 PHP · 第 13 行",
+        "beforeReference": "users.id",
+        "afterReference": "users.user_key",
+        "noIdentityInference": true
+      },
+      "screenshots": [
+        "desktop-foreign-keys.png"
+      ]
+    },
+    {
+      "id": "縱深",
+      "expected": "nickname只列第二新增／第三移除；跳步保持已刪literal和來源focus",
+      "observed": {
+        "coreIndices": [
+          1,
+          2
+        ],
+        "relatedRows": "相關變更 · 精確名稱\n\n名稱相關步驟，不追蹤物件身分。查詢不改完整 migration 順序、schema 或匯出。\n\n精確資料表名稱\n精確欄位名稱（留空查整表）\n查詢名稱相關步驟\n\n查詢：users.nickname · 最終：不存在\n\n第 2 份 · 2026_01_02_000000_update_users.php\n\n靜態已套用 · Before 不存在 · After 存在\n\n結構差異 · columnAdded · 所屬表 users · nickname\n\n名稱\nAfter \"nickname\"\n型別\nAfter \"string\"\n允許 NULL\nAfter true\n長度\nAfter 255\n\n已識別語法 · 1\n\n精確名稱語法 · addColumn · users.nickname (string) 查看相關 PHP · 第 5 行\n查看此步比較\n查看套用前\n查看此步診斷／語法\n第 3 份 · 2026_01_03_000000_revise_users.php\n\n靜態已套用 · Before 存在 · After 不存在\n\n結構差異 · columnRemoved · 所屬表 users · nickname\n\n名稱\nBefore \"nickname\"\n型別\nBefore \"string\"\n允許 NULL\nBefore true\n長度\nBefore 255\n\n已識別語法 · 1\n\n精確名稱語法 · dropColumn · users.nickname 查看相關 PHP · 第 5 行\n查看此步比較\n查看套用前\n查看此步診斷／語法",
+        "removedNameRetained": true,
+        "sourceReturnedToOriginalStep": "目前：第 2／3 份 · 2026_01_02_000000_update_users.php\n\n已套用 · 套用後\n\n進階分析\n初始結構\n最終結構\n前一份 migration\n下一份 migration\n套用前\n套用後\n前後比較"
+      },
+      "screenshots": [
+        "desktop-related.png"
+      ]
+    },
+    {
+      "id": "同名重建",
+      "expected": "display_name明確rename、後續drop/add和淨columnChanged分開，不串identity",
+      "observed": {
+        "relatedRows": "相關變更 · 精確名稱\n\n名稱相關步驟，不追蹤物件身分。查詢不改完整 migration 順序、schema 或匯出。\n\n精確資料表名稱\n精確欄位名稱（留空查整表）\n查詢名稱相關步驟\n\n查詢：users.display_name · 最終：存在\n\n第 2 份 · 2026_01_02_000000_update_users.php\n\n靜態已套用 · Before 不存在 · After 存在\n\n結構差異 · columnAdded · 所屬表 users · display_name\n\n名稱\nAfter \"display_name\"\n型別\nAfter \"string\"\n允許 NULL\nAfter false\n長度\nAfter 120\n\n已識別語法 · 1\n\n精確名稱語法 · renameColumn · users.name → display_name 查看相關 PHP · 第 6 行查詢改名新名稱 display_name\n查看此步比較\n查看套用前\n查看此步診斷／語法\n第 3 份 · 2026_01_03_000000_revise_users.php\n\n靜態已套用 · Before 存在 · After 存在\n\n結構差異 · columnChanged · 所屬表 users · display_name\n\n欄位定義\nBefore \"string(120)\" → After \"string(200)\"\n允許 NULL\nBefore false → After true\n長度\nBefore 120 → After 200\n\n已識別語法 · 2\n\n精確名稱語法 · dropColumn · users.display_name 查看相關 PHP · 第 6 行\n精確名稱語法 · addColumn · users.display_name (string) 查看相關 PHP · 第 7 行\n查看此步比較\n查看套用前\n查看此步診斷／語法",
+        "netSummary": "真實結構差異\n\n依所屬表分組；這是前後快照的淨差異，不推定 rename 身分或資料庫影響。\n\n所屬表 · users\n欄位 · display_name · 變更 columnChanged\n欄位定義\nBefore \"string(120)\" → After \"string(200)\"\n允許 NULL\nBefore false → After true\n長度\nBefore 120 → After 200\nBefore · display_name · 查看明細\nAfter · display_name · 查看明細\n\n依 R4 名稱操作索引列出，不將差異猜成一對一來源。\n\n查看涉及此名稱的 PHP 操作\n欄位 · nickname · 移除 columnRemoved\n名稱\nBefore \"nickname\"\n型別\nBefore \"string\"\n允許 NULL\nBefore true\n長度\nBefore 255\nBefore · nickname · 查看明細\n\n依 R4 名稱操作索引列出，不將差異猜成一對一來源。\n\n查看涉及此名稱的 PHP 操作",
+        "literal": "users.display_name"
+      },
+      "screenshots": []
+    },
+    {
+      "id": "整表增刪",
+      "expected": "known整表內容不是额外corechange；users/members literal不自動接續；空final有別unknown",
+      "observed": {
+        "addedKnownContents": "真實結構差異\n\n依所屬表分組；這是前後快照的淨差異，不推定 rename 身分或資料庫影響。\n\n所屬表 · posts\n資料表 · posts · 新增 tableAdded\n名稱\nAfter \"posts\"\nAfter · posts · 查看明細\n整表新增的已知內容\n\n下列內容來自該側快照，並非額外的 core 差異記錄。\n\n欄位 · 2\nid\n名稱\nAfter \"id\"\n型別\nAfter \"bigInteger\"\n允許 NULL\nAfter false\n無號\nAfter true\n自增\nAfter true\n欄位 primary metadata\nAfter true\nAfter · id · 查看明細\nuser_id\n名稱\nAfter \"user_id\"\n型別\nAfter \"bigInteger\"\n允許 NULL\nAfter false\n無號\nAfter true\n自增\nAfter false\nAfter · user_id · 查看明細\n索引 · 1\nposts_id_primary\n名稱\nAfter \"posts_id_primary\"\n型別\nAfter \"primary\"\n所屬欄位（依序）\nAfter \"id\"\nAfter · posts_id_primary · 查看明細\n外鍵 · 1\nposts_user_id_foreign\n名稱\nAfter \"posts_user_id_foreign\"\n所屬欄位（依序）\nAfter \"user_id\"\n引用資料表\nAfter \"users\"\n引用欄位（依序）\nAfter \"id\"\nAfter · posts_user_id_foreign · 查看明細\n\n依 R4 名稱操作索引列出，不將差異猜成一對一來源。\n\n查看涉及此名稱的 PHP 操作\n所屬表 · users\n資料表 · users · 新增 tableAdded\n名稱\nAfter \"users\"\nAfter · users · 查看明細\n整表新增的已知內容\n\n依 R4 名稱操作索引列出，不將差異猜成一對一來源。\n\n查看涉及此名稱的 PHP 操作",
+        "removedBeforeContents": "真實結構差異\n\n依所屬表分組；這是前後快照的淨差異，不推定 rename 身分或資料庫影響。\n\n所屬表 · members\n資料表 · members · 移除 tableRemoved\n名稱\nBefore \"members\"\nBefore · members · 查看明細\n整表移除的已知內容\n\n下列內容來自該側快照，並非額外的 core 差異記錄。\n\n欄位 · 1\nid\n名稱\nBefore \"id\"\n型別\nBefore \"bigInteger\"\n允許 NULL\nBefore false\n無號\nBefore true\n自增\nBefore true\n欄位 primary metadata\nBefore true\nBefore · id · 查看明細\n索引 · 1\nusers_id_primary\n名稱\nBefore \"users_id_primary\"\n型別\nBefore \"primary\"\n所屬欄位（依序）\nBefore \"id\"\nBefore · users_id_primary · 查看明細\n外鍵 · 0\n\n依 R4 名稱操作索引列出，不將差異猜成一對一來源。\n\n查看涉及此名稱的 PHP 操作",
+        "usersQuery": "相關變更 · 精確名稱\n\n名稱相關步驟，不追蹤物件身分。查詢不改完整 migration 順序、schema 或匯出。\n\n精確資料表名稱\n精確欄位名稱（留空查整表）\n查詢名稱相關步驟\n\n查詢：users.id · 最終：不存在\n\n第 1 份 · 2026_04_01_000000_create_tables.php\n\n靜態已套用 · Before 不存在 · After 存在\n\n關係上下文（不代表引用表被修改） · tableAdded · 所屬表 posts · posts\n\n涉及名稱的整表已知內容\n名稱\nAfter \"posts\"\n\n結構差異 · tableAdded · 所屬表 users · users\n\n涉及名稱的整表已知內容\n名稱\nAfter \"users\"\n\n已識別語法 · 3\n\n表級操作上下文（不斷言欄位被修改） · createTable · users 查看相關 PHP · 第 7 行\n精確名稱語法 · addColumn · users.id (bigInteger) 查看相關 PHP · 第 8 行\n關係上下文（不代表引用表被修改） · addForeignKey · posts / posts_user_id_foreign → users 查看相關 PHP · 第 12 行\n查看此步比較\n查看套用前\n查看此步診斷／語法\n第 2 份 · 2026_04_02_000000_rename_tables.php\n\n靜態已套用 · Before 存在 · After 不存在\n\n關係上下文（不代表引用表被修改） · tableRemoved · 所屬表 posts · posts\n\n涉及名稱的整表已知內容\n名稱\nBefore \"posts\"\n\n結構差異 · tableRemoved · 所屬表 users · users\n\n涉及名稱的整表已知內容\n名稱\nBefore \"users\"\n\n已識別語法 · 1\n\n表級操作上下文（不斷言欄位被修改） · renameTable · users → members 查看相關 PHP · 第 7 行查詢改名新表 members\n查看此步比較\n查看套用前\n查看此步診斷／語法",
+        "membersQuery": "相關變更 · 精確名稱\n\n名稱相關步驟，不追蹤物件身分。查詢不改完整 migration 順序、schema 或匯出。\n\n精確資料表名稱\n精確欄位名稱（留空查整表）\n查詢名稱相關步驟\n\n查詢：members.id · 最終：不存在\n\n第 2 份 · 2026_04_02_000000_rename_tables.php\n\n靜態已套用 · Before 不存在 · After 存在\n\n關係上下文（不代表引用表被修改） · tableAdded · 所屬表 articles · articles\n\n涉及名稱的整表已知內容\n名稱\nAfter \"articles\"\n\n結構差異 · tableAdded · 所屬表 members · members\n\n涉及名稱的整表已知內容\n名稱\nAfter \"members\"\n\n已識別語法 · 1\n\n表級操作上下文（不斷言欄位被修改） · renameTable · users → members 查看相關 PHP · 第 7 行查詢改名新表 members\n查看此步比較\n查看套用前\n查看此步診斷／語法\n第 3 份 · 2026_04_03_000000_drop_articles.php\n\n靜態已套用 · Before 存在 · After 存在\n\n關係上下文（不代表引用表被修改） · tableRemoved · 所屬表 articles · articles\n\n涉及名稱的整表已知內容\n名稱\nBefore \"articles\"\n\n已識別語法 · 0\n\n查看此步比較\n查看套用前\n查看此步診斷／語法\n第 4 份 · 2026_04_04_000000_drop_members.php\n\n靜態已套用 · Before 存在 · After 不存在\n\n結構差異 · tableRemoved · 所屬表 members · members\n\n涉及名稱的整表已知內容\n名稱\nBefore \"members\"\n\n已識別語法 · 1\n\n表級操作上下文（不斷言欄位被修改） · dropTable · members 查看相關 PHP · 第 7 行\n查看此步比較\n查看套用前\n查看此步診斷／語法",
+        "finalKnownEmpty": true
+      },
+      "screenshots": []
+    },
+    {
+      "id": "未完成",
+      "expected": "Laravel.io2/1/6／BookStack0/1/102；failed before已知、after/blocked/final未知，禁止prefix替代",
+      "observed": {
+        "samples": [
+          {
+            "id": "laravelio",
+            "repo": "laravelio/laravel.io",
+            "upstreamCommit": "d056c6493dd7bf905e471f2ad6fe716c35642ae4",
+            "phpHashesMatched": 9,
+            "counts": {
+              "applied": 2,
+              "failed": 1,
+              "blocked": 6
+            },
+            "finalUnknown": true,
+            "failedAfter": "結構明細 · 目前表：尚未選取\n結構明細\n相關變更\nPHP 來源\n3. 2024_09_27_095949_add_hero_image_additional_columns_to_articles.php · 套用後\n\n此側快照未知，無法確認表結構；不補畫成功前綴。\n\n相關變更 · 精確名稱\n\n名稱相關步驟，不追蹤物件身分。查詢不改完整 migration 順序、schema 或匯出。\n\n精確資料表名稱\n精確欄位名稱（留空查整表）\n查詢名稱相關步驟\n\n可直接查已刪除名稱；最終快照未知仍能查語法與既有證據。\n\nPHP 來源 · 完整分析順序",
+            "failedBefore": "2024_09_27_095949_add_hero_image_additional_columns_to_articles.php\n\n失敗 · 1 個已識別操作\n\n單次變更摘要\n\n失敗：未套用 · Before 已知 · After 未知\n\n診斷 · 1\nPHP 分析 · UNSUPPORTED_BLUEPRINT\n2024_09_27_095949_add_hero_image_additional_columns_to_articles.php:15（column 12）\nExpected a static scalar literal; expressions are not evaluated.\n定位原始碼 · 2024_09_27_095949_add_hero_image_additional_columns_to_articles.php:15\n真實結構差異\n\n依所屬表分組；這是前後快照的淨差異，不推定 rename 身分或資料庫影響。\n\n快照未知，無法比較；不代表沒有變更。\n\n已識別 PHP 操作 · 1\n\n操作是語法證據；失敗或阻擋時沒有套用。rename 的明確操作與下方結構移除／新增分開閱讀。\n\nrenameColumn · articles.hero_image → hero_image_id 查看操作 PHP · 第 23 行\n涉及物件與各側明細\n\n名稱依操作及結構差異列出，不推定跨 rename 身分。索引、外鍵導向所屬表；明細跳轉會重設該圖位置。\n\narticles · 語法涉及 Before · 此側不存在After · 快照未知\narticles.hero_image · 語法涉及 Before · 此側不存在After · 快照未知\narticles.hero_image_id · 語法涉及 Before · 此側不存在After · 快照未知\n\n快照依 core 分析順序列出，不受 migration 搜尋或狀態篩選影響。工作區切換快照保留同名定位與視野；不執行 migration。\n\n3. 2024_09_27_095949_add_hero_image_additional_columns_to_articles.php · 套用前 ERD\n\n2 張資料表 · 0 個外鍵關係。箭頭從本表指向引用表；不推測關聯基數。\n\n單擊資料表或按 Enter／Space 可選取明細；拖移資料表可調整位置，拖移空白可平移。聚焦後可用方向鍵移動；PK 為主鍵，FK 為外鍵欄位，? 表示 nullable。\n\njob_batches\nPK id: string\nname: string\ntotal_jobs: integer\npending_jobs: integer\nfailed_jobs: integer\nfailed_job_ids: longText\noptions?: mediumText\ncancelled_at?: integer\ncreated_at: integer\nfinished_at?: integer\njobs\nPK id: bigInteger\nqueue: string\npayload: longText\nattempts: tinyInteger\nreserved_at?: integer\navailable_at: integer\ncreated_at: integer\n外鍵連線明細\n\n此檔的 operations 僅供檢視，沒有套用；不顯示推測的 schema 或 diff。",
+            "blockedSyntax": "單次變更摘要\n\n前序阻擋：未套用 · Before 未知 · After 未知\n\n診斷 · 2\nPHP 分析 · UNSUPPORTED_BLUEPRINT\n2024_11_28_202608_add_bluesky_column_to_users.php:12（column 12）\nUnsupported column modifier: after\n定位原始碼 · 2024_11_28_202608_add_bluesky_column_to_users.php:12\n前序失敗 · SCHEMA_BLOCKED\n2024_11_28_202608_add_bluesky_column_to_users.php:1（column 0）\nSchema is unknown after failed migration: 2024_09_27_095949_add_hero_image_additional_columns_to_articles.php\n定位原始碼 · 2024_11_28_202608_add_bluesky_column_to_users.php:1\n真實結構差異\n\n依所屬表分組；這是前後快照的淨差異，不推定 rename 身分或資料庫影響。\n\n快照未知，無法比較；不代表沒有變更。\n\n已識別 PHP 操作 · 0\n\n操作是語法證據；失敗或阻擋時沒有套用。rename 的明確操作與下方結構移除／新增分開閱讀。\n\n涉及物件與各側明細\n\n名稱依操作及結構差異列出，不推定跨 rename 身分。索引、外鍵導向所屬表；明細跳轉會重設該圖位置。\n\n沒有直接涉及的物件。",
+            "finalExportDisabled": true
+          },
+          {
+            "id": "bookstack",
+            "repo": "BookStackApp/BookStack",
+            "upstreamCommit": "ff661b59f6f605bf768fe850c0d0a8a2dc09d203",
+            "phpHashesMatched": 103,
+            "counts": {
+              "applied": 0,
+              "failed": 1,
+              "blocked": 102
+            },
+            "finalUnknown": true,
+            "failedAfter": "結構明細 · 目前表：尚未選取\n結構明細\n相關變更\nPHP 來源\n1. 2014_10_12_000000_create_users_table.php · 套用後\n\n此側快照未知，無法確認表結構；不補畫成功前綴。\n\n相關變更 · 精確名稱\n\n名稱相關步驟，不追蹤物件身分。查詢不改完整 migration 順序、schema 或匯出。\n\n精確資料表名稱\n精確欄位名稱（留空查整表）\n查詢名稱相關步驟\n\n可直接查已刪除名稱；最終快照未知仍能查語法與既有證據。\n\nPHP 來源 · 完整分析順序",
+            "failedBefore": "2014_10_12_000000_create_users_table.php\n\n失敗 · 9 個已識別操作\n\n單次變更摘要\n\n失敗：未套用 · Before 已知 · After 未知\n\n診斷 · 1\nPHP 分析 · UNSUPPORTED_STATEMENT\n2014_10_12_000000_create_users_table.php:26（column 8）\nOnly direct Schema calls in up() are supported; control flow and helper calls are not evaluated.\n定位原始碼 · 2014_10_12_000000_create_users_table.php:26\n真實結構差異\n\n依所屬表分組；這是前後快照的淨差異，不推定 rename 身分或資料庫影響。\n\n快照未知，無法比較；不代表沒有變更。\n\n已識別 PHP 操作 · 9\n\n操作是語法證據；失敗或阻擋時沒有套用。rename 的明確操作與下方結構移除／新增分開閱讀。\n\ncreateTable · users 查看操作 PHP · 第 16 行\naddColumn · users.id (integer) 查看操作 PHP · 第 17 行\naddColumn · users.name (string) 查看操作 PHP · 第 18 行\naddColumn · users.email (string) 查看操作 PHP · 第 19 行\naddColumn · users.password (string) 查看操作 PHP · 第 20 行\naddColumn · users.remember_token (string) 查看操作 PHP · 第 21 行\naddColumn · users.created_at (timestamp) 查看操作 PHP · 第 22 行\naddColumn · users.updated_at (timestamp) 查看操作 PHP · 第 22 行\naddIndex · users / users_email_unique 查看操作 PHP · 第 19 行\n涉及物件與各側明細\n\n名稱依操作及結構差異列出，不推定跨 rename 身分。索引、外鍵導向所屬表；明細跳轉會重設該圖位置。\n\nusers · 語法涉及 Before · 此側不存在After · 快照未知\nusers.id · 語法涉及 Before · 此側不存在After · 快照未知\nusers.name · 語法涉及 Before · 此側不存在After · 快照未知\nusers.email · 語法涉及 Before · 此側不存在After · 快照未知\nusers.password · 語法涉及 Before · 此側不存在After · 快照未知\nusers.remember_token · 語法涉及 Before · 此側不存在After · 快照未知\nusers.created_at · 語法涉及 Before · 此側不存在After · 快照未知\nusers.updated_at · 語法涉及 Before · 此側不存在After · 快照未知\n\n快照依 core 分析順序列出，不受 migration 搜尋或狀態篩選影響。工作區切換快照保留同名定位與視野；不執行 migration。\n\n1. 2014_10_12_000000_create_users_table.php · 套用前 ERD\n\n0 張資料表 · 0 個外鍵關係。箭頭從本表指向引用表；不推測關聯基數。\n\n單擊資料表或按 Enter／Space 可選取明細；拖移資料表可調整位置，拖移空白可平移。聚焦後可用方向鍵移動；PK 為主鍵，FK 為外鍵欄位，? 表示 nullable。\n\n已知的空白 schema：沒有資料表可繪製。\n\n此檔的 operations 僅供檢視，沒有套用；不顯示推測的 schema 或 diff。",
+            "blockedSyntax": "單次變更摘要\n\n前序阻擋：未套用 · Before 未知 · After 未知\n\n診斷 · 1\n前序失敗 · SCHEMA_BLOCKED\n2014_10_12_100000_create_password_resets_table.php:1（column 0）\nSchema is unknown after failed migration: 2014_10_12_000000_create_users_table.php\n定位原始碼 · 2014_10_12_100000_create_password_resets_table.php:1\n真實結構差異\n\n依所屬表分組；這是前後快照的淨差異，不推定 rename 身分或資料庫影響。\n\n快照未知，無法比較；不代表沒有變更。\n\n已識別 PHP 操作 · 6\n\n操作是語法證據；失敗或阻擋時沒有套用。rename 的明確操作與下方結構移除／新增分開閱讀。\n\ncreateTable · password_resets 查看操作 PHP · 第 14 行\naddColumn · password_resets.email (string) 查看操作 PHP · 第 15 行\naddColumn · password_resets.token (string) 查看操作 PHP · 第 16 行\naddColumn · password_resets.created_at (timestamp) 查看操作 PHP · 第 17 行\naddIndex · password_resets / password_resets_email_index 查看操作 PHP · 第 15 行\naddIndex · password_resets / password_resets_token_index 查看操作 PHP · 第 16 行\n涉及物件與各側明細\n\n名稱依操作及結構差異列出，不推定跨 rename 身分。索引、外鍵導向所屬表；明細跳轉會重設該圖位置。\n\npassword_resets · 語法涉及 Before · 快照未知After · 快照未知\npassword_resets.email · 語法涉及 Before · 快照未知After · 快照未知\npassword_resets.token · 語法涉及 Before · 快照未知After · 快照未知\npassword_resets.created_at · 語法涉及 Before · 快照未知After · 快照未知",
+            "finalExportDisabled": true
+          }
+        ]
+      },
+      "screenshots": []
+    },
+    {
+      "id": "連續與搜尋",
+      "expected": "欄/query/view/手動位置跨步保留；compare各側重算、單一來源未来時點、filter不改時點；進階DTO不受query/view改變",
+      "observed": {
+        "literal": "users.display_name",
+        "manualTransform": "translate(50 30)",
+        "sharedView": [
+          "translate(400 184.5) scale(0.8333333333333334)",
+          "translate(400 184.5) scale(0.8333333333333334)"
+        ],
+        "completeSource": "PHP 來源 · 完整分析順序\n查看資料表名稱來源 users\n查看欄位名稱來源 users.display_name\n\n依 literal 名稱查詢；完整分析來源包含後續步驟，不代表目前時點已套用。\n\n欄位直接涉及的 PHP 操作\n\n依完整分析順序列出名稱直接涉及的操作；不是物件身分或 rename 歷史追蹤，靜態套用不等於資料庫執行。\n\n第 2 份 · 靜態已套用 · renameColumn · 2026_01_02_000000_update_users.php 查看 PHP 來源 2026_01_02_000000_update_users.php · renameColumn · 第 6 行\n第 3 份 · 靜態已套用 · 目前時點之後的來源（未表示已套用） · dropColumn · 2026_01_03_000000_revise_users.php 查看 PHP 來源 2026_01_03_000000_revise_users.php · dropColumn · 第 6 行\n第 3 份 · 靜態已套用 · 目前時點之後的來源（未表示已套用） · addColumn · 2026_01_03_000000_revise_users.php 查看 PHP 來源 2026_01_03_000000_revise_users.php · addColumn · 第 7 行",
+        "dtoSHA256": "559d7b69d20ff4abbac9f2ce94239096ef69e710b240b469507110db47482cf8",
+        "dtoBytesInvariant": true,
+        "ownBeforeColumnAbsent": true
+      },
+      "screenshots": []
+    },
+    {
+      "id": "可達與回歸",
+      "expected": "點擊/拖曳/Space/方向鍵、390px、collapsed祖先返回與invalid origin聚焦提示、無console錯誤",
+      "observed": {
+        "width": 390,
+        "noHorizontalOverflow": true,
+        "dragMovedTable": true,
+        "collapsedReturnedFocus": true,
+        "invalidOriginNotice": "原結構選取已失效，請重新選擇快照與物件。",
+        "contextPreserved": "目前：第 2／3 份 · 2026_01_02_000000_update_users.php\n\n已套用 · 套用後\n\n進階分析\n初始結構\n最終結構\n前一份 migration\n下一份 migration\n套用前\n套用後\n前後比較"
+      },
+      "screenshots": [
+        "narrow-reading.png"
+      ]
+    }
+  ],
+  "consoleErrors": [],
+  "independentAcceptance": "pending"
+}

@@ -1,0 +1,19 @@
+{
+  "commit": "9010b873cd2bfbf5647406c41935a8dfa718a5f0",
+  "passed": [
+    "comparison keeps columns/indexes/FK first, own-side absence and one closed complete source list",
+    "keyboard shortcut entries directly reach structure/related/source/advanced regions without changing reading",
+    "complete analysis order distinguishes future and current-step-before operations from current applied structure",
+    "readonly preview returns through collapsed source ancestor preserving step/side/literal/query/view/focus",
+    "summary source entry uses the same single list with keyboard discoverable focus",
+    "advanced is closed by default while main summary remains visible; historical tables have explicit step and side",
+    "both export controls remain available and full DTO is byte-identical after query/view changes; no download performed",
+    "failed project keeps primary incomplete boundary visible; advanced diagnostics/prefix stay distinct and final export disabled",
+    "actual input renders Chinese labels and explicit null/false/zero/absence plus ordered allowed values",
+    "390px keyboard discovers details/sources/advanced and restores focused origin without horizontal overflow",
+    "true copy modification invalidates source/details/advanced with the analysis generation",
+    "real readonly preview refuses ambiguous and missing files without basename guesses",
+    "unknown source line shows file opening only with no fabricated highlighted line"
+  ],
+  "consoleErrors": []
+}

@@ -54,7 +54,7 @@
 | R5 | [單次變更閱讀流程](R5-change-reading.zh-TW.md) | done（#130） | R1、R4 |
 | R6 | [整合驗收與交付](R6-acceptance.zh-TW.md) | done（#132） | 已核准且完成的前序範圍 |
 | R7 | [方案 A：同一工作區閱讀變更](R7-workspace-reading.zh-TW.md) | done（#137／96f13b0；R7.1～R7.3） | 已交付 R3／R4／R5／R6 |
-| R8 | [結構與 migration 變化閱讀修正](R8-reading-corrections.zh-TW.md) | in_progress（R8.1～5 ready for review；獨立驗收 pending） | R7 done；[工作項目／接手入口](R8-work-items/README.md)；milestone #43／issues #139～144 已建立 |
+| R8 | [結構與 migration 變化閱讀修正](R8-reading-corrections.zh-TW.md) | in_progress（R8.1～5 ready for review／R8.6整合準備 ready for review；獨立驗收 pending） | R7 done；[工作項目／接手入口](R8-work-items/README.md)；milestone #43／issues #139～144 已建立 |
 
 R 編號是研究提案 ID，不是已建立的 GitHub milestone。順序可依證據修訂；R2 不必為湊 milestone 而實作。
 
@@ -106,3 +106,9 @@ COORD-20261011-04：僅 R8.1 in_progress／ready for review，其他 R8 批次�
 ## COORD-20261011-17：R8.5 交付停點
 
 協調端按原人類核准（R8修訂1@5eec41476ef22b85d3165d3be3f681f1a20c8f9d）只派 #143／R8.5。固定輸入2dd3a9a348df5225f4cbf157d3c76ff5ef539622，產品ce16e471573cbf0762ad13293f715eefb61b28f7；713 tests（540core／173web）、15 verify命令／12demos與13+14+12+12+14+16+9＝90項／組browser自測通過。明細中文屬性優先、單一完整分析來源與未來時點標示、集中進階DTO／表格／診斷與兩JSON入口；core／公開JSON／golden／依賴／workflow無差異。#145～148固定驗收heads不改，COORD16及各批獨立驗收pending／offline阻礙沒有解除，不能用自測或協調核對當驗收。#143 in_progress／ready for review但OPEN，整R8與milestone43 OPEN，R8.6未開始。不合併、不automerge、不部署／release／下載落盤。規劃d2e3aaa2f761752842cdb4856afc2af0e47ba435只參考不混產品base。教學docs/r8-5-details-and-tools.zh-TW.md，12份可攜證據SHA256見docs/acceptance/r8-5-evidence/manifest.json。
+
+## COORD-20261011-20：R8.6 整合自測／交付準備停點
+
+協調端按R8修訂1@5eec41476ef22b85d3165d3be3f681f1a20c8f9d既有人類核准派工，僅 #144／R8.6準備。固定輸入／本輪實際verify与browser基準9010b873cd2bfbf5647406c41935a8dfa718a5f0、clean=true；程式最後改動仍ce16e471573cbf0762ad13293f715eefb61b28f7，沒有本輪產品修正或空產品commit。713tests（540core／173web）、15verify命令／12demos通過；真Chromium十項原矩陣整合任務另加90項／組前批回歸通過、console空。原112份PHP hashes MATCH，Laravel.io2/1/6／BookStack0/1/102、final未知边界不變。首次runner還原locator錯誤及九項部分結果保存，修正後全跑十項，不放寬斷言。教學／整合報告docs/r8-6-integration-preparation.zh-TW.md，16份可攜證據docs/acceptance/r8-6-evidence/manifest.json。
+
+新分支feat/r8-6-integration-preparation，stacked base feat/r8-5-details-and-tools；#145～149固定驗收heads／OPEN狀態不改。规划835cb1e544520ff7b69ea1c20f03bf0ccf8fe66b只參考不混base。獨立隊列03/06/10/13/16/19與未来R8.6仍pending，offline是協調端回報的驗收環境阻礙；開發自測／CI／協調核對不能代獨立報告。#144 in_progress／ready for review但OPEN、R8整批／milestone43 OPEN未done。剩餘独立報告／必要複驗與依授權安排整合／所有必要merge／交付證據由協調回收再派工；本輪不合併、不automerge、不關issuesmilestone、不部署release或下載落盤，不開始新draft。
