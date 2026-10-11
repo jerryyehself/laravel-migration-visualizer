@@ -1,0 +1,25 @@
+
+ RUN  v5.0.2 /workspace/laravel-migration-visualizer
+
+ ❯ apps/web/tests/reading-view.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/tests/reading-view.test.ts [ apps/web/tests/reading-view.test.ts ]
+Error: Cannot find module '../src/reading-view' imported from /workspace/laravel-migration-visualizer/apps/web/tests/reading-view.test.ts
+ ❯ apps/web/tests/reading-view.test.ts:3:1
+      1| import { describe,it,expect } from 'vitest';
+      2| import { analyzeProject } from '../../../packages/migration-core/src/i…
+      3| import { analysisLayout, resetVisibleView, objectInView } from '../src…
+       | ^
+      4| import { initialGraphView } from '../src/comparison-layout';
+      5| const f=(n:number,body:string)=>({filename:`2026_10_11_00000${n}_case.…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  05:29:50
+   Duration  417ms (worker 88%, environment 12%)
+

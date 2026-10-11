@@ -7,8 +7,11 @@ export function initialGraphView(layout: { width: number; height: number }): Gra
 }
 // Union only names and visual heights, never columns, foreign keys or schema data.
 export function comparisonLayout(before: SchemaState, after: SchemaState): GraphLayout {
+  return geometryLayout([before,after]);
+}
+export function geometryLayout(schemas: readonly (SchemaState|null)[]):GraphLayout {
   const heights = new Map<string, number>();
-  for (const schema of [before, after]) for (const node of schemaGraph(schema).nodes)
+  for (const schema of schemas) if(schema !== null) for (const node of schemaGraph(schema).nodes)
     heights.set(node.name, Math.max(heights.get(node.name) ?? 0, node.height));
   const names = [...heights.keys()].sort((a,b) => a < b ? -1 : a > b ? 1 : 0);
   const positions = new Map<string, Point>();

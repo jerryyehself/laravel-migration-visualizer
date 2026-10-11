@@ -8,7 +8,7 @@ import { initialGraphView, type GraphLayout, type GraphView } from '../compariso
 import { graphDiffMarks, memberKey, markLabels } from '../graph-diff';
 import { schemaGraph, NODE_WIDTH, clampZoom, edgePath, type Point } from '../schema-graph';
 
-export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 'after', layout, view, onViewChange, analysis, onSource, onSelectionChange, initialSelection, selection, onSelectObject, hideDetails }: { selection?:StructureQuery; onSelectObject?:(query:StructureQuery | undefined)=>void; hideDetails?:boolean; initialSelection?:StructureQuery; schema: SchemaState; title?: string; diff?: SchemaDiff; side?: 'before' | 'after'; layout?: GraphLayout; view?: GraphView; onViewChange?: Dispatch<SetStateAction<GraphView>>; analysis?: ProjectAnalysis; onSource?: SourceNavigation; onSelectionChange?: () => void }) {
+export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 'after', layout, view, onViewChange, analysis, onSource, onSelectionChange, initialSelection, selection, onSelectObject, hideDetails, hideControls }: { selection?:StructureQuery; onSelectObject?:(query:StructureQuery | undefined)=>void; hideDetails?:boolean; hideControls?:boolean; initialSelection?:StructureQuery; schema: SchemaState; title?: string; diff?: SchemaDiff; side?: 'before' | 'after'; layout?: GraphLayout; view?: GraphView; onViewChange?: Dispatch<SetStateAction<GraphView>>; analysis?: ProjectAnalysis; onSource?: SourceNavigation; onSelectionChange?: () => void }) {
   const graph = useMemo(() => schemaGraph(schema), [schema]);
   const marks = useMemo(() => graphDiffMarks(diff ?? { changes: [] }, side), [diff, side]);
   const marker = useId().replace(/:/g, '');
@@ -75,6 +75,7 @@ export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 
     <h2>{title}</h2>
     <p>{graph.nodes.length} 張資料表 · {graph.edges.length} 個外鍵關係。箭頭從本表指向引用表；不推測關聯基數。</p>
     <p className="muted">單擊資料表或按 Enter／Space 可選取明細；拖移資料表可調整位置，拖移空白可平移。聚焦後可用方向鍵移動；PK 為主鍵，FK 為外鍵欄位，? 表示 nullable。</p>
+    {!hideControls && <>
     <div className="toolbar">
       <button type="button" className="secondary" aria-label="縮小 ERD" disabled={zoom <= 0.15} onClick={() => setZoom(current => clampZoom(current / 1.2))}>−</button>
       <span role="status">縮放 {Math.round(zoom * 100)}%</span>
@@ -101,6 +102,7 @@ export function SchemaGraph({ schema, title = '最終 Schema ERD', diff, side = 
       {columnQuery.trim() !== '' && columnMatches.length === 0 && <p className="muted">沒有符合的欄位。</p>}
       <button type="button" className="secondary" disabled={columnQuery === ''} onClick={() => setColumnQuery('')}>清除欄位搜尋</button>
     </fieldset>
+    </>}
     {graph.unresolved > 0 && <p className="unavailable">{graph.unresolved} 個外鍵缺少引用表，未繪製連線。</p>}
     {graph.nodes.length === 0 ? <p>已知的空白 schema：沒有資料表可繪製。</p> : <>
       <svg ref={svg} viewBox="0 0 1200 560" className="erd-canvas" role="group" aria-label="ERD 畫布"

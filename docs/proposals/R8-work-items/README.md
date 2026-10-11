@@ -82,3 +82,7 @@ gh issue create --repo jerryyehself/laravel-migration-visualizer --milestone 'R8
 ## COORD-20261011-11：R8.3 交付停點
 
 協調端按既有使用者核准（R8修訂1@5eec414）只派 #141／R8.3。輸入3e8ee581eee16a80940c7490b491001dc2bd25eb，產品763f71d5089e45781e34ba30e55028916b065a15；698 tests、12 demos、15 verify步驟、12+12+14+16+9 browser自測通過。R8.1 #145／R8.2 #146 固定 head 不改，三批独立驗收均 pending。R8.3 in_progress／ready for review，milestone #43 open，R8.4～6未開工，不合併 main、不automerge。教學 docs/r8-3-related-changes.zh-TW.md，可攜證據 docs/acceptance/r8-3-evidence/manifest.json。規劃8c326339ff5b7656b7e73a3842029a6dfbc24eae只參考，不混產品base。
+
+## COORD-20261011-14：R8.4交付停點
+
+協調端按原人類核准（R8修訂1@5eec414）只派#142／R8.4。輸入8ed11ea960c7e0a046b72e3c78011c4cb744896b，產品c32b52260b6057b2b0f49d223e1c9f68b397f7c8；706tests／12demos／15verifycommands、14+12+12+14+16+9browser自測通過。R8.4父層保literal/query/view與集中側別搜尋，更新R7切步重設view舊限制；core/JSON不改。#145～147固定heads不改、R8.1～4独立驗收pending，#142 ready for review但OPEN／milestone43 OPEN，R8.5～6未開始。規劃8ea8ece98073542eaafc4b6d19f5e7ce639f074c只参考不混base。教學docs/r8-4-reading-context.zh-TW.md，證據docs/acceptance/r8-4-evidence/manifest.json。

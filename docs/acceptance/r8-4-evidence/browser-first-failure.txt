@@ -1,0 +1,44 @@
+next/previous preserve full literal column, search, zoom/pan and manual geometry
+canvas pan survives side change; missing column is not downgraded or replaced
+central search no-match never filters schema or graph nodes
+comparison searches one declared side and shares exactly one zoom tool set
+collapsed source return preserves step/side/column/search/shared view and focus
+removed column remains selected across steps and recovers on known earlier snapshot
+filter and initial/final boundaries preserve reading query and use complete core order
+Traceback (most recent call last):
+  File "/workspace/laravel-migration-visualizer/scripts/verify-r8-reading-context.py", line 49, in <module>
+    control('前一份 migration').click();column('display_name');node().focus();node().press('ArrowRight');moved=node().get_attribute('transform');page.get_by_role('button',name='重設 ERD 位置',exact=True).click();assert node().get_attribute('transform')!=moved;expect(tools()).to_contain_text('目前目標：users.display_name')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 17876, in click
+    self._sync(
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 115, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_locator.py", line 165, in click
+    return await self._frame._click(self._selector, strict=True, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_frame.py", line 593, in _click
+    await self._channel.send("click", self._timeout, locals_to_params(locals()))
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 76, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 632, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TimeoutError: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator(".workspace-controls").get_by_role("button", name="前一份 migration", exact=True)
+    - locator resolved to <button disabled type="button">前一份 migration</button>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    58 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying click action
+       - waiting 500ms
+

@@ -4,7 +4,7 @@
 
 步驟切換會 remount 圖、重設 query／view 並清欄位。把 reading、literal 選取、側別搜尋與 GraphView 存於工作區，順序閱讀能持續觀察同名目標。
 
-核准／契約：R8 修訂 1 的 R8.4 節；approved，尚未開工。此批明確更新 R7 允許換步驟重設 view 的限制，沒有要求永久布局／持久化。
+核准／契約：R8 修訂 1 的 R8.4 節；approved，in_progress／ready for review（COORD-14按原人類核准派工；獨立驗收pending）。此批明確更新 R7 允許換步驟重設 view 的限制，沒有要求永久布局／持久化。
 
 ## 依賴與前置條件
 
@@ -38,4 +38,10 @@
 
 ## 實際追蹤
 
-GitHub [#142](https://github.com/jerryyehself/laravel-migration-visualizer/issues/142)；milestone [#43](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/43)。依賴：#141。approved，尚未開工。
+GitHub [#142](https://github.com/jerryyehself/laravel-migration-visualizer/issues/142)；milestone [#43](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/43)。依賴：#141。approved，in_progress／ready for review（COORD-14按原人類核准派工；獨立驗收pending）。
+
+## COORD-20261011-14：R8.4交付停點
+
+協調端按原人類核准（R8修訂1@5eec414）只派#142／R8.4。輸入8ed11ea960c7e0a046b72e3c78011c4cb744896b，產品c32b52260b6057b2b0f49d223e1c9f68b397f7c8；706tests／12demos／15verifycommands、14+12+12+14+16+9browser自測通過。R8.4父層保literal/query/view與集中側別搜尋，更新R7切步重設view舊限制；core/JSON不改。#145～147固定heads不改、R8.1～4独立驗收pending，#142 ready for review但OPEN／milestone43 OPEN，R8.5～6未開始。規劃8ea8ece98073542eaafc4b6d19f5e7ce639f074c只参考不混base。教學docs/r8-4-reading-context.zh-TW.md，證據docs/acceptance/r8-4-evidence/manifest.json。
+
+可審查stacked PR：[R8.4 #148](https://github.com/jerryyehself/laravel-migration-visualizer/pull/148)，base feat/r8-3-related-changes，head feat/r8-4-reading-context。current head／CI以GitHub紀錄為準；獨立驗收pending、未合併、沒有automerge。

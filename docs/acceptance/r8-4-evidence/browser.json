@@ -1,0 +1,20 @@
+{
+  "commit": "c32b52260b6057b2b0f49d223e1c9f68b397f7c8",
+  "passed": [
+    "next/previous preserve full literal column, search, zoom/pan and manual geometry",
+    "canvas pan survives side change; missing column is not downgraded or replaced",
+    "central search no-match never filters schema or graph nodes",
+    "comparison searches one declared side and shares exactly one zoom tool set",
+    "collapsed source return preserves step/side/column/search/shared view and focus",
+    "removed column remains selected across steps and recovers on known earlier snapshot",
+    "filter and initial/final boundaries preserve reading query and use complete core order",
+    "current-only reset and explicit locate handle off-screen target without automatic navigation reset",
+    "table rename retains old literal and view; no automatic new-name selection",
+    "failed/blocked unknown states disable search, draw nothing and preserve recoverable view",
+    "unknown comparison side never borrows the known side or paints partial inferred comparison",
+    "new analysis explicitly clears prior reading/source/search/selection/view generation",
+    "390px keyboard sequential reading preserves view without horizontal overflow",
+    "true input edit invalidates analysis and the complete reading/view/source context"
+  ],
+  "consoleErrors": []
+}
