@@ -1,0 +1,42 @@
+{
+  "task": "COORD33 / R8.1 short batch E",
+  "productSHA": "f9b42c8c220841d40978db48969feaba8c52dc43",
+  "taskGroups": 1,
+  "files": [
+    {
+      "path": "after-remove-invalidated.png",
+      "sha256": "05a3d208536ad5edf9cc40f5f7c493c3b489fbea580dba3e1c1a89714c70e405",
+      "bytes": 118178
+    },
+    {
+      "path": "before-remove.png",
+      "sha256": "4da0bca2ddc49c157f1be8c867213f4a0dc9a39c1c5ed5dc056a1818a81fba62",
+      "bytes": 125339
+    },
+    {
+      "path": "browser.json",
+      "sha256": "56d545cdbde0d8a0209d82c897ac3c1a27f0f2a9d02906920fef31cc8946b621",
+      "bytes": 4252
+    },
+    {
+      "path": "browser.log",
+      "sha256": "6a776b357c4615b2a35e307a6c385361781af781f226f9281fbd5153da791f85",
+      "bytes": 89
+    },
+    {
+      "path": "browser.py",
+      "sha256": "c619791739eddb10bb365a0375948248e612b3ece3a2e1d0d2f9aae77df8b0b0",
+      "bytes": 4374
+    },
+    {
+      "path": "environment.json",
+      "sha256": "e99e0bb8fbeea99665ab47801c64836c9489674aa84f2fb05a2b3336f9bc9db1",
+      "bytes": 1079
+    },
+    {
+      "path": "report.zh-TW.md",
+      "sha256": "fbcf6edcad6e4b1c11f1268000d9173591fc951c3571521b282f7420f43b475f",
+      "bytes": 3706
+    }
+  ]
+}
