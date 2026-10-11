@@ -1,0 +1,119 @@
+{
+  "productSHA": "2b8030a7d19963980190ba860888f243883b6d7b",
+  "browser": "154.0.8037.57",
+  "checks": [
+    {
+      "id": "IR-02",
+      "expected": "Declared favicon returns 200; fresh console has no errors",
+      "actual": {
+        "favicon": "/favicon.svg",
+        "status": 200
+      },
+      "status": "passed"
+    },
+    {
+      "id": "R7-01",
+      "expected": "Step 2 after; column search selects users.display_name in fixed details",
+      "actual": "搜尋選取欄位：display_name\n\ndisplay_name · string\nnullable\nfalse\nlength\n120",
+      "status": "passed"
+    },
+    {
+      "id": "IR-01",
+      "expected": "Normal and all closed ancestor details return restores visible origin, focus, step, side, table, column and view",
+      "actual": {
+        "normal": true,
+        "closedAncestors": true,
+        "readonly": true
+      },
+      "status": "passed"
+    },
+    {
+      "id": "IR-01-fallback",
+      "expected": "Hidden original target produces a visible focused invalid-selection notice",
+      "actual": "原結構選取已失效，請重新選擇快照與物件。",
+      "status": "passed"
+    },
+    {
+      "id": "R7-02",
+      "expected": "Comparison reads each own schema: display_name absent before and present after",
+      "actual": "Observed separate before/after details",
+      "status": "passed"
+    },
+    {
+      "id": "R7-03",
+      "expected": "R7 step switch retains literal table and clears column; filter keeps point; previous follows full order; endpoint disabled",
+      "actual": "All observed; R8.4 persistence contract not applied",
+      "status": "passed"
+    },
+    {
+      "id": "R7-04",
+      "expected": "Space/Enter select table; ArrowRight moves node",
+      "actual": {
+        "keyboard": true
+      },
+      "status": "passed"
+    },
+    {
+      "id": "R7-05",
+      "expected": "390px source from other migration returns focus without horizontal overflow or changing current step",
+      "actual": "Observed step 2, original users selection, source create_users, focus restored",
+      "status": "passed"
+    },
+    {
+      "id": "R7-06",
+      "expected": "Rename keeps literal users query; absent after and exists before",
+      "actual": "No identity guess to members",
+      "status": "passed"
+    },
+    {
+      "id": "S-laravelio",
+      "expected": "Full browser-imported DTO counts and null boundaries match pinned samples; final never replaced by prefix",
+      "actual": {
+        "files": 9,
+        "counts": {
+          "applied": 2,
+          "failed": 1,
+          "blocked": 6
+        },
+        "final": null,
+        "failedBeforeKnown": true,
+        "blockedNull": true
+      },
+      "status": "passed"
+    },
+    {
+      "id": "S-bookstack",
+      "expected": "Full browser-imported DTO counts and null boundaries match pinned samples; final never replaced by prefix",
+      "actual": {
+        "files": 103,
+        "counts": {
+          "applied": 0,
+          "failed": 1,
+          "blocked": 102
+        },
+        "final": null,
+        "failedBeforeKnown": true,
+        "blockedNull": true
+      },
+      "status": "passed"
+    },
+    {
+      "id": "R7-07",
+      "expected": "Editing browser input invalidates analysis and workspace",
+      "actual": "Workspace removed; original disk sources unchanged",
+      "status": "passed"
+    },
+    {
+      "id": "C-01",
+      "expected": "All checked pages have zero console warning/error, pageerror, and HTTP >=400",
+      "actual": {
+        "console": [],
+        "http": []
+      },
+      "status": "passed"
+    }
+  ],
+  "consoleErrors": [],
+  "httpErrors": [],
+  "finishedAt": "2026-10-11T11:08:43.724471+00:00"
+}

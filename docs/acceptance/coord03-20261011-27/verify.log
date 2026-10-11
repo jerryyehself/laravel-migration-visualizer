@@ -1,0 +1,6101 @@
+
+added 46 packages in 1s
+
+> laravel-migration-visualizer@1.0.0 verify
+> node scripts/verify.mjs
+
+
+[verify] npm run test
+
+> laravel-migration-visualizer@1.0.0 test
+> vitest run
+
+
+ RUN  v5.0.2 /workspace/laravel-migration-visualizer
+
+
+ Test Files  40 passed (40)
+      Tests  670 passed (670)
+   Start at  11:05:29
+   Duration  10.47s (tests 69%, import 19%, transform 10%, worker 2%)
+
+    Isolate  40 workers spawned · ~139ms startup each (spawn + environment, per file)
+             at least ~1.71s faster with isolate: false — reuses workers across files instead of one per file
+
+
+[verify] npm run typecheck
+
+> laravel-migration-visualizer@1.0.0 typecheck
+> tsc --noEmit -p packages/migration-core/tsconfig.json && tsc --noEmit -p apps/web/tsconfig.json
+
+
+[verify] npm run build
+
+> laravel-migration-visualizer@1.0.0 build
+> npm run build -w @lmv/migration-core && npm run build -w @lmv/web
+
+
+> @lmv/migration-core@0.15.0 build
+> tsc -p tsconfig.build.json
+
+
+> @lmv/web@1.0.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 106 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.44 kB │ gzip:   0.31 kB
+dist/assets/index-BkeLCws_.css    7.12 kB │ gzip:   2.15 kB
+dist/assets/index-Mnw3f5do.js   454.22 kB │ gzip: 127.79 kB
+✓ built in 1.70s
+
+[verify] npm run demo:project
+
+> laravel-migration-visualizer@1.0.0 demo:project
+> npm run build -w @lmv/migration-core && node examples/project-analysis.mjs
+
+
+> @lmv/migration-core@0.15.0 build
+> tsc -p tsconfig.build.json
+
+{
+  "complete": true,
+  "migrations": [
+    {
+      "filename": "2026_01_01_000000_create_users.php",
+      "migrationName": "2026_01_01_000000_create_users",
+      "status": "applied",
+      "analysis": {
+        "operations": [
+          {
+            "kind": "createTable",
+            "table": "users",
+            "source": {
+              "file": "2026_01_01_000000_create_users.php",
+              "line": 4,
+              "column": 8
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "users",
+            "column": {
+              "name": "id",
+              "type": "bigInteger",
+              "nullable": false,
+              "unsigned": true,
+              "autoIncrement": true,
+              "primary": true
+            },
+            "source": {
+              "file": "2026_01_01_000000_create_users.php",
+              "line": 5,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "users",
+            "column": {
+              "name": "name",
+              "type": "string",
+              "nullable": false,
+              "length": 120
+            },
+            "source": {
+              "file": "2026_01_01_000000_create_users.php",
+              "line": 6,
+              "column": 12
+            }
+          }
+        ],
+        "diagnostics": [],
+        "complete": true
+      },
+      "schemaBefore": {
+        "tables": {}
+      },
+      "schemaAfter": {
+        "tables": {
+          "users": {
+            "name": "users",
+            "columns": {
+              "id": {
+                "name": "id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": true,
+                "primary": true
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "nullable": false,
+                "length": 120
+              }
+            },
+            "indexes": {
+              "users_id_primary": {
+                "name": "users_id_primary",
+                "type": "primary",
+                "columns": [
+                  "id"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "tableAdded",
+            "table": "users",
+            "after": {
+              "name": "users",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                },
+                "name": {
+                  "name": "name",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 120
+                }
+              },
+              "indexes": {
+                "users_id_primary": {
+                  "name": "users_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            }
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "filename": "2026_01_02_000000_update_users.php",
+      "migrationName": "2026_01_02_000000_update_users",
+      "status": "applied",
+      "analysis": {
+        "operations": [
+          {
+            "kind": "addColumn",
+            "table": "users",
+            "column": {
+              "name": "nickname",
+              "type": "string",
+              "nullable": true,
+              "length": 255
+            },
+            "source": {
+              "file": "2026_01_02_000000_update_users.php",
+              "line": 5,
+              "column": 12
+            }
+          },
+          {
+            "kind": "renameColumn",
+            "table": "users",
+            "from": "name",
+            "to": "display_name",
+            "source": {
+              "file": "2026_01_02_000000_update_users.php",
+              "line": 6,
+              "column": 12
+            }
+          }
+        ],
+        "diagnostics": [],
+        "complete": true
+      },
+      "schemaBefore": {
+        "tables": {
+          "users": {
+            "name": "users",
+            "columns": {
+              "id": {
+                "name": "id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": true,
+                "primary": true
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "nullable": false,
+                "length": 120
+              }
+            },
+            "indexes": {
+              "users_id_primary": {
+                "name": "users_id_primary",
+                "type": "primary",
+                "columns": [
+                  "id"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "schemaAfter": {
+        "tables": {
+          "users": {
+            "name": "users",
+            "columns": {
+              "id": {
+                "name": "id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": true,
+                "primary": true
+              },
+              "nickname": {
+                "name": "nickname",
+                "type": "string",
+                "nullable": true,
+                "length": 255
+              },
+              "display_name": {
+                "name": "display_name",
+                "type": "string",
+                "nullable": false,
+                "length": 120
+              }
+            },
+            "indexes": {
+              "users_id_primary": {
+                "name": "users_id_primary",
+                "type": "primary",
+                "columns": [
+                  "id"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "columnAdded",
+            "table": "users",
+            "column": "display_name",
+            "after": {
+              "name": "display_name",
+              "type": "string",
+              "nullable": false,
+              "length": 120
+            }
+          },
+          {
+            "kind": "columnRemoved",
+            "table": "users",
+            "column": "name",
+            "before": {
+              "name": "name",
+              "type": "string",
+              "nullable": false,
+              "length": 120
+            }
+          },
+          {
+            "kind": "columnAdded",
+            "table": "users",
+            "column": "nickname",
+            "after": {
+              "name": "nickname",
+              "type": "string",
+              "nullable": true,
+              "length": 255
+            }
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "filename": "2026_01_03_000000_revise_users.php",
+      "migrationName": "2026_01_03_000000_revise_users",
+      "status": "applied",
+      "analysis": {
+        "operations": [
+          {
+            "kind": "dropColumn",
+            "table": "users",
+            "column": "nickname",
+            "source": {
+              "file": "2026_01_03_000000_revise_users.php",
+              "line": 5,
+              "column": 12
+            }
+          },
+          {
+            "kind": "dropColumn",
+            "table": "users",
+            "column": "display_name",
+            "source": {
+              "file": "2026_01_03_000000_revise_users.php",
+              "line": 6,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "users",
+            "column": {
+              "name": "display_name",
+              "type": "string",
+              "nullable": true,
+              "length": 200
+            },
+            "source": {
+              "file": "2026_01_03_000000_revise_users.php",
+              "line": 7,
+              "column": 12
+            }
+          }
+        ],
+        "diagnostics": [],
+        "complete": true
+      },
+      "schemaBefore": {
+        "tables": {
+          "users": {
+            "name": "users",
+            "columns": {
+              "id": {
+                "name": "id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": true,
+                "primary": true
+              },
+              "nickname": {
+                "name": "nickname",
+                "type": "string",
+                "nullable": true,
+                "length": 255
+              },
+              "display_name": {
+                "name": "display_name",
+                "type": "string",
+                "nullable": false,
+                "length": 120
+              }
+            },
+            "indexes": {
+              "users_id_primary": {
+                "name": "users_id_primary",
+                "type": "primary",
+                "columns": [
+                  "id"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "schemaAfter": {
+        "tables": {
+          "users": {
+            "name": "users",
+            "columns": {
+              "id": {
+                "name": "id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": true,
+                "primary": true
+              },
+              "display_name": {
+                "name": "display_name",
+                "type": "string",
+                "nullable": true,
+                "length": 200
+              }
+            },
+            "indexes": {
+              "users_id_primary": {
+                "name": "users_id_primary",
+                "type": "primary",
+                "columns": [
+                  "id"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "columnChanged",
+            "table": "users",
+            "column": "display_name",
+            "before": {
+              "name": "display_name",
+              "type": "string",
+              "nullable": false,
+              "length": 120
+            },
+            "after": {
+              "name": "display_name",
+              "type": "string",
+              "nullable": true,
+              "length": 200
+            }
+          },
+          {
+            "kind": "columnRemoved",
+            "table": "users",
+            "column": "nickname",
+            "before": {
+              "name": "nickname",
+              "type": "string",
+              "nullable": true,
+              "length": 255
+            }
+          }
+        ]
+      },
+      "diagnostics": []
+    }
+  ],
+  "diagnostics": [],
+  "initialSchema": {
+    "tables": {}
+  },
+  "finalSchema": {
+    "tables": {
+      "users": {
+        "name": "users",
+        "columns": {
+          "id": {
+            "name": "id",
+            "type": "bigInteger",
+            "nullable": false,
+            "unsigned": true,
+            "autoIncrement": true,
+            "primary": true
+          },
+          "display_name": {
+            "name": "display_name",
+            "type": "string",
+            "nullable": true,
+            "length": 200
+          }
+        },
+        "indexes": {
+          "users_id_primary": {
+            "name": "users_id_primary",
+            "type": "primary",
+            "columns": [
+              "id"
+            ]
+          }
+        },
+        "foreignKeys": {}
+      }
+    }
+  },
+  "lastValidSchema": {
+    "tables": {
+      "users": {
+        "name": "users",
+        "columns": {
+          "id": {
+            "name": "id",
+            "type": "bigInteger",
+            "nullable": false,
+            "unsigned": true,
+            "autoIncrement": true,
+            "primary": true
+          },
+          "display_name": {
+            "name": "display_name",
+            "type": "string",
+            "nullable": true,
+            "length": 200
+          }
+        },
+        "indexes": {
+          "users_id_primary": {
+            "name": "users_id_primary",
+            "type": "primary",
+            "columns": [
+              "id"
+            ]
+          }
+        },
+        "foreignKeys": {}
+      }
+    }
+  },
+  "appliedCount": 3
+}
+
+[verify] npm run demo:tables
+
+> laravel-migration-visualizer@1.0.0 demo:tables
+> npm run build -w @lmv/migration-core && node examples/table-lifecycle.mjs
+
+
+> @lmv/migration-core@0.15.0 build
+> tsc -p tsconfig.build.json
+
+{
+  "success": {
+    "complete": true,
+    "migrations": [
+      {
+        "filename": "2026_04_01_000000_create_tables.php",
+        "migrationName": "2026_04_01_000000_create_tables",
+        "status": "applied",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "createTable",
+              "table": "users",
+              "source": {
+                "file": "2026_04_01_000000_create_tables.php",
+                "line": 7,
+                "column": 8
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "users",
+              "column": {
+                "name": "id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": true,
+                "primary": true
+              },
+              "source": {
+                "file": "2026_04_01_000000_create_tables.php",
+                "line": 8,
+                "column": 12
+              }
+            },
+            {
+              "kind": "createTable",
+              "table": "posts",
+              "source": {
+                "file": "2026_04_01_000000_create_tables.php",
+                "line": 10,
+                "column": 8
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "posts",
+              "column": {
+                "name": "id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": true,
+                "primary": true
+              },
+              "source": {
+                "file": "2026_04_01_000000_create_tables.php",
+                "line": 11,
+                "column": 12
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "posts",
+              "column": {
+                "name": "user_id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": false
+              },
+              "source": {
+                "file": "2026_04_01_000000_create_tables.php",
+                "line": 12,
+                "column": 12
+              }
+            },
+            {
+              "kind": "addForeignKey",
+              "table": "posts",
+              "foreignKey": {
+                "name": "posts_user_id_foreign",
+                "columns": [
+                  "user_id"
+                ],
+                "referencedTable": "users",
+                "referencedColumns": [
+                  "id"
+                ]
+              },
+              "source": {
+                "file": "2026_04_01_000000_create_tables.php",
+                "line": 12,
+                "column": 12
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {}
+        },
+        "schemaAfter": {
+          "tables": {
+            "users": {
+              "name": "users",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                }
+              },
+              "indexes": {
+                "users_id_primary": {
+                  "name": "users_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            },
+            "posts": {
+              "name": "posts",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                },
+                "user_id": {
+                  "name": "user_id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": false
+                }
+              },
+              "indexes": {
+                "posts_id_primary": {
+                  "name": "posts_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {
+                "posts_user_id_foreign": {
+                  "name": "posts_user_id_foreign",
+                  "columns": [
+                    "user_id"
+                  ],
+                  "referencedTable": "users",
+                  "referencedColumns": [
+                    "id"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "diff": {
+          "changes": [
+            {
+              "kind": "tableAdded",
+              "table": "posts",
+              "after": {
+                "name": "posts",
+                "columns": {
+                  "id": {
+                    "name": "id",
+                    "type": "bigInteger",
+                    "nullable": false,
+                    "unsigned": true,
+                    "autoIncrement": true,
+                    "primary": true
+                  },
+                  "user_id": {
+                    "name": "user_id",
+                    "type": "bigInteger",
+                    "nullable": false,
+                    "unsigned": true,
+                    "autoIncrement": false
+                  }
+                },
+                "indexes": {
+                  "posts_id_primary": {
+                    "name": "posts_id_primary",
+                    "type": "primary",
+                    "columns": [
+                      "id"
+                    ]
+                  }
+                },
+                "foreignKeys": {
+                  "posts_user_id_foreign": {
+                    "name": "posts_user_id_foreign",
+                    "columns": [
+                      "user_id"
+                    ],
+                    "referencedTable": "users",
+                    "referencedColumns": [
+                      "id"
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "kind": "tableAdded",
+              "table": "users",
+              "after": {
+                "name": "users",
+                "columns": {
+                  "id": {
+                    "name": "id",
+                    "type": "bigInteger",
+                    "nullable": false,
+                    "unsigned": true,
+                    "autoIncrement": true,
+                    "primary": true
+                  }
+                },
+                "indexes": {
+                  "users_id_primary": {
+                    "name": "users_id_primary",
+                    "type": "primary",
+                    "columns": [
+                      "id"
+                    ]
+                  }
+                },
+                "foreignKeys": {}
+              }
+            }
+          ]
+        },
+        "diagnostics": []
+      },
+      {
+        "filename": "2026_04_02_000000_rename_tables.php",
+        "migrationName": "2026_04_02_000000_rename_tables",
+        "status": "applied",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "renameTable",
+              "table": "users",
+              "to": "members",
+              "source": {
+                "file": "2026_04_02_000000_rename_tables.php",
+                "line": 7,
+                "column": 8
+              }
+            },
+            {
+              "kind": "renameTable",
+              "table": "posts",
+              "to": "articles",
+              "source": {
+                "file": "2026_04_02_000000_rename_tables.php",
+                "line": 8,
+                "column": 8
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {
+            "users": {
+              "name": "users",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                }
+              },
+              "indexes": {
+                "users_id_primary": {
+                  "name": "users_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            },
+            "posts": {
+              "name": "posts",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                },
+                "user_id": {
+                  "name": "user_id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": false
+                }
+              },
+              "indexes": {
+                "posts_id_primary": {
+                  "name": "posts_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {
+                "posts_user_id_foreign": {
+                  "name": "posts_user_id_foreign",
+                  "columns": [
+                    "user_id"
+                  ],
+                  "referencedTable": "users",
+                  "referencedColumns": [
+                    "id"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "schemaAfter": {
+          "tables": {
+            "members": {
+              "name": "members",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                }
+              },
+              "indexes": {
+                "users_id_primary": {
+                  "name": "users_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            },
+            "articles": {
+              "name": "articles",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                },
+                "user_id": {
+                  "name": "user_id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": false
+                }
+              },
+              "indexes": {
+                "posts_id_primary": {
+                  "name": "posts_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {
+                "posts_user_id_foreign": {
+                  "name": "posts_user_id_foreign",
+                  "columns": [
+                    "user_id"
+                  ],
+                  "referencedTable": "members",
+                  "referencedColumns": [
+                    "id"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "diff": {
+          "changes": [
+            {
+              "kind": "tableAdded",
+              "table": "articles",
+              "after": {
+                "name": "articles",
+                "columns": {
+                  "id": {
+                    "name": "id",
+                    "type": "bigInteger",
+                    "nullable": false,
+                    "unsigned": true,
+                    "autoIncrement": true,
+                    "primary": true
+                  },
+                  "user_id": {
+                    "name": "user_id",
+                    "type": "bigInteger",
+                    "nullable": false,
+                    "unsigned": true,
+                    "autoIncrement": false
+                  }
+                },
+                "indexes": {
+                  "posts_id_primary": {
+                    "name": "posts_id_primary",
+                    "type": "primary",
+                    "columns": [
+                      "id"
+                    ]
+                  }
+                },
+                "foreignKeys": {
+                  "posts_user_id_foreign": {
+                    "name": "posts_user_id_foreign",
+                    "columns": [
+                      "user_id"
+                    ],
+                    "referencedTable": "members",
+                    "referencedColumns": [
+                      "id"
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "kind": "tableAdded",
+              "table": "members",
+              "after": {
+                "name": "members",
+                "columns": {
+                  "id": {
+                    "name": "id",
+                    "type": "bigInteger",
+                    "nullable": false,
+                    "unsigned": true,
+                    "autoIncrement": true,
+                    "primary": true
+                  }
+                },
+                "indexes": {
+                  "users_id_primary": {
+                    "name": "users_id_primary",
+                    "type": "primary",
+                    "columns": [
+                      "id"
+                    ]
+                  }
+                },
+                "foreignKeys": {}
+              }
+            },
+            {
+              "kind": "tableRemoved",
+              "table": "posts",
+              "before": {
+                "name": "posts",
+                "columns": {
+                  "id": {
+                    "name": "id",
+                    "type": "bigInteger",
+                    "nullable": false,
+                    "unsigned": true,
+                    "autoIncrement": true,
+                    "primary": true
+                  },
+                  "user_id": {
+                    "name": "user_id",
+                    "type": "bigInteger",
+                    "nullable": false,
+                    "unsigned": true,
+                    "autoIncrement": false
+                  }
+                },
+                "indexes": {
+                  "posts_id_primary": {
+                    "name": "posts_id_primary",
+                    "type": "primary",
+                    "columns": [
+                      "id"
+                    ]
+                  }
+                },
+                "foreignKeys": {
+                  "posts_user_id_foreign": {
+                    "name": "posts_user_id_foreign",
+                    "columns": [
+                      "user_id"
+                    ],
+                    "referencedTable": "users",
+                    "referencedColumns": [
+                      "id"
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "kind": "tableRemoved",
+              "table": "users",
+              "before": {
+                "name": "users",
+                "columns": {
+                  "id": {
+                    "name": "id",
+                    "type": "bigInteger",
+                    "nullable": false,
+                    "unsigned": true,
+                    "autoIncrement": true,
+                    "primary": true
+                  }
+                },
+                "indexes": {
+                  "users_id_primary": {
+                    "name": "users_id_primary",
+                    "type": "primary",
+                    "columns": [
+                      "id"
+                    ]
+                  }
+                },
+                "foreignKeys": {}
+              }
+            }
+          ]
+        },
+        "diagnostics": []
+      },
+      {
+        "filename": "2026_04_03_000000_drop_articles.php",
+        "migrationName": "2026_04_03_000000_drop_articles",
+        "status": "applied",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "dropTable",
+              "table": "legacy",
+              "ifExists": true,
+              "source": {
+                "file": "2026_04_03_000000_drop_articles.php",
+                "line": 7,
+                "column": 8
+              }
+            },
+            {
+              "kind": "dropTable",
+              "table": "articles",
+              "ifExists": false,
+              "source": {
+                "file": "2026_04_03_000000_drop_articles.php",
+                "line": 8,
+                "column": 8
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {
+            "members": {
+              "name": "members",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                }
+              },
+              "indexes": {
+                "users_id_primary": {
+                  "name": "users_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            },
+            "articles": {
+              "name": "articles",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                },
+                "user_id": {
+                  "name": "user_id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": false
+                }
+              },
+              "indexes": {
+                "posts_id_primary": {
+                  "name": "posts_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {
+                "posts_user_id_foreign": {
+                  "name": "posts_user_id_foreign",
+                  "columns": [
+                    "user_id"
+                  ],
+                  "referencedTable": "members",
+                  "referencedColumns": [
+                    "id"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "schemaAfter": {
+          "tables": {
+            "members": {
+              "name": "members",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                }
+              },
+              "indexes": {
+                "users_id_primary": {
+                  "name": "users_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            }
+          }
+        },
+        "diff": {
+          "changes": [
+            {
+              "kind": "tableRemoved",
+              "table": "articles",
+              "before": {
+                "name": "articles",
+                "columns": {
+                  "id": {
+                    "name": "id",
+                    "type": "bigInteger",
+                    "nullable": false,
+                    "unsigned": true,
+                    "autoIncrement": true,
+                    "primary": true
+                  },
+                  "user_id": {
+                    "name": "user_id",
+                    "type": "bigInteger",
+                    "nullable": false,
+                    "unsigned": true,
+                    "autoIncrement": false
+                  }
+                },
+                "indexes": {
+                  "posts_id_primary": {
+                    "name": "posts_id_primary",
+                    "type": "primary",
+                    "columns": [
+                      "id"
+                    ]
+                  }
+                },
+                "foreignKeys": {
+                  "posts_user_id_foreign": {
+                    "name": "posts_user_id_foreign",
+                    "columns": [
+                      "user_id"
+                    ],
+                    "referencedTable": "members",
+                    "referencedColumns": [
+                      "id"
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "diagnostics": []
+      },
+      {
+        "filename": "2026_04_04_000000_drop_members.php",
+        "migrationName": "2026_04_04_000000_drop_members",
+        "status": "applied",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "dropTable",
+              "table": "members",
+              "ifExists": false,
+              "source": {
+                "file": "2026_04_04_000000_drop_members.php",
+                "line": 7,
+                "column": 8
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {
+            "members": {
+              "name": "members",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                }
+              },
+              "indexes": {
+                "users_id_primary": {
+                  "name": "users_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            }
+          }
+        },
+        "schemaAfter": {
+          "tables": {}
+        },
+        "diff": {
+          "changes": [
+            {
+              "kind": "tableRemoved",
+              "table": "members",
+              "before": {
+                "name": "members",
+                "columns": {
+                  "id": {
+                    "name": "id",
+                    "type": "bigInteger",
+                    "nullable": false,
+                    "unsigned": true,
+                    "autoIncrement": true,
+                    "primary": true
+                  }
+                },
+                "indexes": {
+                  "users_id_primary": {
+                    "name": "users_id_primary",
+                    "type": "primary",
+                    "columns": [
+                      "id"
+                    ]
+                  }
+                },
+                "foreignKeys": {}
+              }
+            }
+          ]
+        },
+        "diagnostics": []
+      }
+    ],
+    "diagnostics": [],
+    "initialSchema": {
+      "tables": {}
+    },
+    "finalSchema": {
+      "tables": {}
+    },
+    "lastValidSchema": {
+      "tables": {}
+    },
+    "appliedCount": 4
+  },
+  "blocked": {
+    "complete": false,
+    "migrations": [
+      {
+        "filename": "2026_04_01_000000_create_tables.php",
+        "migrationName": "2026_04_01_000000_create_tables",
+        "status": "applied",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "createTable",
+              "table": "users",
+              "source": {
+                "file": "2026_04_01_000000_create_tables.php",
+                "line": 7,
+                "column": 8
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "users",
+              "column": {
+                "name": "id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": true,
+                "primary": true
+              },
+              "source": {
+                "file": "2026_04_01_000000_create_tables.php",
+                "line": 8,
+                "column": 12
+              }
+            },
+            {
+              "kind": "createTable",
+              "table": "posts",
+              "source": {
+                "file": "2026_04_01_000000_create_tables.php",
+                "line": 10,
+                "column": 8
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "posts",
+              "column": {
+                "name": "id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": true,
+                "primary": true
+              },
+              "source": {
+                "file": "2026_04_01_000000_create_tables.php",
+                "line": 11,
+                "column": 12
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "posts",
+              "column": {
+                "name": "user_id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": false
+              },
+              "source": {
+                "file": "2026_04_01_000000_create_tables.php",
+                "line": 12,
+                "column": 12
+              }
+            },
+            {
+              "kind": "addForeignKey",
+              "table": "posts",
+              "foreignKey": {
+                "name": "posts_user_id_foreign",
+                "columns": [
+                  "user_id"
+                ],
+                "referencedTable": "users",
+                "referencedColumns": [
+                  "id"
+                ]
+              },
+              "source": {
+                "file": "2026_04_01_000000_create_tables.php",
+                "line": 12,
+                "column": 12
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {}
+        },
+        "schemaAfter": {
+          "tables": {
+            "users": {
+              "name": "users",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                }
+              },
+              "indexes": {
+                "users_id_primary": {
+                  "name": "users_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            },
+            "posts": {
+              "name": "posts",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                },
+                "user_id": {
+                  "name": "user_id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": false
+                }
+              },
+              "indexes": {
+                "posts_id_primary": {
+                  "name": "posts_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {
+                "posts_user_id_foreign": {
+                  "name": "posts_user_id_foreign",
+                  "columns": [
+                    "user_id"
+                  ],
+                  "referencedTable": "users",
+                  "referencedColumns": [
+                    "id"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "diff": {
+          "changes": [
+            {
+              "kind": "tableAdded",
+              "table": "posts",
+              "after": {
+                "name": "posts",
+                "columns": {
+                  "id": {
+                    "name": "id",
+                    "type": "bigInteger",
+                    "nullable": false,
+                    "unsigned": true,
+                    "autoIncrement": true,
+                    "primary": true
+                  },
+                  "user_id": {
+                    "name": "user_id",
+                    "type": "bigInteger",
+                    "nullable": false,
+                    "unsigned": true,
+                    "autoIncrement": false
+                  }
+                },
+                "indexes": {
+                  "posts_id_primary": {
+                    "name": "posts_id_primary",
+                    "type": "primary",
+                    "columns": [
+                      "id"
+                    ]
+                  }
+                },
+                "foreignKeys": {
+                  "posts_user_id_foreign": {
+                    "name": "posts_user_id_foreign",
+                    "columns": [
+                      "user_id"
+                    ],
+                    "referencedTable": "users",
+                    "referencedColumns": [
+                      "id"
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "kind": "tableAdded",
+              "table": "users",
+              "after": {
+                "name": "users",
+                "columns": {
+                  "id": {
+                    "name": "id",
+                    "type": "bigInteger",
+                    "nullable": false,
+                    "unsigned": true,
+                    "autoIncrement": true,
+                    "primary": true
+                  }
+                },
+                "indexes": {
+                  "users_id_primary": {
+                    "name": "users_id_primary",
+                    "type": "primary",
+                    "columns": [
+                      "id"
+                    ]
+                  }
+                },
+                "foreignKeys": {}
+              }
+            }
+          ]
+        },
+        "diagnostics": []
+      },
+      {
+        "filename": "2026_04_02_000000_rename_tables.php",
+        "migrationName": "2026_04_02_000000_rename_tables",
+        "status": "applied",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "renameTable",
+              "table": "users",
+              "to": "members",
+              "source": {
+                "file": "2026_04_02_000000_rename_tables.php",
+                "line": 7,
+                "column": 8
+              }
+            },
+            {
+              "kind": "renameTable",
+              "table": "posts",
+              "to": "articles",
+              "source": {
+                "file": "2026_04_02_000000_rename_tables.php",
+                "line": 8,
+                "column": 8
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {
+            "users": {
+              "name": "users",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                }
+              },
+              "indexes": {
+                "users_id_primary": {
+                  "name": "users_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            },
+            "posts": {
+              "name": "posts",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                },
+                "user_id": {
+                  "name": "user_id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": false
+                }
+              },
+              "indexes": {
+                "posts_id_primary": {
+                  "name": "posts_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {
+                "posts_user_id_foreign": {
+                  "name": "posts_user_id_foreign",
+                  "columns": [
+                    "user_id"
+                  ],
+                  "referencedTable": "users",
+                  "referencedColumns": [
+                    "id"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "schemaAfter": {
+          "tables": {
+            "members": {
+              "name": "members",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                }
+              },
+              "indexes": {
+                "users_id_primary": {
+                  "name": "users_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            },
+            "articles": {
+              "name": "articles",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                },
+                "user_id": {
+                  "name": "user_id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": false
+                }
+              },
+              "indexes": {
+                "posts_id_primary": {
+                  "name": "posts_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {
+                "posts_user_id_foreign": {
+                  "name": "posts_user_id_foreign",
+                  "columns": [
+                    "user_id"
+                  ],
+                  "referencedTable": "members",
+                  "referencedColumns": [
+                    "id"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "diff": {
+          "changes": [
+            {
+              "kind": "tableAdded",
+              "table": "articles",
+              "after": {
+                "name": "articles",
+                "columns": {
+                  "id": {
+                    "name": "id",
+                    "type": "bigInteger",
+                    "nullable": false,
+                    "unsigned": true,
+                    "autoIncrement": true,
+                    "primary": true
+                  },
+                  "user_id": {
+                    "name": "user_id",
+                    "type": "bigInteger",
+                    "nullable": false,
+                    "unsigned": true,
+                    "autoIncrement": false
+                  }
+                },
+                "indexes": {
+                  "posts_id_primary": {
+                    "name": "posts_id_primary",
+                    "type": "primary",
+                    "columns": [
+                      "id"
+                    ]
+                  }
+                },
+                "foreignKeys": {
+                  "posts_user_id_foreign": {
+                    "name": "posts_user_id_foreign",
+                    "columns": [
+                      "user_id"
+                    ],
+                    "referencedTable": "members",
+                    "referencedColumns": [
+                      "id"
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "kind": "tableAdded",
+              "table": "members",
+              "after": {
+                "name": "members",
+                "columns": {
+                  "id": {
+                    "name": "id",
+                    "type": "bigInteger",
+                    "nullable": false,
+                    "unsigned": true,
+                    "autoIncrement": true,
+                    "primary": true
+                  }
+                },
+                "indexes": {
+                  "users_id_primary": {
+                    "name": "users_id_primary",
+                    "type": "primary",
+                    "columns": [
+                      "id"
+                    ]
+                  }
+                },
+                "foreignKeys": {}
+              }
+            },
+            {
+              "kind": "tableRemoved",
+              "table": "posts",
+              "before": {
+                "name": "posts",
+                "columns": {
+                  "id": {
+                    "name": "id",
+                    "type": "bigInteger",
+                    "nullable": false,
+                    "unsigned": true,
+                    "autoIncrement": true,
+                    "primary": true
+                  },
+                  "user_id": {
+                    "name": "user_id",
+                    "type": "bigInteger",
+                    "nullable": false,
+                    "unsigned": true,
+                    "autoIncrement": false
+                  }
+                },
+                "indexes": {
+                  "posts_id_primary": {
+                    "name": "posts_id_primary",
+                    "type": "primary",
+                    "columns": [
+                      "id"
+                    ]
+                  }
+                },
+                "foreignKeys": {
+                  "posts_user_id_foreign": {
+                    "name": "posts_user_id_foreign",
+                    "columns": [
+                      "user_id"
+                    ],
+                    "referencedTable": "users",
+                    "referencedColumns": [
+                      "id"
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "kind": "tableRemoved",
+              "table": "users",
+              "before": {
+                "name": "users",
+                "columns": {
+                  "id": {
+                    "name": "id",
+                    "type": "bigInteger",
+                    "nullable": false,
+                    "unsigned": true,
+                    "autoIncrement": true,
+                    "primary": true
+                  }
+                },
+                "indexes": {
+                  "users_id_primary": {
+                    "name": "users_id_primary",
+                    "type": "primary",
+                    "columns": [
+                      "id"
+                    ]
+                  }
+                },
+                "foreignKeys": {}
+              }
+            }
+          ]
+        },
+        "diagnostics": []
+      },
+      {
+        "filename": "2026_04_03_000000_invalid_drop.php",
+        "migrationName": "2026_04_03_000000_invalid_drop",
+        "status": "failed",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "renameTable",
+              "table": "articles",
+              "to": "entries",
+              "source": {
+                "file": "2026_04_03_000000_invalid_drop.php",
+                "line": 7,
+                "column": 8
+              }
+            },
+            {
+              "kind": "dropTable",
+              "table": "members",
+              "ifExists": true,
+              "source": {
+                "file": "2026_04_03_000000_invalid_drop.php",
+                "line": 8,
+                "column": 8
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {
+            "members": {
+              "name": "members",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                }
+              },
+              "indexes": {
+                "users_id_primary": {
+                  "name": "users_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            },
+            "articles": {
+              "name": "articles",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                },
+                "user_id": {
+                  "name": "user_id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": false
+                }
+              },
+              "indexes": {
+                "posts_id_primary": {
+                  "name": "posts_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {
+                "posts_user_id_foreign": {
+                  "name": "posts_user_id_foreign",
+                  "columns": [
+                    "user_id"
+                  ],
+                  "referencedTable": "members",
+                  "referencedColumns": [
+                    "id"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "schemaAfter": null,
+        "diff": null,
+        "diagnostics": [
+          {
+            "phase": "replay",
+            "severity": "error",
+            "code": "SCHEMA_REPLAY_ERROR",
+            "message": "Drop incoming foreign keys before dropping table: members",
+            "source": {
+              "file": "2026_04_03_000000_invalid_drop.php",
+              "line": 8,
+              "column": 8
+            },
+            "operationIndex": 1
+          }
+        ]
+      },
+      {
+        "filename": "2026_04_04_000000_drop_members.php",
+        "migrationName": "2026_04_04_000000_drop_members",
+        "status": "blocked",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "dropTable",
+              "table": "members",
+              "ifExists": false,
+              "source": {
+                "file": "2026_04_04_000000_drop_members.php",
+                "line": 7,
+                "column": 8
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": null,
+        "schemaAfter": null,
+        "diff": null,
+        "diagnostics": [
+          {
+            "phase": "dependency",
+            "severity": "error",
+            "code": "SCHEMA_BLOCKED",
+            "message": "Schema is unknown after failed migration: 2026_04_03_000000_invalid_drop.php",
+            "source": {
+              "file": "2026_04_04_000000_drop_members.php",
+              "line": 1,
+              "column": 0
+            }
+          }
+        ]
+      }
+    ],
+    "diagnostics": [
+      {
+        "phase": "replay",
+        "severity": "error",
+        "code": "SCHEMA_REPLAY_ERROR",
+        "message": "Drop incoming foreign keys before dropping table: members",
+        "source": {
+          "file": "2026_04_03_000000_invalid_drop.php",
+          "line": 8,
+          "column": 8
+        },
+        "operationIndex": 1
+      },
+      {
+        "phase": "dependency",
+        "severity": "error",
+        "code": "SCHEMA_BLOCKED",
+        "message": "Schema is unknown after failed migration: 2026_04_03_000000_invalid_drop.php",
+        "source": {
+          "file": "2026_04_04_000000_drop_members.php",
+          "line": 1,
+          "column": 0
+        }
+      }
+    ],
+    "initialSchema": {
+      "tables": {}
+    },
+    "finalSchema": null,
+    "lastValidSchema": {
+      "tables": {
+        "members": {
+          "name": "members",
+          "columns": {
+            "id": {
+              "name": "id",
+              "type": "bigInteger",
+              "nullable": false,
+              "unsigned": true,
+              "autoIncrement": true,
+              "primary": true
+            }
+          },
+          "indexes": {
+            "users_id_primary": {
+              "name": "users_id_primary",
+              "type": "primary",
+              "columns": [
+                "id"
+              ]
+            }
+          },
+          "foreignKeys": {}
+        },
+        "articles": {
+          "name": "articles",
+          "columns": {
+            "id": {
+              "name": "id",
+              "type": "bigInteger",
+              "nullable": false,
+              "unsigned": true,
+              "autoIncrement": true,
+              "primary": true
+            },
+            "user_id": {
+              "name": "user_id",
+              "type": "bigInteger",
+              "nullable": false,
+              "unsigned": true,
+              "autoIncrement": false
+            }
+          },
+          "indexes": {
+            "posts_id_primary": {
+              "name": "posts_id_primary",
+              "type": "primary",
+              "columns": [
+                "id"
+              ]
+            }
+          },
+          "foreignKeys": {
+            "posts_user_id_foreign": {
+              "name": "posts_user_id_foreign",
+              "columns": [
+                "user_id"
+              ],
+              "referencedTable": "members",
+              "referencedColumns": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "appliedCount": 2
+  }
+}
+
+[verify] npm run demo:helpers
+
+> laravel-migration-visualizer@1.0.0 demo:helpers
+> npm run build -w @lmv/migration-core && node examples/column-helpers.mjs
+
+
+> @lmv/migration-core@0.15.0 build
+> tsc -p tsconfig.build.json
+
+{
+  "success": {
+    "complete": true,
+    "migrations": [
+      {
+        "filename": "2026_05_01_000000_create_profiles.php",
+        "migrationName": "2026_05_01_000000_create_profiles",
+        "status": "applied",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "createTable",
+              "table": "profiles",
+              "source": {
+                "file": "2026_05_01_000000_create_profiles.php",
+                "line": 4,
+                "column": 8
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "profiles",
+              "column": {
+                "name": "status",
+                "type": "enum",
+                "nullable": false,
+                "allowedValues": [
+                  "",
+                  "active",
+                  "paused"
+                ],
+                "default": ""
+              },
+              "source": {
+                "file": "2026_05_01_000000_create_profiles.php",
+                "line": 5,
+                "column": 12
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "profiles",
+              "column": {
+                "name": "remember_token",
+                "type": "string",
+                "length": 100,
+                "nullable": true
+              },
+              "source": {
+                "file": "2026_05_01_000000_create_profiles.php",
+                "line": 6,
+                "column": 12
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "profiles",
+              "column": {
+                "name": "archived_at",
+                "type": "timestampTz",
+                "nullable": true,
+                "precision": 3
+              },
+              "source": {
+                "file": "2026_05_01_000000_create_profiles.php",
+                "line": 7,
+                "column": 12
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "profiles",
+              "column": {
+                "name": "created_at",
+                "type": "timestampTz",
+                "nullable": true,
+                "precision": 6
+              },
+              "source": {
+                "file": "2026_05_01_000000_create_profiles.php",
+                "line": 8,
+                "column": 12
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "profiles",
+              "column": {
+                "name": "updated_at",
+                "type": "timestampTz",
+                "nullable": true,
+                "precision": 6
+              },
+              "source": {
+                "file": "2026_05_01_000000_create_profiles.php",
+                "line": 8,
+                "column": 12
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {}
+        },
+        "schemaAfter": {
+          "tables": {
+            "profiles": {
+              "name": "profiles",
+              "columns": {
+                "status": {
+                  "name": "status",
+                  "type": "enum",
+                  "nullable": false,
+                  "allowedValues": [
+                    "",
+                    "active",
+                    "paused"
+                  ],
+                  "default": ""
+                },
+                "remember_token": {
+                  "name": "remember_token",
+                  "type": "string",
+                  "length": 100,
+                  "nullable": true
+                },
+                "archived_at": {
+                  "name": "archived_at",
+                  "type": "timestampTz",
+                  "nullable": true,
+                  "precision": 3
+                },
+                "created_at": {
+                  "name": "created_at",
+                  "type": "timestampTz",
+                  "nullable": true,
+                  "precision": 6
+                },
+                "updated_at": {
+                  "name": "updated_at",
+                  "type": "timestampTz",
+                  "nullable": true,
+                  "precision": 6
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {}
+            }
+          }
+        },
+        "diff": {
+          "changes": [
+            {
+              "kind": "tableAdded",
+              "table": "profiles",
+              "after": {
+                "name": "profiles",
+                "columns": {
+                  "status": {
+                    "name": "status",
+                    "type": "enum",
+                    "nullable": false,
+                    "allowedValues": [
+                      "",
+                      "active",
+                      "paused"
+                    ],
+                    "default": ""
+                  },
+                  "remember_token": {
+                    "name": "remember_token",
+                    "type": "string",
+                    "length": 100,
+                    "nullable": true
+                  },
+                  "archived_at": {
+                    "name": "archived_at",
+                    "type": "timestampTz",
+                    "nullable": true,
+                    "precision": 3
+                  },
+                  "created_at": {
+                    "name": "created_at",
+                    "type": "timestampTz",
+                    "nullable": true,
+                    "precision": 6
+                  },
+                  "updated_at": {
+                    "name": "updated_at",
+                    "type": "timestampTz",
+                    "nullable": true,
+                    "precision": 6
+                  }
+                },
+                "indexes": {},
+                "foreignKeys": {}
+              }
+            }
+          ]
+        },
+        "diagnostics": []
+      },
+      {
+        "filename": "2026_05_02_000000_remove_helpers.php",
+        "migrationName": "2026_05_02_000000_remove_helpers",
+        "status": "applied",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "dropColumn",
+              "table": "profiles",
+              "column": "remember_token",
+              "source": {
+                "file": "2026_05_02_000000_remove_helpers.php",
+                "line": 5,
+                "column": 12
+              }
+            },
+            {
+              "kind": "dropColumn",
+              "table": "profiles",
+              "column": "created_at",
+              "source": {
+                "file": "2026_05_02_000000_remove_helpers.php",
+                "line": 6,
+                "column": 12
+              }
+            },
+            {
+              "kind": "dropColumn",
+              "table": "profiles",
+              "column": "updated_at",
+              "source": {
+                "file": "2026_05_02_000000_remove_helpers.php",
+                "line": 6,
+                "column": 12
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {
+            "profiles": {
+              "name": "profiles",
+              "columns": {
+                "status": {
+                  "name": "status",
+                  "type": "enum",
+                  "nullable": false,
+                  "allowedValues": [
+                    "",
+                    "active",
+                    "paused"
+                  ],
+                  "default": ""
+                },
+                "remember_token": {
+                  "name": "remember_token",
+                  "type": "string",
+                  "length": 100,
+                  "nullable": true
+                },
+                "archived_at": {
+                  "name": "archived_at",
+                  "type": "timestampTz",
+                  "nullable": true,
+                  "precision": 3
+                },
+                "created_at": {
+                  "name": "created_at",
+                  "type": "timestampTz",
+                  "nullable": true,
+                  "precision": 6
+                },
+                "updated_at": {
+                  "name": "updated_at",
+                  "type": "timestampTz",
+                  "nullable": true,
+                  "precision": 6
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {}
+            }
+          }
+        },
+        "schemaAfter": {
+          "tables": {
+            "profiles": {
+              "name": "profiles",
+              "columns": {
+                "status": {
+                  "name": "status",
+                  "type": "enum",
+                  "nullable": false,
+                  "allowedValues": [
+                    "",
+                    "active",
+                    "paused"
+                  ],
+                  "default": ""
+                },
+                "archived_at": {
+                  "name": "archived_at",
+                  "type": "timestampTz",
+                  "nullable": true,
+                  "precision": 3
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {}
+            }
+          }
+        },
+        "diff": {
+          "changes": [
+            {
+              "kind": "columnRemoved",
+              "table": "profiles",
+              "column": "created_at",
+              "before": {
+                "name": "created_at",
+                "type": "timestampTz",
+                "nullable": true,
+                "precision": 6
+              }
+            },
+            {
+              "kind": "columnRemoved",
+              "table": "profiles",
+              "column": "remember_token",
+              "before": {
+                "name": "remember_token",
+                "type": "string",
+                "length": 100,
+                "nullable": true
+              }
+            },
+            {
+              "kind": "columnRemoved",
+              "table": "profiles",
+              "column": "updated_at",
+              "before": {
+                "name": "updated_at",
+                "type": "timestampTz",
+                "nullable": true,
+                "precision": 6
+              }
+            }
+          ]
+        },
+        "diagnostics": []
+      },
+      {
+        "filename": "2026_05_03_000000_rename_status.php",
+        "migrationName": "2026_05_03_000000_rename_status",
+        "status": "applied",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "renameColumn",
+              "table": "profiles",
+              "from": "status",
+              "to": "state",
+              "source": {
+                "file": "2026_05_03_000000_rename_status.php",
+                "line": 5,
+                "column": 12
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {
+            "profiles": {
+              "name": "profiles",
+              "columns": {
+                "status": {
+                  "name": "status",
+                  "type": "enum",
+                  "nullable": false,
+                  "allowedValues": [
+                    "",
+                    "active",
+                    "paused"
+                  ],
+                  "default": ""
+                },
+                "archived_at": {
+                  "name": "archived_at",
+                  "type": "timestampTz",
+                  "nullable": true,
+                  "precision": 3
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {}
+            }
+          }
+        },
+        "schemaAfter": {
+          "tables": {
+            "profiles": {
+              "name": "profiles",
+              "columns": {
+                "archived_at": {
+                  "name": "archived_at",
+                  "type": "timestampTz",
+                  "nullable": true,
+                  "precision": 3
+                },
+                "state": {
+                  "name": "state",
+                  "type": "enum",
+                  "nullable": false,
+                  "allowedValues": [
+                    "",
+                    "active",
+                    "paused"
+                  ],
+                  "default": ""
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {}
+            }
+          }
+        },
+        "diff": {
+          "changes": [
+            {
+              "kind": "columnAdded",
+              "table": "profiles",
+              "column": "state",
+              "after": {
+                "name": "state",
+                "type": "enum",
+                "nullable": false,
+                "allowedValues": [
+                  "",
+                  "active",
+                  "paused"
+                ],
+                "default": ""
+              }
+            },
+            {
+              "kind": "columnRemoved",
+              "table": "profiles",
+              "column": "status",
+              "before": {
+                "name": "status",
+                "type": "enum",
+                "nullable": false,
+                "allowedValues": [
+                  "",
+                  "active",
+                  "paused"
+                ],
+                "default": ""
+              }
+            }
+          ]
+        },
+        "diagnostics": []
+      }
+    ],
+    "diagnostics": [],
+    "initialSchema": {
+      "tables": {}
+    },
+    "finalSchema": {
+      "tables": {
+        "profiles": {
+          "name": "profiles",
+          "columns": {
+            "archived_at": {
+              "name": "archived_at",
+              "type": "timestampTz",
+              "nullable": true,
+              "precision": 3
+            },
+            "state": {
+              "name": "state",
+              "type": "enum",
+              "nullable": false,
+              "allowedValues": [
+                "",
+                "active",
+                "paused"
+              ],
+              "default": ""
+            }
+          },
+          "indexes": {},
+          "foreignKeys": {}
+        }
+      }
+    },
+    "lastValidSchema": {
+      "tables": {
+        "profiles": {
+          "name": "profiles",
+          "columns": {
+            "archived_at": {
+              "name": "archived_at",
+              "type": "timestampTz",
+              "nullable": true,
+              "precision": 3
+            },
+            "state": {
+              "name": "state",
+              "type": "enum",
+              "nullable": false,
+              "allowedValues": [
+                "",
+                "active",
+                "paused"
+              ],
+              "default": ""
+            }
+          },
+          "indexes": {},
+          "foreignKeys": {}
+        }
+      }
+    },
+    "appliedCount": 3
+  },
+  "blocked": {
+    "complete": false,
+    "migrations": [
+      {
+        "filename": "2026_05_01_000000_create_profiles.php",
+        "migrationName": "2026_05_01_000000_create_profiles",
+        "status": "applied",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "createTable",
+              "table": "profiles",
+              "source": {
+                "file": "2026_05_01_000000_create_profiles.php",
+                "line": 4,
+                "column": 8
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "profiles",
+              "column": {
+                "name": "status",
+                "type": "enum",
+                "nullable": false,
+                "allowedValues": [
+                  "",
+                  "active",
+                  "paused"
+                ],
+                "default": ""
+              },
+              "source": {
+                "file": "2026_05_01_000000_create_profiles.php",
+                "line": 5,
+                "column": 12
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "profiles",
+              "column": {
+                "name": "remember_token",
+                "type": "string",
+                "length": 100,
+                "nullable": true
+              },
+              "source": {
+                "file": "2026_05_01_000000_create_profiles.php",
+                "line": 6,
+                "column": 12
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "profiles",
+              "column": {
+                "name": "archived_at",
+                "type": "timestampTz",
+                "nullable": true,
+                "precision": 3
+              },
+              "source": {
+                "file": "2026_05_01_000000_create_profiles.php",
+                "line": 7,
+                "column": 12
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "profiles",
+              "column": {
+                "name": "created_at",
+                "type": "timestampTz",
+                "nullable": true,
+                "precision": 6
+              },
+              "source": {
+                "file": "2026_05_01_000000_create_profiles.php",
+                "line": 8,
+                "column": 12
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "profiles",
+              "column": {
+                "name": "updated_at",
+                "type": "timestampTz",
+                "nullable": true,
+                "precision": 6
+              },
+              "source": {
+                "file": "2026_05_01_000000_create_profiles.php",
+                "line": 8,
+                "column": 12
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {}
+        },
+        "schemaAfter": {
+          "tables": {
+            "profiles": {
+              "name": "profiles",
+              "columns": {
+                "status": {
+                  "name": "status",
+                  "type": "enum",
+                  "nullable": false,
+                  "allowedValues": [
+                    "",
+                    "active",
+                    "paused"
+                  ],
+                  "default": ""
+                },
+                "remember_token": {
+                  "name": "remember_token",
+                  "type": "string",
+                  "length": 100,
+                  "nullable": true
+                },
+                "archived_at": {
+                  "name": "archived_at",
+                  "type": "timestampTz",
+                  "nullable": true,
+                  "precision": 3
+                },
+                "created_at": {
+                  "name": "created_at",
+                  "type": "timestampTz",
+                  "nullable": true,
+                  "precision": 6
+                },
+                "updated_at": {
+                  "name": "updated_at",
+                  "type": "timestampTz",
+                  "nullable": true,
+                  "precision": 6
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {}
+            }
+          }
+        },
+        "diff": {
+          "changes": [
+            {
+              "kind": "tableAdded",
+              "table": "profiles",
+              "after": {
+                "name": "profiles",
+                "columns": {
+                  "status": {
+                    "name": "status",
+                    "type": "enum",
+                    "nullable": false,
+                    "allowedValues": [
+                      "",
+                      "active",
+                      "paused"
+                    ],
+                    "default": ""
+                  },
+                  "remember_token": {
+                    "name": "remember_token",
+                    "type": "string",
+                    "length": 100,
+                    "nullable": true
+                  },
+                  "archived_at": {
+                    "name": "archived_at",
+                    "type": "timestampTz",
+                    "nullable": true,
+                    "precision": 3
+                  },
+                  "created_at": {
+                    "name": "created_at",
+                    "type": "timestampTz",
+                    "nullable": true,
+                    "precision": 6
+                  },
+                  "updated_at": {
+                    "name": "updated_at",
+                    "type": "timestampTz",
+                    "nullable": true,
+                    "precision": 6
+                  }
+                },
+                "indexes": {},
+                "foreignKeys": {}
+              }
+            }
+          ]
+        },
+        "diagnostics": []
+      },
+      {
+        "filename": "2026_05_02_000000_invalid_drop.php",
+        "migrationName": "2026_05_02_000000_invalid_drop",
+        "status": "failed",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "dropColumn",
+              "table": "profiles",
+              "column": "remember_token",
+              "source": {
+                "file": "2026_05_02_000000_invalid_drop.php",
+                "line": 5,
+                "column": 12
+              }
+            },
+            {
+              "kind": "dropColumn",
+              "table": "profiles",
+              "column": "missing",
+              "source": {
+                "file": "2026_05_02_000000_invalid_drop.php",
+                "line": 6,
+                "column": 12
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {
+            "profiles": {
+              "name": "profiles",
+              "columns": {
+                "status": {
+                  "name": "status",
+                  "type": "enum",
+                  "nullable": false,
+                  "allowedValues": [
+                    "",
+                    "active",
+                    "paused"
+                  ],
+                  "default": ""
+                },
+                "remember_token": {
+                  "name": "remember_token",
+                  "type": "string",
+                  "length": 100,
+                  "nullable": true
+                },
+                "archived_at": {
+                  "name": "archived_at",
+                  "type": "timestampTz",
+                  "nullable": true,
+                  "precision": 3
+                },
+                "created_at": {
+                  "name": "created_at",
+                  "type": "timestampTz",
+                  "nullable": true,
+                  "precision": 6
+                },
+                "updated_at": {
+                  "name": "updated_at",
+                  "type": "timestampTz",
+                  "nullable": true,
+                  "precision": 6
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {}
+            }
+          }
+        },
+        "schemaAfter": null,
+        "diff": null,
+        "diagnostics": [
+          {
+            "phase": "replay",
+            "severity": "error",
+            "code": "SCHEMA_REPLAY_ERROR",
+            "message": "Unknown column: missing",
+            "source": {
+              "file": "2026_05_02_000000_invalid_drop.php",
+              "line": 6,
+              "column": 12
+            },
+            "operationIndex": 1
+          }
+        ]
+      },
+      {
+        "filename": "2026_05_03_000000_rename_status.php",
+        "migrationName": "2026_05_03_000000_rename_status",
+        "status": "blocked",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "renameColumn",
+              "table": "profiles",
+              "from": "status",
+              "to": "state",
+              "source": {
+                "file": "2026_05_03_000000_rename_status.php",
+                "line": 5,
+                "column": 12
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": null,
+        "schemaAfter": null,
+        "diff": null,
+        "diagnostics": [
+          {
+            "phase": "dependency",
+            "severity": "error",
+            "code": "SCHEMA_BLOCKED",
+            "message": "Schema is unknown after failed migration: 2026_05_02_000000_invalid_drop.php",
+            "source": {
+              "file": "2026_05_03_000000_rename_status.php",
+              "line": 1,
+              "column": 0
+            }
+          }
+        ]
+      }
+    ],
+    "diagnostics": [
+      {
+        "phase": "replay",
+        "severity": "error",
+        "code": "SCHEMA_REPLAY_ERROR",
+        "message": "Unknown column: missing",
+        "source": {
+          "file": "2026_05_02_000000_invalid_drop.php",
+          "line": 6,
+          "column": 12
+        },
+        "operationIndex": 1
+      },
+      {
+        "phase": "dependency",
+        "severity": "error",
+        "code": "SCHEMA_BLOCKED",
+        "message": "Schema is unknown after failed migration: 2026_05_02_000000_invalid_drop.php",
+        "source": {
+          "file": "2026_05_03_000000_rename_status.php",
+          "line": 1,
+          "column": 0
+        }
+      }
+    ],
+    "initialSchema": {
+      "tables": {}
+    },
+    "finalSchema": null,
+    "lastValidSchema": {
+      "tables": {
+        "profiles": {
+          "name": "profiles",
+          "columns": {
+            "status": {
+              "name": "status",
+              "type": "enum",
+              "nullable": false,
+              "allowedValues": [
+                "",
+                "active",
+                "paused"
+              ],
+              "default": ""
+            },
+            "remember_token": {
+              "name": "remember_token",
+              "type": "string",
+              "length": 100,
+              "nullable": true
+            },
+            "archived_at": {
+              "name": "archived_at",
+              "type": "timestampTz",
+              "nullable": true,
+              "precision": 3
+            },
+            "created_at": {
+              "name": "created_at",
+              "type": "timestampTz",
+              "nullable": true,
+              "precision": 6
+            },
+            "updated_at": {
+              "name": "updated_at",
+              "type": "timestampTz",
+              "nullable": true,
+              "precision": 6
+            }
+          },
+          "indexes": {},
+          "foreignKeys": {}
+        }
+      }
+    },
+    "appliedCount": 1
+  }
+}
+dateTime/dateTimeTz current-default built-package checks passed
+
+[verify] npm run demo:changes
+
+> laravel-migration-visualizer@1.0.0 demo:changes
+> npm run build -w @lmv/migration-core && node examples/change-columns.mjs
+
+
+> @lmv/migration-core@0.15.0 build
+> tsc -p tsconfig.build.json
+
+{
+  "complete": true,
+  "appliedCount": 3,
+  "columns": {
+    "name": {
+      "name": "name",
+      "type": "string",
+      "nullable": false,
+      "length": 50
+    },
+    "at": {
+      "name": "at",
+      "type": "dateTimeTz",
+      "nullable": false,
+      "precision": 3
+    }
+  },
+  "blockedStatuses": [
+    "applied",
+    "failed",
+    "blocked"
+  ]
+}
+
+[verify] npm run demo:laravel
+
+> laravel-migration-visualizer@1.0.0 demo:laravel
+> npm run build -w @lmv/migration-core && node examples/laravel-baseline.mjs
+
+
+> @lmv/migration-core@0.15.0 build
+> tsc -p tsconfig.build.json
+
+{
+  "commit": "e90c74ca717e9082d7463a2db50814fe565a3e44",
+  "complete": true,
+  "appliedCount": 3,
+  "migrations": [
+    {
+      "filename": "0001_01_01_000000_create_users_table.php",
+      "beforeTables": 0,
+      "afterTables": 3
+    },
+    {
+      "filename": "0001_01_01_000001_create_cache_table.php",
+      "beforeTables": 3,
+      "afterTables": 5
+    },
+    {
+      "filename": "0001_01_01_000002_create_jobs_table.php",
+      "beforeTables": 5,
+      "afterTables": 8
+    }
+  ],
+  "tables": [
+    "users",
+    "password_reset_tokens",
+    "sessions",
+    "cache",
+    "cache_locks",
+    "jobs",
+    "job_batches",
+    "failed_jobs"
+  ],
+  "foreignKeyCount": 0,
+  "failedAt": {
+    "name": "failed_at",
+    "type": "timestamp",
+    "nullable": false,
+    "precision": 0,
+    "useCurrent": true
+  },
+  "scope": "Only these three pinned official Laravel 12 migrations; not universal Laravel compatibility."
+}
+
+[verify] npm run demo:index-rename
+
+> laravel-migration-visualizer@1.0.0 demo:index-rename
+> npm run build -w @lmv/migration-core && node examples/rename-index.mjs
+
+
+> @lmv/migration-core@0.15.0 build
+> tsc -p tsconfig.build.json
+
+{
+  "appliedCount": 3,
+  "renamedIndex": {
+    "name": "new",
+    "type": "unique",
+    "columns": [
+      "b",
+      "a"
+    ]
+  },
+  "blockedStatuses": [
+    "applied",
+    "failed",
+    "blocked"
+  ]
+}
+
+[verify] npm run demo:current-update
+
+> laravel-migration-visualizer@1.0.0 demo:current-update
+> npm run build -w @lmv/migration-core && node examples/current-on-update.mjs
+
+
+> @lmv/migration-core@0.15.0 build
+> tsc -p tsconfig.build.json
+
+{
+  "complete": true,
+  "appliedCount": 3,
+  "updatedColumns": {
+    "at": {
+      "name": "at",
+      "type": "timestamp",
+      "nullable": true,
+      "precision": 6,
+      "default": null,
+      "useCurrentOnUpdate": true,
+      "comment": "seed"
+    },
+    "zoned": {
+      "name": "zoned",
+      "type": "dateTimeTz",
+      "nullable": false,
+      "precision": 3,
+      "useCurrent": true,
+      "useCurrentOnUpdate": true
+    }
+  },
+  "resetColumns": {
+    "at": {
+      "name": "at",
+      "type": "timestamp",
+      "nullable": true,
+      "precision": 6,
+      "default": null,
+      "comment": "seed"
+    },
+    "zoned": {
+      "name": "zoned",
+      "type": "dateTimeTz",
+      "nullable": false,
+      "precision": 3
+    }
+  },
+  "blockedStatuses": [
+    "applied",
+    "failed",
+    "blocked"
+  ],
+  "scope": "Static current-time intent metadata, not PHP or database execution."
+}
+
+[verify] npm run demo:drop-columns
+
+> laravel-migration-visualizer@1.0.0 demo:drop-columns
+> npm run build -w @lmv/migration-core && node examples/drop-columns.mjs
+
+
+> @lmv/migration-core@0.15.0 build
+> tsc -p tsconfig.build.json
+
+{
+  "success": {
+    "complete": true,
+    "migrations": [
+      {
+        "filename": "2026_10_01_000000_create_users.php",
+        "migrationName": "2026_10_01_000000_create_users",
+        "status": "applied",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "createTable",
+              "table": "users",
+              "source": {
+                "file": "2026_10_01_000000_create_users.php",
+                "line": 4,
+                "column": 8
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "users",
+              "column": {
+                "name": "a",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "source": {
+                "file": "2026_10_01_000000_create_users.php",
+                "line": 5,
+                "column": 12
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "users",
+              "column": {
+                "name": "b",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "source": {
+                "file": "2026_10_01_000000_create_users.php",
+                "line": 5,
+                "column": 29
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "users",
+              "column": {
+                "name": "keep",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "source": {
+                "file": "2026_10_01_000000_create_users.php",
+                "line": 5,
+                "column": 46
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {}
+        },
+        "schemaAfter": {
+          "tables": {
+            "users": {
+              "name": "users",
+              "columns": {
+                "a": {
+                  "name": "a",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                },
+                "b": {
+                  "name": "b",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                },
+                "keep": {
+                  "name": "keep",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {}
+            }
+          }
+        },
+        "diff": {
+          "changes": [
+            {
+              "kind": "tableAdded",
+              "table": "users",
+              "after": {
+                "name": "users",
+                "columns": {
+                  "a": {
+                    "name": "a",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 255
+                  },
+                  "b": {
+                    "name": "b",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 255
+                  },
+                  "keep": {
+                    "name": "keep",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 255
+                  }
+                },
+                "indexes": {},
+                "foreignKeys": {}
+              }
+            }
+          ]
+        },
+        "diagnostics": []
+      },
+      {
+        "filename": "2026_10_02_000000_drop_columns.php",
+        "migrationName": "2026_10_02_000000_drop_columns",
+        "status": "applied",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "dropColumn",
+              "table": "users",
+              "column": "b",
+              "source": {
+                "file": "2026_10_02_000000_drop_columns.php",
+                "line": 5,
+                "column": 12
+              }
+            },
+            {
+              "kind": "dropColumn",
+              "table": "users",
+              "column": "a",
+              "source": {
+                "file": "2026_10_02_000000_drop_columns.php",
+                "line": 5,
+                "column": 12
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {
+            "users": {
+              "name": "users",
+              "columns": {
+                "a": {
+                  "name": "a",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                },
+                "b": {
+                  "name": "b",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                },
+                "keep": {
+                  "name": "keep",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {}
+            }
+          }
+        },
+        "schemaAfter": {
+          "tables": {
+            "users": {
+              "name": "users",
+              "columns": {
+                "keep": {
+                  "name": "keep",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {}
+            }
+          }
+        },
+        "diff": {
+          "changes": [
+            {
+              "kind": "columnRemoved",
+              "table": "users",
+              "column": "a",
+              "before": {
+                "name": "a",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              }
+            },
+            {
+              "kind": "columnRemoved",
+              "table": "users",
+              "column": "b",
+              "before": {
+                "name": "b",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              }
+            }
+          ]
+        },
+        "diagnostics": []
+      },
+      {
+        "filename": "2026_10_03_000000_add_later.php",
+        "migrationName": "2026_10_03_000000_add_later",
+        "status": "applied",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "addColumn",
+              "table": "users",
+              "column": {
+                "name": "later",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "source": {
+                "file": "2026_10_03_000000_add_later.php",
+                "line": 5,
+                "column": 12
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {
+            "users": {
+              "name": "users",
+              "columns": {
+                "keep": {
+                  "name": "keep",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {}
+            }
+          }
+        },
+        "schemaAfter": {
+          "tables": {
+            "users": {
+              "name": "users",
+              "columns": {
+                "keep": {
+                  "name": "keep",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                },
+                "later": {
+                  "name": "later",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {}
+            }
+          }
+        },
+        "diff": {
+          "changes": [
+            {
+              "kind": "columnAdded",
+              "table": "users",
+              "column": "later",
+              "after": {
+                "name": "later",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              }
+            }
+          ]
+        },
+        "diagnostics": []
+      }
+    ],
+    "diagnostics": [],
+    "initialSchema": {
+      "tables": {}
+    },
+    "finalSchema": {
+      "tables": {
+        "users": {
+          "name": "users",
+          "columns": {
+            "keep": {
+              "name": "keep",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            },
+            "later": {
+              "name": "later",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            }
+          },
+          "indexes": {},
+          "foreignKeys": {}
+        }
+      }
+    },
+    "lastValidSchema": {
+      "tables": {
+        "users": {
+          "name": "users",
+          "columns": {
+            "keep": {
+              "name": "keep",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            },
+            "later": {
+              "name": "later",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            }
+          },
+          "indexes": {},
+          "foreignKeys": {}
+        }
+      }
+    },
+    "appliedCount": 3
+  },
+  "blocked": {
+    "complete": false,
+    "migrations": [
+      {
+        "filename": "2026_10_01_000000_create_users.php",
+        "migrationName": "2026_10_01_000000_create_users",
+        "status": "applied",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "createTable",
+              "table": "users",
+              "source": {
+                "file": "2026_10_01_000000_create_users.php",
+                "line": 4,
+                "column": 8
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "users",
+              "column": {
+                "name": "a",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "source": {
+                "file": "2026_10_01_000000_create_users.php",
+                "line": 5,
+                "column": 12
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "users",
+              "column": {
+                "name": "b",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "source": {
+                "file": "2026_10_01_000000_create_users.php",
+                "line": 5,
+                "column": 29
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "users",
+              "column": {
+                "name": "keep",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "source": {
+                "file": "2026_10_01_000000_create_users.php",
+                "line": 5,
+                "column": 46
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {}
+        },
+        "schemaAfter": {
+          "tables": {
+            "users": {
+              "name": "users",
+              "columns": {
+                "a": {
+                  "name": "a",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                },
+                "b": {
+                  "name": "b",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                },
+                "keep": {
+                  "name": "keep",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {}
+            }
+          }
+        },
+        "diff": {
+          "changes": [
+            {
+              "kind": "tableAdded",
+              "table": "users",
+              "after": {
+                "name": "users",
+                "columns": {
+                  "a": {
+                    "name": "a",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 255
+                  },
+                  "b": {
+                    "name": "b",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 255
+                  },
+                  "keep": {
+                    "name": "keep",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 255
+                  }
+                },
+                "indexes": {},
+                "foreignKeys": {}
+              }
+            }
+          ]
+        },
+        "diagnostics": []
+      },
+      {
+        "filename": "2026_10_02_000000_bad_columns.php",
+        "migrationName": "2026_10_02_000000_bad_columns",
+        "status": "failed",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "dropColumn",
+              "table": "users",
+              "column": "a",
+              "source": {
+                "file": "2026_10_02_000000_bad_columns.php",
+                "line": 5,
+                "column": 12
+              }
+            },
+            {
+              "kind": "dropColumn",
+              "table": "users",
+              "column": "missing",
+              "source": {
+                "file": "2026_10_02_000000_bad_columns.php",
+                "line": 5,
+                "column": 12
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {
+            "users": {
+              "name": "users",
+              "columns": {
+                "a": {
+                  "name": "a",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                },
+                "b": {
+                  "name": "b",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                },
+                "keep": {
+                  "name": "keep",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {}
+            }
+          }
+        },
+        "schemaAfter": null,
+        "diff": null,
+        "diagnostics": [
+          {
+            "phase": "replay",
+            "severity": "error",
+            "code": "SCHEMA_REPLAY_ERROR",
+            "message": "Unknown column: missing",
+            "source": {
+              "file": "2026_10_02_000000_bad_columns.php",
+              "line": 5,
+              "column": 12
+            },
+            "operationIndex": 1
+          }
+        ]
+      },
+      {
+        "filename": "2026_10_03_000000_add_later.php",
+        "migrationName": "2026_10_03_000000_add_later",
+        "status": "blocked",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "addColumn",
+              "table": "users",
+              "column": {
+                "name": "later",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "source": {
+                "file": "2026_10_03_000000_add_later.php",
+                "line": 5,
+                "column": 12
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": null,
+        "schemaAfter": null,
+        "diff": null,
+        "diagnostics": [
+          {
+            "phase": "dependency",
+            "severity": "error",
+            "code": "SCHEMA_BLOCKED",
+            "message": "Schema is unknown after failed migration: 2026_10_02_000000_bad_columns.php",
+            "source": {
+              "file": "2026_10_03_000000_add_later.php",
+              "line": 1,
+              "column": 0
+            }
+          }
+        ]
+      }
+    ],
+    "diagnostics": [
+      {
+        "phase": "replay",
+        "severity": "error",
+        "code": "SCHEMA_REPLAY_ERROR",
+        "message": "Unknown column: missing",
+        "source": {
+          "file": "2026_10_02_000000_bad_columns.php",
+          "line": 5,
+          "column": 12
+        },
+        "operationIndex": 1
+      },
+      {
+        "phase": "dependency",
+        "severity": "error",
+        "code": "SCHEMA_BLOCKED",
+        "message": "Schema is unknown after failed migration: 2026_10_02_000000_bad_columns.php",
+        "source": {
+          "file": "2026_10_03_000000_add_later.php",
+          "line": 1,
+          "column": 0
+        }
+      }
+    ],
+    "initialSchema": {
+      "tables": {}
+    },
+    "finalSchema": null,
+    "lastValidSchema": {
+      "tables": {
+        "users": {
+          "name": "users",
+          "columns": {
+            "a": {
+              "name": "a",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            },
+            "b": {
+              "name": "b",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            },
+            "keep": {
+              "name": "keep",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            }
+          },
+          "indexes": {},
+          "foreignKeys": {}
+        }
+      }
+    },
+    "appliedCount": 1
+  }
+}
+
+[verify] npm run demo:drop-constrained-id
+
+> laravel-migration-visualizer@1.0.0 demo:drop-constrained-id
+> npm run build -w @lmv/migration-core && node examples/drop-constrained-id.mjs
+
+
+> @lmv/migration-core@0.15.0 build
+> tsc -p tsconfig.build.json
+
+{
+  "success": {
+    "complete": true,
+    "migrations": [
+      {
+        "filename": "2026_10_01_000000_create_users.php",
+        "migrationName": "2026_10_01_000000_create_users",
+        "status": "applied",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "createTable",
+              "table": "users",
+              "source": {
+                "file": "2026_10_01_000000_create_users.php",
+                "line": 4,
+                "column": 8
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "users",
+              "column": {
+                "name": "id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": true,
+                "primary": true
+              },
+              "source": {
+                "file": "2026_10_01_000000_create_users.php",
+                "line": 5,
+                "column": 12
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {}
+        },
+        "schemaAfter": {
+          "tables": {
+            "users": {
+              "name": "users",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                }
+              },
+              "indexes": {
+                "users_id_primary": {
+                  "name": "users_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            }
+          }
+        },
+        "diff": {
+          "changes": [
+            {
+              "kind": "tableAdded",
+              "table": "users",
+              "after": {
+                "name": "users",
+                "columns": {
+                  "id": {
+                    "name": "id",
+                    "type": "bigInteger",
+                    "nullable": false,
+                    "unsigned": true,
+                    "autoIncrement": true,
+                    "primary": true
+                  }
+                },
+                "indexes": {
+                  "users_id_primary": {
+                    "name": "users_id_primary",
+                    "type": "primary",
+                    "columns": [
+                      "id"
+                    ]
+                  }
+                },
+                "foreignKeys": {}
+              }
+            }
+          ]
+        },
+        "diagnostics": []
+      },
+      {
+        "filename": "2026_10_02_000000_create_posts.php",
+        "migrationName": "2026_10_02_000000_create_posts",
+        "status": "applied",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "createTable",
+              "table": "posts",
+              "source": {
+                "file": "2026_10_02_000000_create_posts.php",
+                "line": 4,
+                "column": 8
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "posts",
+              "column": {
+                "name": "keep",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "source": {
+                "file": "2026_10_02_000000_create_posts.php",
+                "line": 5,
+                "column": 12
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "posts",
+              "column": {
+                "name": "user_id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": false
+              },
+              "source": {
+                "file": "2026_10_02_000000_create_posts.php",
+                "line": 5,
+                "column": 32
+              }
+            },
+            {
+              "kind": "addForeignKey",
+              "table": "posts",
+              "foreignKey": {
+                "name": "posts_user_id_foreign",
+                "columns": [
+                  "user_id"
+                ],
+                "referencedTable": "users",
+                "referencedColumns": [
+                  "id"
+                ]
+              },
+              "source": {
+                "file": "2026_10_02_000000_create_posts.php",
+                "line": 5,
+                "column": 32
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {
+            "users": {
+              "name": "users",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                }
+              },
+              "indexes": {
+                "users_id_primary": {
+                  "name": "users_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            }
+          }
+        },
+        "schemaAfter": {
+          "tables": {
+            "users": {
+              "name": "users",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                }
+              },
+              "indexes": {
+                "users_id_primary": {
+                  "name": "users_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            },
+            "posts": {
+              "name": "posts",
+              "columns": {
+                "keep": {
+                  "name": "keep",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                },
+                "user_id": {
+                  "name": "user_id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": false
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {
+                "posts_user_id_foreign": {
+                  "name": "posts_user_id_foreign",
+                  "columns": [
+                    "user_id"
+                  ],
+                  "referencedTable": "users",
+                  "referencedColumns": [
+                    "id"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "diff": {
+          "changes": [
+            {
+              "kind": "tableAdded",
+              "table": "posts",
+              "after": {
+                "name": "posts",
+                "columns": {
+                  "keep": {
+                    "name": "keep",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 255
+                  },
+                  "user_id": {
+                    "name": "user_id",
+                    "type": "bigInteger",
+                    "nullable": false,
+                    "unsigned": true,
+                    "autoIncrement": false
+                  }
+                },
+                "indexes": {},
+                "foreignKeys": {
+                  "posts_user_id_foreign": {
+                    "name": "posts_user_id_foreign",
+                    "columns": [
+                      "user_id"
+                    ],
+                    "referencedTable": "users",
+                    "referencedColumns": [
+                      "id"
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "diagnostics": []
+      },
+      {
+        "filename": "2026_10_03_000000_drop_owner.php",
+        "migrationName": "2026_10_03_000000_drop_owner",
+        "status": "applied",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "dropForeignKey",
+              "table": "posts",
+              "name": "posts_user_id_foreign",
+              "source": {
+                "file": "2026_10_03_000000_drop_owner.php",
+                "line": 5,
+                "column": 12
+              }
+            },
+            {
+              "kind": "dropColumn",
+              "table": "posts",
+              "column": "user_id",
+              "source": {
+                "file": "2026_10_03_000000_drop_owner.php",
+                "line": 5,
+                "column": 12
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {
+            "users": {
+              "name": "users",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                }
+              },
+              "indexes": {
+                "users_id_primary": {
+                  "name": "users_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            },
+            "posts": {
+              "name": "posts",
+              "columns": {
+                "keep": {
+                  "name": "keep",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                },
+                "user_id": {
+                  "name": "user_id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": false
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {
+                "posts_user_id_foreign": {
+                  "name": "posts_user_id_foreign",
+                  "columns": [
+                    "user_id"
+                  ],
+                  "referencedTable": "users",
+                  "referencedColumns": [
+                    "id"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "schemaAfter": {
+          "tables": {
+            "users": {
+              "name": "users",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                }
+              },
+              "indexes": {
+                "users_id_primary": {
+                  "name": "users_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            },
+            "posts": {
+              "name": "posts",
+              "columns": {
+                "keep": {
+                  "name": "keep",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {}
+            }
+          }
+        },
+        "diff": {
+          "changes": [
+            {
+              "kind": "columnRemoved",
+              "table": "posts",
+              "column": "user_id",
+              "before": {
+                "name": "user_id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": false
+              }
+            },
+            {
+              "kind": "foreignKeyRemoved",
+              "table": "posts",
+              "foreignKey": "posts_user_id_foreign",
+              "before": {
+                "name": "posts_user_id_foreign",
+                "columns": [
+                  "user_id"
+                ],
+                "referencedTable": "users",
+                "referencedColumns": [
+                  "id"
+                ]
+              }
+            }
+          ]
+        },
+        "diagnostics": []
+      },
+      {
+        "filename": "2026_10_04_000000_add_later.php",
+        "migrationName": "2026_10_04_000000_add_later",
+        "status": "applied",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "addColumn",
+              "table": "posts",
+              "column": {
+                "name": "later",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "source": {
+                "file": "2026_10_04_000000_add_later.php",
+                "line": 5,
+                "column": 12
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {
+            "users": {
+              "name": "users",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                }
+              },
+              "indexes": {
+                "users_id_primary": {
+                  "name": "users_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            },
+            "posts": {
+              "name": "posts",
+              "columns": {
+                "keep": {
+                  "name": "keep",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {}
+            }
+          }
+        },
+        "schemaAfter": {
+          "tables": {
+            "users": {
+              "name": "users",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                }
+              },
+              "indexes": {
+                "users_id_primary": {
+                  "name": "users_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            },
+            "posts": {
+              "name": "posts",
+              "columns": {
+                "keep": {
+                  "name": "keep",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                },
+                "later": {
+                  "name": "later",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {}
+            }
+          }
+        },
+        "diff": {
+          "changes": [
+            {
+              "kind": "columnAdded",
+              "table": "posts",
+              "column": "later",
+              "after": {
+                "name": "later",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              }
+            }
+          ]
+        },
+        "diagnostics": []
+      }
+    ],
+    "diagnostics": [],
+    "initialSchema": {
+      "tables": {}
+    },
+    "finalSchema": {
+      "tables": {
+        "users": {
+          "name": "users",
+          "columns": {
+            "id": {
+              "name": "id",
+              "type": "bigInteger",
+              "nullable": false,
+              "unsigned": true,
+              "autoIncrement": true,
+              "primary": true
+            }
+          },
+          "indexes": {
+            "users_id_primary": {
+              "name": "users_id_primary",
+              "type": "primary",
+              "columns": [
+                "id"
+              ]
+            }
+          },
+          "foreignKeys": {}
+        },
+        "posts": {
+          "name": "posts",
+          "columns": {
+            "keep": {
+              "name": "keep",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            },
+            "later": {
+              "name": "later",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            }
+          },
+          "indexes": {},
+          "foreignKeys": {}
+        }
+      }
+    },
+    "lastValidSchema": {
+      "tables": {
+        "users": {
+          "name": "users",
+          "columns": {
+            "id": {
+              "name": "id",
+              "type": "bigInteger",
+              "nullable": false,
+              "unsigned": true,
+              "autoIncrement": true,
+              "primary": true
+            }
+          },
+          "indexes": {
+            "users_id_primary": {
+              "name": "users_id_primary",
+              "type": "primary",
+              "columns": [
+                "id"
+              ]
+            }
+          },
+          "foreignKeys": {}
+        },
+        "posts": {
+          "name": "posts",
+          "columns": {
+            "keep": {
+              "name": "keep",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            },
+            "later": {
+              "name": "later",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            }
+          },
+          "indexes": {},
+          "foreignKeys": {}
+        }
+      }
+    },
+    "appliedCount": 4
+  },
+  "blocked": {
+    "complete": false,
+    "migrations": [
+      {
+        "filename": "2026_10_01_000000_create_users.php",
+        "migrationName": "2026_10_01_000000_create_users",
+        "status": "applied",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "createTable",
+              "table": "users",
+              "source": {
+                "file": "2026_10_01_000000_create_users.php",
+                "line": 4,
+                "column": 8
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "users",
+              "column": {
+                "name": "id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": true,
+                "primary": true
+              },
+              "source": {
+                "file": "2026_10_01_000000_create_users.php",
+                "line": 5,
+                "column": 12
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {}
+        },
+        "schemaAfter": {
+          "tables": {
+            "users": {
+              "name": "users",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                }
+              },
+              "indexes": {
+                "users_id_primary": {
+                  "name": "users_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            }
+          }
+        },
+        "diff": {
+          "changes": [
+            {
+              "kind": "tableAdded",
+              "table": "users",
+              "after": {
+                "name": "users",
+                "columns": {
+                  "id": {
+                    "name": "id",
+                    "type": "bigInteger",
+                    "nullable": false,
+                    "unsigned": true,
+                    "autoIncrement": true,
+                    "primary": true
+                  }
+                },
+                "indexes": {
+                  "users_id_primary": {
+                    "name": "users_id_primary",
+                    "type": "primary",
+                    "columns": [
+                      "id"
+                    ]
+                  }
+                },
+                "foreignKeys": {}
+              }
+            }
+          ]
+        },
+        "diagnostics": []
+      },
+      {
+        "filename": "2026_10_02_000000_create_posts.php",
+        "migrationName": "2026_10_02_000000_create_posts",
+        "status": "applied",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "createTable",
+              "table": "posts",
+              "source": {
+                "file": "2026_10_02_000000_create_posts.php",
+                "line": 4,
+                "column": 8
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "posts",
+              "column": {
+                "name": "keep",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "source": {
+                "file": "2026_10_02_000000_create_posts.php",
+                "line": 5,
+                "column": 12
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "posts",
+              "column": {
+                "name": "user_id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": false
+              },
+              "source": {
+                "file": "2026_10_02_000000_create_posts.php",
+                "line": 5,
+                "column": 32
+              }
+            },
+            {
+              "kind": "addForeignKey",
+              "table": "posts",
+              "foreignKey": {
+                "name": "posts_user_id_foreign",
+                "columns": [
+                  "user_id"
+                ],
+                "referencedTable": "users",
+                "referencedColumns": [
+                  "id"
+                ]
+              },
+              "source": {
+                "file": "2026_10_02_000000_create_posts.php",
+                "line": 5,
+                "column": 32
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {
+            "users": {
+              "name": "users",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                }
+              },
+              "indexes": {
+                "users_id_primary": {
+                  "name": "users_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            }
+          }
+        },
+        "schemaAfter": {
+          "tables": {
+            "users": {
+              "name": "users",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                }
+              },
+              "indexes": {
+                "users_id_primary": {
+                  "name": "users_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            },
+            "posts": {
+              "name": "posts",
+              "columns": {
+                "keep": {
+                  "name": "keep",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                },
+                "user_id": {
+                  "name": "user_id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": false
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {
+                "posts_user_id_foreign": {
+                  "name": "posts_user_id_foreign",
+                  "columns": [
+                    "user_id"
+                  ],
+                  "referencedTable": "users",
+                  "referencedColumns": [
+                    "id"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "diff": {
+          "changes": [
+            {
+              "kind": "tableAdded",
+              "table": "posts",
+              "after": {
+                "name": "posts",
+                "columns": {
+                  "keep": {
+                    "name": "keep",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 255
+                  },
+                  "user_id": {
+                    "name": "user_id",
+                    "type": "bigInteger",
+                    "nullable": false,
+                    "unsigned": true,
+                    "autoIncrement": false
+                  }
+                },
+                "indexes": {},
+                "foreignKeys": {
+                  "posts_user_id_foreign": {
+                    "name": "posts_user_id_foreign",
+                    "columns": [
+                      "user_id"
+                    ],
+                    "referencedTable": "users",
+                    "referencedColumns": [
+                      "id"
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "diagnostics": []
+      },
+      {
+        "filename": "2026_10_03_000000_bad_owner.php",
+        "migrationName": "2026_10_03_000000_bad_owner",
+        "status": "failed",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "dropForeignKey",
+              "table": "posts",
+              "name": "posts_user_id_foreign",
+              "source": {
+                "file": "2026_10_03_000000_bad_owner.php",
+                "line": 5,
+                "column": 12
+              }
+            },
+            {
+              "kind": "dropColumn",
+              "table": "posts",
+              "column": "user_id",
+              "source": {
+                "file": "2026_10_03_000000_bad_owner.php",
+                "line": 5,
+                "column": 12
+              }
+            },
+            {
+              "kind": "dropColumn",
+              "table": "posts",
+              "column": "missing",
+              "source": {
+                "file": "2026_10_03_000000_bad_owner.php",
+                "line": 5,
+                "column": 53
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {
+            "users": {
+              "name": "users",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                }
+              },
+              "indexes": {
+                "users_id_primary": {
+                  "name": "users_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            },
+            "posts": {
+              "name": "posts",
+              "columns": {
+                "keep": {
+                  "name": "keep",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                },
+                "user_id": {
+                  "name": "user_id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": false
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {
+                "posts_user_id_foreign": {
+                  "name": "posts_user_id_foreign",
+                  "columns": [
+                    "user_id"
+                  ],
+                  "referencedTable": "users",
+                  "referencedColumns": [
+                    "id"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "schemaAfter": null,
+        "diff": null,
+        "diagnostics": [
+          {
+            "phase": "replay",
+            "severity": "error",
+            "code": "SCHEMA_REPLAY_ERROR",
+            "message": "Unknown column: missing",
+            "source": {
+              "file": "2026_10_03_000000_bad_owner.php",
+              "line": 5,
+              "column": 53
+            },
+            "operationIndex": 2
+          }
+        ]
+      },
+      {
+        "filename": "2026_10_04_000000_add_later.php",
+        "migrationName": "2026_10_04_000000_add_later",
+        "status": "blocked",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "addColumn",
+              "table": "posts",
+              "column": {
+                "name": "later",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "source": {
+                "file": "2026_10_04_000000_add_later.php",
+                "line": 5,
+                "column": 12
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": null,
+        "schemaAfter": null,
+        "diff": null,
+        "diagnostics": [
+          {
+            "phase": "dependency",
+            "severity": "error",
+            "code": "SCHEMA_BLOCKED",
+            "message": "Schema is unknown after failed migration: 2026_10_03_000000_bad_owner.php",
+            "source": {
+              "file": "2026_10_04_000000_add_later.php",
+              "line": 1,
+              "column": 0
+            }
+          }
+        ]
+      }
+    ],
+    "diagnostics": [
+      {
+        "phase": "replay",
+        "severity": "error",
+        "code": "SCHEMA_REPLAY_ERROR",
+        "message": "Unknown column: missing",
+        "source": {
+          "file": "2026_10_03_000000_bad_owner.php",
+          "line": 5,
+          "column": 53
+        },
+        "operationIndex": 2
+      },
+      {
+        "phase": "dependency",
+        "severity": "error",
+        "code": "SCHEMA_BLOCKED",
+        "message": "Schema is unknown after failed migration: 2026_10_03_000000_bad_owner.php",
+        "source": {
+          "file": "2026_10_04_000000_add_later.php",
+          "line": 1,
+          "column": 0
+        }
+      }
+    ],
+    "initialSchema": {
+      "tables": {}
+    },
+    "finalSchema": null,
+    "lastValidSchema": {
+      "tables": {
+        "users": {
+          "name": "users",
+          "columns": {
+            "id": {
+              "name": "id",
+              "type": "bigInteger",
+              "nullable": false,
+              "unsigned": true,
+              "autoIncrement": true,
+              "primary": true
+            }
+          },
+          "indexes": {
+            "users_id_primary": {
+              "name": "users_id_primary",
+              "type": "primary",
+              "columns": [
+                "id"
+              ]
+            }
+          },
+          "foreignKeys": {}
+        },
+        "posts": {
+          "name": "posts",
+          "columns": {
+            "keep": {
+              "name": "keep",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            },
+            "user_id": {
+              "name": "user_id",
+              "type": "bigInteger",
+              "nullable": false,
+              "unsigned": true,
+              "autoIncrement": false
+            }
+          },
+          "indexes": {},
+          "foreignKeys": {
+            "posts_user_id_foreign": {
+              "name": "posts_user_id_foreign",
+              "columns": [
+                "user_id"
+              ],
+              "referencedTable": "users",
+              "referencedColumns": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "appliedCount": 2
+  }
+}
+
+[verify] npm run demo:morphs
+
+> laravel-migration-visualizer@1.0.0 demo:morphs
+> npm run build -w @lmv/migration-core && node examples/morphs.mjs
+
+
+> @lmv/migration-core@0.15.0 build
+> tsc -p tsconfig.build.json
+
+{
+  "success": {
+    "complete": true,
+    "migrations": [
+      {
+        "filename": "2026_10_01_000000_create.php",
+        "migrationName": "2026_10_01_000000_create",
+        "status": "applied",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "createTable",
+              "table": "tags",
+              "source": {
+                "file": "2026_10_01_000000_create.php",
+                "line": 1,
+                "column": 59
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "tags",
+              "column": {
+                "name": "keep",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "source": {
+                "file": "2026_10_01_000000_create.php",
+                "line": 1,
+                "column": 97
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {}
+        },
+        "schemaAfter": {
+          "tables": {
+            "tags": {
+              "name": "tags",
+              "columns": {
+                "keep": {
+                  "name": "keep",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {}
+            }
+          }
+        },
+        "diff": {
+          "changes": [
+            {
+              "kind": "tableAdded",
+              "table": "tags",
+              "after": {
+                "name": "tags",
+                "columns": {
+                  "keep": {
+                    "name": "keep",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 255
+                  }
+                },
+                "indexes": {},
+                "foreignKeys": {}
+              }
+            }
+          ]
+        },
+        "diagnostics": []
+      },
+      {
+        "filename": "2026_10_02_000000_add.php",
+        "migrationName": "2026_10_02_000000_add",
+        "status": "applied",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "addColumn",
+              "table": "tags",
+              "column": {
+                "name": "taggable_type",
+                "type": "string",
+                "length": 255,
+                "nullable": true
+              },
+              "source": {
+                "file": "2026_10_02_000000_add.php",
+                "line": 1,
+                "column": 96
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "tags",
+              "column": {
+                "name": "taggable_id",
+                "type": "bigInteger",
+                "unsigned": true,
+                "nullable": true
+              },
+              "source": {
+                "file": "2026_10_02_000000_add.php",
+                "line": 1,
+                "column": 96
+              }
+            },
+            {
+              "kind": "addIndex",
+              "table": "tags",
+              "index": {
+                "name": "custom",
+                "type": "index",
+                "columns": [
+                  "taggable_type",
+                  "taggable_id"
+                ]
+              },
+              "source": {
+                "file": "2026_10_02_000000_add.php",
+                "line": 1,
+                "column": 96
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {
+            "tags": {
+              "name": "tags",
+              "columns": {
+                "keep": {
+                  "name": "keep",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {}
+            }
+          }
+        },
+        "schemaAfter": {
+          "tables": {
+            "tags": {
+              "name": "tags",
+              "columns": {
+                "keep": {
+                  "name": "keep",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                },
+                "taggable_type": {
+                  "name": "taggable_type",
+                  "type": "string",
+                  "length": 255,
+                  "nullable": true
+                },
+                "taggable_id": {
+                  "name": "taggable_id",
+                  "type": "bigInteger",
+                  "unsigned": true,
+                  "nullable": true
+                }
+              },
+              "indexes": {
+                "custom": {
+                  "name": "custom",
+                  "type": "index",
+                  "columns": [
+                    "taggable_type",
+                    "taggable_id"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            }
+          }
+        },
+        "diff": {
+          "changes": [
+            {
+              "kind": "columnAdded",
+              "table": "tags",
+              "column": "taggable_id",
+              "after": {
+                "name": "taggable_id",
+                "type": "bigInteger",
+                "unsigned": true,
+                "nullable": true
+              }
+            },
+            {
+              "kind": "columnAdded",
+              "table": "tags",
+              "column": "taggable_type",
+              "after": {
+                "name": "taggable_type",
+                "type": "string",
+                "length": 255,
+                "nullable": true
+              }
+            },
+            {
+              "kind": "indexAdded",
+              "table": "tags",
+              "index": "custom",
+              "after": {
+                "name": "custom",
+                "type": "index",
+                "columns": [
+                  "taggable_type",
+                  "taggable_id"
+                ]
+              }
+            }
+          ]
+        },
+        "diagnostics": []
+      },
+      {
+        "filename": "2026_10_03_000000_later.php",
+        "migrationName": "2026_10_03_000000_later",
+        "status": "applied",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "addColumn",
+              "table": "tags",
+              "column": {
+                "name": "later",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "source": {
+                "file": "2026_10_03_000000_later.php",
+                "line": 1,
+                "column": 96
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {
+            "tags": {
+              "name": "tags",
+              "columns": {
+                "keep": {
+                  "name": "keep",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                },
+                "taggable_type": {
+                  "name": "taggable_type",
+                  "type": "string",
+                  "length": 255,
+                  "nullable": true
+                },
+                "taggable_id": {
+                  "name": "taggable_id",
+                  "type": "bigInteger",
+                  "unsigned": true,
+                  "nullable": true
+                }
+              },
+              "indexes": {
+                "custom": {
+                  "name": "custom",
+                  "type": "index",
+                  "columns": [
+                    "taggable_type",
+                    "taggable_id"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            }
+          }
+        },
+        "schemaAfter": {
+          "tables": {
+            "tags": {
+              "name": "tags",
+              "columns": {
+                "keep": {
+                  "name": "keep",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                },
+                "taggable_type": {
+                  "name": "taggable_type",
+                  "type": "string",
+                  "length": 255,
+                  "nullable": true
+                },
+                "taggable_id": {
+                  "name": "taggable_id",
+                  "type": "bigInteger",
+                  "unsigned": true,
+                  "nullable": true
+                },
+                "later": {
+                  "name": "later",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                }
+              },
+              "indexes": {
+                "custom": {
+                  "name": "custom",
+                  "type": "index",
+                  "columns": [
+                    "taggable_type",
+                    "taggable_id"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            }
+          }
+        },
+        "diff": {
+          "changes": [
+            {
+              "kind": "columnAdded",
+              "table": "tags",
+              "column": "later",
+              "after": {
+                "name": "later",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              }
+            }
+          ]
+        },
+        "diagnostics": []
+      }
+    ],
+    "diagnostics": [],
+    "initialSchema": {
+      "tables": {}
+    },
+    "finalSchema": {
+      "tables": {
+        "tags": {
+          "name": "tags",
+          "columns": {
+            "keep": {
+              "name": "keep",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            },
+            "taggable_type": {
+              "name": "taggable_type",
+              "type": "string",
+              "length": 255,
+              "nullable": true
+            },
+            "taggable_id": {
+              "name": "taggable_id",
+              "type": "bigInteger",
+              "unsigned": true,
+              "nullable": true
+            },
+            "later": {
+              "name": "later",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            }
+          },
+          "indexes": {
+            "custom": {
+              "name": "custom",
+              "type": "index",
+              "columns": [
+                "taggable_type",
+                "taggable_id"
+              ]
+            }
+          },
+          "foreignKeys": {}
+        }
+      }
+    },
+    "lastValidSchema": {
+      "tables": {
+        "tags": {
+          "name": "tags",
+          "columns": {
+            "keep": {
+              "name": "keep",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            },
+            "taggable_type": {
+              "name": "taggable_type",
+              "type": "string",
+              "length": 255,
+              "nullable": true
+            },
+            "taggable_id": {
+              "name": "taggable_id",
+              "type": "bigInteger",
+              "unsigned": true,
+              "nullable": true
+            },
+            "later": {
+              "name": "later",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            }
+          },
+          "indexes": {
+            "custom": {
+              "name": "custom",
+              "type": "index",
+              "columns": [
+                "taggable_type",
+                "taggable_id"
+              ]
+            }
+          },
+          "foreignKeys": {}
+        }
+      }
+    },
+    "appliedCount": 3
+  },
+  "blocked": {
+    "complete": false,
+    "migrations": [
+      {
+        "filename": "2026_10_01_000000_create.php",
+        "migrationName": "2026_10_01_000000_create",
+        "status": "applied",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "createTable",
+              "table": "tags",
+              "source": {
+                "file": "2026_10_01_000000_create.php",
+                "line": 1,
+                "column": 59
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "tags",
+              "column": {
+                "name": "keep",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "source": {
+                "file": "2026_10_01_000000_create.php",
+                "line": 1,
+                "column": 97
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {}
+        },
+        "schemaAfter": {
+          "tables": {
+            "tags": {
+              "name": "tags",
+              "columns": {
+                "keep": {
+                  "name": "keep",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {}
+            }
+          }
+        },
+        "diff": {
+          "changes": [
+            {
+              "kind": "tableAdded",
+              "table": "tags",
+              "after": {
+                "name": "tags",
+                "columns": {
+                  "keep": {
+                    "name": "keep",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 255
+                  }
+                },
+                "indexes": {},
+                "foreignKeys": {}
+              }
+            }
+          ]
+        },
+        "diagnostics": []
+      },
+      {
+        "filename": "2026_10_02_000000_bad.php",
+        "migrationName": "2026_10_02_000000_bad",
+        "status": "failed",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "addColumn",
+              "table": "tags",
+              "column": {
+                "name": "taggable_type",
+                "type": "string",
+                "length": 255,
+                "nullable": false
+              },
+              "source": {
+                "file": "2026_10_02_000000_bad.php",
+                "line": 1,
+                "column": 96
+              }
+            },
+            {
+              "kind": "addColumn",
+              "table": "tags",
+              "column": {
+                "name": "taggable_id",
+                "type": "bigInteger",
+                "unsigned": true,
+                "nullable": false
+              },
+              "source": {
+                "file": "2026_10_02_000000_bad.php",
+                "line": 1,
+                "column": 96
+              }
+            },
+            {
+              "kind": "addIndex",
+              "table": "tags",
+              "index": {
+                "name": "tags_taggable_type_taggable_id_index",
+                "type": "index",
+                "columns": [
+                  "taggable_type",
+                  "taggable_id"
+                ]
+              },
+              "source": {
+                "file": "2026_10_02_000000_bad.php",
+                "line": 1,
+                "column": 96
+              }
+            },
+            {
+              "kind": "dropColumn",
+              "table": "tags",
+              "column": "missing",
+              "source": {
+                "file": "2026_10_02_000000_bad.php",
+                "line": 1,
+                "column": 127
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": {
+          "tables": {
+            "tags": {
+              "name": "tags",
+              "columns": {
+                "keep": {
+                  "name": "keep",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                }
+              },
+              "indexes": {},
+              "foreignKeys": {}
+            }
+          }
+        },
+        "schemaAfter": null,
+        "diff": null,
+        "diagnostics": [
+          {
+            "phase": "replay",
+            "severity": "error",
+            "code": "SCHEMA_REPLAY_ERROR",
+            "message": "Unknown column: missing",
+            "source": {
+              "file": "2026_10_02_000000_bad.php",
+              "line": 1,
+              "column": 127
+            },
+            "operationIndex": 3
+          }
+        ]
+      },
+      {
+        "filename": "2026_10_03_000000_later.php",
+        "migrationName": "2026_10_03_000000_later",
+        "status": "blocked",
+        "analysis": {
+          "operations": [
+            {
+              "kind": "addColumn",
+              "table": "tags",
+              "column": {
+                "name": "later",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "source": {
+                "file": "2026_10_03_000000_later.php",
+                "line": 1,
+                "column": 96
+              }
+            }
+          ],
+          "diagnostics": [],
+          "complete": true
+        },
+        "schemaBefore": null,
+        "schemaAfter": null,
+        "diff": null,
+        "diagnostics": [
+          {
+            "phase": "dependency",
+            "severity": "error",
+            "code": "SCHEMA_BLOCKED",
+            "message": "Schema is unknown after failed migration: 2026_10_02_000000_bad.php",
+            "source": {
+              "file": "2026_10_03_000000_later.php",
+              "line": 1,
+              "column": 0
+            }
+          }
+        ]
+      }
+    ],
+    "diagnostics": [
+      {
+        "phase": "replay",
+        "severity": "error",
+        "code": "SCHEMA_REPLAY_ERROR",
+        "message": "Unknown column: missing",
+        "source": {
+          "file": "2026_10_02_000000_bad.php",
+          "line": 1,
+          "column": 127
+        },
+        "operationIndex": 3
+      },
+      {
+        "phase": "dependency",
+        "severity": "error",
+        "code": "SCHEMA_BLOCKED",
+        "message": "Schema is unknown after failed migration: 2026_10_02_000000_bad.php",
+        "source": {
+          "file": "2026_10_03_000000_later.php",
+          "line": 1,
+          "column": 0
+        }
+      }
+    ],
+    "initialSchema": {
+      "tables": {}
+    },
+    "finalSchema": null,
+    "lastValidSchema": {
+      "tables": {
+        "tags": {
+          "name": "tags",
+          "columns": {
+            "keep": {
+              "name": "keep",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            }
+          },
+          "indexes": {},
+          "foreignKeys": {}
+        }
+      }
+    },
+    "appliedCount": 1
+  }
+}
+UUID morph success and atomic failure verified.
+Mixed numeric/UUID drop lifecycle and atomic failure verified.
+
+[verify] npm run demo:acceptance
+
+> laravel-migration-visualizer@1.0.0 demo:acceptance
+> npm run build -w @lmv/migration-core && node examples/acceptance.mjs
+
+
+> @lmv/migration-core@0.15.0 build
+> tsc -p tsconfig.build.json
+
+{
+  "node": "v22.23.3",
+  "platform": "linux",
+  "arch": "x64",
+  "commerce": {
+    "migrations": 12,
+    "tables": 5
+  },
+  "failedPrefix": 9,
+  "observations": [
+    {
+      "files": 250,
+      "elapsedMs": 500,
+      "rssMiB": 112
+    },
+    {
+      "files": 1000,
+      "elapsedMs": 6348,
+      "rssMiB": 474
+    }
+  ],
+  "note": "One-run local observations, not a latency or memory guarantee."
+}
+
+[verify] npm run demo:nullable-timestamps
+
+> laravel-migration-visualizer@1.0.0 demo:nullable-timestamps
+> npm run build -w @lmv/migration-core && node examples/nullable-timestamps.mjs
+
+
+> @lmv/migration-core@0.15.0 build
+> tsc -p tsconfig.build.json
+
+{
+  "complete": true,
+  "columns": {
+    "id": {
+      "name": "id",
+      "type": "integer",
+      "nullable": false
+    },
+    "created_at": {
+      "name": "created_at",
+      "type": "timestamp",
+      "nullable": true,
+      "precision": 3
+    },
+    "updated_at": {
+      "name": "updated_at",
+      "type": "timestamp",
+      "nullable": true,
+      "precision": 3
+    }
+  },
+  "failureStatuses": [
+    "applied",
+    "failed",
+    "blocked"
+  ]
+}
+[verify] 15 commands passed; evidence: artifacts/verification.json

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "IR-03",
+    "expected": "Current core 0.15.0 distinguished from historical v1.0.0 core 0.14.0",
+    "actual": "Laravel Migration Visualizer 1.0.0 是瀏覽器中的靜態分析工作台。它讀取 migration 的 up()，用支援的 Schema／Blueprint 操作推導 schema 與變化，不執行 PHP、資料庫或 SQL。目前 main 的 core 版本為 0.15.0（10/4 的 v1.0.0 release 為 0.14.0）；完整支援邊界見 source/docs/compatibility.zh-TW.md（repo 內為 docs/compatibility.zh-TW.md）。",
+    "status": "passed"
+  },
+  {
+    "id": "IR-04-R2-compatibility",
+    "expected": "Current done; earlier progress explicitly dated historical",
+    "actual": "done header; historical heading; 2026-10-09 history note",
+    "status": "passed"
+  },
+  {
+    "id": "IR-04-R4-source-navigation",
+    "expected": "Current done; earlier progress explicitly dated historical",
+    "actual": "done header; historical heading; 2026-10-09 history note",
+    "status": "passed"
+  },
+  {
+    "id": "IR-04-R5-change-reading",
+    "expected": "Current done; earlier progress explicitly dated historical",
+    "actual": "done header; historical heading; 2026-10-09 history note",
+    "status": "passed"
+  },
+  {
+    "id": "IR-04-R6-acceptance",
+    "expected": "Current done; earlier progress explicitly dated historical",
+    "actual": "done header; historical heading; 2026-10-09 history note",
+    "status": "passed"
+  }
+]

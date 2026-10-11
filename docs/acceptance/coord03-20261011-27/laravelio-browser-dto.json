@@ -1,0 +1,1690 @@
+{
+  "complete": false,
+  "migrations": [
+    {
+      "filename": "2024_08_28_104736_create_job_batches_table.php",
+      "migrationName": "2024_08_28_104736_create_job_batches_table",
+      "status": "applied",
+      "analysis": {
+        "operations": [
+          {
+            "kind": "createTable",
+            "table": "job_batches",
+            "source": {
+              "file": "2024_08_28_104736_create_job_batches_table.php",
+              "line": 14,
+              "column": 8
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "job_batches",
+            "column": {
+              "name": "id",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            },
+            "source": {
+              "file": "2024_08_28_104736_create_job_batches_table.php",
+              "line": 15,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "job_batches",
+            "column": {
+              "name": "name",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            },
+            "source": {
+              "file": "2024_08_28_104736_create_job_batches_table.php",
+              "line": 16,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "job_batches",
+            "column": {
+              "name": "total_jobs",
+              "type": "integer",
+              "nullable": false
+            },
+            "source": {
+              "file": "2024_08_28_104736_create_job_batches_table.php",
+              "line": 17,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "job_batches",
+            "column": {
+              "name": "pending_jobs",
+              "type": "integer",
+              "nullable": false
+            },
+            "source": {
+              "file": "2024_08_28_104736_create_job_batches_table.php",
+              "line": 18,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "job_batches",
+            "column": {
+              "name": "failed_jobs",
+              "type": "integer",
+              "nullable": false
+            },
+            "source": {
+              "file": "2024_08_28_104736_create_job_batches_table.php",
+              "line": 19,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "job_batches",
+            "column": {
+              "name": "failed_job_ids",
+              "type": "longText",
+              "nullable": false
+            },
+            "source": {
+              "file": "2024_08_28_104736_create_job_batches_table.php",
+              "line": 20,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "job_batches",
+            "column": {
+              "name": "options",
+              "type": "mediumText",
+              "nullable": true
+            },
+            "source": {
+              "file": "2024_08_28_104736_create_job_batches_table.php",
+              "line": 21,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "job_batches",
+            "column": {
+              "name": "cancelled_at",
+              "type": "integer",
+              "nullable": true
+            },
+            "source": {
+              "file": "2024_08_28_104736_create_job_batches_table.php",
+              "line": 22,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "job_batches",
+            "column": {
+              "name": "created_at",
+              "type": "integer",
+              "nullable": false
+            },
+            "source": {
+              "file": "2024_08_28_104736_create_job_batches_table.php",
+              "line": 23,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "job_batches",
+            "column": {
+              "name": "finished_at",
+              "type": "integer",
+              "nullable": true
+            },
+            "source": {
+              "file": "2024_08_28_104736_create_job_batches_table.php",
+              "line": 24,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addIndex",
+            "table": "job_batches",
+            "index": {
+              "name": "job_batches_id_primary",
+              "type": "primary",
+              "columns": [
+                "id"
+              ]
+            },
+            "source": {
+              "file": "2024_08_28_104736_create_job_batches_table.php",
+              "line": 15,
+              "column": 12
+            }
+          }
+        ],
+        "diagnostics": [],
+        "complete": true
+      },
+      "schemaBefore": {
+        "tables": {}
+      },
+      "schemaAfter": {
+        "tables": {
+          "job_batches": {
+            "name": "job_batches",
+            "columns": {
+              "id": {
+                "name": "id",
+                "type": "string",
+                "nullable": false,
+                "length": 255,
+                "primary": true
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "total_jobs": {
+                "name": "total_jobs",
+                "type": "integer",
+                "nullable": false
+              },
+              "pending_jobs": {
+                "name": "pending_jobs",
+                "type": "integer",
+                "nullable": false
+              },
+              "failed_jobs": {
+                "name": "failed_jobs",
+                "type": "integer",
+                "nullable": false
+              },
+              "failed_job_ids": {
+                "name": "failed_job_ids",
+                "type": "longText",
+                "nullable": false
+              },
+              "options": {
+                "name": "options",
+                "type": "mediumText",
+                "nullable": true
+              },
+              "cancelled_at": {
+                "name": "cancelled_at",
+                "type": "integer",
+                "nullable": true
+              },
+              "created_at": {
+                "name": "created_at",
+                "type": "integer",
+                "nullable": false
+              },
+              "finished_at": {
+                "name": "finished_at",
+                "type": "integer",
+                "nullable": true
+              }
+            },
+            "indexes": {
+              "job_batches_id_primary": {
+                "name": "job_batches_id_primary",
+                "type": "primary",
+                "columns": [
+                  "id"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "tableAdded",
+            "table": "job_batches",
+            "after": {
+              "name": "job_batches",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255,
+                  "primary": true
+                },
+                "name": {
+                  "name": "name",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                },
+                "total_jobs": {
+                  "name": "total_jobs",
+                  "type": "integer",
+                  "nullable": false
+                },
+                "pending_jobs": {
+                  "name": "pending_jobs",
+                  "type": "integer",
+                  "nullable": false
+                },
+                "failed_jobs": {
+                  "name": "failed_jobs",
+                  "type": "integer",
+                  "nullable": false
+                },
+                "failed_job_ids": {
+                  "name": "failed_job_ids",
+                  "type": "longText",
+                  "nullable": false
+                },
+                "options": {
+                  "name": "options",
+                  "type": "mediumText",
+                  "nullable": true
+                },
+                "cancelled_at": {
+                  "name": "cancelled_at",
+                  "type": "integer",
+                  "nullable": true
+                },
+                "created_at": {
+                  "name": "created_at",
+                  "type": "integer",
+                  "nullable": false
+                },
+                "finished_at": {
+                  "name": "finished_at",
+                  "type": "integer",
+                  "nullable": true
+                }
+              },
+              "indexes": {
+                "job_batches_id_primary": {
+                  "name": "job_batches_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            }
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "filename": "2024_08_28_104755_create_jobs_table.php",
+      "migrationName": "2024_08_28_104755_create_jobs_table",
+      "status": "applied",
+      "analysis": {
+        "operations": [
+          {
+            "kind": "createTable",
+            "table": "jobs",
+            "source": {
+              "file": "2024_08_28_104755_create_jobs_table.php",
+              "line": 14,
+              "column": 8
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "jobs",
+            "column": {
+              "name": "id",
+              "type": "bigInteger",
+              "nullable": false,
+              "unsigned": true,
+              "autoIncrement": true,
+              "primary": true
+            },
+            "source": {
+              "file": "2024_08_28_104755_create_jobs_table.php",
+              "line": 15,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "jobs",
+            "column": {
+              "name": "queue",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            },
+            "source": {
+              "file": "2024_08_28_104755_create_jobs_table.php",
+              "line": 16,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "jobs",
+            "column": {
+              "name": "payload",
+              "type": "longText",
+              "nullable": false
+            },
+            "source": {
+              "file": "2024_08_28_104755_create_jobs_table.php",
+              "line": 17,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "jobs",
+            "column": {
+              "name": "attempts",
+              "type": "tinyInteger",
+              "nullable": false,
+              "unsigned": true
+            },
+            "source": {
+              "file": "2024_08_28_104755_create_jobs_table.php",
+              "line": 18,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "jobs",
+            "column": {
+              "name": "reserved_at",
+              "type": "integer",
+              "nullable": true,
+              "unsigned": true
+            },
+            "source": {
+              "file": "2024_08_28_104755_create_jobs_table.php",
+              "line": 19,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "jobs",
+            "column": {
+              "name": "available_at",
+              "type": "integer",
+              "nullable": false,
+              "unsigned": true
+            },
+            "source": {
+              "file": "2024_08_28_104755_create_jobs_table.php",
+              "line": 20,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "jobs",
+            "column": {
+              "name": "created_at",
+              "type": "integer",
+              "nullable": false,
+              "unsigned": true
+            },
+            "source": {
+              "file": "2024_08_28_104755_create_jobs_table.php",
+              "line": 21,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addIndex",
+            "table": "jobs",
+            "index": {
+              "name": "jobs_queue_index",
+              "type": "index",
+              "columns": [
+                "queue"
+              ]
+            },
+            "source": {
+              "file": "2024_08_28_104755_create_jobs_table.php",
+              "line": 16,
+              "column": 12
+            }
+          }
+        ],
+        "diagnostics": [],
+        "complete": true
+      },
+      "schemaBefore": {
+        "tables": {
+          "job_batches": {
+            "name": "job_batches",
+            "columns": {
+              "id": {
+                "name": "id",
+                "type": "string",
+                "nullable": false,
+                "length": 255,
+                "primary": true
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "total_jobs": {
+                "name": "total_jobs",
+                "type": "integer",
+                "nullable": false
+              },
+              "pending_jobs": {
+                "name": "pending_jobs",
+                "type": "integer",
+                "nullable": false
+              },
+              "failed_jobs": {
+                "name": "failed_jobs",
+                "type": "integer",
+                "nullable": false
+              },
+              "failed_job_ids": {
+                "name": "failed_job_ids",
+                "type": "longText",
+                "nullable": false
+              },
+              "options": {
+                "name": "options",
+                "type": "mediumText",
+                "nullable": true
+              },
+              "cancelled_at": {
+                "name": "cancelled_at",
+                "type": "integer",
+                "nullable": true
+              },
+              "created_at": {
+                "name": "created_at",
+                "type": "integer",
+                "nullable": false
+              },
+              "finished_at": {
+                "name": "finished_at",
+                "type": "integer",
+                "nullable": true
+              }
+            },
+            "indexes": {
+              "job_batches_id_primary": {
+                "name": "job_batches_id_primary",
+                "type": "primary",
+                "columns": [
+                  "id"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "schemaAfter": {
+        "tables": {
+          "job_batches": {
+            "name": "job_batches",
+            "columns": {
+              "id": {
+                "name": "id",
+                "type": "string",
+                "nullable": false,
+                "length": 255,
+                "primary": true
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "total_jobs": {
+                "name": "total_jobs",
+                "type": "integer",
+                "nullable": false
+              },
+              "pending_jobs": {
+                "name": "pending_jobs",
+                "type": "integer",
+                "nullable": false
+              },
+              "failed_jobs": {
+                "name": "failed_jobs",
+                "type": "integer",
+                "nullable": false
+              },
+              "failed_job_ids": {
+                "name": "failed_job_ids",
+                "type": "longText",
+                "nullable": false
+              },
+              "options": {
+                "name": "options",
+                "type": "mediumText",
+                "nullable": true
+              },
+              "cancelled_at": {
+                "name": "cancelled_at",
+                "type": "integer",
+                "nullable": true
+              },
+              "created_at": {
+                "name": "created_at",
+                "type": "integer",
+                "nullable": false
+              },
+              "finished_at": {
+                "name": "finished_at",
+                "type": "integer",
+                "nullable": true
+              }
+            },
+            "indexes": {
+              "job_batches_id_primary": {
+                "name": "job_batches_id_primary",
+                "type": "primary",
+                "columns": [
+                  "id"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          },
+          "jobs": {
+            "name": "jobs",
+            "columns": {
+              "id": {
+                "name": "id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": true,
+                "primary": true
+              },
+              "queue": {
+                "name": "queue",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "payload": {
+                "name": "payload",
+                "type": "longText",
+                "nullable": false
+              },
+              "attempts": {
+                "name": "attempts",
+                "type": "tinyInteger",
+                "nullable": false,
+                "unsigned": true
+              },
+              "reserved_at": {
+                "name": "reserved_at",
+                "type": "integer",
+                "nullable": true,
+                "unsigned": true
+              },
+              "available_at": {
+                "name": "available_at",
+                "type": "integer",
+                "nullable": false,
+                "unsigned": true
+              },
+              "created_at": {
+                "name": "created_at",
+                "type": "integer",
+                "nullable": false,
+                "unsigned": true
+              }
+            },
+            "indexes": {
+              "jobs_id_primary": {
+                "name": "jobs_id_primary",
+                "type": "primary",
+                "columns": [
+                  "id"
+                ]
+              },
+              "jobs_queue_index": {
+                "name": "jobs_queue_index",
+                "type": "index",
+                "columns": [
+                  "queue"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "diff": {
+        "changes": [
+          {
+            "kind": "tableAdded",
+            "table": "jobs",
+            "after": {
+              "name": "jobs",
+              "columns": {
+                "id": {
+                  "name": "id",
+                  "type": "bigInteger",
+                  "nullable": false,
+                  "unsigned": true,
+                  "autoIncrement": true,
+                  "primary": true
+                },
+                "queue": {
+                  "name": "queue",
+                  "type": "string",
+                  "nullable": false,
+                  "length": 255
+                },
+                "payload": {
+                  "name": "payload",
+                  "type": "longText",
+                  "nullable": false
+                },
+                "attempts": {
+                  "name": "attempts",
+                  "type": "tinyInteger",
+                  "nullable": false,
+                  "unsigned": true
+                },
+                "reserved_at": {
+                  "name": "reserved_at",
+                  "type": "integer",
+                  "nullable": true,
+                  "unsigned": true
+                },
+                "available_at": {
+                  "name": "available_at",
+                  "type": "integer",
+                  "nullable": false,
+                  "unsigned": true
+                },
+                "created_at": {
+                  "name": "created_at",
+                  "type": "integer",
+                  "nullable": false,
+                  "unsigned": true
+                }
+              },
+              "indexes": {
+                "jobs_id_primary": {
+                  "name": "jobs_id_primary",
+                  "type": "primary",
+                  "columns": [
+                    "id"
+                  ]
+                },
+                "jobs_queue_index": {
+                  "name": "jobs_queue_index",
+                  "type": "index",
+                  "columns": [
+                    "queue"
+                  ]
+                }
+              },
+              "foreignKeys": {}
+            }
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "filename": "2024_09_27_095949_add_hero_image_additional_columns_to_articles.php",
+      "migrationName": "2024_09_27_095949_add_hero_image_additional_columns_to_articles",
+      "status": "failed",
+      "analysis": {
+        "operations": [
+          {
+            "kind": "renameColumn",
+            "table": "articles",
+            "from": "hero_image",
+            "to": "hero_image_id",
+            "source": {
+              "file": "2024_09_27_095949_add_hero_image_additional_columns_to_articles.php",
+              "line": 23,
+              "column": 12
+            }
+          }
+        ],
+        "diagnostics": [
+          {
+            "code": "UNSUPPORTED_BLUEPRINT",
+            "message": "Expected a static scalar literal; expressions are not evaluated.",
+            "source": {
+              "file": "2024_09_27_095949_add_hero_image_additional_columns_to_articles.php",
+              "line": 15,
+              "column": 12
+            }
+          }
+        ],
+        "complete": false
+      },
+      "schemaBefore": {
+        "tables": {
+          "job_batches": {
+            "name": "job_batches",
+            "columns": {
+              "id": {
+                "name": "id",
+                "type": "string",
+                "nullable": false,
+                "length": 255,
+                "primary": true
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "total_jobs": {
+                "name": "total_jobs",
+                "type": "integer",
+                "nullable": false
+              },
+              "pending_jobs": {
+                "name": "pending_jobs",
+                "type": "integer",
+                "nullable": false
+              },
+              "failed_jobs": {
+                "name": "failed_jobs",
+                "type": "integer",
+                "nullable": false
+              },
+              "failed_job_ids": {
+                "name": "failed_job_ids",
+                "type": "longText",
+                "nullable": false
+              },
+              "options": {
+                "name": "options",
+                "type": "mediumText",
+                "nullable": true
+              },
+              "cancelled_at": {
+                "name": "cancelled_at",
+                "type": "integer",
+                "nullable": true
+              },
+              "created_at": {
+                "name": "created_at",
+                "type": "integer",
+                "nullable": false
+              },
+              "finished_at": {
+                "name": "finished_at",
+                "type": "integer",
+                "nullable": true
+              }
+            },
+            "indexes": {
+              "job_batches_id_primary": {
+                "name": "job_batches_id_primary",
+                "type": "primary",
+                "columns": [
+                  "id"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          },
+          "jobs": {
+            "name": "jobs",
+            "columns": {
+              "id": {
+                "name": "id",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true,
+                "autoIncrement": true,
+                "primary": true
+              },
+              "queue": {
+                "name": "queue",
+                "type": "string",
+                "nullable": false,
+                "length": 255
+              },
+              "payload": {
+                "name": "payload",
+                "type": "longText",
+                "nullable": false
+              },
+              "attempts": {
+                "name": "attempts",
+                "type": "tinyInteger",
+                "nullable": false,
+                "unsigned": true
+              },
+              "reserved_at": {
+                "name": "reserved_at",
+                "type": "integer",
+                "nullable": true,
+                "unsigned": true
+              },
+              "available_at": {
+                "name": "available_at",
+                "type": "integer",
+                "nullable": false,
+                "unsigned": true
+              },
+              "created_at": {
+                "name": "created_at",
+                "type": "integer",
+                "nullable": false,
+                "unsigned": true
+              }
+            },
+            "indexes": {
+              "jobs_id_primary": {
+                "name": "jobs_id_primary",
+                "type": "primary",
+                "columns": [
+                  "id"
+                ]
+              },
+              "jobs_queue_index": {
+                "name": "jobs_queue_index",
+                "type": "index",
+                "columns": [
+                  "queue"
+                ]
+              }
+            },
+            "foreignKeys": {}
+          }
+        }
+      },
+      "schemaAfter": null,
+      "diff": null,
+      "diagnostics": [
+        {
+          "code": "UNSUPPORTED_BLUEPRINT",
+          "message": "Expected a static scalar literal; expressions are not evaluated.",
+          "source": {
+            "file": "2024_09_27_095949_add_hero_image_additional_columns_to_articles.php",
+            "line": 15,
+            "column": 12
+          },
+          "phase": "analysis",
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "filename": "2024_11_28_202608_add_bluesky_column_to_users.php",
+      "migrationName": "2024_11_28_202608_add_bluesky_column_to_users",
+      "status": "blocked",
+      "analysis": {
+        "operations": [],
+        "diagnostics": [
+          {
+            "code": "UNSUPPORTED_BLUEPRINT",
+            "message": "Unsupported column modifier: after",
+            "source": {
+              "file": "2024_11_28_202608_add_bluesky_column_to_users.php",
+              "line": 12,
+              "column": 12
+            }
+          }
+        ],
+        "complete": false
+      },
+      "schemaBefore": null,
+      "schemaAfter": null,
+      "diff": null,
+      "diagnostics": [
+        {
+          "code": "UNSUPPORTED_BLUEPRINT",
+          "message": "Unsupported column modifier: after",
+          "source": {
+            "file": "2024_11_28_202608_add_bluesky_column_to_users.php",
+            "line": 12,
+            "column": 12
+          },
+          "phase": "analysis",
+          "severity": "error"
+        },
+        {
+          "phase": "dependency",
+          "severity": "error",
+          "code": "SCHEMA_BLOCKED",
+          "message": "Schema is unknown after failed migration: 2024_09_27_095949_add_hero_image_additional_columns_to_articles.php",
+          "source": {
+            "file": "2024_11_28_202608_add_bluesky_column_to_users.php",
+            "line": 1,
+            "column": 0
+          }
+        }
+      ]
+    },
+    {
+      "filename": "2025_03_28_104443_add_sponsored_column_to_articles_table.php",
+      "migrationName": "2025_03_28_104443_add_sponsored_column_to_articles_table",
+      "status": "blocked",
+      "analysis": {
+        "operations": [],
+        "diagnostics": [
+          {
+            "code": "UNSUPPORTED_BLUEPRINT",
+            "message": "Unsupported column modifier: after",
+            "source": {
+              "file": "2025_03_28_104443_add_sponsored_column_to_articles_table.php",
+              "line": 12,
+              "column": 12
+            }
+          }
+        ],
+        "complete": false
+      },
+      "schemaBefore": null,
+      "schemaAfter": null,
+      "diff": null,
+      "diagnostics": [
+        {
+          "code": "UNSUPPORTED_BLUEPRINT",
+          "message": "Unsupported column modifier: after",
+          "source": {
+            "file": "2025_03_28_104443_add_sponsored_column_to_articles_table.php",
+            "line": 12,
+            "column": 12
+          },
+          "phase": "analysis",
+          "severity": "error"
+        },
+        {
+          "phase": "dependency",
+          "severity": "error",
+          "code": "SCHEMA_BLOCKED",
+          "message": "Schema is unknown after failed migration: 2024_09_27_095949_add_hero_image_additional_columns_to_articles.php",
+          "source": {
+            "file": "2025_03_28_104443_add_sponsored_column_to_articles_table.php",
+            "line": 1,
+            "column": 0
+          }
+        }
+      ]
+    },
+    {
+      "filename": "2025_06_14_222049_add_verified_author_at_to_users_table.php",
+      "migrationName": "2025_06_14_222049_add_verified_author_at_to_users_table",
+      "status": "blocked",
+      "analysis": {
+        "operations": [],
+        "diagnostics": [
+          {
+            "code": "UNSUPPORTED_BLUEPRINT",
+            "message": "Unsupported column modifier: after",
+            "source": {
+              "file": "2025_06_14_222049_add_verified_author_at_to_users_table.php",
+              "line": 12,
+              "column": 12
+            }
+          }
+        ],
+        "complete": false
+      },
+      "schemaBefore": null,
+      "schemaAfter": null,
+      "diff": null,
+      "diagnostics": [
+        {
+          "code": "UNSUPPORTED_BLUEPRINT",
+          "message": "Unsupported column modifier: after",
+          "source": {
+            "file": "2025_06_14_222049_add_verified_author_at_to_users_table.php",
+            "line": 12,
+            "column": 12
+          },
+          "phase": "analysis",
+          "severity": "error"
+        },
+        {
+          "phase": "dependency",
+          "severity": "error",
+          "code": "SCHEMA_BLOCKED",
+          "message": "Schema is unknown after failed migration: 2024_09_27_095949_add_hero_image_additional_columns_to_articles.php",
+          "source": {
+            "file": "2025_06_14_222049_add_verified_author_at_to_users_table.php",
+            "line": 1,
+            "column": 0
+          }
+        }
+      ]
+    },
+    {
+      "filename": "2025_09_11_152525_add_has_identicon_to_users_table.php",
+      "migrationName": "2025_09_11_152525_add_has_identicon_to_users_table",
+      "status": "blocked",
+      "analysis": {
+        "operations": [],
+        "diagnostics": [
+          {
+            "code": "UNSUPPORTED_BLUEPRINT",
+            "message": "Unsupported column modifier: after",
+            "source": {
+              "file": "2025_09_11_152525_add_has_identicon_to_users_table.php",
+              "line": 12,
+              "column": 12
+            }
+          }
+        ],
+        "complete": false
+      },
+      "schemaBefore": null,
+      "schemaAfter": null,
+      "diff": null,
+      "diagnostics": [
+        {
+          "code": "UNSUPPORTED_BLUEPRINT",
+          "message": "Unsupported column modifier: after",
+          "source": {
+            "file": "2025_09_11_152525_add_has_identicon_to_users_table.php",
+            "line": 12,
+            "column": 12
+          },
+          "phase": "analysis",
+          "severity": "error"
+        },
+        {
+          "phase": "dependency",
+          "severity": "error",
+          "code": "SCHEMA_BLOCKED",
+          "message": "Schema is unknown after failed migration: 2024_09_27_095949_add_hero_image_additional_columns_to_articles.php",
+          "source": {
+            "file": "2025_09_11_152525_add_has_identicon_to_users_table.php",
+            "line": 1,
+            "column": 0
+          }
+        }
+      ]
+    },
+    {
+      "filename": "2025_09_12_073227_add_new_indexes.php",
+      "migrationName": "2025_09_12_073227_add_new_indexes",
+      "status": "blocked",
+      "analysis": {
+        "operations": [
+          {
+            "kind": "addIndex",
+            "table": "likes",
+            "index": {
+              "name": "likes_likeable_id_likeable_type_index",
+              "type": "index",
+              "columns": [
+                "likeable_id",
+                "likeable_type"
+              ]
+            },
+            "source": {
+              "file": "2025_09_12_073227_add_new_indexes.php",
+              "line": 12,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addIndex",
+            "table": "likes",
+            "index": {
+              "name": "likes_likeable_id_likeable_type_created_at_index",
+              "type": "index",
+              "columns": [
+                "likeable_id",
+                "likeable_type",
+                "created_at"
+              ]
+            },
+            "source": {
+              "file": "2025_09_12_073227_add_new_indexes.php",
+              "line": 13,
+              "column": 12
+            }
+          },
+          {
+            "kind": "dropIndex",
+            "table": "taggables",
+            "name": "taggables_taggable_id_index",
+            "indexType": "index",
+            "source": {
+              "file": "2025_09_12_073227_add_new_indexes.php",
+              "line": 17,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addIndex",
+            "table": "taggables",
+            "index": {
+              "name": "taggables_taggable_id_taggable_type_index",
+              "type": "index",
+              "columns": [
+                "taggable_id",
+                "taggable_type"
+              ]
+            },
+            "source": {
+              "file": "2025_09_12_073227_add_new_indexes.php",
+              "line": 19,
+              "column": 12
+            }
+          },
+          {
+            "kind": "dropIndex",
+            "table": "replies",
+            "name": "replies_replyable_id_index",
+            "indexType": "index",
+            "source": {
+              "file": "2025_09_12_073227_add_new_indexes.php",
+              "line": 23,
+              "column": 12
+            }
+          },
+          {
+            "kind": "dropIndex",
+            "table": "replies",
+            "name": "replies_replyable_type_index",
+            "indexType": "index",
+            "source": {
+              "file": "2025_09_12_073227_add_new_indexes.php",
+              "line": 24,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addIndex",
+            "table": "replies",
+            "index": {
+              "name": "replies_replyable_id_replyable_type_index",
+              "type": "index",
+              "columns": [
+                "replyable_id",
+                "replyable_type"
+              ]
+            },
+            "source": {
+              "file": "2025_09_12_073227_add_new_indexes.php",
+              "line": 26,
+              "column": 12
+            }
+          }
+        ],
+        "diagnostics": [],
+        "complete": true
+      },
+      "schemaBefore": null,
+      "schemaAfter": null,
+      "diff": null,
+      "diagnostics": [
+        {
+          "phase": "dependency",
+          "severity": "error",
+          "code": "SCHEMA_BLOCKED",
+          "message": "Schema is unknown after failed migration: 2024_09_27_095949_add_hero_image_additional_columns_to_articles.php",
+          "source": {
+            "file": "2025_09_12_073227_add_new_indexes.php",
+            "line": 1,
+            "column": 0
+          }
+        }
+      ]
+    },
+    {
+      "filename": "2025_11_05_195225_create_cache_table.php",
+      "migrationName": "2025_11_05_195225_create_cache_table",
+      "status": "blocked",
+      "analysis": {
+        "operations": [
+          {
+            "kind": "createTable",
+            "table": "cache",
+            "source": {
+              "file": "2025_11_05_195225_create_cache_table.php",
+              "line": 14,
+              "column": 8
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "cache",
+            "column": {
+              "name": "key",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            },
+            "source": {
+              "file": "2025_11_05_195225_create_cache_table.php",
+              "line": 15,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "cache",
+            "column": {
+              "name": "value",
+              "type": "mediumText",
+              "nullable": false
+            },
+            "source": {
+              "file": "2025_11_05_195225_create_cache_table.php",
+              "line": 16,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "cache",
+            "column": {
+              "name": "expiration",
+              "type": "integer",
+              "nullable": false
+            },
+            "source": {
+              "file": "2025_11_05_195225_create_cache_table.php",
+              "line": 17,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addIndex",
+            "table": "cache",
+            "index": {
+              "name": "cache_key_primary",
+              "type": "primary",
+              "columns": [
+                "key"
+              ]
+            },
+            "source": {
+              "file": "2025_11_05_195225_create_cache_table.php",
+              "line": 15,
+              "column": 12
+            }
+          },
+          {
+            "kind": "createTable",
+            "table": "cache_locks",
+            "source": {
+              "file": "2025_11_05_195225_create_cache_table.php",
+              "line": 20,
+              "column": 8
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "cache_locks",
+            "column": {
+              "name": "key",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            },
+            "source": {
+              "file": "2025_11_05_195225_create_cache_table.php",
+              "line": 21,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "cache_locks",
+            "column": {
+              "name": "owner",
+              "type": "string",
+              "nullable": false,
+              "length": 255
+            },
+            "source": {
+              "file": "2025_11_05_195225_create_cache_table.php",
+              "line": 22,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addColumn",
+            "table": "cache_locks",
+            "column": {
+              "name": "expiration",
+              "type": "integer",
+              "nullable": false
+            },
+            "source": {
+              "file": "2025_11_05_195225_create_cache_table.php",
+              "line": 23,
+              "column": 12
+            }
+          },
+          {
+            "kind": "addIndex",
+            "table": "cache_locks",
+            "index": {
+              "name": "cache_locks_key_primary",
+              "type": "primary",
+              "columns": [
+                "key"
+              ]
+            },
+            "source": {
+              "file": "2025_11_05_195225_create_cache_table.php",
+              "line": 21,
+              "column": 12
+            }
+          }
+        ],
+        "diagnostics": [],
+        "complete": true
+      },
+      "schemaBefore": null,
+      "schemaAfter": null,
+      "diff": null,
+      "diagnostics": [
+        {
+          "phase": "dependency",
+          "severity": "error",
+          "code": "SCHEMA_BLOCKED",
+          "message": "Schema is unknown after failed migration: 2024_09_27_095949_add_hero_image_additional_columns_to_articles.php",
+          "source": {
+            "file": "2025_11_05_195225_create_cache_table.php",
+            "line": 1,
+            "column": 0
+          }
+        }
+      ]
+    }
+  ],
+  "diagnostics": [
+    {
+      "code": "UNSUPPORTED_BLUEPRINT",
+      "message": "Expected a static scalar literal; expressions are not evaluated.",
+      "source": {
+        "file": "2024_09_27_095949_add_hero_image_additional_columns_to_articles.php",
+        "line": 15,
+        "column": 12
+      },
+      "phase": "analysis",
+      "severity": "error"
+    },
+    {
+      "code": "UNSUPPORTED_BLUEPRINT",
+      "message": "Unsupported column modifier: after",
+      "source": {
+        "file": "2024_11_28_202608_add_bluesky_column_to_users.php",
+        "line": 12,
+        "column": 12
+      },
+      "phase": "analysis",
+      "severity": "error"
+    },
+    {
+      "phase": "dependency",
+      "severity": "error",
+      "code": "SCHEMA_BLOCKED",
+      "message": "Schema is unknown after failed migration: 2024_09_27_095949_add_hero_image_additional_columns_to_articles.php",
+      "source": {
+        "file": "2024_11_28_202608_add_bluesky_column_to_users.php",
+        "line": 1,
+        "column": 0
+      }
+    },
+    {
+      "code": "UNSUPPORTED_BLUEPRINT",
+      "message": "Unsupported column modifier: after",
+      "source": {
+        "file": "2025_03_28_104443_add_sponsored_column_to_articles_table.php",
+        "line": 12,
+        "column": 12
+      },
+      "phase": "analysis",
+      "severity": "error"
+    },
+    {
+      "phase": "dependency",
+      "severity": "error",
+      "code": "SCHEMA_BLOCKED",
+      "message": "Schema is unknown after failed migration: 2024_09_27_095949_add_hero_image_additional_columns_to_articles.php",
+      "source": {
+        "file": "2025_03_28_104443_add_sponsored_column_to_articles_table.php",
+        "line": 1,
+        "column": 0
+      }
+    },
+    {
+      "code": "UNSUPPORTED_BLUEPRINT",
+      "message": "Unsupported column modifier: after",
+      "source": {
+        "file": "2025_06_14_222049_add_verified_author_at_to_users_table.php",
+        "line": 12,
+        "column": 12
+      },
+      "phase": "analysis",
+      "severity": "error"
+    },
+    {
+      "phase": "dependency",
+      "severity": "error",
+      "code": "SCHEMA_BLOCKED",
+      "message": "Schema is unknown after failed migration: 2024_09_27_095949_add_hero_image_additional_columns_to_articles.php",
+      "source": {
+        "file": "2025_06_14_222049_add_verified_author_at_to_users_table.php",
+        "line": 1,
+        "column": 0
+      }
+    },
+    {
+      "code": "UNSUPPORTED_BLUEPRINT",
+      "message": "Unsupported column modifier: after",
+      "source": {
+        "file": "2025_09_11_152525_add_has_identicon_to_users_table.php",
+        "line": 12,
+        "column": 12
+      },
+      "phase": "analysis",
+      "severity": "error"
+    },
+    {
+      "phase": "dependency",
+      "severity": "error",
+      "code": "SCHEMA_BLOCKED",
+      "message": "Schema is unknown after failed migration: 2024_09_27_095949_add_hero_image_additional_columns_to_articles.php",
+      "source": {
+        "file": "2025_09_11_152525_add_has_identicon_to_users_table.php",
+        "line": 1,
+        "column": 0
+      }
+    },
+    {
+      "phase": "dependency",
+      "severity": "error",
+      "code": "SCHEMA_BLOCKED",
+      "message": "Schema is unknown after failed migration: 2024_09_27_095949_add_hero_image_additional_columns_to_articles.php",
+      "source": {
+        "file": "2025_09_12_073227_add_new_indexes.php",
+        "line": 1,
+        "column": 0
+      }
+    },
+    {
+      "phase": "dependency",
+      "severity": "error",
+      "code": "SCHEMA_BLOCKED",
+      "message": "Schema is unknown after failed migration: 2024_09_27_095949_add_hero_image_additional_columns_to_articles.php",
+      "source": {
+        "file": "2025_11_05_195225_create_cache_table.php",
+        "line": 1,
+        "column": 0
+      }
+    }
+  ],
+  "initialSchema": {
+    "tables": {}
+  },
+  "finalSchema": null,
+  "lastValidSchema": {
+    "tables": {
+      "job_batches": {
+        "name": "job_batches",
+        "columns": {
+          "id": {
+            "name": "id",
+            "type": "string",
+            "nullable": false,
+            "length": 255,
+            "primary": true
+          },
+          "name": {
+            "name": "name",
+            "type": "string",
+            "nullable": false,
+            "length": 255
+          },
+          "total_jobs": {
+            "name": "total_jobs",
+            "type": "integer",
+            "nullable": false
+          },
+          "pending_jobs": {
+            "name": "pending_jobs",
+            "type": "integer",
+            "nullable": false
+          },
+          "failed_jobs": {
+            "name": "failed_jobs",
+            "type": "integer",
+            "nullable": false
+          },
+          "failed_job_ids": {
+            "name": "failed_job_ids",
+            "type": "longText",
+            "nullable": false
+          },
+          "options": {
+            "name": "options",
+            "type": "mediumText",
+            "nullable": true
+          },
+          "cancelled_at": {
+            "name": "cancelled_at",
+            "type": "integer",
+            "nullable": true
+          },
+          "created_at": {
+            "name": "created_at",
+            "type": "integer",
+            "nullable": false
+          },
+          "finished_at": {
+            "name": "finished_at",
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "indexes": {
+          "job_batches_id_primary": {
+            "name": "job_batches_id_primary",
+            "type": "primary",
+            "columns": [
+              "id"
+            ]
+          }
+        },
+        "foreignKeys": {}
+      },
+      "jobs": {
+        "name": "jobs",
+        "columns": {
+          "id": {
+            "name": "id",
+            "type": "bigInteger",
+            "nullable": false,
+            "unsigned": true,
+            "autoIncrement": true,
+            "primary": true
+          },
+          "queue": {
+            "name": "queue",
+            "type": "string",
+            "nullable": false,
+            "length": 255
+          },
+          "payload": {
+            "name": "payload",
+            "type": "longText",
+            "nullable": false
+          },
+          "attempts": {
+            "name": "attempts",
+            "type": "tinyInteger",
+            "nullable": false,
+            "unsigned": true
+          },
+          "reserved_at": {
+            "name": "reserved_at",
+            "type": "integer",
+            "nullable": true,
+            "unsigned": true
+          },
+          "available_at": {
+            "name": "available_at",
+            "type": "integer",
+            "nullable": false,
+            "unsigned": true
+          },
+          "created_at": {
+            "name": "created_at",
+            "type": "integer",
+            "nullable": false,
+            "unsigned": true
+          }
+        },
+        "indexes": {
+          "jobs_id_primary": {
+            "name": "jobs_id_primary",
+            "type": "primary",
+            "columns": [
+              "id"
+            ]
+          },
+          "jobs_queue_index": {
+            "name": "jobs_queue_index",
+            "type": "index",
+            "columns": [
+              "queue"
+            ]
+          }
+        },
+        "foreignKeys": {}
+      }
+    }
+  },
+  "appliedCount": 2
+}

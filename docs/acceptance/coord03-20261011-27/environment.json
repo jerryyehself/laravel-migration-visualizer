@@ -1,0 +1,21 @@
+{
+  "productSHA": "2b8030a7d19963980190ba860888f243883b6d7b",
+  "branch": "work",
+  "beforeAndAfterProductChecksClean": true,
+  "node": "22.23.3",
+  "npm": "10.9.9",
+  "playwright": "1.62.0",
+  "chromium": "154.0.8037.57",
+  "server": "Vite 7.3.6, 127.0.0.1:5202 --strictPort",
+  "workflow": "COORD03 only, fixed R7 contract",
+  "environmentDraft": "efe792f3-4164-4e9e-b140-df54e2fc7cc5~cecfgdraft_6acb6d8aa73c8192b3130f84946ea2c5",
+  "configSaved": [
+    "install_script",
+    "start_skill"
+  ],
+  "requiresPublish": true,
+  "snapshotReference": "623975a5d26bf906ccb03e966cd62661e6629b09",
+  "priorBlockedReportReference": "362f32316deb288976deb2df6f543cb75b97a472",
+  "timeTaipei": "2026-10-11T19:09:23.969886+08:00",
+  "browserPermissionEvidence": "Current shell tool executed installed Python Playwright/Chromium and local navigation successfully; no current denial, no Cloud Browser tool available or called; no permission settings or CDP changed."
+}

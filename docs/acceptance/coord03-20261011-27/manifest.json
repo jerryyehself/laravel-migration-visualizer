@@ -1,0 +1,141 @@
+{
+  "productSHA": "2b8030a7d19963980190ba860888f243883b6d7b",
+  "task": "COORD-20261011-27 / COORD03",
+  "files": [
+    {
+      "path": "bookstack-browser-dto.json",
+      "sha256": "19b83a839d86bb0a4cf498302bd3d6da39289af0327f09d527746faf75b73c5c",
+      "bytes": 526000
+    },
+    {
+      "path": "bookstack-unknown.png",
+      "sha256": "d84c1425afb200fb6d9aeeed46788577885263aaf09d6faeb16963b80d9fb1f9",
+      "bytes": 201136
+    },
+    {
+      "path": "environment.json",
+      "sha256": "aa72efd60d5d53b3162390dd97098a4ac91e4635552fecdb70e64921613ef756",
+      "bytes": 956
+    },
+    {
+      "path": "independent-browser.json",
+      "sha256": "f3c4a679083d3be99d89c5aaaf47f09b3bec26eec1d81319e6aac57008479523",
+      "bytes": 3666
+    },
+    {
+      "path": "independent-browser.log",
+      "sha256": "e990e0b6ddebc66e62a600fe9aba376018ff0e6051346c2e24f90a330e8fd910",
+      "bytes": 2933
+    },
+    {
+      "path": "independent-browser.py",
+      "sha256": "c337fc0c4b39126b41e701f637490765803664f9bf4afd7e56dcae79665eab4e",
+      "bytes": 9877
+    },
+    {
+      "path": "independent-first-failure.log",
+      "sha256": "f2685dbe89fa41750fd7fc17aa4872946446af47845806fee612b5ab341455b0",
+      "bytes": 1101
+    },
+    {
+      "path": "independent-second-failure.log",
+      "sha256": "f2685dbe89fa41750fd7fc17aa4872946446af47845806fee612b5ab341455b0",
+      "bytes": 1101
+    },
+    {
+      "path": "ir-document-checks.json",
+      "sha256": "c211f2fa9033dffe4426460d338d0baf0b8536b7fe3cca3463b2239ae535a160",
+      "bytes": 1433
+    },
+    {
+      "path": "laravelio-browser-dto.json",
+      "sha256": "cf3456895c2b3646041908146df5e65b550f341a471a9466dcd64a7ff7619264",
+      "bytes": 48609
+    },
+    {
+      "path": "laravelio-unknown.png",
+      "sha256": "90abe34ff4850827dbac3b24a687842cd0a208a50d1ec08cbe948e9e07531e1b",
+      "bytes": 206141
+    },
+    {
+      "path": "r7-browser.json",
+      "sha256": "59d68ae38df73fc9eeeba8f606000882854add05a8cb2bc09171d010bb8dba39",
+      "bytes": 1220
+    },
+    {
+      "path": "r7-workspace-narrow.png",
+      "sha256": "fe92ec153ab33231be20004aabfe9773b789cab8946ac101ea8b41cfb565f524",
+      "bytes": 805503
+    },
+    {
+      "path": "r7-workspace.png",
+      "sha256": "97e66136aca48bf94c6612c7785982a0cc304928421cb8ef340fa6f686dce1f9",
+      "bytes": 195766
+    },
+    {
+      "path": "repo-source-return-run.log",
+      "sha256": "c691acd55b71f013586c19a69016dd1309add05016c32c77487501ee0945ceb2",
+      "bytes": 341
+    },
+    {
+      "path": "repo-workspace-run.log",
+      "sha256": "59d68ae38df73fc9eeeba8f606000882854add05a8cb2bc09171d010bb8dba39",
+      "bytes": 1220
+    },
+    {
+      "path": "report.zh-TW.md",
+      "sha256": "ce57b4a80f665fa0cc1ef9dadb4f5a4c8644772e09b09e807f27451e779c6cb8",
+      "bytes": 9745
+    },
+    {
+      "path": "sample-summary.json",
+      "sha256": "fd4f7f2d91371c60f716a4770b4507976074d34529b43cd19dbbc0d1207ed85b",
+      "bytes": 248441
+    },
+    {
+      "path": "source-hashes.json",
+      "sha256": "59afee7ce1f1aa3ffbf2cc7273d97fa27c3d9d519c240c67c7bdfea4f7b95111",
+      "bytes": 46736
+    },
+    {
+      "path": "source-return-browser.json",
+      "sha256": "c691acd55b71f013586c19a69016dd1309add05016c32c77487501ee0945ceb2",
+      "bytes": 341
+    },
+    {
+      "path": "source-return-desktop.png",
+      "sha256": "a4e83cf3a008c4ea784e36075b928db3f429b4ed3aab7d44e792bc86606172aa",
+      "bytes": 168227
+    },
+    {
+      "path": "source-return-restored.png",
+      "sha256": "a4e83cf3a008c4ea784e36075b928db3f429b4ed3aab7d44e792bc86606172aa",
+      "bytes": 168227
+    },
+    {
+      "path": "verification.json",
+      "sha256": "2f7e88ac7a363302b19466e59755f78a87df2fac98d50ab2326895baabe8d30c",
+      "bytes": 1227
+    },
+    {
+      "path": "verify.log",
+      "sha256": "a42dce77227cff11ea5f971e8bc0edd6875bcbf86a5e017516f3606948f69675",
+      "bytes": 166300
+    },
+    {
+      "path": "workspace-390.png",
+      "sha256": "42eb1f27ffc5eeefa643e413fc9a83f9046e3d58abb9c9fc8eb16aec7a658c0a",
+      "bytes": 819332
+    }
+  ],
+  "screenshots": [
+    "bookstack-unknown.png",
+    "laravelio-unknown.png",
+    "r7-workspace-narrow.png",
+    "r7-workspace.png",
+    "source-return-desktop.png",
+    "source-return-restored.png",
+    "workspace-390.png"
+  ],
+  "note": "Manifest excludes itself; screenshots and logs are from this run; initial harness failures retained."
+}
