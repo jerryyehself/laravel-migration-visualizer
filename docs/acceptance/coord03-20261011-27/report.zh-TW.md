@@ -77,3 +77,5 @@ python /workspace/.tools/coord03-independent.py
 環境 draft 已保存，尚未發布；新任務 snapshot 還原未驗證。本輪使用 headless Chromium，不宣稱跨瀏覽器／真人可用性／所有可及性或大型 UI 效能。下載互動／落盤持續暫緩，只查 disabled 控制項與 DOM JSON，沒有按下載。沒有產品修改、額外外部帳號／費用／權限變更、部署或 release。
 
 **停止於 COORD03 完成，等待協調端回收結果；COORD06 及其餘 R8 六版尚未驗收，本輪不自行接續。**
+
+文件分支已成功 push；第一次報告 commit `15614cf38dfb3740c0945400ac23979aba6436c9`。建立 PR 的實際 `gh pr create --base main --head docs/independent-coord03-20261011-27 --title … --body-file /tmp/coord03-pr-body.md` 回覆 `Post "https://api.github.com/graphql": Forbidden`（exit 1），因此本輪未建立 PR、無 PR URL，也未取得新報告 CI 狀態。這是報告交付 API 阻礙，不是 browser／產品驗收失敗；未修改權限或要求新 token。最終補存此阻礙紀錄的 reportSHA 由最終回覆提供，可用 Git fetch 分支取得全部證據。

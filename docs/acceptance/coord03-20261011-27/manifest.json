@@ -13,6 +13,11 @@
       "bytes": 201136
     },
     {
+      "path": "delivery.json",
+      "sha256": "a7b0f56d7ffafe61e2c803514bcb6e09ef216893c3f6dfbe700ee53654a0d1ab",
+      "bytes": 435
+    },
+    {
       "path": "environment.json",
       "sha256": "aa72efd60d5d53b3162390dd97098a4ac91e4635552fecdb70e64921613ef756",
       "bytes": 956
@@ -84,8 +89,8 @@
     },
     {
       "path": "report.zh-TW.md",
-      "sha256": "ce57b4a80f665fa0cc1ef9dadb4f5a4c8644772e09b09e807f27451e779c6cb8",
-      "bytes": 9745
+      "sha256": "ce937b426fadde2b367f814b9a3fb9c3700bd70a3914d7fd0e493f390c207233",
+      "bytes": 10344
     },
     {
       "path": "sample-summary.json",
