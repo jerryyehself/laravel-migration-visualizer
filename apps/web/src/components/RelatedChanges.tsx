@@ -1,4 +1,4 @@
-import { useEffect,useState,useId } from 'react';
+import { useEffect,useState,useId,useRef } from 'react';
 import type { ProjectAnalysis, TableState } from '@lmv/migration-core';
 import { relatedChanges,type Evidence } from '../related-changes';
 import { operationLabel } from '../migration-reading';
@@ -8,10 +8,12 @@ const labels:Record<Evidence,string>={structure:'結構差異',index:'索引上�
 const status={applied:'靜態已套用',failed:'失敗：未套用',blocked:'前序阻擋：未套用'};
 const availability={available:'存在','object-absent':'不存在','snapshot-unknown':'快照未知'};
 export function RelatedChanges({result,query,onQuery,onStep,onSource}:{result:ProjectAnalysis;query?:StructureQuery;onQuery:(query:StructureQuery)=>void;onStep:(index:number,side:'before'|'after'|'diff',query:StructureQuery)=>void;onSource:SourceNavigation}){
+ const panel=useRef<HTMLElement>(null);
+ useEffect(()=>{if(query){panel.current?.focus({preventScroll:true});panel.current?.scrollIntoView({block:'start'});}},[query]);
  const id=useId();const [table,setTable]=useState(query?.table??'');const [column,setColumn]=useState(query?.column??'');
  useEffect(()=>{setTable(query?.table??'');setColumn(query?.column??'');},[query?.table,query?.column]);
  const reading=query?relatedChanges(result,query):null;
- return <section className="related-changes" aria-label="名稱相關步驟"><h3>相關變更 · 精確名稱</h3><p>名稱相關步驟，不追蹤物件身分。查詢不改完整 migration 順序、schema 或匯出。</p>
+ return <section ref={panel} tabIndex={-1} className="related-changes" aria-label="名稱相關步驟"><h3>相關變更 · 精確名稱</h3><p>名稱相關步驟，不追蹤物件身分。查詢不改完整 migration 順序、schema 或匯出。</p>
  <form onSubmit={e=>{e.preventDefault();if(table.length)onQuery({table,...(column.length?{column}:{})});}}>
  <label htmlFor={`${id}-table`}>精確資料表名稱</label><input id={`${id}-table`} value={table} onChange={e=>setTable(e.target.value)} required/>
  <label htmlFor={`${id}-column`}>精確欄位名稱（留空查整表）</label><input id={`${id}-column`} value={column} onChange={e=>setColumn(e.target.value)}/><button type="submit" disabled={!table.length}>查詢名稱相關步驟</button></form>

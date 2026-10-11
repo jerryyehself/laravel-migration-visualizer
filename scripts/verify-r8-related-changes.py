@@ -15,7 +15,7 @@ with sync_playwright() as p:
   page.locator('#project-example').select_option(str(i));page.get_by_role('button',name='分析專案',exact=True).click();page.locator('.reading-workspace .migration-list button').nth(step).click()
  def panel():return page.get_by_label('名稱相關步驟',exact=True)
  def lookup(table,column=''):
-  panel().get_by_label('精確資料表名稱',exact=True).fill(table);panel().get_by_label('精確欄位名稱（留空查整表）',exact=True).fill(column);panel().get_by_role('button',name='查詢名稱相關步驟',exact=True).click()
+  panel().get_by_label('精確資料表名稱',exact=True).fill(table);panel().get_by_label('精確欄位名稱（留空查整表）',exact=True).fill(column);panel().get_by_role('button',name='查詢名稱相關步驟',exact=True).click();expect(panel()).to_be_focused()
  def rows():return panel().locator('ol > li')
  def header():return page.locator('.workspace-controls').inner_text()
  example(1,1)
@@ -52,9 +52,9 @@ with sync_playwright() as p:
  lookup('unknown','nickname');expect(panel()).to_contain_text('沒有相關證據不等於沒有變化');assert rows().count()==0
  record('no evidence in incomplete project never claims no future changes')
  page.set_viewport_size({'width':390,'height':844});example(1,1);lookup('users','nickname');button=rows().nth(1).get_by_role('button',name='查看此步比較',exact=True);button.focus();button.press('Enter');expect(panel()).to_contain_text('查詢：users.nickname');assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
- Path('artifacts').mkdir(exist_ok=True);panel().scroll_into_view_if_needed();page.screenshot(path='artifacts/r8-3-narrow.png')
+ Path('artifacts').mkdir(exist_ok=True);panel().evaluate('(e)=>e.scrollIntoView({block:"start"})');page.screenshot(path='artifacts/r8-3-narrow.png')
  record('390px keyboard related-step navigation has no horizontal overflow')
- page.set_viewport_size({'width':1440,'height':1100});panel().scroll_into_view_if_needed();page.screenshot(path='artifacts/r8-3-desktop.png')
+ page.set_viewport_size({'width':1440,'height':1100});panel().evaluate('(e)=>e.scrollIntoView({block:"start"})');page.screenshot(path='artifacts/r8-3-desktop.png')
  assert not errors,errors
  browser.close()
 Path('artifacts/r8-3-browser.json').write_text(json.dumps({'commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'passed':checks,'consoleErrors':errors},ensure_ascii=False,indent=2)+'\n')
