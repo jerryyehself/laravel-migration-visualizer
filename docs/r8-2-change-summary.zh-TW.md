@@ -33,3 +33,5 @@ core 是 domain service，SchemaChange 是其回應 DTO。adapter 像 controller
 R8.2 in_progress／ready for review、issue #140 保持 OPEN，整批 R8 未完成、milestone #43 OPEN；R8.3～6 未開工。需協調端安排新固定 head 的獨立複驗，依賴 R8.1 通過／合併後才能整合；不啟動 automerge。main 核對仍是 2b8030a7d19963980190ba860888f243883b6d7b。
 
 沒有新增資料庫安全判斷、rename 身分、任意時間 diff、來源推測、下載落盤、正式部署或 release。未知快照不借最後可信前綴補值。完整進階 JSON 入口仍存在；摘要不是完整 Laravel／DB runtime 支援。
+
+可審查 stacked PR：[R8.2 #146](https://github.com/jerryyehself/laravel-migration-visualizer/pull/146)，base feat/r8-1-main-flow，head feat/r8-2-change-summary。current head／CI 以 GitHub 紀錄為準，依賴 #145 未合併，獨立驗收 pending。
