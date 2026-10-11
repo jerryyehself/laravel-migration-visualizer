@@ -1,0 +1,24 @@
+
+ RUN  v5.0.2 /workspace/laravel-migration-visualizer
+
+ ❯ apps/web/tests/change-summary.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/tests/change-summary.test.ts [ apps/web/tests/change-summary.test.ts ]
+Error: Cannot find module '../src/change-summary' imported from /workspace/laravel-migration-visualizer/apps/web/tests/change-summary.test.ts
+ ❯ apps/web/tests/change-summary.test.ts:2:1
+      1| import { describe, expect, it } from 'vitest';
+      2| import { summarizeChanges, displayValue } from '../src/change-summary';
+       | ^
+      3| import type { Column, SchemaDiff } from '@lmv/migration-core';
+      4| const column:Column={name:'price',type:'decimal',precision:8,scale:2,n…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  04:59:29
+   Duration  289ms (worker 98%, environment 2%)
+

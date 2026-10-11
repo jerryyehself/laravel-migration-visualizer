@@ -21,7 +21,7 @@ with sync_playwright() as p:
     page.locator('.reading-workspace .migration-list button').nth(1).click()
     page.get_by_label('搜尋目前快照欄位', exact=True).fill('display_name')
     page.get_by_role('button', name='查看欄位 users.display_name', exact=True).click()
-    origin = page.locator('[aria-label="操作來源 users.display_name"] button').first.element_handle()
+    origin = page.locator('.workspace-details [aria-label="操作來源 users.display_name"] button').first.element_handle()
     for collapse in [False, True]:
         origin.click()
         if collapse:

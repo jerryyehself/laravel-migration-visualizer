@@ -91,3 +91,7 @@ R8 更新 R7 的 view 重設／欄位清除及相鄰顯示整理範圍，但不�
 [milestone／六項 issue 全文與接手入口](proposals/R8-work-items/README.md) 已保存；研究端 gh api 唯讀請求 Forbidden、當前網路未允許 api.github.com，實際 GitHub records 未建立，沒有編號可報。研究端只做文件，具 API 權限的實作 session 先查重再建立，回填真正 URL。文件保存不代表實作或交付。
 
 COORD-20261011-04 只交付 R8.1 待審查分支：mounted 多檔 state、收合副本管理、單一 11 示範入口、首要診斷與工具返回焦點；core／JSON 不變。R8.2～6 尚未開始，不以已核准整批擴大本次派工。
+
+## COORD-20261011-08：R8.2 交付停點
+
+只接續 #140／R8.2，輸入 f9b42c8c220841d40978db48969feaba8c52dc43，產品 444fc9c99f7acf99f2824730ee32c0ca3e56b08d；684 tests／12 demos／15 verify 步驟及 12+14+16+9 browser 自測通過。R8.1 #145 保持固定 head／OPEN，獨立驗收仍 pending；R8.2 ready for review，stacked PR 待前批驗收／合併，不合併 main、不開始 R8.3～6。milestone #43／所有工作項目保持未完成。教學與可攜 manifest 見 docs/r8-2-change-summary.zh-TW.md、docs/acceptance/r8-2-evidence/manifest.json。

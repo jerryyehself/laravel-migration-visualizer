@@ -1,0 +1,29 @@
+{
+  "inputCommit": "f9b42c8c220841d40978db48969feaba8c52dc43",
+  "productCommit": "444fc9c99f7acf99f2824730ee32c0ca3e56b08d",
+  "tests": 684,
+  "coreTests": 540,
+  "webTests": 144,
+  "verifyCommands": 15,
+  "demos": 12,
+  "browserGroups": {
+    "r8_2": 12,
+    "r8_1": 14,
+    "r7": 16,
+    "sourceReturn": 9
+  },
+  "consoleErrors": [],
+  "scope": "R8.2 only; stacked on unmerged R8.1; independent acceptance pending; no merge",
+  "files": {
+    "adapter-first-failure.txt": "c47b1f82db85d3f9918afebb2d4071e594b3331da52ef0d20591d9542412cf35",
+    "browser-first-failure.txt": "b15cbd0f8f95f70273aa2cb4c8ad8c8765881c44f0ae07d4238efed07d4a8a0f",
+    "browser-input-selection-failure.txt": "4572b2eae78770a62f61711f8b77d3a59bc8741b461073ebb72d7daac461b9f4",
+    "browser.json": "a1ce5e4e97f8e0eea349fef130dd991158e2ed8cafb45b53c0c62896fc55485b",
+    "desktop.png": "1825a6dbd3182154afdacf3d54b7598e99d573d600760967634c20f39a3f6874",
+    "narrow.png": "345a9a83e54b6c79bae8752354da9d5fdd4671a0d9b887698ec2f0bf877e6573",
+    "r7-regression.json": "59d68ae38df73fc9eeeba8f606000882854add05a8cb2bc09171d010bb8dba39",
+    "r8-1-regression.json": "67422a3bc79078b7957d00bc95d8710cc6fde5730551b8f107527f88016b1d9b",
+    "source-return.json": "c691acd55b71f013586c19a69016dd1309add05016c32c77487501ee0945ceb2",
+    "verification.json": "e01ed1fecb7eee586e299878a8eab8329893e901586839d8686bcfe837fcc091"
+  }
+}

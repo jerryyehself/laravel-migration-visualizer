@@ -1,0 +1,75 @@
+"""R8.2 real Chromium checks; uses existing environment, no downloads."""
+import json, os, subprocess
+from pathlib import Path
+from playwright.sync_api import sync_playwright, expect
+checks=[]
+with sync_playwright() as p:
+ browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox'])
+ page=browser.new_page(viewport={'width':1440,'height':1100})
+ errors=[]
+ page.on('console',lambda m:errors.append(m.text) if m.type in ['error','warning'] else None)
+ page.on('pageerror',lambda e:errors.append(str(e)))
+ page.goto(os.environ.get('LMV_TEST_URL','http://127.0.0.1:5202'))
+ def record(s): checks.append(s);print(s,flush=True)
+ def example(i,step):
+  if not page.locator('.sample-menu').evaluate('(e)=>e.open'):page.locator('.sample-menu > summary').click()
+  page.locator('#project-example').select_option(str(i))
+  page.get_by_role('button',name='分析專案',exact=True).click()
+  page.locator('.reading-workspace .migration-list button').nth(step).click()
+ def summary():return page.get_by_label('跨表屬性變更摘要',exact=True)
+ example(2,6)
+ s=summary();expect(s).to_contain_text('decimal(8,2)');expect(s).to_contain_text('decimal(10,2)');expect(s).to_contain_text('Before false');expect(s).to_contain_text('After true');expect(s).to_contain_text('Before 未指定');expect(s).to_contain_text('After 0')
+ assert s.count()==1
+ assert s.evaluate("s=>!!(s.compareDocumentPosition([...document.querySelectorAll('section')].find(e=>e.getAttribute('aria-label')==='Schema 快照檢視'))&Node.DOCUMENT_POSITION_FOLLOWING)")
+ record('commerce decimal dimensions, nullable and absent default to zero visible without raw JSON')
+ for side in ['Before','After']:
+  button=s.get_by_role('button',name=f'{side} · price · 查看明細',exact=True);button.focus();button.press('Enter')
+  expect(page.locator('.workspace-controls')).to_contain_text('套用前' if side=='Before' else '套用後')
+  expect(page.locator('.workspace-details')).to_contain_text('price')
+ record('keyboard changed-column navigation uses each trusted snapshot')
+ s.locator('details > summary').first.click()
+ origin=s.get_by_role('button',name='查看 PHP 來源',exact=False).last
+ origin.click();expect(page.get_by_label('結構操作原始碼',exact=True)).to_be_visible()
+ page.get_by_role('button',name='返回原結構選取',exact=True).click();expect(origin).to_be_focused()
+ record('name-indexed source navigation returns focus to summary without identity inference')
+ page.locator('.workspace-controls').get_by_role('button',name='前後比較',exact=True).click();assert summary().count()==1
+ assert s.evaluate("s=>!!(s.compareDocumentPosition([...document.querySelectorAll('section')].find(e=>e.getAttribute('aria-label')==='Schema 快照檢視'))&Node.DOCUMENT_POSITION_FOLLOWING)")
+ record('comparison shows one primary summary before graphs')
+ Path('artifacts').mkdir(exist_ok=True)
+ s.scroll_into_view_if_needed();page.screenshot(path='artifacts/r8-2-desktop.png')
+ example(5,2);s=summary()
+ expect(s).to_contain_text('所屬表 · posts');expect(s).to_contain_text('所屬表 · users');expect(s).to_contain_text('posts_user_id_foreign');expect(s).to_contain_text('posts_author_fk');expect(s).to_contain_text('引用表不代表被修改')
+ old=s.locator('article').filter(has=page.locator('h5',has_text='posts_user_id_foreign'))
+ new=s.locator('article').filter(has=page.locator('h5',has_text='posts_author_fk'))
+ expect(old.get_by_role('button',name='Before · posts_user_id_foreign · 查看明細',exact=True)).to_be_enabled()
+ expect(new.get_by_role('button',name='After · posts_author_fk · 查看明細',exact=True)).to_be_enabled()
+ old.get_by_role('button',name='Before · 引用欄位 users.id · 查看明細',exact=True).click();expect(page.locator('.workspace-details')).to_contain_text('id')
+ new.get_by_role('button',name='After · 引用欄位 users.user_key · 查看明細',exact=True).click();expect(page.locator('.workspace-details')).to_contain_text('user_key')
+ record('foreign-key old/new names and reference columns navigate on correct sides')
+ expect(page.locator('.migration-reading')).to_contain_text('renameColumn');expect(s).to_contain_text('columnRemoved');expect(s).to_contain_text('columnAdded')
+ record('users/posts explicit rename operations remain separate from removed/added net diff')
+ example(1,2);expect(summary()).to_contain_text('columnChanged');expect(page.locator('.migration-reading')).to_contain_text('dropColumn');expect(page.locator('.migration-reading')).to_contain_text('addColumn')
+ record('same-name drop/add syntax remains separate from net columnChanged')
+ example(1,0);s=summary();s.get_by_text('整表新增的已知內容',exact=True).click();expect(s).to_contain_text('並非額外的 core 差異');expect(s).to_contain_text('name')
+ record('whole-table addition exposes known contents without manufacturing extra changes')
+ example(7,2);s=summary();s.get_by_text('整表移除的已知內容',exact=True).click();expect(s).to_contain_text('Before');expect(s).to_contain_text('欄位');assert s.get_by_role('button',name='After · articles · 查看明細',exact=True).count()==0
+ record('whole-table removal exposes only trusted before contents')
+ example(3,1);expect(summary()).to_contain_text('快照未知');expect(page.locator('.migration-reading')).to_contain_text('Before 已知 · After 未知')
+ page.locator('.reading-workspace .migration-list button').nth(2).click();expect(page.locator('.migration-reading')).to_contain_text('前序阻擋');expect(page.locator('.migration-reading')).to_contain_text('Before 未知 · After 未知')
+ record('failed and blocked have distinct status and unknown snapshots, never empty diff')
+ page.set_viewport_size({'width':390,'height':844});example(2,6)
+ s=summary();s.get_by_role('button',name='After · price · 查看明細',exact=True).focus();s.get_by_role('button',name='After · price · 查看明細',exact=True).press('Enter')
+ assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+ s.scroll_into_view_if_needed();page.screenshot(path='artifacts/r8-2-narrow.png')
+ record('390px attributes and keyboard navigation have no horizontal overflow')
+ example(1,0)
+ page.locator('.input-management > summary').click()
+ page.get_by_label('待分析檔案（輸入順序）',exact=True).get_by_role('button',name='2026_01_01_000000_create_users.php',exact=True).click()
+ page.locator('#project-source').fill("<?php return new class extends Migration {function up(){Schema::dropIfExists('missing');}};")
+ page.get_by_role('button',name='分析專案',exact=True).click()
+ page.locator('.reading-workspace .migration-list button').nth(0).click()
+ expect(summary()).to_contain_text('已知快照：沒有結構變化')
+ record('known empty net diff remains distinct from unknown failure')
+ assert not errors,errors
+ browser.close()
+Path('artifacts/r8-2-browser.json').write_text(json.dumps({'commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'passed':checks,'consoleErrors':errors},ensure_ascii=False,indent=2)+'\n')

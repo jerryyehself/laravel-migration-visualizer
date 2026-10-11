@@ -174,11 +174,14 @@ export function ProjectResults({ result, files, onSelect, onEdit }: {
         {visible.length === 0 && <p className="muted">沒有符合條件的 migration。</p>}
       </nav>
       <div className="workspace-center">
-        <SchemaSnapshots showSelector={false} hideDetails selection={selectedObject} onSelectObject={selectObject} selectedId={reading.choice.id} focusTarget={focusTarget} result={result} onSource={openSource} onSelectionChange={clearSource} />
-      {step && <div className="step-detail">
+
+      {step && <>
         <h2>{step.filename}</h2>
         <p>{statusLabels[step.status]} · {step.analysis.operations.length} 個已識別操作</p>
-        <MigrationReading step={step} index={activeIndex!} diagnostics={<Diagnostics items={step.diagnostics} onLocate={locate} canLocate={canLocate} />} onSource={openSource} onObject={(side,query)=>{ clearSource(); setLocated(null); setSelectedObject(query); setObjectRequest(current=>current+1); setLocation({kind:'migration',index:activeIndex!,side}); setFocusTarget({query,request:++focusRequest.current}); }} />
+        <MigrationReading analysis={result} step={step} index={activeIndex!} diagnostics={<Diagnostics items={step.diagnostics} onLocate={locate} canLocate={canLocate} />} onSource={openSource} onObject={(side,query)=>{ clearSource(); setLocated(null); setSelectedObject(query); setObjectRequest(current=>current+1); setLocation({kind:'migration',index:activeIndex!,side}); setFocusTarget({query,request:++focusRequest.current}); }} />
+      </>}
+        <SchemaSnapshots showSelector={false} hideDetails selection={selectedObject} onSelectObject={selectObject} selectedId={reading.choice.id} focusTarget={focusTarget} result={result} onSource={openSource} onSelectionChange={clearSource} />
+      {step && <div className="step-detail">
         {step.status !== 'applied' && <p className="unavailable">此檔的 operations 僅供檢視，沒有套用；不顯示推測的 schema 或 diff。</p>}
         <details><summary>完整快照、diff 與 operations</summary><div className="results">
           <SchemaView title="Schema Before" schema={step.schemaBefore} unavailable="前序狀態未知，沒有可信的分析前快照。" />
