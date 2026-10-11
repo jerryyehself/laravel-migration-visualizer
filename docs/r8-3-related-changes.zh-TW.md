@@ -39,3 +39,5 @@ rename 只展示明確 operation 的 from→to。原查詢不自動切名；點�
 #141 in_progress／ready for review，仍 OPEN；整批 R8 未 done、milestone #43 OPEN，等待協調端回收／新固定 head 獨立複驗及前批依賴整合。本輪 main 核對仍 2b8030a7d19963980190ba860888f243883b6d7b。R8.2 教學僅在本新分支將「COORD08明確核准」改為協調按既有使用者核准派工，沒有漂移 #146 固定 head。
 
 沒有 stable identity、History DTO、自動追 rename、任意時點比較、timeline／動畫、PHP／DB runtime、下載落盤、部署或 release；沒有擴充相鄰 draft。
+
+可審查 stacked PR：[R8.3 #147](https://github.com/jerryyehself/laravel-migration-visualizer/pull/147)，base feat/r8-2-change-summary，head feat/r8-3-related-changes。current head／CI以GitHub紀錄為準；獨立驗收pending，沒有合併依賴或啟動automerge。

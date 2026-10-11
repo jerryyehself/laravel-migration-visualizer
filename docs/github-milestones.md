@@ -197,3 +197,5 @@ issue #135／milestone 42。R7.1～R7.3 全部 done。雲端 verify 670 tests／
 ## COORD-20261011-11：R8.3 交付停點
 
 協調端按既有使用者核准（R8修訂1@5eec414）只派 #141／R8.3。輸入3e8ee581eee16a80940c7490b491001dc2bd25eb，產品763f71d5089e45781e34ba30e55028916b065a15；698 tests、12 demos、15 verify步驟、12+12+14+16+9 browser自測通過。R8.1 #145／R8.2 #146 固定 head 不改，三批独立驗收均 pending。R8.3 in_progress／ready for review，milestone #43 open，R8.4～6未開工，不合併 main、不automerge。教學 docs/r8-3-related-changes.zh-TW.md，可攜證據 docs/acceptance/r8-3-evidence/manifest.json。規劃8c326339ff5b7656b7e73a3842029a6dfbc24eae只參考，不混產品base。
+
+可審查 stacked PR：[R8.3 #147](https://github.com/jerryyehself/laravel-migration-visualizer/pull/147)，base feat/r8-2-change-summary，head feat/r8-3-related-changes。current head／CI以GitHub紀錄為準；獨立驗收pending，沒有合併依賴或啟動automerge。
