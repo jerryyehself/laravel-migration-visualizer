@@ -1,0 +1,14 @@
+{
+  "passed": [
+    "normal source return retains focus and snapshot",
+    "collapsed details restored with focus",
+    "unfocusable origin has visible focused fallback notice",
+    "nested",
+    "hidden",
+    "detached",
+    "unfocusable",
+    "missing",
+    "fresh-page console and favicon resource are clean"
+  ],
+  "consoleErrors": []
+}

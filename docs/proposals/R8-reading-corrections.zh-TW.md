@@ -8,7 +8,7 @@
 - 實作起點：遠端 main `2b8030a7d19963980190ba860888f243883b6d7b`；開工必須重新核對，不是永久最新 SHA
 - 依賴：[R7](R7-workspace-reading.zh-TW.md) done；[A-06 修訂 2](A-06-design-goal-audit.zh-TW.md) 的問題與來源
 - 文件分支：`docs/r8-reading-corrections`
-- GitHub milestone／issues／文件 PR／功能 PR：尚未建立，研究端正常 `gh api` 唯讀請求回傳 Forbidden，當前網路未允許 api.github.com。完整建立內容見 [工作項目包](R8-work-items/README.md)
+- GitHub：milestone [#43](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/43)／issues #139～144 已建立；R8.1 ready for review，PR 與當前 CI 依實際交付回報。研究端最初 API 限制是歷史，完整 URLs／依賴見 [工作項目包](R8-work-items/README.md)。
 
 ## 問題、候選方案與取捨
 
@@ -157,3 +157,5 @@ main push 會觸發既有 Pages，開發端合併前依其 session 的既有授�
 研究端交付本文件、六張 issue 全文、milestone 全文與 [接手入口](R8-work-items/README.md)、提案索引／決策／CLOUD_HANDOFF。只做文件與連結／差異檢查。GitHub API Forbidden，真實工作項目未建立，無編號可報；由具備 API 權限的實作 session 先查重再建立並回填實際 URLs，無需重問這次建立／修正授權。
 
 COORD-20261011-04 只派 R8.1，R8.2～6 不開工；milestone #43 保持 open，停止於分支／PR，不合併 main。研究端 API 限制是歷史，開發端本輪查重與建立成功，真實 URLs／依賴見工作項目包。
+
+R8.1 已實作與必要檢查完成，in_progress／ready for review，未獨立驗收／未合併；[本批教學與證據](../r8-1-main-flow.zh-TW.md)。R8.2～6 未開工，不標整批 done。

@@ -2,9 +2,9 @@
 
 ## 下一項已核准工作：R8（2026-10-11）
 
-使用者要求依 A-06 審查提出修改步驟、建立 milestone／issues、告訴實作 session 如何修正，並列出驗收／依賴／排除。[R8 修訂 1](proposals/R8-reading-corrections.zh-TW.md) approved、尚未開工；研究端不實作。取得 `docs/r8-reading-corrections`，讀 [工作項目包與接手入口](proposals/R8-work-items/README.md)，依 R8.1→R8.6 執行主流程、摘要、literal 相關步驟、連續上下文、明細／來源／進階及整合交付。起點 main 2b8030a，接手重新查 latest main。
+使用者要求依 A-06 審查提出修改步驟、建立 milestone／issues、告訴實作 session 如何修正，並列出驗收／依賴／排除。[R8 修訂 1](proposals/R8-reading-corrections.zh-TW.md) in_progress（僅 R8.1 ready for review）；研究端不實作。取得 `docs/r8-reading-corrections`，讀 [工作項目包與接手入口](proposals/R8-work-items/README.md)，依 R8.1→R8.6 執行主流程、摘要、literal 相關步驟、連續上下文、明細／來源／進階及整合交付。起點 main 2b8030a，接手重新查 latest main。
 
-本研究端 API Forbidden，milestone／六張 issues／PR 尚未建立；全文與去重／建立命令已保存。實作 session 先在具 API 權限環境查重建立並回填真正編號，無需重問本次授權。不要把 R8.* 當 GitHub number，不指定一定是 M43，不把文件 merge 當功能 done。core／公開 JSON／golden、history identity、動畫／Timeline／Semantic Zoom、相容性、持久化、runtime、新依賴／workflow／新部署／release、下載落盤均排除；A-06 其他構想仍 draft。
+研究端最初 API Forbidden 是歷史；開發端已建立 milestone #43／六張 issues #139～144，PR 依本輪實際回報；全文與去重／建立命令已保存。實作 session 先在具 API 權限環境查重建立並回填真正編號，無需重問本次授權。不要把 R8.* 當 GitHub number，不指定一定是 M43，不把文件 merge 當功能 done。core／公開 JSON／golden、history identity、動畫／Timeline／Semantic Zoom、相容性、持久化、runtime、新依賴／workflow／新部署／release、下載落盤均排除；A-06 其他構想仍 draft。
 
 ## 最近已交付工作：R7（歷史，2026-10-10）
 
@@ -206,3 +206,7 @@ R1～R6 修訂 2 本輪已完成；R6 PR #132 merge ce403562788959039baee1bdebe5
 IR-01～04 已由 #136 合併 d159cbe1dbcba347858eab266109abbfdb094d20，660 tests／15 verify 步驟／12 demos，latest head CI success。R7 基於此 main，UI-only；實際狀態及驗收見 milestone-42.zh-TW.md，不把舊草稿或舊 660 基準當本批證據。
 
 R7.1～R7.3 done：PR #137 merge 96f13b0c2f8fba1389f5f5e915bcec346229747b；head 4080690468227623340747561111791695123890／validate run 38040663529 success。issue #135／milestone 42 closed。 雲端 verify 670 tests（540 core／130 web）、15 步／12 demos；16 項工作區 browser checks、九項來源返回回歸，console 無 warning/error，教學 milestone-42.zh-TW.md。core 0.15.0／產品 web 1.0.0 沿用，沒有新 release。start_skill 草稿已保存 670 基準與核准 R7（requires_publish=true），沒有發布環境設定。沒有下一個 approved 任務時不開始相鄰 draft。
+
+## COORD-20261011-04 停止點
+
+只開工 R8.1，產品 head d849b4e8a0ea79e65b8d459a975476b57fe75538；673 tests／15 verify 步驟／12 demos、14+16+9 browser 任務／回歸通過。ready for review、未合併，R8.2～6 未開工，milestone #43 保持 open。等待協調端新 head 獨立驗收，不因舊 R7 驗收或既有 merge 授權跳過。可攜證據／教學 r8-1-main-flow.zh-TW.md。

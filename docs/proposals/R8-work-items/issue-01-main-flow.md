@@ -38,3 +38,5 @@
 ## 實際追蹤
 
 GitHub [#139](https://github.com/jerryyehself/laravel-migration-visualizer/issues/139)；milestone [#43](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/43)。依賴：R7 #137／#138 已交付。本輪 R8.1 in_progress；完成檢查後 ready for review，未合併不標 done。
+
+R8.1 ready for review：產品 d849b4e8a0ea79e65b8d459a975476b57fe75538；673 tests／12 demos、39 項／組 browser 回歸通過。等待協調端安排新 head 獨立驗收，不合併、不標 done。教學 docs/r8-1-main-flow.zh-TW.md。

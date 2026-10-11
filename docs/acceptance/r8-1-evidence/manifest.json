@@ -1,0 +1,24 @@
+{
+  "productCommit": "d849b4e8a0ea79e65b8d459a975476b57fe75538",
+  "tests": 673,
+  "coreTests": 540,
+  "webTests": 133,
+  "verifyCommands": 15,
+  "demos": 12,
+  "browserGroups": {
+    "r8_1": 14,
+    "r7": 16,
+    "sourceReturn": 9
+  },
+  "consoleErrors": [],
+  "scope": "R8.1 only, independent acceptance pending; not merged",
+  "files": {
+    "browser.json": "35ec4f191464408f8e3c1a7886e814b52ef67d7badcd28aa70825085f3bbbb79",
+    "desktop.png": "8e71cf335e77140121efdbba48bafff37e9820bf0af69330489202aba800a769",
+    "focus-before.json": "3b20346f221d07163c57f65d55730e85762164eb28504783c133c4d2d6726524",
+    "narrow.png": "7d08d40577f097ba6a6cd8ed54f8a731ebf07e9001157289eba9488fd6728e25",
+    "r7-regression.json": "59d68ae38df73fc9eeeba8f606000882854add05a8cb2bc09171d010bb8dba39",
+    "source-return.json": "c691acd55b71f013586c19a69016dd1309add05016c32c77487501ee0945ceb2",
+    "verification.json": "02864e8fb193933a134f418f0967774a7f9b95dec23a72760e392fdba0be4483"
+  }
+}

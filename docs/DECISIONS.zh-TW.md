@@ -89,3 +89,5 @@ R7 已交付：PR #137 merge 96f13b0c2f8fba1389f5f5e915bcec346229747b；head 408
 R8 更新 R7 的 view 重設／欄位清除及相鄰顯示整理範圍，但不回退 R7 done。使用既有 core DTO，沒有 History identity、自動 rename 接續、動畫／Timeline／Semantic Zoom、新 parser／相容性、公開 JSON、持久化或 runtime 授權。A-04／A-05／A-06 整份保持 draft。
 
 [milestone／六項 issue 全文與接手入口](proposals/R8-work-items/README.md) 已保存；研究端 gh api 唯讀請求 Forbidden、當前網路未允許 api.github.com，實際 GitHub records 未建立，沒有編號可報。研究端只做文件，具 API 權限的實作 session 先查重再建立，回填真正 URL。文件保存不代表實作或交付。
+
+COORD-20261011-04 只交付 R8.1 待審查分支：mounted 多檔 state、收合副本管理、單一 11 示範入口、首要診斷與工具返回焦點；core／JSON 不變。R8.2～6 尚未開始，不以已核准整批擴大本次派工。

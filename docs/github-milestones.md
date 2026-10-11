@@ -181,3 +181,7 @@ issue #134／milestone 41 closed。PR #136 merge d159cbe1dbcba347858eab266109abb
 ## M42：R7 同一工作區閱讀
 
 issue #135／milestone 42。R7.1～R7.3 全部 done。雲端 verify 670 tests／15 步／12 demos，16 項工作區 Chromium 任務與九項來源返回回歸通過；教學 milestone-42.zh-TW.md。PR #137 merge 96f13b0c2f8fba1389f5f5e915bcec346229747b；head 4080690468227623340747561111791695123890／validate run 38040663529 success。issue #135／milestone 42 closed。
+
+## R8 milestone #43（open）
+
+已查重建立 issues #139～144；只開工 #139／R8.1。產品 head d849b4e8a0ea79e65b8d459a975476b57fe75538，673 tests／12 demos、39 項／組 browser checks 通過。分支 feat/r8-1-main-flow ready for review，未合併；R8.2～6 未開工，獨立驗收待協調端安排，CI／PR 以實際回報為準。
