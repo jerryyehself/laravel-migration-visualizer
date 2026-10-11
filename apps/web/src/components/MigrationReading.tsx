@@ -5,13 +5,13 @@ import type { SourceNavigation, StructureQuery } from '../operation-sources';
 import { ChangeSummary } from './ChangeSummary';
 const statuses = { applied:'靜態已套用', failed:'失敗：未套用', blocked:'前序阻擋：未套用' };
 const availability:Record<Availability,string> = { available:'查看明細', 'snapshot-unknown':'快照未知', 'object-absent':'此側不存在' };
-export function MigrationReading({ step, index, diagnostics, onSource, onObject, analysis }: { step:MigrationSnapshot; analysis?:ProjectAnalysis; index:number; diagnostics:ReactNode; onSource:SourceNavigation; onObject:(side:'before'|'after',query:StructureQuery)=>void }) {
+export function MigrationReading({ step, index, diagnostics, onSource, onObject, analysis, onSources }: { onSources?:(query:StructureQuery)=>void; step:MigrationSnapshot; analysis?:ProjectAnalysis; index:number; diagnostics:ReactNode; onSource:SourceNavigation; onObject:(side:'before'|'after',query:StructureQuery)=>void }) {
   const reading = migrationReading(step,index);
   return <section className="migration-reading" aria-label="單次變更閱讀">
     <h3>單次變更摘要</h3>
     <p>{statuses[reading.status]} · Before {reading.beforeKnown ? '已知' : '未知'} · After {reading.afterKnown ? '已知' : '未知'}</p>
     <h4>診斷 · {reading.diagnostics.length}</h4>{diagnostics}
-    <ChangeSummary step={step} analysis={analysis} onSource={onSource} onObject={onObject}/>
+    <ChangeSummary step={step} analysis={analysis} onSource={onSource} onObject={onObject} onSources={onSources}/>
     <h4>已識別 PHP 操作 · {reading.operations.length}</h4>
     <p className="muted">操作是語法證據；失敗或阻擋時沒有套用。rename 的明確操作與下方結構移除／新增分開閱讀。</p>
     <ol>{reading.operations.map(hit => <li key={hit.operationIndex}>

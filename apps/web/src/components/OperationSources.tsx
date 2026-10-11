@@ -3,13 +3,13 @@ import type { MigrationFile, ProjectAnalysis } from '@lmv/migration-core';
 import { operationSources, type OperationSource, type StructureQuery, type SourceNavigation } from '../operation-sources';
 import { sourceExcerpt } from '../diagnostic-location';
 const statusLabels = { applied:'靜態已套用', failed:'失敗：未套用', blocked:'前序阻擋：未套用' };
-export function OperationSources({ result, query, onSource }: { result: ProjectAnalysis; query: StructureQuery; onSource: SourceNavigation }) {
+export function OperationSources({ result, query, onSource, currentIndex }: { result: ProjectAnalysis; query: StructureQuery; onSource: SourceNavigation; currentIndex?:number }) {
   const hits = operationSources(result,query);
   return <section className="operation-source-list" aria-label={`操作來源 ${query.table}${query.column === undefined ? '' : '.'+query.column}`}>
     <h4>{query.column === undefined ? '資料表' : '欄位'}直接涉及的 PHP 操作</h4>
     <p className="muted">依完整分析順序列出名稱直接涉及的操作；不是物件身分或 rename 歷史追蹤，靜態套用不等於資料庫執行。</p>
     {hits.length === 0 ? <p>沒有可直接追溯的操作來源；不補推測。</p> : <ul>{hits.map(hit => <li key={`${hit.migrationIndex}:${hit.operationIndex}`}>
-      <span>{statusLabels[hit.status]} · {hit.operation.kind} · {hit.filename}</span>{' '}
+      <span>第 {hit.migrationIndex+1} 份 · {statusLabels[hit.status]}{currentIndex !== undefined && hit.migrationIndex > currentIndex ? " · 目前時點之後的來源（未表示已套用）" : ""} · {hit.operation.kind} · {hit.filename}</span>{' '}
       <button type="button" className="secondary" disabled={hit.source === null} onClick={event => onSource(hit,event.currentTarget)}>
         查看 PHP 來源 {hit.filename} · {hit.operation.kind} · {hit.source && hit.source.line > 0 ? `第 ${hit.source.line} 行` : '位置未知'}
       </button>

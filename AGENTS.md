@@ -26,7 +26,7 @@
 ## 開發與驗證
 - 使用者於 2026-10-04 要求暫緩下載測試；不做下載互動／落盤驗收，直到使用者另行恢復。既有匯出功能與序列化契約保留。
 - Node.js 22.12+，npm。安裝使用 npm ci，保留 package-lock.json。
-- npm test：目前本分支 706 tests（540 core + 166 web）；R7 main 基準 670 tests；M1 baseline 為 42 tests。M33 產品／web 版本 1.0.0，core 0.14.0 契約不變。統一驗證用 npm run verify；實際交付狀態見 github-milestones.md。
+- npm test：目前本分支 713 tests（540 core + 173 web）；R7 main 基準 670 tests；M1 baseline 為 42 tests。M33 產品／web 版本 1.0.0，core 0.14.0 契約不變。統一驗證用 npm run verify；實際交付狀態見 github-milestones.md。
 - npm run typecheck
 - npm run build
 - npm run demo:project
@@ -111,3 +111,5 @@ R8.2 web 摘要：684 tests（540 core／144 web）；產品／範圍／證據�
 R8.3 literal 名稱相關步驟：698 tests／63 browser 項或組自測，教學／證據見 docs/r8-3-related-changes.zh-TW.md。只交分支／PR，獨立驗收 pending，R8.4～6未開工。
 
 R8.4正常工作區導航保留literal欄位、搜尋與共享pan/zoom/位置，明確更新R7重設view舊限制；新分析generation才清舊上下文。706tests／77browser項或組；教學見docs/r8-4-reading-context.zh-TW.md，未合併、獨立驗收pending，R8.5～6未開工。
+
+R8.5僅web明細／單一來源／進階入口整理：713tests／90browser自測；教學docs/r8-5-details-and-tools.zh-TW.md。#143 ready for review但OPEN、R8整批／milestone43 OPEN；COORD16及各批独立驗收pending，R8.6未開始，不合併／automerge。

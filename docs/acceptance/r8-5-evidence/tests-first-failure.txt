@@ -1,0 +1,38 @@
+
+> laravel-migration-visualizer@1.0.0 test
+> vitest run
+
+
+ RUN  v5.0.2 /workspace/laravel-migration-visualizer
+
+ ❯ apps/web/tests/table-details.test.ts (8 tests | 1 failed) 52ms
+   ❯ table inspector rendering contract (6)
+     × preserves false, zero, explicit null and allowed values without filling omitted defaults 20ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/tests/table-details.test.ts > table inspector rendering contract > preserves false, zero, explicit null and allowed values without filling omitted defaults
+AssertionError: expected '<section tabindex="-1" class="table-i…' to contain '<dt>default</dt><dd><code>false</code>'
+
+Expected: "<dt>default</dt><dd><code>false</code>"
+Received: "<section tabindex="-1" class="table-inspector" aria-label="資料表詳細檢視"><h3>資料表詳細檢視</h3><details><summary>查看 t 的欄位、索引與外鍵</summary><p>以下為目前快照的完整資料；未出現的選用屬性表示未指定，不代表資料庫預設值。</p><h4>欄位 · 4</h4><article class="column-detail" data-selected="false"><h5>flag · boolean</h5><dl><div><dt>允許 NULL（nullable）</dt><dd><code>false</code></dd></div><div><dt>預設值（default）</dt><dd><code>false</code></dd></div></dl></article><article class="column-detail" data-selected="false"><h5>num · integer</h5><dl><div><dt>允許 NULL（nullable）</dt><dd><code>false</code></dd></div><div><dt>預設值（default）</dt><dd><code>0</code></dd></div></dl></article><article class="column-detail" data-selected="false"><h5>kind · enum</h5><dl><div><dt>允許 NULL（nullable）</dt><dd><code>true</code></dd></div><div><dt>允許值（依序）（allowedValues）</dt><dd><code>&quot;a&quot; → &quot;b&quot;</code></dd></div><div><dt>預設值（default）</dt><dd><code>NULL</code></dd></div></dl></article><article class="column-detail" data-selected="false"><h5>plain · string</h5><dl><div><dt>允許 NULL（nullable）</dt><dd><code>false</code></dd></div></dl><p>預設值：未指定</p></article><h4>索引 · 0</h4><p>沒有索引。</p><ul></ul><h4>外鍵 · 0</h4><p>沒有外鍵。</p><ul></ul></details></section>"
+
+ ❯ apps/web/tests/table-details.test.ts:27:18
+     25|     }}}};
+     26|     const html=render(schema,'t');
+     27|     expect(html).toContain('<dt>default</dt><dd><code>false</code>');
+       |                  ^
+     28|     expect(html).toContain('<dt>default</dt><dd><code>0</code>');
+     29|     expect(html).toContain('<dt>default</dt><dd><code>null</code>');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 46 passed (47)
+      Tests  1 failed | 705 passed (706)
+   Start at  05:48:36
+   Duration  9.50s (tests 70%, import 21%, transform 7%, worker 2%)
+
+    Isolate  47 workers spawned · ~185ms startup each (spawn + environment, per file)
+             at least ~2.72s faster with isolate: false — reuses workers across files instead of one per file
+

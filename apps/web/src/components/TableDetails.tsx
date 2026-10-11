@@ -1,3 +1,4 @@
+import { attributes, displayValue } from '../change-summary';
 import { useEffect, useRef } from 'react';
 import type { SchemaState, ProjectAnalysis } from '@lmv/migration-core';
 import { OperationSources } from './OperationSources';
@@ -21,16 +22,15 @@ export function TableDetails({ schema, selected, selectedColumn, selectionReques
       <p className="unavailable">此快照沒有資料表 {selected}；不補畫或複製另一側的資料。</p> :
       <details key={JSON.stringify([selected, activeColumn, selectionRequest])} open={activeColumn !== undefined || openOnSelection ? true : undefined}><summary>查看 {selected} 的欄位、索引與外鍵</summary>
         <p>以下為目前快照的完整資料；未出現的選用屬性表示未指定，不代表資料庫預設值。</p>
-        {analysis && onSource && <OperationSources result={analysis} query={{table:table.name}} onSource={onSource} />}
-        {analysis && onSource && activeColumn !== undefined && <OperationSources result={analysis} query={{table:table.name,column:activeColumn}} onSource={onSource} />}
         {selectedColumn !== undefined && activeColumn === undefined && <p className="unavailable">此側沒有欄位 {selectedColumn}；不複製另一側欄位。</p>}
         <h4>欄位 · {Object.keys(table.columns).length}</h4>
         {Object.keys(table.columns).length === 0 && <p>沒有欄位。</p>}
         {Object.values(table.columns).map(column => <article key={column.name} className="column-detail" data-selected={column.name === activeColumn} ref={column.name === activeColumn ? columnRef : undefined} tabIndex={column.name === activeColumn ? -1 : undefined}>
           {column.name === activeColumn && <p>搜尋選取欄位：{column.name}</p>}
           <h5>{column.name} · {column.type}</h5>
-          <dl>{Object.entries(column).filter(([key]) => key !== 'name' && key !== 'type').map(([key,value]) =>
-            <div key={key}><dt>{key}</dt><dd><code>{JSON.stringify(value)}</code></dd></div>)}</dl>
+          <dl>{attributes(undefined,column,'column').filter(row=>row.key!=='name'&&row.key!=='type').map(row=>
+            <div key={row.key}><dt>{row.label}（{row.key}）</dt><dd><code>{displayValue(row.after!)}</code></dd></div>)}</dl>
+          {!Object.hasOwn(column,'default') && <p>預設值：未指定</p>}
         </article>)}
         <h4>索引 · {Object.keys(table.indexes).length}</h4>
         {Object.keys(table.indexes).length === 0 && <p>沒有索引。</p>}
@@ -43,5 +43,6 @@ export function TableDetails({ schema, selected, selectedColumn, selectionReques
           <p>ON DELETE：{key.onDelete ?? '未指定'} · ON UPDATE：{key.onUpdate ?? '未指定'}</p>
         </li>)}</ul>
       </details>}
+    {table && analysis && onSource && <details><summary>PHP 來源 · 完整分析順序</summary><OperationSources result={analysis} query={{table:table.name,...(selectedColumn===undefined?{}:{column:selectedColumn})}} onSource={onSource}/></details>}
   </section>;
 }

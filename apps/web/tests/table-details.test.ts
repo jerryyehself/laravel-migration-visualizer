@@ -24,10 +24,10 @@ describe('table inspector rendering contract', () => {
       plain:{name:'plain',type:'string',nullable:false},
     }}}};
     const html=render(schema,'t');
-    expect(html).toContain('<dt>default</dt><dd><code>false</code>');
-    expect(html).toContain('<dt>default</dt><dd><code>0</code>');
-    expect(html).toContain('<dt>default</dt><dd><code>null</code>');
-    expect(html).toContain('allowedValues'); expect(html.match(/<dt>default<\/dt>/g)).toHaveLength(3);
+    expect(html).toContain('<dt>預設值（default）</dt><dd><code>false</code>');
+    expect(html).toContain('<dt>預設值（default）</dt><dd><code>0</code>');
+    expect(html).toContain('<dt>預設值（default）</dt><dd><code>NULL</code>');
+    expect(html).toContain('預設值：未指定');expect(html).toContain('&quot;a&quot; → &quot;b&quot;'); expect(html).toContain('allowedValues'); expect(html.match(/<dt>預設值（default）<\/dt>/g)).toHaveLength(3);
   });
   it('retains index and composite foreign-key order and explicit referential actions', () => {
     const schema: SchemaState={tables:{t:{...table('t'),indexes:{u:{name:'u',type:'unique',columns:['tenant','user']}},foreignKeys:{fk:{name:'fk',columns:['tenant','user'],referencedTable:'users',referencedColumns:['tenant','id'],onDelete:'cascade'}}}}};

@@ -69,8 +69,12 @@ function SchemaView({ title, schema, unavailable }: { title: string; schema: Sch
 export function ProjectResults({ result, files, onSelect, onEdit }: {
   result: ProjectAnalysis; files: readonly MigrationFile[]; selected: number; onSelect: (index: number) => void; onEdit: (item: ProjectDiagnostic) => void;
 }) {
+  const advancedHeading=useRef<HTMLElement>(null);
+  function showAdvanced(){const heading=advancedHeading.current;heading?.closest("details")?.setAttribute("open","");heading?.focus({preventScroll:true});heading?.scrollIntoView({block:"start"});}
   const [location,setLocation] = useState<ReadingLocation>({kind:'final'});
   const [selectedObject,setSelectedObject] = useState<StructureQuery>();
+  const [sourceQuery,setSourceQuery] = useState<StructureQuery>();
+  const [sourceRequest,setSourceRequest] = useState(0);
   const [relatedQuery,setRelatedQuery] = useState<StructureQuery>();
   const layout=useMemo(()=>analysisLayout(result),[result]);
   const [view,setView]=useState(()=>resetVisibleView(layout,[result.complete?result.finalSchema:null]));
@@ -115,7 +119,7 @@ export function ProjectResults({ result, files, onSelect, onEdit }: {
   const searchLabel=reading.choice.comparison ? (searchSide==='before'?'Before · 套用前':'After · 套用後') : location.kind==='migration' ? (location.side==='before'?'Before · 套用前':'After · 套用後') : location.kind==='initial'?'初始':'最終';
   function locateGraph(query:StructureQuery,schema:SchemaState|null=searchSchema) {
     if(objectAvailability(schema,query)!=='available')return;
-    clearSource(); setSelectedObject(query);setObjectRequest(current=>current+1);
+    clearSource(); setSourceQuery(undefined); setSelectedObject(query);setObjectRequest(current=>current+1);
     const node=schemaGraph(schema!).nodes.find(node=>node.name===query.table)!;
     setView(current=>focusGraphTable(current,node,current.positions.get(node.name)??layout.positions.get(node.name)??node));
   }
@@ -134,14 +138,17 @@ export function ProjectResults({ result, files, onSelect, onEdit }: {
     setLocation({kind:'migration',index:activeIndex,side});
   }
   function selectObject(query:StructureQuery|undefined) {
-    clearSource(); setSelectedObject(query); setObjectRequest(current=>current+1);
+    clearSource(); setSourceQuery(undefined); setSelectedObject(query); setObjectRequest(current=>current+1);
   }
   function queryRelated(query:StructureQuery) {
-    clearSource(); setRelatedQuery(query); setSelectedObject(query); setObjectRequest(current=>current+1);
+    clearSource(); setSourceQuery(undefined); setRelatedQuery(query); setSelectedObject(query); setObjectRequest(current=>current+1);
   }
   function relatedStep(index:number,side:ReadingSide,query:StructureQuery) {
-    clearSource(); setLocated(null); setFocusTarget(undefined); setRelatedQuery(query); setSelectedObject(query); setObjectRequest(current=>current+1);
+    clearSource(); setSourceQuery(undefined); setLocated(null); setFocusTarget(undefined); setRelatedQuery(query); setSelectedObject(query); setObjectRequest(current=>current+1);
     setLocation({kind:'migration',index,side}); onSelect(index);
+  }
+  function showSources(query:StructureQuery) {
+    clearSource(); setLocated(null); setSourceQuery(query); setSourceRequest(n=>n+1);
   }
   function selectBoundary(kind:'initial'|'final') {
     clearSource(); setLocated(null); setFocusTarget(undefined);
@@ -158,9 +165,6 @@ export function ProjectResults({ result, files, onSelect, onEdit }: {
     {result.diagnostics.length > 0 && <section aria-label="首要問題">
       <h3>首要問題</h3><Diagnostics items={firstProblem ? [firstProblem] : []} onLocate={locate} canLocate={canLocate} />
     </section>}
-    <details className="all-diagnostics"><summary>完整專案診斷 · {result.diagnostics.length}</summary>
-      <Diagnostics items={result.diagnostics} onLocate={locate} canLocate={canLocate} />
-    </details>
     {located && target && <DiagnosticSource file={target.file} diagnostic={located} onEdit={onEdit} />}
     <fieldset className="result-filters">
       <legend>篩選分析結果</legend>
@@ -183,6 +187,7 @@ export function ProjectResults({ result, files, onSelect, onEdit }: {
         <h2>{step ? `目前：第 ${activeIndex!+1}／${result.migrations.length} 份 · ${step.filename}` : reading.choice.label}</h2>
         {step && <p role="status">{statusLabels[step.status]} · {location.kind === 'migration' ? ({before:'套用前',after:'套用後',diff:'前後比較'} as const)[location.side] : ''}</p>}
         <div className="toolbar">
+          <button type="button" className="secondary" onClick={showAdvanced}>進階分析</button>
           <button type="button" className="secondary" onClick={()=>selectBoundary('initial')} aria-pressed={location.kind==='initial'}>初始結構</button>
           <button type="button" className="secondary" onClick={()=>selectBoundary('final')} aria-pressed={location.kind==='final'}>最終結構</button>
           <button type="button" disabled={reading.previous===null} onClick={()=>selectMigration(reading.previous!)}>前一份 migration</button>
@@ -208,14 +213,28 @@ export function ProjectResults({ result, files, onSelect, onEdit }: {
       {step && <>
         <h2>{step.filename}</h2>
         <p>{statusLabels[step.status]} · {step.analysis.operations.length} 個已識別操作</p>
-        <MigrationReading analysis={result} step={step} index={activeIndex!} diagnostics={<Diagnostics items={step.diagnostics} onLocate={locate} canLocate={canLocate} />} onSource={openSource} onObject={(side,query)=>{ clearSource(); setLocated(null); setSelectedObject(query); setObjectRequest(current=>current+1); setLocation({kind:'migration',index:activeIndex!,side}); setFocusTarget({query,request:++focusRequest.current}); }} />
+        <MigrationReading onSources={showSources} analysis={result} step={step} index={activeIndex!} diagnostics={<Diagnostics items={step.diagnostics} onLocate={locate} canLocate={canLocate} />} onSource={openSource} onObject={(side,query)=>{ clearSource(); setSourceQuery(undefined); setLocated(null); setSelectedObject(query); setObjectRequest(current=>current+1); setLocation({kind:'migration',index:activeIndex!,side}); setFocusTarget({query,request:++focusRequest.current}); }} />
       </>}
         <SchemaSnapshots layout={layout} view={view} onViewChange={setView} hideControls showSelector={false} hideDetails selection={selectedObject} onSelectObject={selectObject} selectedId={reading.choice.id} focusTarget={focusTarget} result={result} onSource={openSource} onSelectionChange={clearSource} />
       {step && <div className="step-detail">
         {step.status !== 'applied' && <p className="unavailable">此檔的 operations 僅供檢視，沒有套用；不顯示推測的 schema 或 diff。</p>}
+      </div>}
+      </div>
+      <WorkspaceDetails onSources={showSources} sourceQuery={sourceQuery} sourceRequest={sourceRequest} currentIndex={activeIndex === null ? (location.kind==='initial'?-1:result.migrations.length-1) : activeIndex-(location.kind==='migration' && location.side==='before'?1:0)} choice={reading.choice} selection={selectedObject} request={objectRequest} analysis={result} step={step} onSource={openSource} onRelated={queryRelated}>
+        <RelatedChanges result={result} query={relatedQuery} onQuery={queryRelated} onStep={relatedStep} onSource={openSource}/>
+        {operationSource && <OperationSourcePanel hit={operationSource} files={files} onBack={returnSource} />}
+      </WorkspaceDetails>
+      </div>
+    </section>
+    <details className="advanced-analysis"><summary ref={advancedHeading}>進階分析：JSON、表格與完整診斷</summary>
+      <p>以下讀取完整 DTO；搜尋與圖形位置不更動序列化。表格是明確時點的替代表示。</p>
+    <details className="all-diagnostics"><summary>完整專案診斷 · {result.diagnostics.length}</summary>
+      <Diagnostics items={result.diagnostics} onLocate={locate} canLocate={canLocate} />
+    </details>
+      {step && <section aria-label="目前步驟進階資料"><h3>第 {activeIndex!+1} 份 · {step.filename} · 套用前／後完整資料</h3>
         <details><summary>完整快照、diff 與 operations</summary><div className="results">
-          <SchemaView title="Schema Before" schema={step.schemaBefore} unavailable="前序狀態未知，沒有可信的分析前快照。" />
-          <SchemaView title="Schema After" schema={step.schemaAfter} unavailable="未成功套用，沒有可信的分析後快照。" />
+          <SchemaView title={`第 ${activeIndex!+1} 份 · ${step.filename} · Schema Before（套用前）`} schema={step.schemaBefore} unavailable="前序狀態未知，沒有可信的分析前快照。" />
+          <SchemaView title={`第 ${activeIndex!+1} 份 · ${step.filename} · Schema After（套用後）`} schema={step.schemaAfter} unavailable="未成功套用，沒有可信的分析後快照。" />
         </div>
         <article><h3>SchemaDiff</h3>
           {step.diff === null ? <p className="unavailable">無法比較未知的快照。</p> : <>
@@ -227,17 +246,13 @@ export function ProjectResults({ result, files, onSelect, onEdit }: {
           </>}
         </article>
         <details><summary>AtomicOperation JSON</summary><pre>{JSON.stringify(step.analysis.operations, null, 2)}</pre></details></details>
-      </div>}
-      </div>
-      <WorkspaceDetails choice={reading.choice} selection={selectedObject} request={objectRequest} analysis={result} step={step} onSource={openSource} onRelated={queryRelated}>
-        <RelatedChanges result={result} query={relatedQuery} onQuery={queryRelated} onStep={relatedStep} onSource={openSource}/>
-        {operationSource && <OperationSourcePanel hit={operationSource} files={files} onBack={returnSource} />}
-      </WorkspaceDetails>
-      </div>
-    </section>
-    <details><summary>分析工具：JSON 匯出</summary><ProjectExports result={result} /></details>
-    <SchemaView title={result.complete ? '專案最終 Schema' : '最後可信 Schema（僅成功前綴）'}
-      schema={result.complete ? result.finalSchema : result.lastValidSchema} unavailable="最終 schema 未知。" />
-    <details><summary>完整 ProjectAnalysis JSON</summary><pre>{JSON.stringify(result, null, 2)}</pre></details>
+      </section>}
+      {!step && <SchemaView title={`${reading.choice.label} · 目前閱讀時點表格`} schema={reading.choice.schema} unavailable="此閱讀時點快照未知；不以成功前綴替代。"/>}
+      <details><summary>分析工具：JSON 匯出</summary><ProjectExports result={result}/></details>
+      <details><summary>{result.complete?'專案最終 Schema · 全部成功套用後':'最後可信 Schema · 僅成功前綴，非最終'}</summary>
+        <SchemaView title={result.complete ? '專案最終 Schema' : '最後可信 Schema（僅成功前綴）'} schema={result.complete ? result.finalSchema : result.lastValidSchema} unavailable="最終 schema 未知。"/>
+      </details>
+      <details><summary>完整 ProjectAnalysis JSON</summary><pre>{JSON.stringify(result,null,2)}</pre></details>
+    </details>
   </section>;
 }

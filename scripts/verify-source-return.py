@@ -21,11 +21,12 @@ with sync_playwright() as p:
     page.locator('.reading-workspace .migration-list button').nth(1).click()
     page.get_by_label('搜尋目前快照欄位', exact=True).fill('display_name')
     page.get_by_role('button', name='查看欄位 users.display_name', exact=True).click()
+    page.locator('.workspace-sources').evaluate('(e)=>e.open=true')
     origin = page.locator('.workspace-details [aria-label="操作來源 users.display_name"] button').first.element_handle()
     for collapse in [False, True]:
         origin.click()
         if collapse:
-            page.locator('.table-inspector details').evaluate('(e) => e.open = false')
+            page.locator('.workspace-sources').evaluate('(e) => e.open = false')
         page.get_by_role('button', name='返回原結構選取', exact=True).click()
         assert origin.is_visible() and origin.evaluate('(e) => e === document.activeElement')
         assert '第 2／3 份' in page.locator('.workspace-controls').inner_text()

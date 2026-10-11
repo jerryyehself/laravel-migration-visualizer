@@ -83,6 +83,7 @@ with sync_playwright() as p:
  example(3);analyze()
  expect(page.get_by_label('首要問題',exact=True)).to_contain_text('PHP 分析')
  assert not page.locator('.all-diagnostics').evaluate('(e)=>e.open')
+ page.locator('.advanced-analysis > summary').click()
  page.locator('.all-diagnostics > summary').click()
  assert page.locator('.all-diagnostics .diagnostic').count()>=2
  # Primary problem opens actual source; diagnostic edit opens hidden management.
@@ -96,6 +97,7 @@ with sync_playwright() as p:
  assert page.locator('.reading-workspace').count()==1
  record('full diagnostics retained; edit opens correct file and focuses core source line without invalidating')
  # Collapsed export entry keeps unknown-final guard, without download interaction.
+ if not page.locator('.advanced-analysis').evaluate('(e)=>e.open'):page.locator('.advanced-analysis > summary').click()
  page.get_by_text('分析工具：JSON 匯出',exact=True).click()
  assert page.get_by_role('button',name='下載最終 Schema JSON',exact=True).is_disabled()
  record('secondary export entry remains discoverable and unknown final stays disabled')

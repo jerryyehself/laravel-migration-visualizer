@@ -5,7 +5,7 @@ import type { SourceNavigation, StructureQuery } from '../operation-sources';
 import { OperationSources } from './OperationSources';
 const categoryLabels={table:'資料表',column:'欄位',index:'索引',foreignKey:'外鍵'};
 function Values({rows}:{rows:Attribute[]}) {return <dl className="summary-attributes">{rows.map(row=><div key={row.key}><dt>{row.label}</dt><dd>{row.before && <span>Before {displayValue(row.before)}</span>}{row.before&&row.after?' → ':''}{row.after&&<span>After {displayValue(row.after)}</span>}</dd></div>)}</dl>;}
-export function ChangeSummary({step,analysis,onSource,onObject}:{step:MigrationSnapshot;analysis?:ProjectAnalysis;onSource:SourceNavigation;onObject:(side:'before'|'after',query:StructureQuery)=>void}) {
+export function ChangeSummary({step,analysis,onSource,onObject,onSources}:{step:MigrationSnapshot;analysis?:ProjectAnalysis;onSource:SourceNavigation;onSources?:(query:StructureQuery)=>void;onObject:(side:'before'|'after',query:StructureQuery)=>void}) {
  const groups=summarizeChanges(step.diff);
  const navigate=(side:'before'|'after',query:StructureQuery,label:string)=>{
   const state=objectAvailability(side==='before'?step.schemaBefore:step.schemaAfter,query);
@@ -17,7 +17,7 @@ export function ChangeSummary({step,analysis,onSource,onObject}:{step:MigrationS
  const query={table:change.table,...(change.category==='column'?{column:change.name}:{})};
  return <article className="summary-change" key={i} aria-label={`${change.kind} ${change.table}.${change.name}`}><h5>{categoryLabels[change.category]} · {change.name} · {change.kind.endsWith('Added')?'新增':change.kind.endsWith('Removed')?'移除':'變更'} <code>{change.kind}</code></h5><Values rows={change.attributes}/>
  {(['before','after'] as const).map(side=>change[side]&&<div key={side}>{navigate(side,query,change.name)}{change.category==='table'&&contents(change[side] as TableState,side)}{change.category==='foreignKey'&&(()=>{const fk=change[side] as ForeignKey;return <div className="reference-context"><p>{side==='before'?'Before':'After'} 關係上下文：{change.table} ({fk.columns.join(' → ')}) → {fk.referencedTable} ({fk.referencedColumns.join(' → ')})；引用表不代表被修改。</p>{navigate(side,{table:fk.referencedTable},`引用表 ${fk.referencedTable}`)}{fk.referencedColumns.map((column,index)=><span key={index}>{navigate(side,{table:fk.referencedTable,column},`引用欄位 ${fk.referencedTable}.${column}`)}</span>)}</div>;})()}</div>)}
- {analysis&&<details><summary>查看涉及此名稱的 PHP 操作</summary><p>依 R4 名稱操作索引列出，不將差異猜成一對一來源。</p><OperationSources result={analysis} query={query} onSource={onSource}/></details>}
+ {analysis&&<><p className="muted">依 R4 名稱操作索引列出，不將差異猜成一對一來源。</p>{onSources ? <button type="button" className="secondary" onClick={()=>onSources(query)}>查看涉及此名稱的 PHP 操作</button> : <details><summary>查看涉及此名稱的 PHP 操作</summary><OperationSources result={analysis} query={query} onSource={onSource}/></details>}</>}
  </article>;
  })}</section>)}
  </section>;

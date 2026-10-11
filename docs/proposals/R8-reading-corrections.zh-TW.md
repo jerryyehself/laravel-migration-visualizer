@@ -159,3 +159,7 @@ main push 會觸發既有 Pages，開發端合併前依其 session 的既有授�
 COORD-20261011-04 只派 R8.1，R8.2～6 不開工；milestone #43 保持 open，停止於分支／PR，不合併 main。研究端 API 限制是歷史，開發端本輪查重與建立成功，真實 URLs／依賴見工作項目包。
 
 R8.1 已實作與必要檢查完成，in_progress／ready for review，未獨立驗收／未合併；[本批教學與證據](../r8-1-main-flow.zh-TW.md)。R8.2～6 未開工，不標整批 done。
+
+## COORD-20261011-17：R8.5 交付停點
+
+協調端按原人類核准（R8修訂1@5eec41476ef22b85d3165d3be3f681f1a20c8f9d）只派 #143／R8.5。固定輸入2dd3a9a348df5225f4cbf157d3c76ff5ef539622，產品ce16e471573cbf0762ad13293f715eefb61b28f7；713 tests（540core／173web）、15 verify命令／12demos與13+14+12+12+14+16+9＝90項／組browser自測通過。明細中文屬性優先、單一完整分析來源與未來時點標示、集中進階DTO／表格／診斷與兩JSON入口；core／公開JSON／golden／依賴／workflow無差異。#145～148固定驗收heads不改，COORD16及各批獨立驗收pending／offline阻礙沒有解除，不能用自測或協調核對當驗收。#143 in_progress／ready for review但OPEN，整R8與milestone43 OPEN，R8.6未開始。不合併、不automerge、不部署／release／下載落盤。規劃d2e3aaa2f761752842cdb4856afc2af0e47ba435只參考不混產品base。教學docs/r8-5-details-and-tools.zh-TW.md，12份可攜證據SHA256見docs/acceptance/r8-5-evidence/manifest.json。
