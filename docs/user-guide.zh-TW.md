@@ -68,3 +68,7 @@ npm run dev -- --host 127.0.0.1 --port 5202 --strictPort
 ## R8.4待審查分支的連續閱讀
 
 工作區集中表／欄位搜尋；比較明確指定Before或After，保留文字並只查該側。前後份／切側保literal欄位與pan/zoom/位置，缺物件和unknown各有提示。可按「定位目前物件」或「重設ERD位置」，新分析清舊上下文。此能力仍在stacked PR等待獨立驗收，未合併發布；完整範圍／證據見[r8-4-reading-context.zh-TW.md](r8-4-reading-context.zh-TW.md)。
+
+## R8.5 待審查分支的明細與進階入口
+
+R8.5只交待審查stacked分支，未合併main、獨立驗收pending。右側結構明細／相關變更／PHP來源可直接鍵盤到達；全分析來源只列一次，後續來源不表示目前已套用。表格／完整DTO／全診斷與兩JSON入口集中進階，歷史頁不預設攤另一份final／prefix；未知final仍禁用最終下載，成功前綴另標。主摘要與未完成狀態保持可見。中文屬性區分NULL／false／0／未指定。詳細限制與實證見[r8-5-details-and-tools.zh-TW.md](r8-5-details-and-tools.zh-TW.md)。

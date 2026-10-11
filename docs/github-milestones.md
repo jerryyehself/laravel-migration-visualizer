@@ -205,3 +205,7 @@ issue #135／milestone 42。R7.1～R7.3 全部 done。雲端 verify 670 tests／
 協調端按原人類核准（R8修訂1@5eec414）只派#142／R8.4。輸入8ed11ea960c7e0a046b72e3c78011c4cb744896b，產品c32b52260b6057b2b0f49d223e1c9f68b397f7c8；706tests／12demos／15verifycommands、14+12+12+14+16+9browser自測通過。R8.4父層保literal/query/view與集中側別搜尋，更新R7切步重設view舊限制；core/JSON不改。#145～147固定heads不改、R8.1～4独立驗收pending，#142 ready for review但OPEN／milestone43 OPEN，R8.5～6未開始。規劃8ea8ece98073542eaafc4b6d19f5e7ce639f074c只参考不混base。教學docs/r8-4-reading-context.zh-TW.md，證據docs/acceptance/r8-4-evidence/manifest.json。
 
 可審查stacked PR：[R8.4 #148](https://github.com/jerryyehself/laravel-migration-visualizer/pull/148)，base feat/r8-3-related-changes，head feat/r8-4-reading-context。current head／CI以GitHub紀錄為準；獨立驗收pending、未合併、沒有automerge。
+
+## COORD-20261011-17：R8.5 交付停點
+
+協調端按原人類核准（R8修訂1@5eec41476ef22b85d3165d3be3f681f1a20c8f9d）只派 #143／R8.5。固定輸入2dd3a9a348df5225f4cbf157d3c76ff5ef539622，產品ce16e471573cbf0762ad13293f715eefb61b28f7；713 tests（540core／173web）、15 verify命令／12demos與13+14+12+12+14+16+9＝90項／組browser自測通過。明細中文屬性優先、單一完整分析來源與未來時點標示、集中進階DTO／表格／診斷與兩JSON入口；core／公開JSON／golden／依賴／workflow無差異。#145～148固定驗收heads不改，COORD16及各批獨立驗收pending／offline阻礙沒有解除，不能用自測或協調核對當驗收。#143 in_progress／ready for review但OPEN，整R8與milestone43 OPEN，R8.6未開始。不合併、不automerge、不部署／release／下載落盤。規劃d2e3aaa2f761752842cdb4856afc2af0e47ba435只參考不混產品base。教學docs/r8-5-details-and-tools.zh-TW.md，12份可攜證據SHA256見docs/acceptance/r8-5-evidence/manifest.json。
