@@ -1,6 +1,6 @@
 # R8：結構與 migration 變化閱讀修正
 
-- 狀態：in_progress（僅 R8.1）；milestone #43／issues #139～144 已建立，整批未完成
+- 狀態：in_progress（R8.1～5待審查／R8.6整合準備；獨立驗收pending）；milestone #43／issues #139～144 已建立，整批未完成
 - 日期／修訂：2026-10-11（Asia/Taipei）／1
 - 核准來源：使用者在 A-06 修訂 2 審查與優先序後明確要求「提出詳細修改步驟 建立milestone 跟issue 告訴實作session如何做修正」
 - 核准範圍：A-06 已列的變更摘要、主流程收斂、同名物件相關步驟、連續查看；本文件具體化其必要 UI／驗收契約。不是整份 A-06 或全部早期候選功能核准
@@ -8,7 +8,7 @@
 - 實作起點：遠端 main `2b8030a7d19963980190ba860888f243883b6d7b`；開工必須重新核對，不是永久最新 SHA
 - 依賴：[R7](R7-workspace-reading.zh-TW.md) done；[A-06 修訂 2](A-06-design-goal-audit.zh-TW.md) 的問題與來源
 - 文件分支：`docs/r8-reading-corrections`
-- GitHub：milestone [#43](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/43)／issues #139～144 已建立；R8.1 ready for review，PR 與當前 CI 依實際交付回報。研究端最初 API 限制是歷史，完整 URLs／依賴見 [工作項目包](R8-work-items/README.md)。
+- GitHub：milestone [#43](https://github.com/jerryyehself/laravel-migration-visualizer/milestone/43)／issues #139～144 已建立；R8.1～5待審查，R8.6整合準備；PR 與當前 CI 依實際交付回報。研究端最初 API 限制是歷史，完整 URLs／依賴見 [工作項目包](R8-work-items/README.md)。
 
 ## 問題、候選方案與取捨
 
@@ -117,11 +117,11 @@ Laravel Migration Visualizer：看結構、讀變更、追查來源
 | 批次／狀態 | 前置條件 | 詳細修改與交付物 | 預計 web 邊界 | 驗證／停止點 |
 |---|---|---|---|---|
 | R8.1 in_progress | 最新 main／R7 done；本文件及工作項目可取得 | 依草圖調整入口／結果順序、收合輸入管理、11 範例整合、工具入口及同頁返回；診斷編輯能展開正確檔 | main、ProjectWorkbench、ProjectResults、ProjectExports、style | 匯入與副本失效／還原、工具返回、鍵盤／窄屏；不刪既有功能、不改分析器 |
-| R8.2 approved | R8.1 工作區容納摘要；確認 SchemaChange 既有欄位 | 純 DTO 顯示 adapter、每表分組、屬性前→後、index／FK 與來源導航；摘要在 ERD 前 | migration-reading、MigrationReading、WorkspaceDetails；可新增 web 純 adapter | commerce 價格、跨表 FK、false／0／null／缺省、rename 與 drop/add、failed；不改 core／JSON |
-| R8.3 approved | R8.2 摘要與相關物件導航可用 | literal 名稱相關步驟視圖、刪除名稱查詢、實際差異與語法上下文、跳步與來源 | operation-sources、WorkspaceDetails、ProjectResults；可新增 web 相關變更 adapter／component | nickname 新增移除、tableAdded/Removed 含欄位、同名重建、failed／blocked、特殊名稱；不做 history identity |
-| R8.4 approved | R8.3 查詢／導航邊界已明確 | 將閱讀／查詢／GraphView 提升到適當父層，保留欄位與視野，搜尋側別與共享工具；未知側不補畫 | SchemaSnapshots、SchemaGraph、SchemaComparison、comparison-layout、ProjectResults | step／side／filter、未知／缺欄、幾何布局不混資料、來源返回；不持久化／自動播放 |
-| R8.5 approved | R8.2～4 state／查詢／來源能一致返回 | 明細優先、全歷史來源只列一次、進階分析與表格／JSON 重整，移除主流程重複展示 | TableDetails、OperationSources、WorkspaceDetails、ProjectResults、ProjectExports | current vs future 來源、兩側明細、collapsed return、未知 final 禁用、可達表格；不測下載落盤 |
-| R8.6 approved | 前五批必要回歸完成；latest head 可驗證 | 任務驗收、截圖、問題修正、手冊／里程碑與提案狀態、功能 PR／CI／merge 證據 | 必要 web 測試、開發端驗收工具與交付文件 | repo 要求 verify／browser、下面任務矩陣；完成前不標 done，不新增 release／部署設定 |
+| R8.2 in_progress／ready for review | R8.1 工作區容納摘要；確認 SchemaChange 既有欄位 | 純 DTO 顯示 adapter、每表分組、屬性前→後、index／FK 與來源導航；摘要在 ERD 前 | migration-reading、MigrationReading、WorkspaceDetails；可新增 web 純 adapter | commerce 價格、跨表 FK、false／0／null／缺省、rename 與 drop/add、failed；不改 core／JSON |
+| R8.3 in_progress／ready for review | R8.2 摘要與相關物件導航可用 | literal 名稱相關步驟視圖、刪除名稱查詢、實際差異與語法上下文、跳步與來源 | operation-sources、WorkspaceDetails、ProjectResults；可新增 web 相關變更 adapter／component | nickname 新增移除、tableAdded/Removed 含欄位、同名重建、failed／blocked、特殊名稱；不做 history identity |
+| R8.4 in_progress／ready for review | R8.3 查詢／導航邊界已明確 | 將閱讀／查詢／GraphView 提升到適當父層，保留欄位與視野，搜尋側別與共享工具；未知側不補畫 | SchemaSnapshots、SchemaGraph、SchemaComparison、comparison-layout、ProjectResults | step／side／filter、未知／缺欄、幾何布局不混資料、來源返回；不持久化／自動播放 |
+| R8.5 in_progress／ready for review | R8.2～4 state／查詢／來源能一致返回 | 明細優先、全歷史來源只列一次、進階分析與表格／JSON 重整，移除主流程重複展示 | TableDetails、OperationSources、WorkspaceDetails、ProjectResults、ProjectExports | current vs future 來源、兩側明細、collapsed return、未知 final 禁用、可達表格；不測下載落盤 |
+| R8.6 in_progress／整合準備 ready for review | 前五批必要回歸完成；latest head 可驗證 | 任務驗收、截圖、問題修正、手冊／里程碑與提案狀態、功能 PR／CI／merge 證據 | 必要 web 測試、開發端驗收工具與交付文件 | repo 要求 verify／browser、下面任務矩陣；完成前不標 done，不新增 release／部署設定 |
 
 預計檔案是邊界，不要求為符合表而修改全部檔案。必要回歸由開發端寫在 web，服務已回傳 DTO，畫面只做查詢／格式化；不得在 React 自行 parse／replay 或變更 core、golden、公開 JSON、依賴、workflow。
 
@@ -163,3 +163,9 @@ R8.1 已實作與必要檢查完成，in_progress／ready for review，未獨立
 ## COORD-20261011-17：R8.5 交付停點
 
 協調端按原人類核准（R8修訂1@5eec41476ef22b85d3165d3be3f681f1a20c8f9d）只派 #143／R8.5。固定輸入2dd3a9a348df5225f4cbf157d3c76ff5ef539622，產品ce16e471573cbf0762ad13293f715eefb61b28f7；713 tests（540core／173web）、15 verify命令／12demos與13+14+12+12+14+16+9＝90項／組browser自測通過。明細中文屬性優先、單一完整分析來源與未來時點標示、集中進階DTO／表格／診斷與兩JSON入口；core／公開JSON／golden／依賴／workflow無差異。#145～148固定驗收heads不改，COORD16及各批獨立驗收pending／offline阻礙沒有解除，不能用自測或協調核對當驗收。#143 in_progress／ready for review但OPEN，整R8與milestone43 OPEN，R8.6未開始。不合併、不automerge、不部署／release／下載落盤。規劃d2e3aaa2f761752842cdb4856afc2af0e47ba435只參考不混產品base。教學docs/r8-5-details-and-tools.zh-TW.md，12份可攜證據SHA256見docs/acceptance/r8-5-evidence/manifest.json。
+
+## COORD-20261011-20：R8.6 整合自測／交付準備停點
+
+協調端按R8修訂1@5eec41476ef22b85d3165d3be3f681f1a20c8f9d既有人類核准派工，僅 #144／R8.6準備。固定輸入／本輪實際verify与browser基準9010b873cd2bfbf5647406c41935a8dfa718a5f0、clean=true；程式最後改動仍ce16e471573cbf0762ad13293f715eefb61b28f7，沒有本輪產品修正或空產品commit。713tests（540core／173web）、15verify命令／12demos通過；真Chromium十項原矩陣整合任務另加90項／組前批回歸通過、console空。原112份PHP hashes MATCH，Laravel.io2/1/6／BookStack0/1/102、final未知边界不變。首次runner還原locator錯誤及九項部分結果保存，修正後全跑十項，不放寬斷言。教學／整合報告docs/r8-6-integration-preparation.zh-TW.md，16份可攜證據docs/acceptance/r8-6-evidence/manifest.json。
+
+新分支feat/r8-6-integration-preparation，stacked base feat/r8-5-details-and-tools；#145～149固定驗收heads／OPEN狀態不改。规划835cb1e544520ff7b69ea1c20f03bf0ccf8fe66b只參考不混base。獨立隊列03/06/10/13/16/19與未来R8.6仍pending，offline是協調端回報的驗收環境阻礙；開發自測／CI／協調核對不能代獨立報告。#144 in_progress／ready for review但OPEN、R8整批／milestone43 OPEN未done。剩餘独立報告／必要複驗與依授權安排整合／所有必要merge／交付證據由協調回收再派工；本輪不合併、不automerge、不關issuesmilestone、不部署release或下載落盤，不開始新draft。

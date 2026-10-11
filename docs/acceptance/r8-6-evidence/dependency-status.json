@@ -1,0 +1,130 @@
+{
+  "checkedAt": "2026-10-11T06:08:17.354920+00:00",
+  "main": "2b8030a7d19963980190ba860888f243883b6d7b",
+  "milestone": {
+    "number": 43,
+    "state": "open"
+  },
+  "planningReference": "835cb1e544520ff7b69ea1c20f03bf0ccf8fe66b",
+  "rows": [
+    {
+      "batch": "R8.1",
+      "issue": 139,
+      "pr": 145,
+      "url": "https://github.com/jerryyehself/laravel-migration-visualizer/pull/145",
+      "productCommit": "d849b4e8a0ea79e65b8d459a975476b57fe75538",
+      "evidenceCommit": "560166f04ee7c3c0b5520f10c41c05574375f5ec",
+      "documentHead": "f9b42c8c220841d40978db48969feaba8c52dc43",
+      "base": "main",
+      "baseCommit": "2b8030a7d19963980190ba860888f243883b6d7b",
+      "state": "open",
+      "merged": false,
+      "automerge": null,
+      "CI": {
+        "run": 38112821394,
+        "status": "completed",
+        "conclusion": "success",
+        "head": "f9b42c8c220841d40978db48969feaba8c52dc43",
+        "url": "https://github.com/jerryyehself/laravel-migration-visualizer/actions/runs/38112821394"
+      },
+      "independentAcceptance": "pending"
+    },
+    {
+      "batch": "R8.2",
+      "issue": 140,
+      "pr": 146,
+      "url": "https://github.com/jerryyehself/laravel-migration-visualizer/pull/146",
+      "productCommit": "444fc9c99f7acf99f2824730ee32c0ca3e56b08d",
+      "evidenceCommit": "591cfe89e21dcf650e71b1b5f97902af8bbe78fe",
+      "documentHead": "3e8ee581eee16a80940c7490b491001dc2bd25eb",
+      "base": "feat/r8-1-main-flow",
+      "baseCommit": "f9b42c8c220841d40978db48969feaba8c52dc43",
+      "state": "open",
+      "merged": false,
+      "automerge": null,
+      "CI": {
+        "run": 38113844022,
+        "status": "completed",
+        "conclusion": "success",
+        "head": "3e8ee581eee16a80940c7490b491001dc2bd25eb",
+        "url": "https://github.com/jerryyehself/laravel-migration-visualizer/actions/runs/38113844022"
+      },
+      "independentAcceptance": "pending"
+    },
+    {
+      "batch": "R8.3",
+      "issue": 141,
+      "pr": 147,
+      "url": "https://github.com/jerryyehself/laravel-migration-visualizer/pull/147",
+      "productCommit": "763f71d5089e45781e34ba30e55028916b065a15",
+      "evidenceCommit": "1c78a1ac703c11b805daf1971f90d7ae28f7d0ca",
+      "documentHead": "8ed11ea960c7e0a046b72e3c78011c4cb744896b",
+      "base": "feat/r8-2-change-summary",
+      "baseCommit": "3e8ee581eee16a80940c7490b491001dc2bd25eb",
+      "state": "open",
+      "merged": false,
+      "automerge": null,
+      "CI": {
+        "run": 38114646468,
+        "status": "completed",
+        "conclusion": "success",
+        "head": "8ed11ea960c7e0a046b72e3c78011c4cb744896b",
+        "url": "https://github.com/jerryyehself/laravel-migration-visualizer/actions/runs/38114646468"
+      },
+      "independentAcceptance": "pending"
+    },
+    {
+      "batch": "R8.4",
+      "issue": 142,
+      "pr": 148,
+      "url": "https://github.com/jerryyehself/laravel-migration-visualizer/pull/148",
+      "productCommit": "c32b52260b6057b2b0f49d223e1c9f68b397f7c8",
+      "evidenceCommit": "7a35251bef5b00b3ffdf82b10b17570f60adf0b4",
+      "documentHead": "2dd3a9a348df5225f4cbf157d3c76ff5ef539622",
+      "base": "feat/r8-3-related-changes",
+      "baseCommit": "8ed11ea960c7e0a046b72e3c78011c4cb744896b",
+      "state": "open",
+      "merged": false,
+      "automerge": null,
+      "CI": {
+        "run": 38115514765,
+        "status": "completed",
+        "conclusion": "success",
+        "head": "2dd3a9a348df5225f4cbf157d3c76ff5ef539622",
+        "url": "https://github.com/jerryyehself/laravel-migration-visualizer/actions/runs/38115514765"
+      },
+      "independentAcceptance": "pending"
+    },
+    {
+      "batch": "R8.5",
+      "issue": 143,
+      "pr": 149,
+      "url": "https://github.com/jerryyehself/laravel-migration-visualizer/pull/149",
+      "productCommit": "ce16e471573cbf0762ad13293f715eefb61b28f7",
+      "evidenceCommit": "59f6de87c65df65f65820dc6979fb43d9d99e780",
+      "documentHead": "9010b873cd2bfbf5647406c41935a8dfa718a5f0",
+      "base": "feat/r8-4-reading-context",
+      "baseCommit": "2dd3a9a348df5225f4cbf157d3c76ff5ef539622",
+      "state": "open",
+      "merged": false,
+      "automerge": null,
+      "CI": {
+        "run": 38116547615,
+        "status": "completed",
+        "conclusion": "success",
+        "head": "9010b873cd2bfbf5647406c41935a8dfa718a5f0",
+        "url": "https://github.com/jerryyehself/laravel-migration-visualizer/actions/runs/38116547615"
+      },
+      "independentAcceptance": "pending"
+    }
+  ],
+  "independentQueue": [
+    "COORD03",
+    "COORD06",
+    "COORD10",
+    "COORD13",
+    "COORD16",
+    "COORD19"
+  ],
+  "remainingGate": "independent acceptance/rechecks and authorized dependency integration/merges; not part of this dispatch"
+}

@@ -1,0 +1,50 @@
+{
+  "batch": "COORD-20261011-20 / R8.6 development integration preparation",
+  "humanApprovalCommit": "5eec41476ef22b85d3165d3be3f681f1a20c8f9d",
+  "inputCommit": "9010b873cd2bfbf5647406c41935a8dfa718a5f0",
+  "lastProgramChangeCommit": "ce16e471573cbf0762ad13293f715eefb61b28f7",
+  "productFixCommit": null,
+  "actualVerifyCommit": "9010b873cd2bfbf5647406c41935a8dfa718a5f0",
+  "clean": true,
+  "tests": 713,
+  "coreTests": 540,
+  "webTests": 173,
+  "verifyCommands": 15,
+  "demos": 12,
+  "integrationTasks": 10,
+  "browserRegressionGroups": {
+    "r8-5": 13,
+    "r8-4": 14,
+    "r8-3": 12,
+    "r8-2": 12,
+    "r8-1": 14,
+    "r7": 16,
+    "source-return": 9
+  },
+  "consoleErrors": [],
+  "firstRun": {
+    "tasksRecorded": 9,
+    "completed": false,
+    "failure": "Incorrect restore button locator; runner corrected, no product defect"
+  },
+  "independentAcceptance": "pending; not replaced by development self-check or CI",
+  "scope": "No product changes; R8.6 preparation only. PRs/issues/milestone remain open; no merge/deploy/release/download interaction.",
+  "files": {
+    "dependency-status.json": "141ef18462206bc056a65253af1633df90f87ed337aad2931b19928df32f0971",
+    "desktop-foreign-keys.png": "9810d5895721c9f063fd66a3403a8c8dfb8399b19bdacacf4e72a3d7f7c5be7f",
+    "desktop-price.png": "8de8db2da42b64d0e310b7f403dc306771c9ab4b8e53b273d77fb6ea27647881",
+    "desktop-related.png": "dbf7029d7087225b63504c73981eebcbbc5fa552210630bb9943c4cd887b9ef6",
+    "first-browser-failure.txt": "b93eb9a61436d300b642cf9c16f0ab2062bd394a54be8d2323487f90eef50f2d",
+    "first-run-integration.json": "848bb22de3e8fa39e9ad9880a190f464174b4511c0fc6a7b92111e2512d6bae7",
+    "integration.json": "578677334e9e8d4af3c59e7a46d182caecbfbdd3d9981599ef362af8dec0cd99",
+    "narrow-reading.png": "de37a2ac5bbe93b971d55ea0681cd6e76b077f5a8cd126eeb614de7f4b5acb13",
+    "r7-regression.json": "59d68ae38df73fc9eeeba8f606000882854add05a8cb2bc09171d010bb8dba39",
+    "r8-1-regression.json": "5dadcebf46fc3b0c3b5c08b57ceffc4a8ac96f5c8b5030e979c30457ecf185bc",
+    "r8-2-regression.json": "3fbe50924160b8aaa43d90a4aa04d19efbe3196da1bba3e62ca5c5f44f8c16b0",
+    "r8-3-regression.json": "577af7ac90776c99138dfdc7251937117ec09bc45aaed0720f60aa8e1d2943d4",
+    "r8-4-regression.json": "e8709ec8dd75db4c230cd7ffeab955b5b77399f5833125ceb65c812d7bbb79a7",
+    "r8-5-regression.json": "73a448c260b03975e6cbc22eed5592222c33c9d56cc1ffa8e59bee178f12858b",
+    "source-return-regression.json": "c691acd55b71f013586c19a69016dd1309add05016c32c77487501ee0945ceb2",
+    "verification.json": "246bb57c9ffd328b6529dfb6df240e514c48ac23dbd55d6b3a089d878597c0aa"
+  }
+}

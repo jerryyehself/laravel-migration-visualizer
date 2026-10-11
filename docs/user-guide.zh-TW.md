@@ -72,3 +72,11 @@ npm run dev -- --host 127.0.0.1 --port 5202 --strictPort
 ## R8.5 待審查分支的明細與進階入口
 
 R8.5只交待審查stacked分支，未合併main、獨立驗收pending。右側結構明細／相關變更／PHP來源可直接鍵盤到達；全分析來源只列一次，後續來源不表示目前已套用。表格／完整DTO／全診斷與兩JSON入口集中進階，歷史頁不預設攤另一份final／prefix；未知final仍禁用最終下載，成功前綴另標。主摘要與未完成狀態保持可見。中文屬性區分NULL／false／0／未指定。詳細限制與實證見[r8-5-details-and-tools.zh-TW.md](r8-5-details-and-tools.zh-TW.md)。
+
+## R8整合任務走查（待審查分支，尚未合併）
+
+從範例選commerce第7份，在主摘要直接讀price的decimal(8,2)→decimal(10,2)、nullable false→true與default未指定→0；不用開原始JSON。foreign-keys第3份看users/posts改名與舊新FK，引用導航標Before／After。project例查精確users.nickname會列第2新增、第3移除，跳步仍保已刪名字；display_name的rename語法與後續同名drop/add淨差異分開。表名變了要明確查新literal，不自動追身份。
+
+來源預覽返回保閱讀/query/view/focus；PHP只讀，真改副本須重分析。compare選搜尋側別，各側只讀ownschema。完整來源只列一次并標後續時點，進階集中DTO/表格/全診斷/JSON入口。未知final不能用成功prefix替代；Laravel.io與BookStack固定樣本仍未完成，沒有改善相容性。
+
+上述是本分支實際任務自測，不是獨立驗收或真人試用。R8.6只準備交付，R8全批未done、PR未合併；核准来源、固定SHAs、十項observed紀錄、desktop390截圖與外部門檻見[r8-6-integration-preparation.zh-TW.md](r8-6-integration-preparation.zh-TW.md)。沒有做下載互動或落盤。
